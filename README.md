@@ -77,7 +77,7 @@ pnpm dev
 - **框架**: [Next.js](https://nextjs.org/) (App Router)
 - **UI 组件**: [Ant Design](https://ant.design/)
 - **文本处理**:
-  - `opencc-js`: 繁简转化
+  - `js-opencc`: 繁简转化
   - `jschardet`: 编码检测
   - 自定义正则与文本处理算法
 

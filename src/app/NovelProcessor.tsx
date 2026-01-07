@@ -27,7 +27,7 @@ import { useCopyToClipboard } from "@/app/hooks/zh/useCopyToClipboard";
 import { reorderChaptersByTitle, splitInlineChapterTitles, removeLineEndNumbers, stripNovelArtifacts } from "./novelUtils";
 import useFileUpload from "@/app/hooks/useFileUpload";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
-import * as OpenCC from "opencc-js";
+import { createConverter } from "js-opencc";
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
@@ -94,9 +94,8 @@ const NovelProcessor = () => {
     let processedInput = sourceText;
 
     if (convertToSimplified) {
-      const converter = OpenCC.Converter({ from: "tw", to: "cn" });
+      const converter = await createConverter({ from: "tw", to: "cn" });
       processedInput = converter(processedInput);
-      processedInput = processedInput.replace(/擡/g, "抬"); // 修复 OpenCC 繁体转简体错误，偶尔会出现将简体抬转为擡的情况
     }
 
     // 第一步：规范换行与清除常见小说杂质
