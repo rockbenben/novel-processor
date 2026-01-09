@@ -1,5 +1,6 @@
 "use client";
-import React, { useState, useEffect, memo } from "react";
+import React, { memo, useSyncExternalStore } from "react";
+import { usePathname } from "next/navigation";
 import { Layout, Menu, Space, Button, Dropdown, Flex } from "antd";
 import { GithubOutlined, QqOutlined, DiscordOutlined, SunOutlined, MoonOutlined, TeamOutlined, SendOutlined } from "@ant-design/icons";
 import { useTheme } from "next-themes";
@@ -8,29 +9,37 @@ import { SOCIAL_LINKS } from "./config";
 
 const { Header } = Layout;
 
+const iconStyle = { fontSize: 18 };
+
+const getCurrentMenuKey = (pathname: string): string => {
+  const segments = pathname.split("/").filter(Boolean);
+  return segments.length > 0 ? segments.join("/") : "home";
+};
+
 export function Navigation() {
   const menuItems = useAppMenu();
+  const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
 
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
   const githubLink = SOCIAL_LINKS.github;
+  const currentMenuKey = getCurrentMenuKey(pathname);
 
   const handleThemeToggle = () => {
     setTheme(resolvedTheme === "light" ? "dark" : "light");
   };
 
-  const iconStyle = { fontSize: 18 };
   const themeIcon = mounted && resolvedTheme === "light" ? <SunOutlined style={iconStyle} /> : <MoonOutlined style={iconStyle} />;
 
   return (
     <Header style={{ padding: 0, background: "transparent", height: 48, lineHeight: "48px" }}>
       <Flex justify="space-between" align="center" style={{ padding: "0 16px", borderBottom: "1px solid rgba(128, 128, 128, 0.25)" }}>
-        <Menu mode="horizontal" items={menuItems} style={{ flex: 1, minWidth: 0, border: "none", background: "transparent" }} />
+        <Menu selectedKeys={[currentMenuKey]} mode="horizontal" items={menuItems} style={{ flex: 1, minWidth: 0, border: "none", background: "transparent" }} />
 
         <Space size="middle">
           <Dropdown
