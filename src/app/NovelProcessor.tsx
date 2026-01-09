@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Input, Typography, Space, Checkbox, Flex, App, Tooltip, Upload, Card, Switch, Spin, Row, Col, Collapse, Divider, Tag } from "antd";
-import { CopyOutlined, InboxOutlined, DownloadOutlined, SettingOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, RocketOutlined } from "@ant-design/icons";
+import { Button, Input, Typography, Space, Flex, App, Tooltip, Upload, Card, Switch, Spin, Row, Col, Collapse, Divider, Segmented } from "antd";
+import { InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, RocketOutlined, ControlOutlined } from "@ant-design/icons";
 import {
   splitTextIntoLines,
   cleanLines,
@@ -21,6 +21,7 @@ import {
   chapterTitleRegex,
   numberTitleRegex,
   novelSectionHeaderRegex,
+  escapeRegExp,
 } from "@/app/utils";
 import { useTextStats } from "@/app/hooks/useTextStats";
 import { useCopyToClipboard } from "@/app/hooks/zh/useCopyToClipboard";
@@ -28,6 +29,7 @@ import { reorderChaptersByTitle, splitInlineChapterTitles, removeLineEndNumbers,
 import useFileUpload from "@/app/hooks/useFileUpload";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
+import ZhResultCard from "@/app/components/zh/ZhResultCard";
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
@@ -43,10 +45,11 @@ const NovelProcessor = () => {
   const [enableChapterSplit, setEnableChapterSplit] = useState(true);
   const [enableLineEndNumbers, setEnableLineEndNumbers] = useState(false);
   const [specialStart, setSpecialStart] = useLocalStorage("novel-processor-specialStart", "");
-  const [convertToSimplified, setConvertToSimplified] = useState(false);
+  const [activeCollapseKeys, setActiveCollapseKeys] = useLocalStorage<string[]>("novel-processor-collapseKeys", ["1"]);
+  const [conversionMode, setConversionMode] = useState<"none" | "t2s" | "s2t">("none");
   const [enableTrim, setEnableTrim] = useState(true);
   const [enableParagraphSplit, setEnableParagraphSplit] = useState(false);
-  const [removeDuplicateLines, setRemoveDuplicateLines] = useState(true);
+  const [removeDuplicateLines, setRemoveDuplicateLines] = useLocalStorage("novel-proc-removeDuplicateLines", false);
 
   const {
     isFileProcessing,
@@ -63,12 +66,10 @@ const NovelProcessor = () => {
     handleUploadChange,
     resetUpload,
   } = useFileUpload();
-  const [largeMode, setLargeMode] = useState(false);
   const [result, setResult] = useState("");
   const [directExport, setDirectExport] = useState(false);
 
   const sourceStats = useTextStats(sourceText);
-  const resultStats = useTextStats(result);
 
   const [prevSourceText, setPrevSourceText] = useState(sourceText);
   if (sourceText !== prevSourceText) {
@@ -93,8 +94,11 @@ const NovelProcessor = () => {
     }
     let processedInput = sourceText;
 
-    if (convertToSimplified) {
+    if (conversionMode === "t2s") {
       const converter = await createConverter({ from: "tw", to: "cn" });
+      processedInput = converter(processedInput);
+    } else if (conversionMode === "s2t") {
+      const converter = await createConverter({ from: "cn", to: "tw" });
       processedInput = converter(processedInput);
     }
 
@@ -112,9 +116,10 @@ const NovelProcessor = () => {
       // 替换乱码字符
       .replace(//g, " ")
       .replace(/&nbsp/g, " ")
-      .replace(/([\u4e00-\u9fa5]) +([\u4e00-\u9fa5])/g, (match, g1, g2) => {
-        // 保留章节标记后的空格，移除其他中文间的空格
-        return /[章节卷集部篇]/.test(g1) ? match : g1 + g2;
+      .replace(/([\u4e00-\u9fa5]) {2,}([\u4e00-\u9fa5])/g, (match, g1, g2) => {
+        // 仅压缩两个及以上连续空格为单个空格（保留单个空格，可能是人名/地名分隔）
+        // 同时保留章节标记后的空格
+        return /[章节卷集部篇]/.test(g1) ? match : g1 + " " + g2;
       })
       // 删除整行为五个或多个=的行
       .replace(/^={5,}(\n|$)/gm, "");
@@ -155,8 +160,8 @@ const NovelProcessor = () => {
     if (smartLineBreak) {
       const result = [];
 
-      // 预编译正则表达式以提高性能
-      const specialStartRegex = specialStart ? new RegExp(`^${specialStart}`) : null;
+      // 预编译正则表达式，使用 escapeRegExp 转义用户输入防止正则注入
+      const specialStartRegex = specialStart ? new RegExp(`^${escapeRegExp(specialStart)}`) : null;
 
       for (let i = 0; i < processedLines.length; i++) {
         const currentLine = processedLines[i];
@@ -266,7 +271,7 @@ const NovelProcessor = () => {
   };
 
   return (
-    <Spin spinning={isFileProcessing} tip="正在加载文件，请稍候..." size="large">
+    <Spin spinning={isFileProcessing} tip="请稍候..." size="large">
       <Row gutter={[16, 16]}>
         {/* Left Column: Input and Main Actions */}
         <Col xs={24} lg={15}>
@@ -293,7 +298,7 @@ const NovelProcessor = () => {
                 </Tooltip>
               }
               variant="borderless"
-              className="shadow-sm">
+              className="shadow-md border-transparent hover:shadow-lg transition-shadow duration-300">
               <Flex vertical gap="small">
                 <Dragger
                   customRequest={({ file }) => handleFileUpload(file as File)}
@@ -311,7 +316,7 @@ const NovelProcessor = () => {
                   <p className="ant-upload-hint">支持的格式：.txt .md .markdown</p>
                 </Dragger>
 
-                {uploadMode === "single" && !largeMode && (
+                {uploadMode === "single" && (
                   <TextArea
                     placeholder="请输入或粘贴待处理文本..."
                     value={sourceStats.isEditable ? sourceText : sourceStats.displayText}
@@ -324,55 +329,26 @@ const NovelProcessor = () => {
                 )}
 
                 {sourceText && (
-                  <Flex justify="space-between" align="center" style={{ marginTop: -6 }}>
-                    <Tag color="blue">输入：{sourceStats.charCount || 0} 字符</Tag>
-                    <Tag color="cyan">{sourceStats.lineCount || 0} 行</Tag>
+                  <Flex justify="end" className="mt-2">
+                    <Typography.Text type="secondary" className="!text-xs">
+                      {sourceStats.charCount || 0} 字符 / {sourceStats.lineCount || 0} 行
+                    </Typography.Text>
                   </Flex>
                 )}
               </Flex>
             </Card>
 
             {result && (
-              <Card
-                title={
-                  <Space>
-                    <RocketOutlined />
-                    <span>处理结果</span>
-                  </Space>
-                }
-                variant="borderless"
-                className="shadow-sm"
-                extra={
-                  <Space>
-                    <Button type="text" icon={<CopyOutlined />} onClick={() => copyToClipboard(result)}>
-                      复制
-                    </Button>
-                    <Button
-                      type="text"
-                      icon={<DownloadOutlined />}
-                      onClick={() => {
-                        const fileName = handleExportFile(result);
-                        message.success(`已导出文件：${fileName}`);
-                      }}>
-                      导出
-                    </Button>
-                  </Space>
-                }>
-                <TextArea
-                  value={resultStats.displayText || ""}
-                  onChange={!resultStats.isTooLong ? (e) => setResult(e.target.value) : undefined}
-                  rows={12}
-                  readOnly={resultStats.isTooLong}
-                  style={{ fontSize: 14, fontFamily: "monospace" }}
-                  aria-label="处理结果"
-                />
-                <Flex justify="end">
-                  <Space>
-                    <Tag color="green">输出：{resultStats.charCount || 0} 字符</Tag>
-                    <Tag color="geekblue">{resultStats.lineCount || 0} 行</Tag>
-                  </Space>
-                </Flex>
-              </Card>
+              <ZhResultCard
+                value={result}
+                onChange={setResult}
+                onCopy={() => copyToClipboard(result)}
+                onExport={() => {
+                  const fileName = handleExportFile(result);
+                  message.success(`已导出文件：${fileName}`);
+                }}
+                rows={12}
+              />
             )}
           </Flex>
         </Col>
@@ -383,26 +359,27 @@ const NovelProcessor = () => {
             <Card
               title={
                 <Space>
-                  <SettingOutlined />
-                  <span>处理选项</span>
+                  <ControlOutlined />
+                  <Typography.Text strong>高级设置</Typography.Text>
                 </Space>
               }
               variant="borderless"
               styles={{
                 body: { padding: "12px 24px" },
               }}
-              className="shadow-sm">
+              className="shadow-md border-transparent hover:shadow-lg transition-shadow duration-300">
               <Collapse
-                defaultActiveKey={["1"]}
                 ghost
-                expandIconPlacement="end"
+                size="small"
+                activeKey={activeCollapseKeys}
+                onChange={(keys) => setActiveCollapseKeys(keys as string[])}
                 items={[
                   {
                     key: "1",
                     label: (
                       <Space>
                         <ScissorOutlined />
-                        <span>排版优化</span>
+                        <Typography.Text strong>排版优化</Typography.Text>
                       </Space>
                     ),
                     children: (
@@ -411,11 +388,11 @@ const NovelProcessor = () => {
                           <Tooltip title="智能换行：依据标点符号自动优化换行，合并破碎段落">
                             <span>智能换行</span>
                           </Tooltip>
-                          <Switch checked={smartLineBreak} onChange={setSmartLineBreak} aria-label="智能换行" />
+                          <Switch size="small" checked={smartLineBreak} onChange={setSmartLineBreak} aria-label="智能换行" />
                         </Flex>
 
                         {smartLineBreak && (
-                          <Flex justify="space-between" align="center">
+                          <Flex justify="space-between" align="center" style={{ paddingLeft: 16 }}>
                             <Tooltip title="段落缩进：段首自动添加两个全角空格">
                               <span>段落缩进</span>
                             </Tooltip>
@@ -434,19 +411,28 @@ const NovelProcessor = () => {
                           <Tooltip title="去重：移除相邻的重复行">
                             <span>去除重复行</span>
                           </Tooltip>
-                          <Checkbox checked={removeDuplicateLines} onChange={(e) => setRemoveDuplicateLines(e.target.checked)} />
+                          <Switch size="small" checked={removeDuplicateLines} onChange={setRemoveDuplicateLines} aria-label="去除重复行" />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
                           <Tooltip title="长段落优化：自动拆分过长段落，提升移动端阅读体验">
                             <span>长段落优化</span>
                           </Tooltip>
-                          <Checkbox checked={enableParagraphSplit} onChange={(e) => setEnableParagraphSplit(e.target.checked)} />
+                          <Switch size="small" checked={enableParagraphSplit} onChange={setEnableParagraphSplit} aria-label="长段落优化" />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
-                          <span>繁体转简体</span>
-                          <Checkbox checked={convertToSimplified} onChange={(e) => setConvertToSimplified(e.target.checked)} />
+                          <span>繁简转换</span>
+                          <Segmented
+                            value={conversionMode}
+                            onChange={(value) => setConversionMode(value as "none" | "t2s" | "s2t")}
+                            size="small"
+                            options={[
+                              { label: "不变", value: "none" },
+                              { label: "繁→简", value: "t2s" },
+                              { label: "简→繁", value: "s2t" },
+                            ]}
+                          />
                         </Flex>
                       </Flex>
                     ),
@@ -456,36 +442,34 @@ const NovelProcessor = () => {
                     label: (
                       <Space>
                         <ClearOutlined />
-                        <span>内容清洗</span>
+                        <Typography.Text strong>内容清洗</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
-                        <Tooltip title="章节识别：自动识别并格式化“第X章”标题">
-                          <Checkbox checked={enableChapterSplit} onChange={(e) => setEnableChapterSplit(e.target.checked)}>
-                            识别并处理章节标题
-                          </Checkbox>
-                        </Tooltip>
+                        <Flex justify="space-between" align="center">
+                          <Tooltip title={'章节识别：自动识别并格式化"第X章"标题'}>
+                            <span>识别并处理章节标题</span>
+                          </Tooltip>
+                          <Switch size="small" checked={enableChapterSplit} onChange={setEnableChapterSplit} aria-label="识别并处理章节标题" />
+                        </Flex>
 
-                        <Tooltip title="清除行尾数字：移除行末的页码或统计数字（仅限该行长度超过10）">
-                          <Checkbox checked={enableLineEndNumbers} onChange={(e) => setEnableLineEndNumbers(e.target.checked)}>
-                            清除行尾数字
-                          </Checkbox>
-                        </Tooltip>
+                        <Flex justify="space-between" align="center">
+                          <Tooltip title="清除行尾数字：移除行末的页码或统计数字（仅限该行长度超过10）">
+                            <span>清除行尾数字</span>
+                          </Tooltip>
+                          <Switch size="small" checked={enableLineEndNumbers} onChange={setEnableLineEndNumbers} aria-label="清除行尾数字" />
+                        </Flex>
 
-                        <Divider style={{ margin: "8px 0" }} />
+                        <Divider className="!my-0" />
 
-                        <Space orientation="vertical" className="w-full">
-                          <Text type="secondary" style={{ fontSize: 12 }}>
-                            特殊起始行（不合并）
-                          </Text>
+                        <Flex vertical gap={4}>
+                          <Text>特殊起始行（不合并）</Text>
                           <Input value={specialStart || ""} onChange={(e) => setSpecialStart(e.target.value)} placeholder="例如：书名、卷首语..." allowClear aria-label="特殊起始行" />
-                        </Space>
+                        </Flex>
 
-                        <Space orientation="vertical" className="w-full">
-                          <Text type="secondary" style={{ fontSize: 12 }}>
-                            内容筛选
-                          </Text>
+                        <Flex vertical gap={4}>
+                          <Text>内容筛选</Text>
                           <Input placeholder="输入筛选关键词（逗号分隔）" value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label="内容筛选" />
                           <Space.Compact className="w-full">
                             <Space.Addon style={{ minWidth: 55 }}>阈值</Space.Addon>
@@ -500,7 +484,7 @@ const NovelProcessor = () => {
                               aria-label="长度阈值"
                             />
                           </Space.Compact>
-                        </Space>
+                        </Flex>
                       </Flex>
                     ),
                   },
@@ -508,26 +492,24 @@ const NovelProcessor = () => {
                     key: "3",
                     label: (
                       <Space>
-                        <SettingOutlined />
-                        <span>文件设置</span>
+                        <ControlOutlined />
+                        <Typography.Text strong>高级设置</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
-                        <Tooltip title="每次只处理一个文件，上传新文件时自动替换">
-                          <Checkbox checked={singleFileMode} onChange={(e) => setSingleFileMode(e.target.checked)}>
-                            单文件模式
-                          </Checkbox>
-                        </Tooltip>
-                        <Tooltip title="关闭预览以加快处理速度，适合处理大文件">
-                          <Checkbox checked={largeMode} onChange={(e) => setLargeMode(e.target.checked)}>
-                            大文件模式
-                          </Checkbox>
-                        </Tooltip>
+                        <Flex justify="space-between" align="center">
+                          <Tooltip title="每次只处理一个文件，上传新文件时自动替换">
+                            <span>单文件模式</span>
+                          </Tooltip>
+                          <Switch size="small" checked={singleFileMode} onChange={setSingleFileMode} aria-label="单文件模式" />
+                        </Flex>
+
                         {multipleFiles.length < 2 && (
-                          <Checkbox checked={directExport} onChange={(e) => setDirectExport(e.target.checked)}>
-                            处理后自动导出
-                          </Checkbox>
+                          <Flex justify="space-between" align="center">
+                            <span>处理后自动导出</span>
+                            <Switch size="small" checked={directExport} onChange={setDirectExport} aria-label="处理后自动导出" />
+                          </Flex>
                         )}
                       </Flex>
                     ),
@@ -544,6 +526,7 @@ const NovelProcessor = () => {
                 <Tooltip title="仅分割章节：仅对章节标题进行分行，不修改其他内容">
                   <Button
                     block
+                    variant="outlined"
                     onClick={() => {
                       const processed = splitInlineChapterTitles(sourceText);
                       setResult(processed);
@@ -554,7 +537,7 @@ const NovelProcessor = () => {
                   </Button>
                 </Tooltip>
                 <Tooltip title="章节重排：依据章节序号重新排序整本小说">
-                  <Button block icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
+                  <Button block variant="outlined" icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
                     章节重排
                   </Button>
                 </Tooltip>
