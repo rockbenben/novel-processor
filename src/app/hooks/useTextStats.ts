@@ -1,6 +1,6 @@
 "use client";
 
-import { useDeferredValue, useMemo } from "react";
+import { useMemo, useDeferredValue } from "react";
 import { truncate } from "@/app/utils/textUtils";
 
 const MAX_CHAR_LENGTH = 1000000;
@@ -12,7 +12,7 @@ const compactFormatter = new Intl.NumberFormat("en-US", {
 
 /**
  * Custom hook for deferred text statistics with editing state.
- * Combines useDeferredValue + text stats calculation + isEditable check.
+ * Uses useDeferredValue for non-blocking updates instead of manual debounce.
  *
  * @param text - The source text to analyze
  * @param maxChars - Optional max character limit before becoming read-only (default: 1,000,000)
@@ -21,42 +21,51 @@ const compactFormatter = new Intl.NumberFormat("en-US", {
 export const useTextStats = (text: string, maxChars: number = MAX_CHAR_LENGTH) => {
   const deferredText = useDeferredValue(text);
 
+  // Critical: Calculate layout-related flags from ACTUAL text immediately, not deferred text
+  // This prevents rendering 25MB text into the DOM while waiting for the deferred update
+  const isTooLong = text.length > maxChars;
+
+  // If text is too long, strictly force truncated display regardless of deferred state
+  // truncate() is cheap (slice), so it's safe to run on every render
+  const displayText = isTooLong ? truncate(text) : text;
+
   const stats = useMemo(() => {
-    const totalChars = deferredText.length;
+    // Use the deferred text for heavy line counting calculations
+    const targetText = deferredText;
+    const totalChars = targetText.length;
     let totalLines = 0;
 
     if (totalChars > 0) {
-      for (let i = 0; i < totalChars; i++) {
-        const c = deferredText.charCodeAt(i);
+      // Optimized line counting using indexOf (significantly faster than char-by-char iteration)
+      let index = -1;
+      while ((index = targetText.indexOf("\n", index + 1)) !== -1) {
+        totalLines++;
+      }
 
-        if (c === 10) {
-          // \n
+      // Fallback for old Mac line endings (\r) if no \n exists
+      // If the text contains \n, we assume it uses standard or windows endings and ignore standalone \r to avoid double counting \r\n
+      if (totalLines === 0 && targetText.includes("\r")) {
+        let rIndex = -1;
+        while ((rIndex = targetText.indexOf("\r", rIndex + 1)) !== -1) {
           totalLines++;
-        } else if (c === 13) {
-          // \r or \r\n
-          totalLines++;
-          if (i + 1 < totalChars && deferredText.charCodeAt(i + 1) === 10) {
-            i++; // skip \n in \r\n
-          }
         }
       }
-      totalLines++; // last line
-    }
 
-    const isTooLong = totalChars > maxChars;
-    const displayText = isTooLong ? truncate(deferredText) : deferredText;
+      totalLines++; // Add the last line
+    }
 
     return {
       charCount: compactFormatter.format(totalChars),
       lineCount: compactFormatter.format(totalLines),
-      isTooLong,
-      displayText,
-      isEditable: !isTooLong,
     };
-  }, [deferredText, maxChars]);
+  }, [deferredText]);
 
   return {
     ...stats,
+    isTooLong,
+    displayText,
+    // Return deferred text as 'deferredText' for consumers who want the stabilized value
     deferredText,
+    isEditable: !isTooLong,
   };
 };
