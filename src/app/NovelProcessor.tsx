@@ -271,7 +271,7 @@ const NovelProcessor = () => {
   };
 
   return (
-    <Spin spinning={isFileProcessing} tip="请稍候..." size="large">
+    <Spin spinning={isFileProcessing} description="请稍候..." size="large">
       <Row gutter={[16, 16]}>
         {/* Left Column: Input and Main Actions */}
         <Col xs={24} lg={15}>
