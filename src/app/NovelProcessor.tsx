@@ -22,6 +22,7 @@ import {
   numberTitleRegex,
   novelSectionHeaderRegex,
   escapeRegExp,
+  getFileTypePresetConfig,
 } from "@/app/utils";
 import { useTextStats } from "@/app/hooks/useTextStats";
 import { useCopyToClipboard } from "@/app/hooks/zh/useCopyToClipboard";
@@ -34,6 +35,8 @@ import ZhResultCard from "@/app/components/zh/ZhResultCard";
 const { TextArea } = Input;
 const { Dragger } = Upload;
 const { Text } = Typography;
+
+const uploadFileTypes = getFileTypePresetConfig("markdownText");
 
 const NovelProcessor = () => {
   const { message } = App.useApp();
@@ -302,7 +305,7 @@ const NovelProcessor = () => {
               <Flex vertical gap="small">
                 <Dragger
                   customRequest={({ file }) => handleFileUpload(file as File)}
-                  accept=".txt,.md,.markdown"
+                  accept={uploadFileTypes.accept}
                   multiple={!singleFileMode}
                   showUploadList
                   beforeUpload={singleFileMode ? resetUpload : undefined}
@@ -313,7 +316,7 @@ const NovelProcessor = () => {
                     <InboxOutlined />
                   </p>
                   <p className="ant-upload-text">点击或拖拽文件到此处上传</p>
-                  <p className="ant-upload-hint">支持的格式：.txt .md .markdown</p>
+                  <p className="ant-upload-hint">支持的格式：{uploadFileTypes.label}</p>
                 </Dragger>
 
                 {uploadMode === "single" && (
