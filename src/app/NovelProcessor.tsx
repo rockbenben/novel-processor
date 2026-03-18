@@ -31,6 +31,7 @@ import useFileUpload from "@/app/hooks/useFileUpload";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
 import ZhResultCard from "@/app/components/zh/ZhResultCard";
+import { useZhText } from "@/app/hooks/zh/useZhText";
 
 const { TextArea } = Input;
 const { Dragger } = Upload;
@@ -41,6 +42,7 @@ const uploadFileTypes = getFileTypePresetConfig("markdownText");
 const NovelProcessor = () => {
   const { message } = App.useApp();
   const { copyToClipboard } = useCopyToClipboard();
+  const z = useZhText();
   const [filterText, setFilterText] = useState("");
   const [maxFilterLineLength, setMaxFilterLineLength] = useState<number | undefined>(undefined);
   const [smartLineBreak, setSmartLineBreak] = useState(true);
@@ -92,7 +94,7 @@ const NovelProcessor = () => {
   const handleNovelProcessing = async (sourceText: string, fileName?: string) => {
     setResult("");
     if (!sourceText.trim()) {
-      message.error("请输入或粘贴待处理文本");
+      message.error(z("请输入或粘贴待处理文本"));
       return;
     }
     let processedInput = sourceText;
@@ -117,7 +119,7 @@ const NovelProcessor = () => {
       // 章节标记后的标点符号替换为空格
       .replace(/([章节卷集部篇])[、：:]/g, "$1 ")
       // 替换乱码字符
-      .replace(//g, " ")
+      .replace(/\uE4C6/g, " ")
       .replace(/&nbsp/g, " ")
       .replace(/([\u4e00-\u9fa5]) {2,}([\u4e00-\u9fa5])/g, (match, g1, g2) => {
         // 仅压缩两个及以上连续空格为单个空格（保留单个空格，可能是人名/地名分隔）
@@ -168,7 +170,7 @@ const NovelProcessor = () => {
 
       for (let i = 0; i < processedLines.length; i++) {
         const currentLine = processedLines[i];
-        // 如果行以“分卷阅读”开头且长度不超过10个字符，则跳过该行
+        // 如果行以"分卷阅读"开头且长度不超过10个字符，则跳过该行
         if (currentLine.startsWith("分卷阅读") && currentLine.length <= 10) {
           continue;
         }
@@ -217,7 +219,7 @@ const NovelProcessor = () => {
 
     if (directExport) {
       const dfileName = handleExportFile(processedInput);
-      message.success(`导出成功：${dfileName}`);
+      message.success(z(`导出成功：${dfileName}`));
       return;
     }
 
@@ -227,7 +229,7 @@ const NovelProcessor = () => {
 
   const handleMultipleProcess = async () => {
     if (multipleFiles.length === 0) {
-      message.error("请上传要处理的文件");
+      message.error(z("请上传要处理的文件"));
       return;
     }
 
@@ -245,7 +247,7 @@ const NovelProcessor = () => {
     }
 
     //setTranslateInProgress(false);
-    message.success("处理完成，文件已自动下载", 10);
+    message.success(z("处理完成，文件已自动下载"), 10);
   };
 
   const handleProcess = () => {
@@ -261,20 +263,20 @@ const NovelProcessor = () => {
     const text = sourceText || "";
     const lines = splitTextIntoLines(text);
     if (lines.length === 0) {
-      message.warning("请先输入或粘贴文本");
+      message.warning(z("请先输入或粘贴文本"));
       return;
     }
     const { output, chapters } = reorderChaptersByTitle(text);
     if (!chapters) {
-      message.info("未识别到有效章节标题，无法重排");
+      message.info(z("未识别到有效章节标题，无法重排"));
       return;
     }
     setResult(output);
-    message.success(`章节重排完成（共 ${chapters} 章）`);
+    message.success(z(`章节重排完成（共 ${chapters} 章）`));
   };
 
   return (
-    <Spin spinning={isFileProcessing} description="请稍候..." size="large">
+    <Spin spinning={isFileProcessing} description={z("请稍候...")} size="large">
       <Row gutter={[16, 16]}>
         {/* Left Column: Input and Main Actions */}
         <Col xs={24} lg={15}>
@@ -283,20 +285,20 @@ const NovelProcessor = () => {
               title={
                 <Space>
                   <FileTextOutlined />
-                  <span>文本输入</span>
+                  <span>{z("文本输入")}</span>
                 </Space>
               }
               extra={
-                <Tooltip title="清空输入内容和上传的文件">
+                <Tooltip title={z("清空输入内容和上传的文件")}>
                   <Button
                     type="text"
                     danger
                     onClick={() => {
                       resetUpload();
-                      message.success("已清空");
+                      message.success(z("已清空"));
                     }}
                     icon={<ClearOutlined />}>
-                    清空
+                    {z("清空")}
                   </Button>
                 </Tooltip>
               }
@@ -315,26 +317,26 @@ const NovelProcessor = () => {
                   <p className="ant-upload-drag-icon">
                     <InboxOutlined />
                   </p>
-                  <p className="ant-upload-text">点击或拖拽文件到此处上传</p>
-                  <p className="ant-upload-hint">支持的格式：{uploadFileTypes.label}</p>
+                  <p className="ant-upload-text">{z("点击或拖拽文件到此处上传")}</p>
+                  <p className="ant-upload-hint">{z("支持的格式：")}{uploadFileTypes.label}</p>
                 </Dragger>
 
                 {uploadMode === "single" && (
                   <TextArea
-                    placeholder="请输入或粘贴待处理文本..."
+                    placeholder={z("请输入或粘贴待处理文本...")}
                     value={sourceStats.isEditable ? sourceText : sourceStats.displayText}
                     onChange={sourceStats.isEditable ? (e) => setSourceText(e.target.value) : undefined}
                     rows={8}
                     allowClear
                     readOnly={!sourceStats.isEditable}
-                    aria-label="文本输入"
+                    aria-label={z("文本输入")}
                   />
                 )}
 
                 {sourceText && (
                   <Flex justify="end" className="mt-2">
                     <Typography.Text type="secondary" className="!text-xs">
-                      {sourceStats.charCount || 0} 字符 / {sourceStats.lineCount || 0} 行
+                      {z(`${sourceStats.charCount || 0} 字符 / ${sourceStats.lineCount || 0} 行`)}
                     </Typography.Text>
                   </Flex>
                 )}
@@ -348,7 +350,7 @@ const NovelProcessor = () => {
                 onCopy={() => copyToClipboard(result)}
                 onExport={() => {
                   const fileName = handleExportFile(result);
-                  message.success(`已导出文件：${fileName}`);
+                  message.success(z(`已导出文件：${fileName}`));
                 }}
                 rows={12}
               />
@@ -363,7 +365,7 @@ const NovelProcessor = () => {
               title={
                 <Space>
                   <ControlOutlined />
-                  <Typography.Text strong>高级设置</Typography.Text>
+                  <Typography.Text strong>{z("高级设置")}</Typography.Text>
                 </Space>
               }
               variant="borderless"
@@ -382,58 +384,58 @@ const NovelProcessor = () => {
                     label: (
                       <Space>
                         <ScissorOutlined />
-                        <Typography.Text strong>排版优化</Typography.Text>
+                        <Typography.Text strong>{z("排版优化")}</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="智能换行：依据标点符号自动优化换行，合并破碎段落">
-                            <span>智能换行</span>
+                          <Tooltip title={z("智能换行：依据标点符号自动优化换行，合并破碎段落")}>
+                            <span>{z("智能换行")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={smartLineBreak} onChange={setSmartLineBreak} aria-label="智能换行" />
+                          <Switch size="small" checked={smartLineBreak} onChange={setSmartLineBreak} aria-label={z("智能换行")} />
                         </Flex>
 
                         {smartLineBreak && (
                           <Flex justify="space-between" align="center" style={{ paddingLeft: 16 }}>
-                            <Tooltip title="段落缩进：段首自动添加两个全角空格">
-                              <span>段落缩进</span>
+                            <Tooltip title={z("段落缩进：段首自动添加两个全角空格")}>
+                              <span>{z("段落缩进")}</span>
                             </Tooltip>
-                            <Switch checked={enableIndent} onChange={setEnableIndent} size="small" aria-label="段落缩进" />
+                            <Switch checked={enableIndent} onChange={setEnableIndent} size="small" aria-label={z("段落缩进")} />
                           </Flex>
                         )}
 
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="智能清理：自动移除每行首尾空格">
-                            <span>智能清理空格</span>
+                          <Tooltip title={z("智能清理：自动移除每行首尾空格")}>
+                            <span>{z("智能清理空格")}</span>
                           </Tooltip>
-                          <Switch checked={enableTrim} onChange={setEnableTrim} size="small" aria-label="智能清理空格" />
+                          <Switch checked={enableTrim} onChange={setEnableTrim} size="small" aria-label={z("智能清理空格")} />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="去重：移除相邻的重复行">
-                            <span>去除重复行</span>
+                          <Tooltip title={z("去重：移除相邻的重复行")}>
+                            <span>{z("去除重复行")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={removeDuplicateLines} onChange={setRemoveDuplicateLines} aria-label="去除重复行" />
+                          <Switch size="small" checked={removeDuplicateLines} onChange={setRemoveDuplicateLines} aria-label={z("去除重复行")} />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="长段落优化：自动拆分过长段落，提升移动端阅读体验">
-                            <span>长段落优化</span>
+                          <Tooltip title={z("长段落优化：自动拆分过长段落，提升移动端阅读体验")}>
+                            <span>{z("长段落优化")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={enableParagraphSplit} onChange={setEnableParagraphSplit} aria-label="长段落优化" />
+                          <Switch size="small" checked={enableParagraphSplit} onChange={setEnableParagraphSplit} aria-label={z("长段落优化")} />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
-                          <span>繁简转换</span>
+                          <span>{z("繁简转换")}</span>
                           <Segmented
                             value={conversionMode}
                             onChange={(value) => setConversionMode(value as "none" | "t2s" | "s2t")}
                             size="small"
                             options={[
-                              { label: "不变", value: "none" },
-                              { label: "繁→简", value: "t2s" },
-                              { label: "简→繁", value: "s2t" },
+                              { label: z("不变"), value: "none" },
+                              { label: z("繁→简"), value: "t2s" },
+                              { label: z("简→繁"), value: "s2t" },
                             ]}
                           />
                         </Flex>
@@ -445,46 +447,46 @@ const NovelProcessor = () => {
                     label: (
                       <Space>
                         <ClearOutlined />
-                        <Typography.Text strong>内容清洗</Typography.Text>
+                        <Typography.Text strong>{z("内容清洗")}</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
                         <Flex justify="space-between" align="center">
-                          <Tooltip title={'章节识别：自动识别并格式化"第X章"标题'}>
-                            <span>识别并处理章节标题</span>
+                          <Tooltip title={z('章节识别：自动识别并格式化"第X章"标题')}>
+                            <span>{z("识别并处理章节标题")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={enableChapterSplit} onChange={setEnableChapterSplit} aria-label="识别并处理章节标题" />
+                          <Switch size="small" checked={enableChapterSplit} onChange={setEnableChapterSplit} aria-label={z("识别并处理章节标题")} />
                         </Flex>
 
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="清除行尾数字：移除行末的页码或统计数字（仅限该行长度超过10）">
-                            <span>清除行尾数字</span>
+                          <Tooltip title={z("清除行尾数字：移除行末的页码或统计数字（仅限该行长度超过10）")}>
+                            <span>{z("清除行尾数字")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={enableLineEndNumbers} onChange={setEnableLineEndNumbers} aria-label="清除行尾数字" />
+                          <Switch size="small" checked={enableLineEndNumbers} onChange={setEnableLineEndNumbers} aria-label={z("清除行尾数字")} />
                         </Flex>
 
                         <Divider className="!my-0" />
 
                         <Flex vertical gap={4}>
-                          <Text>特殊起始行（不合并）</Text>
-                          <Input value={specialStart || ""} onChange={(e) => setSpecialStart(e.target.value)} placeholder="例如：书名、卷首语..." allowClear aria-label="特殊起始行" />
+                          <Text>{z("特殊起始行（不合并）")}</Text>
+                          <Input value={specialStart || ""} onChange={(e) => setSpecialStart(e.target.value)} placeholder={z("例如：书名、卷首语...")} allowClear aria-label={z("特殊起始行")} />
                         </Flex>
 
                         <Flex vertical gap={4}>
-                          <Text>内容筛选</Text>
-                          <Input placeholder="输入筛选关键词（逗号分隔）" value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label="内容筛选" />
+                          <Text>{z("内容筛选")}</Text>
+                          <Input placeholder={z("输入筛选关键词（逗号分隔）")} value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label={z("内容筛选")} />
                           <Space.Compact className="w-full">
-                            <Space.Addon style={{ minWidth: 55 }}>阈值</Space.Addon>
+                            <Space.Addon style={{ minWidth: 55 }}>{z("阈值")}</Space.Addon>
                             <Input
                               type="number"
-                              placeholder="长度阈值（可选）"
+                              placeholder={z("长度阈值（可选）")}
                               value={maxFilterLineLength ?? ""}
                               onChange={(e) => {
                                 const value = parseInt(e.target.value, 10);
                                 setMaxFilterLineLength(isNaN(value) ? undefined : value);
                               }}
-                              aria-label="长度阈值"
+                              aria-label={z("长度阈值")}
                             />
                           </Space.Compact>
                         </Flex>
@@ -496,22 +498,22 @@ const NovelProcessor = () => {
                     label: (
                       <Space>
                         <ControlOutlined />
-                        <Typography.Text strong>高级设置</Typography.Text>
+                        <Typography.Text strong>{z("高级设置")}</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
                         <Flex justify="space-between" align="center">
-                          <Tooltip title="每次只处理一个文件，上传新文件时自动替换">
-                            <span>单文件模式</span>
+                          <Tooltip title={z("每次只处理一个文件，上传新文件时自动替换")}>
+                            <span>{z("单文件模式")}</span>
                           </Tooltip>
-                          <Switch size="small" checked={singleFileMode} onChange={setSingleFileMode} aria-label="单文件模式" />
+                          <Switch size="small" checked={singleFileMode} onChange={setSingleFileMode} aria-label={z("单文件模式")} />
                         </Flex>
 
                         {multipleFiles.length < 2 && (
                           <Flex justify="space-between" align="center">
-                            <span>处理后自动导出</span>
-                            <Switch size="small" checked={directExport} onChange={setDirectExport} aria-label="处理后自动导出" />
+                            <span>{z("处理后自动导出")}</span>
+                            <Switch size="small" checked={directExport} onChange={setDirectExport} aria-label={z("处理后自动导出")} />
                           </Flex>
                         )}
                       </Flex>
@@ -523,25 +525,25 @@ const NovelProcessor = () => {
               <Divider />
 
               <Button type="primary" size="large" className="mb-4" onClick={handleProcess} block icon={<RocketOutlined />}>
-                开始处理
+                {z("开始处理")}
               </Button>
               <Flex gap="small">
-                <Tooltip title="仅分割章节：仅对章节标题进行分行，不修改其他内容">
+                <Tooltip title={z("仅分割章节：仅对章节标题进行分行，不修改其他内容")}>
                   <Button
                     block
                     variant="outlined"
                     onClick={() => {
                       const processed = splitInlineChapterTitles(sourceText);
                       setResult(processed);
-                      message.success("章节分割完成");
+                      message.success(z("章节分割完成"));
                     }}
                     icon={<ScissorOutlined />}>
-                    章节分割
+                    {z("章节分割")}
                   </Button>
                 </Tooltip>
-                <Tooltip title="章节重排：依据章节序号重新排序整本小说">
+                <Tooltip title={z("章节重排：依据章节序号重新排序整本小说")}>
                   <Button block variant="outlined" icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
-                    章节重排
+                    {z("章节重排")}
                   </Button>
                 </Tooltip>
               </Flex>

@@ -4,6 +4,7 @@ import React from "react";
 import { Card, Button, Space, Input, Typography, Tooltip, Flex } from "antd";
 import { CopyOutlined, DownloadOutlined, SwapOutlined, ClearOutlined, InfoCircleOutlined } from "@ant-design/icons";
 import { useTextStats } from "@/app/hooks/useTextStats";
+import { useZhText } from "@/app/hooks/zh/useZhText";
 
 const { TextArea } = Input;
 
@@ -35,11 +36,12 @@ interface ZhResultCardProps {
  * 特性：
  * - 修复光标跳转问题：可编辑时直接绑定 value，超长时自动切换只读模式
  * - 内置 useTextStats：自动显示字符/行数统计
- * - 中文本地化：硬编码中文标签
+ * - 中文本地化：自动简繁转换
  * - 常用按钮：复制、导出、格式化、结果→原文
  */
 const ZhResultCard = ({ value, onChange, onCopy, onExport, onFormat, onMoveToSource, title = "处理结果", rows = 10, className = "", style }: ZhResultCardProps) => {
   const stats = useTextStats(value);
+  const z = useZhText();
 
   // 关键修复：可编辑时直接使用 value，超长时使用 displayText 并设为只读
   const isEditable = onChange && !stats.isTooLong;
@@ -47,52 +49,52 @@ const ZhResultCard = ({ value, onChange, onCopy, onExport, onFormat, onMoveToSou
 
   return (
     <Card
-      title={title}
+      title={z(title)}
       className={`shadow-sm ${className}`}
       style={style}
       extra={
         <Space wrap>
           {onMoveToSource && (
-            <Tooltip title="将结果文本覆盖到输入框">
+            <Tooltip title={z("将结果文本覆盖到输入框")}>
               <Button type="text" icon={<SwapOutlined />} onClick={onMoveToSource}>
-                结果 ➔ 原文
+                {z("结果 ➔ 原文")}
               </Button>
             </Tooltip>
           )}
           {onFormat && (
-            <Tooltip title="格式化：移除空行及首尾空格">
+            <Tooltip title={z("格式化：移除空行及首尾空格")}>
               <Button type="text" icon={<ClearOutlined />} onClick={onFormat}>
-                格式化
+                {z("格式化")}
               </Button>
             </Tooltip>
           )}
-          <Tooltip title="复制结果">
+          <Tooltip title={z("复制结果")}>
             <Button type="text" icon={<CopyOutlined />} onClick={onCopy}>
-              复制
+              {z("复制")}
             </Button>
           </Tooltip>
           {onExport && (
-            <Tooltip title="导出为文件">
+            <Tooltip title={z("导出为文件")}>
               <Button type="text" icon={<DownloadOutlined />} onClick={onExport}>
-                导出
+                {z("导出")}
               </Button>
             </Tooltip>
           )}
         </Space>
       }>
-      <TextArea value={displayValue} onChange={isEditable ? (e) => onChange(e.target.value) : undefined} rows={rows} readOnly={!isEditable} aria-label={title} />
+      <TextArea value={displayValue} onChange={isEditable ? (e) => onChange(e.target.value) : undefined} rows={rows} readOnly={!isEditable} aria-label={z(title)} />
       <Flex justify="space-between" align="center" className="mt-2">
         <div className="!text-xs">
           {!isEditable && onChange && (
-            <Tooltip title="文本过长，为保证页面性能已自动切换为只读模式">
+            <Tooltip title={z("文本过长，为保证页面性能已自动切换为只读模式")}>
               <Typography.Text type="warning">
-                <InfoCircleOutlined /> 只读模式
+                <InfoCircleOutlined /> {z("只读模式")}
               </Typography.Text>
             </Tooltip>
           )}
         </div>
         <Typography.Text type="secondary" className="!text-xs">
-          {stats.charCount} 字符 / {stats.lineCount} 行
+          {z(`${stats.charCount} 字符 / ${stats.lineCount} 行`)}
         </Typography.Text>
       </Flex>
     </Card>
