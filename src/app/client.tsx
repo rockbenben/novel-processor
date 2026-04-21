@@ -12,7 +12,7 @@ const ClientPage = () => {
   const z = useZhText();
   return (
     <>
-      <Title level={3}>
+      <Title level={1} style={{ fontSize: "1.6em", fontWeight: 600, marginTop: 0 }}>
         <FontSizeOutlined /> {z("小说文本整理器")}
       </Title>
       <Paragraph type="secondary" ellipsis={{ rows: 3, expandable: true, symbol: "more" }}>
