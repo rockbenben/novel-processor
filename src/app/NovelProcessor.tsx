@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Input, Typography, Space, Flex, App, Tooltip, Upload, Card, Switch, Spin, Row, Col, Collapse, Divider, Segmented } from "antd";
-import { InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, RocketOutlined, ControlOutlined } from "@ant-design/icons";
+import { Button, Input, InputNumber, Typography, Space, Flex, App, Tooltip, Upload, Switch, Spin, Row, Col, Collapse, Divider, Segmented } from "antd";
+import { InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
 import {
   splitTextIntoLines,
   cleanLines,
@@ -31,6 +31,7 @@ import useFileUpload from "@/app/hooks/useFileUpload";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
 import ZhResultCard from "@/app/components/zh/ZhResultCard";
+import PageCard from "@/app/components/styled/PageCard";
 import { useZhText } from "@/app/hooks/zh/useZhText";
 
 const { TextArea } = Input;
@@ -44,7 +45,8 @@ const NovelProcessor = () => {
   const { copyToClipboard } = useCopyToClipboard();
   const z = useZhText();
   const [filterText, setFilterText] = useState("");
-  const [maxFilterLineLength, setMaxFilterLineLength] = useState<number | undefined>(undefined);
+  // 0 = 禁用阈值（不启用"超长行豁免"规则）；min=0 阻挡负数
+  const [maxFilterLineLength, setMaxFilterLineLength] = useState<number>(0);
   const [smartLineBreak, setSmartLineBreak] = useState(true);
   const [enableIndent, setEnableIndent] = useState(true);
   const [enableChapterSplit, setEnableChapterSplit] = useState(true);
@@ -281,7 +283,7 @@ const NovelProcessor = () => {
         {/* Left Column: Input and Main Actions */}
         <Col xs={24} lg={15}>
           <Flex vertical gap="middle">
-            <Card
+            <PageCard
               title={
                 <Space>
                   <FileTextOutlined />
@@ -302,8 +304,7 @@ const NovelProcessor = () => {
                   </Button>
                 </Tooltip>
               }
-              variant="borderless"
-              className="shadow-md border-transparent hover:shadow-lg transition-shadow duration-300">
+              variant="borderless">
               <Flex vertical gap="small">
                 <Dragger
                   customRequest={({ file }) => handleFileUpload(file as File)}
@@ -318,7 +319,10 @@ const NovelProcessor = () => {
                     <InboxOutlined />
                   </p>
                   <p className="ant-upload-text">{z("点击或拖拽文件到此处上传")}</p>
-                  <p className="ant-upload-hint">{z("支持的格式：")}{uploadFileTypes.label}</p>
+                  <p className="ant-upload-hint">
+                    {z("支持的格式：")}
+                    {uploadFileTypes.label}
+                  </p>
                 </Dragger>
 
                 {uploadMode === "single" && (
@@ -341,7 +345,7 @@ const NovelProcessor = () => {
                   </Flex>
                 )}
               </Flex>
-            </Card>
+            </PageCard>
 
             {result && (
               <ZhResultCard
@@ -361,7 +365,7 @@ const NovelProcessor = () => {
         {/* Right Column: Settings */}
         <Col xs={24} lg={9}>
           <Flex vertical gap="middle">
-            <Card
+            <PageCard
               title={
                 <Space>
                   <ControlOutlined />
@@ -371,8 +375,7 @@ const NovelProcessor = () => {
               variant="borderless"
               styles={{
                 body: { padding: "12px 24px" },
-              }}
-              className="shadow-md border-transparent hover:shadow-lg transition-shadow duration-300">
+              }}>
               <Collapse
                 ghost
                 size="small"
@@ -478,14 +481,19 @@ const NovelProcessor = () => {
                           <Input placeholder={z("输入筛选关键词（逗号分隔）")} value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label={z("内容筛选")} />
                           <Space.Compact className="w-full">
                             <Space.Addon style={{ minWidth: 55 }}>{z("阈值")}</Space.Addon>
-                            <Input
-                              type="number"
-                              placeholder={z("长度阈值（可选）")}
-                              value={maxFilterLineLength ?? ""}
-                              onChange={(e) => {
-                                const value = parseInt(e.target.value, 10);
-                                setMaxFilterLineLength(isNaN(value) ? undefined : value);
-                              }}
+                            <InputNumber
+                              min={0}
+                              placeholder={z("长度阈值（0 = 不启用）")}
+                              value={maxFilterLineLength}
+                              onChange={(value) => setMaxFilterLineLength(value ?? 0)}
+                              suffix={
+                                maxFilterLineLength === 0 ? (
+                                  <Text type="secondary" className="!text-xs">
+                                    {z("未启用")}
+                                  </Text>
+                                ) : null
+                              }
+                              className="!w-full"
                               aria-label={z("长度阈值")}
                             />
                           </Space.Compact>
@@ -521,33 +529,31 @@ const NovelProcessor = () => {
                   },
                 ]}
               />
+            </PageCard>
 
-              <Divider />
-
-              <Button type="primary" size="large" className="mb-4" onClick={handleProcess} block icon={<RocketOutlined />}>
-                {z("开始处理")}
-              </Button>
-              <Flex gap="small">
-                <Tooltip title={z("仅分割章节：仅对章节标题进行分行，不修改其他内容")}>
-                  <Button
-                    block
-                    variant="outlined"
-                    onClick={() => {
-                      const processed = splitInlineChapterTitles(sourceText);
-                      setResult(processed);
-                      message.success(z("章节分割完成"));
-                    }}
-                    icon={<ScissorOutlined />}>
-                    {z("章节分割")}
-                  </Button>
-                </Tooltip>
-                <Tooltip title={z("章节重排：依据章节序号重新排序整本小说")}>
-                  <Button block variant="outlined" icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
-                    {z("章节重排")}
-                  </Button>
-                </Tooltip>
-              </Flex>
-            </Card>
+            <Button type="primary" size="large" onClick={handleProcess} block icon={<PlayCircleOutlined />}>
+              {z("开始处理")}
+            </Button>
+            <Flex gap="small">
+              <Tooltip title={z("仅分割章节：仅对章节标题进行分行，不修改其他内容")}>
+                <Button
+                  block
+                  variant="outlined"
+                  onClick={() => {
+                    const processed = splitInlineChapterTitles(sourceText);
+                    setResult(processed);
+                    message.success(z("章节分割完成"));
+                  }}
+                  icon={<ScissorOutlined />}>
+                  {z("章节分割")}
+                </Button>
+              </Tooltip>
+              <Tooltip title={z("章节重排：依据章节序号重新排序整本小说")}>
+                <Button block variant="outlined" icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
+                  {z("章节重排")}
+                </Button>
+              </Tooltip>
+            </Flex>
           </Flex>
         </Col>
       </Row>
