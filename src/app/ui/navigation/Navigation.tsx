@@ -27,7 +27,7 @@ export function Navigation() {
     () => false,
   );
 
-  const githubLink = SOCIAL_LINKS.github;
+  const githubLink = "https://github.com/rockbenben/novel-processor";
   const currentMenuKey = getCurrentMenuKey(pathname);
 
   const handleThemeToggle = () => {
