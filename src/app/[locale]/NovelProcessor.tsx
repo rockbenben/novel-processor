@@ -9,7 +9,7 @@ import {
   splitParagraph,
   downloadFile,
   toHalfWidth,
-  removeAdjacentDuplicateLines,
+  dedupeAdjacentLines,
   filterLines as filterLinesUtil,
   normalizeNewlines,
   compressNewlines,
@@ -176,7 +176,7 @@ const NovelProcessor = () => {
     }
 
     // 删除相邻重复行（如果启用）
-    const processedLines = removeDuplicateLines ? removeAdjacentDuplicateLines(lines) : lines;
+    const processedLines = removeDuplicateLines ? dedupeAdjacentLines(lines) : lines;
 
     if (smartLineBreak) {
       const result = [];
