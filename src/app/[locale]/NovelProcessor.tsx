@@ -97,7 +97,6 @@ const NovelProcessor = () => {
     setResult("");
   }
 
-  // 导出文件辅助函数
   const handleExportFile = (text: string) => {
     const uploadFileName = multipleFiles[0]?.name;
     const fileName = uploadFileName || "novel.txt";
@@ -105,7 +104,6 @@ const NovelProcessor = () => {
     return fileName;
   };
 
-  // 小说文本处理
   const handleNovelProcessing = async (sourceText: string, fileName?: string) => {
     setResult("");
     if (!sourceText.trim()) {
@@ -145,7 +143,6 @@ const NovelProcessor = () => {
       // 删除整行为五个或多个=的行
       .replace(/^={5,}(\n|$)/gm, "");
 
-    // 只对以"第"开头且包含"章"的行进行处理
     if (enableChapterSplit) {
       processedInput = splitInlineChapterTitles(processedInput);
     }

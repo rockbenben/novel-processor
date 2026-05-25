@@ -7,6 +7,8 @@ import { DeleteOutlined, WarningOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
 import type { Issues, ProtectedRule, RuleRow } from "./types";
 
+// Switch antd Table to virtual scroll above this row count — below it the
+// DOM is cheap enough that virtual scroll's per-row overhead is a net loss.
 const VIRTUAL_THRESHOLD = 100;
 
 type Props = {
