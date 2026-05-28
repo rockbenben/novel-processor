@@ -10,7 +10,7 @@ import NovelProcessor from "./NovelProcessor";
 const ClientPage = () => {
   const t = useTranslations("NovelProcessor");
   const locale = useLocale();
-  const userGuideUrl = getDocUrl("guide/tools/novel-processor.html", locale);
+  const userGuideUrl = getDocUrl("guide/text/novel-processor.html", locale);
 
   return (
     <ToolPage icon={<FontSizeOutlined />} toolKey="novelProcessor" description={t("description")} guideUrl={userGuideUrl}>
