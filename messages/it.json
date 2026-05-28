@@ -117,7 +117,7 @@
     "resultToSource": "Risultato ➔ Originale",
     "resultToSourceTooltip": "Sostituire il testo nella casella di input con il testo del risultato",
     "readOnlyMode": "Modalità Sola Lettura",
-    "readOnlyModeTooltip": "Testo troppo lungo; modalità sola lettura attivata automaticamente per garantire le prestazioni della pagina",
+    "readOnlyModeTooltip": "Testo troppo lungo: l'editor è temporaneamente di sola lettura e mostra solo un'anteprima parziale. Il contenuto completo non è interessato: elaborazione ed esportazione usano comunque l'intero testo.",
     "clearInputTooltip": "Cancella contenuto di input e file caricati",
     "fileExported": "File esportato: {fileName}",
     "exportSuccess": "Esportazione riuscita: {fileName}",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Subcontinente indiano",
     "selectedCount": "{count} selezionate",
     "recentLanguages": "Recenti",
-    "langGroupAmericasOceania": "Americhe e Oceania"
+    "langGroupAmericasOceania": "Americhe e Oceania",
+    "relatedTools": "Strumenti correlati"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Formattatore di romanzi",
-      "description": "Correggi i problemi di formattazione dei romanzi scaricati con un clic, con interruzione di riga intelligente",
-      "metaTitle": "Formattatore romanzi - TXT, capitoli, Kindle compatibile",
-      "metaDescription": "TXT di web novel disordinato? Riparazione in un clic per interruzioni, capitoli, dedup e tradizionale/semplificato. Compatibile Kindle/FBReader.",
+      "title": "Formattatore di romanzi web cinesi",
+      "description": "Correggi i problemi di formattazione dei romanzi web cinesi scaricati con un clic, con interruzione di riga intelligente",
+      "metaTitle": "Formattatore TXT web novel cinesi - Capitoli 第X章, export Kindle",
+      "metaDescription": "Formattatore di romanzi web cinesi TXT: corregge paragrafi, pubblicità, capitoli 第X章, codifica in un clic. 3M+ caratteri. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Quali problemi di formattazione del TXT scaricato da siti di webnovel e fanfiction riesce a correggere?",
           "a": "Corregge 7 problemi comuni: paragrafi tagliati in righe corte, righe vuote in eccesso alla fine di ogni paragrafo, titoli dei capitoli senza interruzione di riga, paragrafi senza rientro, righe pubblicitarie miste, spazi irregolari e mistura semplificato/tradizionale. Seleziona le regole e correggi in batch o attiva ciascuna singolarmente. Supporta romanzi oltre 3 milioni di caratteri."
         },
         {
+          "q": "Il TXT organizzato può essere usato direttamente su Kindle, Kobo o FBReader?",
+          "a": "Il TXT elaborato soddisfa i requisiti di formato di Kindle (Send-to-Kindle), Kobo, FBReader e altri lettori. Abilitando «Divisione capitoli» Kindle genera automaticamente un sommario. Per Kobo, converti prima in EPUB con Calibre per la migliore esperienza di sommario. Gli utenti di TTS possono attivare «Rimuovi duplicati» + «Filtro spam» per evitare la lettura di annunci."
+        },
+        {
+          "q": "Il mio romanzo è in cinese tradizionale (Taiwan/HK) e voglio semplificato — o voglio preservare nomi specifici.…",
+          "a": "Questo strumento include una regola Tradizionale ↔ Semplificato attivabile durante la formattazione. Per un controllo più fine — dizionario di parole protette (nomi, luoghi, terminologia) e conversione tra Tradizionale Taiwan ↔ Tradizionale Hong Kong ↔ Shinjitai giapponese — concatena con il [Convertitore cinese](../chinese-conversion); entrambi gli strumenti condividono lo stesso formato di parole protette. Per ulteriore ricerca/sostituzione regex, estrazione capitoli o filtraggio parole sensibili, la [Cassetta strumenti testo](../text-toolbox) chiude il cerchio."
+        },
+        {
           "q": "La pulizia delle righe duplicate può eliminare testo reale o dialoghi?",
           "a": "Le righe duplicate vengono identificate solo quando ci sono «3 o più righe consecutive identiche» (come pubblicità ripetute). Le risposte brevi dei personaggi (come «sì» o «ok») non vengono rimosse erroneamente. Si consiglia di fare un backup prima e verificare il conteggio dei caratteri dopo (la variazione deve essere < 5%)."
         },
         {
-          "q": "Il TXT organizzato può essere usato direttamente su Kindle, Kobo o FBReader? L'indice dei capitoli è generato automaticamente?",
-          "a": "Il TXT elaborato soddisfa i requisiti di formato di Kindle (Send-to-Kindle), Kobo, FBReader e altri lettori. Abilitando «Divisione capitoli» Kindle genera automaticamente un sommario. Per Kobo, converti prima in EPUB con Calibre per la migliore esperienza di sommario. Gli utenti di TTS possono attivare «Rimuovi duplicati» + «Filtro spam» per evitare la lettura di annunci."
+          "q": "Il mio romanzo viene caricato su un server? Lo strumento è open source?",
+          "a": "100% locale nel browser: lettura, riparazione formato, conversione Tradizionale/Semplificato ed export avvengono nel tuo browser — nulla viene caricato. Codice sorgente aperto su GitHub (rockbenben/novel-processor) per self-hosting."
         }
       ],
       "howto": [
@@ -172,17 +181,17 @@
         },
         {
           "name": "Configura combinazioni di regole di riparazione",
-          "text": "Seleziona le regole necessarie: interruzioni di riga intelligenti (ripara paragrafi mal divisi), divisione in capitoli (riga vuota prima di ogni capitolo), rientro prima riga (2 caratteri), rimozione righe duplicate (rimuovi annunci), conversione tradizionale-a-semplificato, filtro contenuti indesiderati. Le regole si impilano o si abilitano individualmente."
+          "text": "Seleziona le regole necessarie: interruzioni di riga intelligenti (ripara paragrafi mal divisi), divisione in capitoli (riga vuota prima di ogni capitolo), rientro prima riga (2 caratteri), rimozione righe duplicate (rimuovi annunci), conversione tradizionale-a-semplificato, filtro contenuti…"
         },
         {
           "name": "Esporta TXT compatibile con il reader",
-          "text": "Invia l'esportazione direttamente a Kindle tramite Send-to-Kindle, o importa localmente in Kobo, FBReader o Moon+ Reader. Con la divisione in capitoli abilitata, Kindle genera automaticamente un sommario. Per Kobo o altri lettori, converti prima in EPUB tramite Calibre per la migliore esperienza di indice."
+          "text": "Invia l'esportazione direttamente a Kindle tramite Send-to-Kindle, o importa localmente in Kobo, FBReader o Moon+ Reader. Con la divisione in capitoli abilitata, Kindle genera automaticamente un sommario. Per Kobo o altri lettori, converti prima in EPUB tramite Calibre per la migliore esperienza di…"
         }
       ],
       "features": [
         "Corregge 7 problemi di formato comuni nei file TXT di web novel (download, copia web, esportazioni Word)",
         "Rileva automaticamente titoli di capitolo come 「第X章」 o Chapter X e li divide",
-        "Rilevamento di righe duplicate adiacenti — righe consecutive identiche (ad es. banner pubblicitari ripetuti) vengono rimosse",
+        "Rilevamento di righe duplicate adiacenti — righe consecutive identiche (ad es. banner pubblicitari…",
         "Rientro prima riga (2 caratteri), rimuove righe vuote in eccesso, ripara righe corte mal divise",
         "Conversione tradizionale-a-semplificato, normalizzazione spazi a larghezza piena/mezza",
         "Gestisce romanzi di oltre 3 milioni di caratteri con elaborazione veloce",
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - Utility Sviluppatori & Traduzione IA Online",
-    "description": "Suite di strumenti IA per sviluppatori: traduzione sottotitoli, i18n, Markdown e editing JSON. Gratuito, open source ed elaborazione locale sicura.",
+    "description": "ToolsByAI: 17 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 25+ motori IA.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "20+ strumenti per traduzione, testo, JSON e conversione dati. Potenzia l'efficienza di sviluppatori e creatori.",
     "ogTitle": "ToolsByAI - Strumenti Dev IA Gratuiti e Open Source",
-    "ogDescription": "20+ utility per sviluppatori: traduzione, elaborazione dati e JSON. Rispetta la tua privacy con elaborazione locale."
+    "ogDescription": "ToolsByAI: 17 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 25+ motori IA."
   },
   "languages": {
     "auto": "Rilevamento Auto",
@@ -338,41 +347,42 @@
     "failure": "Copia fallita, copia manualmente"
   },
   "NovelProcessor": {
-    "description": "Progettato per l'organizzazione del testo di romanzi online, corregge i problemi di formattazione dei romanzi scaricati con un clic. Integra interruzione di riga intelligente, suddivisione in capitoli, rientro dei paragrafi, conversione semplificato/tradizionale, rimozione delle righe duplicate e filtraggio dei contenuti indesiderati, rendendo il testo caotico del romanzo ordinato e facile da leggere.",
+    "description": "Progettato per l'organizzazione del testo di romanzi web cinesi, corregge i problemi di formattazione dei romanzi cinesi scaricati con un clic. Integra interruzione di riga intelligente, suddivisione in capitoli 第X章, rientro dei paragrafi, conversione semplificato/tradizionale, rimozione delle righe duplicate e filtraggio dei contenuti indesiderati, rendendo il testo caotico del romanzo ordinato e facile da leggere.",
     "errorNoInput": "Inserisci o incolla il testo da elaborare",
     "errorNoFile": "Carica il file da elaborare",
     "warningNoText": "Inserisci o incolla il testo prima",
     "infoNoChapters": "Nessun titolo di capitolo valido riconosciuto; impossibile riordinare",
     "reorderComplete": "Riordinamento dei capitoli completato ({chapters} capitoli in totale)",
     "textInput": "Input Testo",
-    "typesetting": "Ottimizzazione Layout",
-    "tooltipSmartLineBreak": "Interruzione di riga intelligente: ottimizza automaticamente le interruzioni di riga in base alla punteggiatura e unisce i paragrafi frammentati",
-    "tooltipIndent": "Rientro paragrafo: aggiunge automaticamente due spazi a larghezza intera all'inizio di ogni paragrafo",
-    "indent": "Rientro Paragrafo",
-    "tooltipTrim": "Pulizia intelligente: rimuove automaticamente gli spazi all'inizio e alla fine di ogni riga",
-    "trimSpaces": "Pulizia Intelligente Spazi",
-    "tooltipDedup": "Deduplicazione: rimuove le righe duplicate adiacenti",
+    "typesetting": "Layout paragrafi",
+    "hintSmartLineBreak": "Riunisce i paragrafi che erano stati spezzati su più righe",
+    "indent": "Rientro di prima riga",
+    "trimSpaces": "Rimuovi spazi iniziali e finali",
+    "paragraphSplit": "Dividi paragrafi lunghi",
+    "hintParagraphSplit": "Divide i paragrafi eccessivamente lunghi per frasi per facilitare la lettura su mobile",
+    "chapterGroup": "Gestione capitoli",
+    "chapterSplit": "Metti i titoli dei capitoli su una riga propria",
+    "hintChapterSplit": "Sposta un'intestazione di capitolo incollata sulla stessa riga del corpo del testo sulla propria riga",
+    "mergeDuplicateChapterTitles": "Unisci titoli di capitolo duplicati",
+    "hintMergeChapterTitles": "Quando lo stesso titolo di capitolo appare più di una volta, ne viene mantenuto solo uno",
     "removeDuplicates": "Rimuovi Righe Duplicate",
-    "tooltipParagraphSplit": "Ottimizzazione paragrafi lunghi: divide automaticamente i paragrafi troppo lunghi per migliorare l'esperienza di lettura su dispositivi mobili",
-    "paragraphSplit": "Ottimizzazione Paragrafi Lunghi",
+    "lineEndNumbers": "Rimuovi Numeri a Fine Riga",
+    "hintLineEndNumbers": "Rimuove numeri di pagina o cifre isolate alla fine di ogni riga",
     "conversion": "Conversione",
-    "tooltipConversion": "Converte tutto il testo tra cinese semplificato e tradizionale (tramite OpenCC)",
     "rulesInactiveHint": "Attivo solo quando la conversione tradizionale/semplificato è abilitata",
     "conversionNone": "Nessuna",
-    "contentCleaning": "Pulizia Contenuto",
-    "tooltipChapterSplit": "Riconoscimento capitoli: identifica e formatta automaticamente i titoli «Capitolo X»",
-    "chapterSplit": "Riconosci ed Elabora Titoli dei Capitoli",
-    "tooltipLineEndNumbers": "Rimuovi numeri a fine riga: rimuove numeri di pagina o di conteggio alla fine di righe con più di 10 caratteri",
-    "lineEndNumbers": "Rimuovi Numeri a Fine Riga",
     "specialStartLabel": "Righe di inizio speciale (non unire)",
+    "hintSpecialStart": "Le righe che iniziano con questo testo non verranno unite al paragrafo precedente",
     "specialStartPlaceholder": "Es.: titolo del libro, epigrafe...",
     "specialStartAria": "Righe di inizio speciale",
     "filterLabel": "Filtro Contenuto",
+    "hintFilter": "Elimina le righe che contengono queste parole chiave",
     "filterPlaceholder": "Inserisci parole chiave di filtro (separate da virgola)",
-    "thresholdLabel": "Soglia",
-    "thresholdPlaceholder": "Soglia di lunghezza (0 = disabilitato)",
+    "thresholdLabel": "Proteggi righe lunghe",
+    "hintThreshold": "Le righe più lunghe di questo numero di caratteri vengono mantenute anche se contengono una parola chiave (0 = disabilitato)",
+    "thresholdPlaceholder": "Caratteri (0 = senza protezione)",
     "thresholdDisabled": "Disabilitato",
-    "thresholdAria": "Soglia di lunghezza",
+    "thresholdAria": "Numero di caratteri per proteggere le righe lunghe",
     "tooltipChapterSplitOnly": "Solo suddivisione capitoli: suddivide solo i titoli dei capitoli in righe, senza modificare il resto del contenuto",
     "chapterSplitDone": "Suddivisione capitoli completata",
     "chapterSplitBtn": "Suddividi Capitoli",
@@ -439,6 +449,12 @@
     "reaction2": "Fico",
     "reaction3": "Cosa?",
     "reaction4": "Confuso",
-    "placeholder": "Lascia un messaggio (nessun login richiesto, email opzionale per risposta)"
+    "placeholder": "Lascia un messaggio (nessun login richiesto, email opzionale per risposta)",
+    "metaDescription": "Pagina feedback per Tools By AI: segnala bug, suggerisci funzionalità, condividi casi d'uso. Basata su Waline, anonimo consentito."
+  },
+  "NotFound": {
+    "title": "Pagina non trovata",
+    "description": "La pagina che hai visitato non esiste o è stata spostata.",
+    "goHome": "Torna alla home"
   }
 }

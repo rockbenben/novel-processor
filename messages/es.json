@@ -77,7 +77,7 @@
     "resultToSource": "Resultado ➔ Fuente",
     "resultToSourceTooltip": "Sobrescribir el área de entrada con el texto del resultado",
     "readOnlyMode": "Modo Solo Lectura",
-    "readOnlyModeTooltip": "Texto demasiado largo; cambiado automáticamente a modo solo lectura para mantener el rendimiento",
+    "readOnlyModeTooltip": "El texto es demasiado largo: el editor está temporalmente en solo lectura y muestra solo una vista previa parcial. Tu contenido completo no se ve afectado: el procesamiento y la exportación siguen usando todo el texto.",
     "clearInputTooltip": "Limpiar contenido introducido y archivos subidos",
     "smartLineBreak": "Salto de Línea Inteligente",
     "replaceText": "Reemplazar Texto",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Subcontinente Indio",
     "selectedCount": "{count} seleccionados",
     "recentLanguages": "Recientes",
-    "langGroupAmericasOceania": "Américas y Oceanía"
+    "langGroupAmericasOceania": "Américas y Oceanía",
+    "relatedTools": "Herramientas relacionadas"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Formateador de novelas",
-      "description": "Corrección de problemas de formato de novelas descargadas con un clic, diseño con saltos de línea inteligentes",
-      "metaTitle": "Formateador novelas - TXT, capítulos, Kindle",
-      "metaDescription": "¿TXT de novela web hecho un lío? Arreglo en un clic para saltos, capítulos, deduplicación y tradicional/simplificado. Compatible con Kindle/FBReader.",
+      "title": "Formateador de novelas web chinas",
+      "description": "Corrección de problemas de formato de novelas web chinas descargadas con un clic, diseño con saltos de línea inteligentes",
+      "metaTitle": "Formateador TXT novelas web chinas - Capítulos 第X章, export Kindle",
+      "metaDescription": "Formateador de novelas web chinas TXT: corrige párrafos, anuncios, capítulos 第X章, codificación. Procesa 3M+ caracteres. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Mi TXT descargada tiene formato desordenado — ¿qué problemas puede corregir esta herramienta?",
           "a": "Corrige 7 problemas comunes de TXT de novela web: párrafos cortados en líneas cortas, líneas en blanco sobrantes al final de párrafo, títulos de capítulo sin salto de línea, falta de sangría, líneas de anuncios mezcladas, espacios inconsistentes, caracteres Tradicional/Simplificado mezclados. Funciona para copiar/pegar desde el navegador, TXT exportado de Word y otras fuentes. Marca las reglas que necesites para corrección masiva en un solo paso; cada regla también puede activarse individualmente. Admite novelas de más de 3 millones de caracteres sin ralentización."
         },
         {
+          "q": "¿Puede el TXT formateado usarse directamente con Kindle, FBReader y otros lectores de e-books?",
+          "a": "El TXT procesado cumple los requisitos de formato de Kindle (Send-to-Kindle), Kobo, Tagus y FBReader. Activar 'Dividir capítulos' añade una línea en blanco antes de cada capítulo para que Kindle genere automáticamente un índice. Para Kobo o Tagus, convierte primero a EPUB con Calibre para mejor experiencia de TOC. Los usuarios de TTS pueden activar 'Eliminar duplicados' y 'Filtro de basura' para evitar que se lean los anuncios."
+        },
+        {
+          "q": "Mi novela está en chino tradicional (Taiwán/HK) y quiero simplificado — o quiero preservar nombres específicos.…",
+          "a": "Esta herramienta incluye una regla Tradicional ↔ Simplificado que puedes activar durante el formateo. Para control más fino — diccionario de palabras protegidas (nombres, lugares, terminología) y conversión entre Tradicional Taiwán ↔ Tradicional Hong Kong ↔ Shinjitai japonés — encadena con el [Conversor chino](../chinese-conversion); ambas herramientas comparten el mismo formato de palabras protegidas. Para más búsqueda/reemplazo regex, extracción de capítulos o filtrado de palabras sensibles, la [Caja de herramientas de texto](../text-toolbox) cierra el ciclo."
+        },
+        {
           "q": "¿Puede la herramienta eliminar accidentalmente texto o diálogos? ¿Cómo funciona la detección de duplicados?",
           "a": "La detección de duplicados solo apunta a contenido que aparece de forma idéntica en 3 o más líneas consecutivas (p. ej. un anuncio repetido). Las respuestas cortas de personajes nunca se eliminan, ya que el algoritmo detecta repetición consecutiva, no duplicados en una sola línea. Haz una copia de seguridad del original antes de procesar; un cambio en el recuento de palabras inferior al 5% confirma la seguridad. La división en capítulos usa regex para patrones comunes como 'Capítulo X'."
         },
         {
-          "q": "¿Puede el TXT formateado usarse directamente con Kindle, FBReader y otros lectores de e-books? ¿Se generan índices de capítulos automáticamente?",
-          "a": "El TXT procesado cumple los requisitos de formato de Kindle (Send-to-Kindle), Kobo, Tagus y FBReader. Activar 'Dividir capítulos' añade una línea en blanco antes de cada capítulo para que Kindle genere automáticamente un índice. Para Kobo o Tagus, convierte primero a EPUB con Calibre para mejor experiencia de TOC. Los usuarios de TTS pueden activar 'Eliminar duplicados' y 'Filtro de basura' para evitar que se lean los anuncios."
+          "q": "¿Se sube mi novela a un servidor? ¿Es la herramienta de código abierto?",
+          "a": "100% local en el navegador: lectura, reparación de formato, conversión Tradicional/Simplificado y exportación ocurren en tu navegador — nada se sube. Código abierto en GitHub (rockbenben/novel-processor) para auto-hospedaje."
         }
       ],
       "howto": [
@@ -172,7 +181,7 @@
         },
         {
           "name": "Configurar combinaciones de reglas de reparación",
-          "text": "Marca las reglas que necesites: saltos de línea inteligentes (reparar párrafos mal cortados), división en capítulos (línea en blanco antes de cada capítulo), sangría de primera línea (2 caracteres), eliminación de líneas duplicadas (quitar anuncios), conversión tradicional-a-simplificado, filtro de contenido basura. Las reglas se apilan o se activan individualmente."
+          "text": "Marca las reglas que necesites: saltos de línea inteligentes (reparar párrafos mal cortados), división en capítulos (línea en blanco antes de cada capítulo), sangría de primera línea (2 caracteres), eliminación de líneas duplicadas (quitar anuncios), conversión tradicional-a-simplificado, filtro…"
         },
         {
           "name": "Exportar TXT adaptado al lector",
@@ -180,10 +189,10 @@
         }
       ],
       "features": [
-        "Corrige 7 problemas de formato comunes en archivos TXT de novelas web (descargas, copia web, exportaciones Word)",
+        "Corrige 7 problemas de formato comunes en archivos TXT de novelas web (descargas, copia web…",
         "Detecta automáticamente títulos de capítulo como 「第X章」 o Chapter X y los divide",
-        "Detección de líneas duplicadas adyacentes — líneas consecutivas idénticas (p. ej. banners publicitarios repetidos) se eliminan",
-        "Sangría de primera línea (2 caracteres), elimina líneas en blanco excedentes, repara líneas cortas mal cortadas",
+        "Detección de líneas duplicadas adyacentes — líneas consecutivas idénticas (p. ej. banners publicitarios…",
+        "Sangría de primera línea (2 caracteres), elimina líneas en blanco excedentes, repara líneas cortas mal…",
         "Conversión tradicional-a-simplificado, normalización de espacios ancho completo/medio",
         "Maneja novelas de más de 3 millones de caracteres con procesamiento rápido",
         "Compatible con Kindle Send-to-Email, Kobo, Tagus y Moon+ Reader"
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | Herramientas de Traducción y Dev con IA",
-    "description": "Más de 20 herramientas open source: traducción de subtítulos, i18n, JSON y Markdown. Soporta DeepSeek y ChatGPT. Privacidad local y eficiencia.",
+    "description": "ToolsByAI: 17 herramientas open source gratis para traducción de subtítulos, Markdown, JSON i18n y procesamiento por lotes. 25+ motores IA.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "20+ herramientas para traducción, texto, JSON y conversión de datos. Impulsa la eficiencia de desarrolladores y creadores.",
     "ogTitle": "ToolsByAI | Herramientas de Traducción y Dev con IA",
-    "ogDescription": "Más de 20 herramientas open source: traducción de subtítulos, i18n, JSON y Markdown. Soporta DeepSeek y ChatGPT. Privacidad local y eficiencia."
+    "ogDescription": "ToolsByAI: 17 herramientas open source gratis para traducción de subtítulos, Markdown, JSON i18n y procesamiento por lotes. 25+ motores IA."
   },
   "languages": {
     "auto": "Detección Auto",
@@ -338,41 +347,42 @@
     "failure": "Fallo al copiar, copia manualmente"
   },
   "NovelProcessor": {
-    "description": "Diseñado para formatear textos de novelas web, corrige problemas de diseño de novelas descargadas con un clic. Funciones: saltos de línea inteligentes, división en capítulos, sangría de párrafos, conversión Tradicional/Simplificado, eliminación de líneas duplicadas y filtrado de contenido basura — para convertir texto desordenado en contenido limpio y legible.",
+    "description": "Diseñado para formatear textos de novelas web chinas, corrige problemas de diseño de novelas chinas descargadas con un clic. Funciones: saltos de línea inteligentes, división en capítulos 第X章, sangría de párrafos, conversión Tradicional/Simplificado, eliminación de líneas duplicadas y filtrado de contenido basura — para convertir texto desordenado en contenido limpio y legible.",
     "errorNoInput": "Por favor, introduce o pega el texto a procesar",
     "errorNoFile": "Por favor, sube un archivo a procesar",
     "warningNoText": "Por favor, introduce o pega texto primero",
     "infoNoChapters": "No se detectaron títulos de capítulo válidos, reordenación no disponible",
     "reorderComplete": "Reordenación de capítulos completada ({chapters} capítulos)",
     "textInput": "Entrada de texto",
-    "typesetting": "Optimización del diseño",
-    "tooltipSmartLineBreak": "Salto de línea inteligente: optimiza automáticamente los saltos de línea según la puntuación, fusiona párrafos fragmentados",
-    "tooltipIndent": "Sangría de párrafo: añade automáticamente dos espacios de ancho completo al inicio de cada párrafo",
-    "indent": "Sangría de párrafo",
-    "tooltipTrim": "Limpieza inteligente: elimina automáticamente los espacios al inicio/final de cada línea",
-    "trimSpaces": "Limpieza inteligente de espacios",
-    "tooltipDedup": "Deduplicación: elimina líneas duplicadas adyacentes",
+    "typesetting": "Diseño de párrafos",
+    "hintSmartLineBreak": "Vuelve a unir párrafos que estaban divididos en varias líneas",
+    "indent": "Sangría de primera línea",
+    "trimSpaces": "Eliminar espacios al inicio y al final",
+    "paragraphSplit": "Dividir párrafos largos",
+    "hintParagraphSplit": "Divide los párrafos demasiado largos por oraciones para facilitar la lectura en móvil",
+    "chapterGroup": "Gestión de capítulos",
+    "chapterSplit": "Poner los títulos de capítulo en su propia línea",
+    "hintChapterSplit": "Mueve un encabezado de capítulo que está en la misma línea que el cuerpo del texto a su propia línea",
+    "mergeDuplicateChapterTitles": "Combinar títulos de capítulo duplicados",
+    "hintMergeChapterTitles": "Cuando el mismo título de capítulo aparece más de una vez, se conserva solo uno",
     "removeDuplicates": "Eliminar líneas duplicadas",
-    "tooltipParagraphSplit": "Optimización de párrafos largos: divide automáticamente párrafos excesivamente largos para mejorar la lectura móvil",
-    "paragraphSplit": "Optimización de párrafos largos",
+    "lineEndNumbers": "Eliminar números al final de línea",
+    "hintLineEndNumbers": "Elimina números de página o dígitos sueltos al final de cada línea",
     "conversion": "Conversión",
-    "tooltipConversion": "Convierte todo el texto entre chino simplificado y tradicional (con OpenCC)",
     "rulesInactiveHint": "Solo activo cuando la conversión tradicional/simplificado está habilitada",
     "conversionNone": "Ninguno",
-    "contentCleaning": "Limpieza de contenido",
-    "tooltipChapterSplit": "Detección de capítulos: detecta y formatea automáticamente títulos de capítulo como 'Capítulo X'",
-    "chapterSplit": "Detectar y formatear títulos de capítulo",
-    "tooltipLineEndNumbers": "Eliminar números al final de línea: elimina números de página o estadísticas al final de línea (solo si la línea tiene más de 10 caracteres)",
-    "lineEndNumbers": "Eliminar números al final de línea",
     "specialStartLabel": "Líneas de inicio especiales (sin fusión)",
+    "hintSpecialStart": "Las líneas que comiencen con este texto no se fusionarán con el párrafo anterior",
     "specialStartPlaceholder": "p. ej. título, prólogo...",
     "specialStartAria": "Líneas de inicio especiales",
     "filterLabel": "Filtro de contenido",
+    "hintFilter": "Elimina las líneas que contengan estas palabras clave",
     "filterPlaceholder": "Palabras clave de filtro (separadas por comas)",
-    "thresholdLabel": "Umbral",
-    "thresholdPlaceholder": "Umbral de longitud (0 = desactivado)",
+    "thresholdLabel": "Proteger líneas largas",
+    "hintThreshold": "Las líneas más largas que este número de caracteres se conservan aunque contengan una palabra clave (0 = desactivado)",
+    "thresholdPlaceholder": "Caracteres (0 = sin protección)",
     "thresholdDisabled": "Desactivado",
-    "thresholdAria": "Umbral de longitud",
+    "thresholdAria": "Número de caracteres para proteger líneas largas",
     "tooltipChapterSplitOnly": "Solo división de capítulos: divide solo en títulos de capítulo, sin modificar otro contenido",
     "chapterSplitDone": "División de capítulos completada",
     "chapterSplitBtn": "Dividir capítulos",
@@ -439,6 +449,12 @@
     "reaction2": "Genial",
     "reaction3": "¿Qué?",
     "reaction4": "Confuso",
-    "placeholder": "Deja un mensaje (no requiere login, email opcional para respuesta)"
+    "placeholder": "Deja un mensaje (no requiere login, email opcional para respuesta)",
+    "metaDescription": "Página de feedback para Tools By AI: reporta errores, sugiere funciones, comparte casos de uso. Basada en Waline, publicación anónima."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que visitaste no existe o ha sido movida.",
+    "goHome": "Volver al inicio"
   }
 }

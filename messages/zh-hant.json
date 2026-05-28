@@ -48,7 +48,7 @@
     "resultToSource": "結果 ➔ 原文",
     "resultToSourceTooltip": "將結果文字覆蓋到輸入框",
     "readOnlyMode": "只讀模式",
-    "readOnlyModeTooltip": "文字過長，為保證頁面性能已自動切換為只讀模式",
+    "readOnlyModeTooltip": "文字過長，編輯框暫為唯讀、僅顯示部分預覽；完整內容不受影響，處理與匯出仍按全文進行",
     "exportFile": "匯出",
     "exportAllFile": "匯出所有檔案",
     "exportedFile": "已匯出",
@@ -143,26 +143,35 @@
     "langPresetIndian": "印度系",
     "selectedCount": "已選 {count} 種",
     "recentLanguages": "最近使用",
-    "langGroupAmericasOceania": "美洲及大洋洲"
+    "langGroupAmericasOceania": "美洲及大洋洲",
+    "relatedTools": "相關工具"
   },
   "tools": {
     "novelProcessor": {
       "title": "小說排版整理",
       "description": "一鍵修復下載小說的格式問題，智慧換行排版",
-      "metaTitle": "小說排版整理 | 網文 TXT、章節、Kindle 推送",
-      "metaDescription": "網文 TXT 排版亂？一鍵修復智慧換行、章節分割、去重與繁簡轉換，讓筆趣閣等下載的小說相容 Kindle、FBReader、微信讀書等閱讀器。",
+      "metaTitle": "小說排版整理工具 - 網文 TXT 智慧換行、章節分割與 Kindle 推送適配",
+      "metaDescription": "網文 TXT 智能排版工具，一鍵修復下載小說的段落誤切、空行、章節標題、廣告橫幅、繁簡混用，支援 300 萬字超長篇秒級處理。",
       "faq": [
         {
           "q": "從筆趣閣等網站下載或從網頁複製的 TXT 小說格式亂，這工具能修復哪些問題？",
           "a": "專治網文 TXT 7 大亂象：段落被誤切成短行、每段末尾多餘空行、章節標題沒換行、段首沒縮進、廣告行（「更多小說請訪問 xxx」「掃碼關注公眾號」）混雜、全形半形空格亂、繁簡字體混用。不僅適用於筆趣閣下載，也適用於瀏覽器複製貼上、Word 匯出 TXT、同人文整理等場景。勾選規則一次批次修復，也可單獨啟用某項。支援處理 300 萬字以上超長小說，速度不受檔案大小影響。"
         },
         {
+          "q": "整理好的 TXT 能直接用於 Kindle、微信讀書、掌閱閱讀嗎？章節目錄會自動產生嗎？",
+          "a": "處理後的 TXT 符合 Kindle（推送郵箱）、微信讀書（本地匯入）、掌閱（WiFi 傳書）、靜讀天下、FBReader 的格式要求。啟用「章節分割」後會在每章前加空行，Kindle 可自動產生目錄。微信讀書建議先用 Calibre 轉 EPUB 再匯入以獲得最佳目錄體驗。TTS 聽書用戶啟用「去重複行」+「垃圾過濾」後可避免朗讀廣告內容。"
+        },
+        {
+          "q": "網文是繁體版（台灣/香港），想轉成簡體閱讀，或要保留人名地名不被誤轉，怎麼辦？",
+          "a": "本工具自帶繁簡轉換規則，可在排版整理同時完成繁→簡或簡→繁；若需要更精細的「專有名詞保護詞典」（人名、地名、術語不被誤轉）和台灣繁體↔香港繁體↔日本新字體之間的細分互轉，請用 [簡繁轉換](../chinese-conversion) 工具，兩者共用同一份保護詞典格式。整理完成後想對文字做進一步的批次替換、章節正則擷取、敏感詞過濾，可接 [文字處理神器](../text-toolbox)。"
+        },
+        {
           "q": "整理小說時會不會誤刪正文或對話？重複行規則如何識別廣告？",
           "a": "重複行僅識別「連續 3 行以上完全相同」的內容（如多次出現的網站廣告「本書首發於 xxx」）。正文中人物簡短回答（如「好」「嗯」）不會被誤刪，因為檢測的是連續重複模式而非單行重複。建議處理前備份原文，完成後對比字數（正文字數變化應 < 5%）可確認安全。章節分割使用正則匹配「第X章」「Chapter X」「X、」等常見格式。"
         },
         {
-          "q": "整理好的 TXT 能直接用於 Kindle、微信讀書、掌閱閱讀嗎？章節目錄會自動產生嗎？",
-          "a": "處理後的 TXT 符合 Kindle（推送郵箱）、微信讀書（本地匯入）、掌閱（WiFi 傳書）、靜讀天下、FBReader 的格式要求。啟用「章節分割」後會在每章前加空行，Kindle 可自動產生目錄。微信讀書建議先用 Calibre 轉 EPUB 再匯入以獲得最佳目錄體驗。TTS 聽書用戶啟用「去重複行」+「垃圾過濾」後可避免朗讀廣告內容。"
+          "q": "上傳的小說會儲存到伺服器嗎？開源嗎？",
+          "a": "100% 瀏覽器本地處理：小說文字讀取、格式修復、繁簡轉換、匯出全部在瀏覽器內完成，原文不上傳任何伺服器。原始碼開源在 GitHub（rockbenben/novel-processor），可自部署。"
         }
       ],
       "howto": [
@@ -186,7 +195,7 @@
         "段首縮進（兩字元）、去除多餘空行、修復誤切短行",
         "繁體轉簡體、全角半角空格統一",
         "支援 300 萬字以上超長小說，處理速度快",
-        "Kindle 推送郵箱、微信讀書、掌閱、靜讀天下兼容"
+        "Kindle 推送郵箱、微信讀書、掌閱、靜讀天下相容"
       ]
     }
   },
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
-    "description": "尋找高效開發工具？ToolsByAI 匯集字幕翻譯、i18n 處理等 20+ 款免費開源應用。接入 DeepSeek 等主流模型，支援批次處理且資料隱私安全，立即開啟 AI 提效之旅！",
+    "description": "ToolsByAI 集合 17 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。25+ AI 引擎，全前端處理。",
     "homeTitle": "ToolsByAI 工具集",
     "homeDescription": "20+ 實用工具，涵蓋多語言翻譯、文字處理、JSON 編輯和資料轉換，助力開發者和創作者提升效率。",
     "ogTitle": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
-    "ogDescription": "尋找高效開發工具？ToolsByAI 匯集字幕翻譯、i18n 處理等 20+ 款免費開源應用。接入 DeepSeek 等主流模型，支援批次處理且資料隱私安全，立即開啟 AI 提效之旅！"
+    "ogDescription": "ToolsByAI 集合 17 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。25+ AI 引擎，全前端處理。"
   },
   "languages": {
     "auto": "自動檢測",
@@ -362,8 +371,8 @@
     "clearFilter": "清除過濾",
     "emptyCount": "⚠ {count} 條空值",
     "shadowedCount": "⚠ {count} 條被覆蓋",
-    "searchPlaceholder": "搜索 from 或 to",
-    "searchAriaLabel": "搜索規則",
+    "searchPlaceholder": "搜尋 from 或 to",
+    "searchAriaLabel": "搜尋規則",
     "sortOriginal": "原序",
     "sortAlphabetical": "字典序",
     "sortRecent": "最近加入",
@@ -396,34 +405,35 @@
     "infoNoChapters": "未識別到有效章節標題，無法重排",
     "reorderComplete": "章節重排完成（共 {chapters} 章）",
     "textInput": "文字輸入",
-    "typesetting": "排版優化",
-    "tooltipSmartLineBreak": "智慧換行：依據標點符號自動優化換行，合併破碎段落",
-    "tooltipIndent": "段落縮排：段首自動加入兩個全形空格",
-    "indent": "段落縮排",
-    "tooltipTrim": "智慧清理：自動移除每行首尾空格",
-    "trimSpaces": "智慧清理空格",
-    "tooltipDedup": "去重：移除相鄰的重複行",
+    "typesetting": "段落排版",
+    "indent": "段首縮排",
+    "trimSpaces": "清理首尾空格",
     "removeDuplicates": "去除重複行",
-    "tooltipParagraphSplit": "長段落優化：自動拆分過長段落，提升行動端閱讀體驗",
-    "paragraphSplit": "長段落優化",
+    "mergeDuplicateChapterTitles": "合併重複章節標題",
+    "paragraphSplit": "長段落拆分",
+    "chapterGroup": "章節處理",
+    "chapterSplit": "章節標題分行",
     "conversion": "繁簡轉換",
-    "tooltipConversion": "繁簡體之間互相轉換全文（基於 OpenCC 引擎）",
     "rulesInactiveHint": "僅在啟用「繁簡轉換」時生效",
     "conversionNone": "不變",
-    "contentCleaning": "內容清洗",
-    "tooltipChapterSplit": "章節識別：自動識別並格式化「第X章」標題",
-    "chapterSplit": "識別並處理章節標題",
-    "tooltipLineEndNumbers": "清除行尾數字：移除行末的頁碼或統計數字（僅限該行長度超過10）",
     "lineEndNumbers": "清除行尾數字",
     "specialStartLabel": "特殊起始行（不合併）",
     "specialStartPlaceholder": "例如：書名、卷首語...",
     "specialStartAria": "特殊起始行",
     "filterLabel": "內容篩選",
     "filterPlaceholder": "輸入篩選關鍵詞（逗號分隔）",
-    "thresholdLabel": "閾值",
-    "thresholdPlaceholder": "長度閾值（0 = 不啟用）",
+    "thresholdLabel": "保護長行",
+    "thresholdPlaceholder": "字數（0 = 不保護）",
     "thresholdDisabled": "未啟用",
-    "thresholdAria": "長度閾值",
+    "thresholdAria": "保護長行字數",
+    "hintSmartLineBreak": "自動把斷成多行的段落接成整段",
+    "hintParagraphSplit": "把過長的段落按句子拆開，方便手機閱讀",
+    "hintChapterSplit": "把和正文黏在一行的「第X章」拆成獨立行",
+    "hintMergeChapterTitles": "同一章標題重複出現時，只保留一個",
+    "hintLineEndNumbers": "刪除每行末尾多餘的頁碼或數字",
+    "hintSpecialStart": "以這些文字開頭的行不會被並入上一段",
+    "hintFilter": "刪除包含這些關鍵詞的行",
+    "hintThreshold": "超過這個字數的行即使含關鍵詞也保留（0 = 不保護）",
     "tooltipChapterSplitOnly": "僅分割章節：僅對章節標題進行分行，不修改其他內容",
     "chapterSplitDone": "章節分割完成",
     "chapterSplitBtn": "章節分割",
@@ -439,6 +449,12 @@
     "reaction2": "有點酷",
     "reaction3": "啥玩意",
     "reaction4": "看不懂",
-    "placeholder": "請留言，無需登錄（填寫郵箱可獲回復提醒）"
+    "placeholder": "請留言，無需登錄（填寫郵箱可獲回復提醒）",
+    "metaDescription": "意見回饋頁：回報使用問題、提交功能建議、參與工具改進。基於 Waline 評論系統，匿名也可發言。"
+  },
+  "NotFound": {
+    "title": "頁面未找到",
+    "description": "你訪問的頁面不存在或已移動。",
+    "goHome": "返回首頁"
   }
 }

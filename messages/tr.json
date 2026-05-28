@@ -117,7 +117,7 @@
     "resultToSource": "Sonuç ➔ Kaynak",
     "resultToSourceTooltip": "Giriş kutusunun içeriğini sonuç metniyle değiştir",
     "readOnlyMode": "Salt Okunur Mod",
-    "readOnlyModeTooltip": "Metin çok uzun; sayfa performansını korumak için salt okunur mod otomatik olarak etkinleştirildi",
+    "readOnlyModeTooltip": "Metin çok uzun: düzenleyici geçici olarak salt okunur ve yalnızca kısmi bir önizleme gösteriyor. Tüm içeriğiniz etkilenmez; işleme ve dışa aktarma hâlâ metnin tamamını kullanır.",
     "clearInputTooltip": "Giriş içeriğini ve yüklenen dosyaları temizle",
     "fileExported": "Dışa aktarılan dosya: {fileName}",
     "exportSuccess": "Dışa aktarma başarılı: {fileName}",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Hint alt kıtası",
     "selectedCount": "{count} seçildi",
     "recentLanguages": "Son kullanılanlar",
-    "langGroupAmericasOceania": "Amerika & Okyanusya"
+    "langGroupAmericasOceania": "Amerika & Okyanusya",
+    "relatedTools": "İlgili Araçlar"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Roman Düzenleyici",
-      "description": "İndirilen romanların biçimlendirme sorunlarını tek tıkla düzeltin, akıllı satır sonu ile",
-      "metaTitle": "Roman Düzenleyici - TXT temizleme, bölüm bölme, Kindle",
-      "metaDescription": "Web romanı TXT karışık mı? Satır sonları, bölüm bölme, tekilleştirme ve Geleneksel/Basitleştirilmiş için tek tıkla onarım. Kindle/FBReader uyumlu.",
+      "title": "Çince Web Roman Düzenleyici",
+      "description": "İndirilen Çince web romanların biçimlendirme sorunlarını tek tıkla düzeltin, akıllı satır sonu ile",
+      "metaTitle": "Çince Web Roman TXT Düzenleyici - 第X章 Bölümler, Reklam, Kindle",
+      "metaDescription": "Çince web roman TXT biçimlendirici: paragraf, reklam, 第X章 bölüm, kodlama karışıklığı tek tıkla. 3M+ karakter. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Bu araç webnovel ve fanfic sitelerinden indirilen TXT'nin hangi biçimlendirme sorunlarını düzeltebilir?",
           "a": "7 yaygın sorunu düzeltir: kısa satırlara bölünmüş paragraflar, her paragrafın sonundaki fazladan boş satırlar, satır sonu olmayan bölüm başlıkları, girintisiz paragraflar, karışık reklam satırları, düzensiz boşluklar ve basitleştirilmiş/geleneksel karışıklığı. Kuralları işaretleyip toplu olarak veya her birini ayrı ayrı düzeltin. 3 milyonun üzerinde karakteri destekler."
         },
         {
+          "q": "Düzenlenen TXT doğrudan Kindle, Kobo veya FBReader'de kullanılabilir mi? Bölüm içindekiler tablosu otomatik oluşur mu?",
+          "a": "İşlenen TXT, Kindle (Send-to-Kindle), Kobo ve FBReader format gereksinimlerini karşılar. 'Bölüm bölme' etkinleştirildiğinde Kindle otomatik olarak içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için Calibre ile önce EPUB'a dönüştürmenizi öneririz. TTS kullanıcıları reklam okumalarını önlemek için 'Yinelenenleri Kaldır' ve 'Spam Filtresi'ni etkinleştirebilir."
+        },
+        {
+          "q": "Romanım Geleneksel Çince (Tayvan/HK) ve Basitleştirilmiş istiyorum — ya da belirli isimlerin dönüştürülmesini…",
+          "a": "Bu araç biçimleme sırasında etkinleştirebileceğiniz bir Geleneksel ↔ Basitleştirilmiş kuralı içerir. Daha ince kontrol için — korunan kelime sözlüğü (isimler, yerler, terminoloji) ve Tayvan Geleneksel ↔ Hong Kong Geleneksel ↔ Japon Shinjitai arası dönüşüm — [Çince Dönüştürücü](../chinese-conversion) ile zincirleyin; her iki araç aynı korunan kelime biçimini paylaşır. Daha fazla regex bul/değiştir, bölüm ayıklama veya hassas kelime filtreleme için [Metin Araç Kutusu](../text-toolbox) döngüyü kapatır."
+        },
+        {
           "q": "Yinelenen satırları temizlemek gerçek metni veya diyalogları silebilir mi?",
           "a": "Yinelenen satırlar yalnızca «3 veya daha fazla ardışık özdeş satır» olduğunda (tekrar eden reklamlar gibi) tanımlanır. Karakterlerin kısa yanıtları (örn. «evet» veya «tamam») yanlışlıkla kaldırılmaz. Önce yedek almanız ve sonrasında karakter sayısını kontrol etmeniz önerilir (değişim %5'ten az olmalıdır)."
         },
         {
-          "q": "Düzenlenen TXT doğrudan Kindle, Kobo veya FBReader'de kullanılabilir mi? Bölüm içindekiler tablosu otomatik oluşur mu?",
-          "a": "İşlenen TXT, Kindle (Send-to-Kindle), Kobo ve FBReader format gereksinimlerini karşılar. 'Bölüm bölme' etkinleştirildiğinde Kindle otomatik olarak içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için Calibre ile önce EPUB'a dönüştürmenizi öneririz. TTS kullanıcıları reklam okumalarını önlemek için 'Yinelenenleri Kaldır' ve 'Spam Filtresi'ni etkinleştirebilir."
+          "q": "Romanım sunucuya yükleniyor mu? Araç açık kaynak mı?",
+          "a": "%100 tarayıcıda yerel: metin okuma, biçim onarımı, Geleneksel/Basitleştirilmiş dönüşümü ve dışa aktarım hepsi tarayıcınızda olur — hiçbir şey yüklenmez. Kaynak kod GitHub'da (rockbenben/novel-processor) açık, kendi sunucunuza kurabilirsiniz."
         }
       ],
       "howto": [
@@ -172,15 +181,15 @@
         },
         {
           "name": "Onarım kuralı kombinasyonlarını yapılandırın",
-          "text": "İhtiyaç duyduğunuz kuralları işaretleyin: akıllı satır sonları (yanlış bölünmüş paragrafları onar), bölüm bölme (her bölümden önce boş satır), ilk satır girintisi (2 karakter), yinelenen satır kaldırma (reklamları temizle), Geleneksel'den Basitleştirilmiş'e dönüşüm, gereksiz içerik filtresi. Kurallar yığınlanır veya tek tek etkinleştirilir."
+          "text": "İhtiyaç duyduğunuz kuralları işaretleyin: akıllı satır sonları (yanlış bölünmüş paragrafları onar), bölüm bölme (her bölümden önce boş satır), ilk satır girintisi (2 karakter), yinelenen satır kaldırma (reklamları temizle), Geleneksel'den Basitleştirilmiş'e dönüşüm, gereksiz içerik filtresi.…"
         },
         {
           "name": "Okuyucu dostu TXT dışa aktarın",
-          "text": "Dışa aktarımı Send-to-Kindle aracılığıyla doğrudan Kindle'a gönderin veya Kobo, FBReader veya Moon+ Reader'a yerel olarak içe aktarın. Bölüm bölme etkinken Kindle otomatik olarak bir içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için en iyi TOC deneyimi için önce Calibre aracılığıyla EPUB'a dönüştürün."
+          "text": "Dışa aktarımı Send-to-Kindle aracılığıyla doğrudan Kindle'a gönderin veya Kobo, FBReader veya Moon+ Reader'a yerel olarak içe aktarın. Bölüm bölme etkinken Kindle otomatik olarak bir içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için en iyi TOC deneyimi için önce Calibre aracılığıyla…"
         }
       ],
       "features": [
-        "Web romanı TXT dosyalarındaki 7 yaygın biçim sorununu düzeltir (indirmeler, web kopya-yapıştır, Word dışa aktarımları)",
+        "Web romanı TXT dosyalarındaki 7 yaygın biçim sorununu düzeltir (indirmeler, web kopya-yapıştır, Word dışa…",
         "「第X章」 veya Chapter X gibi bölüm başlıklarını otomatik algılar ve böler",
         "Bitişik yinelenen satır algılama — özdeş ardışık satırlar (örn. tekrarlanan reklam afişleri) kaldırılır",
         "İlk satır girintisi (2 karakter), fazla boş satırları kaldırır, yanlış bölünmüş kısa satırları onarır",
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - Geliştiriciler İçin Yapay Zeka ve Veri Araçları",
-    "description": "Geliştiriciler için ücretsiz AI araç seti: Altyazı çevirisi, i18n, Markdown ve JSON düzenleme. Güvenli, yerel işlem ve açık kaynaklı çözüm.",
+    "description": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 17 ücretsiz açık kaynak araç. 25+ AI motoru.",
     "homeTitle": "ToolsByAI Paketi",
     "homeDescription": "Çeviri, metin, JSON ve veri dönüşümü için 20+ araç. Geliştirici ve yaratıcı verimliliğini artırın.",
     "ogTitle": "ToolsByAI - Ücretsiz ve Açık Kaynak Geliştirici Araçları",
-    "ogDescription": "Çeviri, veri işleme ve JSON düzenleme için 20+ araç. Yerel işlem gücüyle gizliliğinizi koruyan açık kaynaklı platform."
+    "ogDescription": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 17 ücretsiz açık kaynak araç. 25+ AI motoru."
   },
   "languages": {
     "auto": "Otomatik Algılama",
@@ -338,41 +347,42 @@
     "failure": "Kopyalama başarısız, manuel kopyalayın"
   },
   "NovelProcessor": {
-    "description": "Web romanlarının metin düzenlemesi için tasarlanmış olan bu araç, indirilen romanların biçimlendirme sorunlarını tek tıkla giderir. Akıllı satır sonu, bölüm bölme, paragraf girintisi, basitleştirilmiş/geleneksel dönüştürme, yinelenen satır kaldırma ve istenmeyen içerik filtreleme gibi özellikleri entegre ederek karmaşık roman metnini düzenli ve okunması kolay hale getirir.",
+    "description": "Çince web romanlarının metin düzenlemesi için tasarlanmış olan bu araç, indirilen Çince romanların biçimlendirme sorunlarını tek tıkla giderir. Akıllı satır sonu, 第X章 bölüm bölme, paragraf girintisi, basitleştirilmiş/geleneksel dönüştürme, yinelenen satır kaldırma ve istenmeyen içerik filtreleme gibi özellikleri entegre ederek karmaşık roman metnini düzenli ve okunması kolay hale getirir.",
     "errorNoInput": "İşlenecek metni girin veya yapıştırın",
     "errorNoFile": "İşlenecek dosyayı yükleyin",
     "warningNoText": "Önce metni girin veya yapıştırın",
     "infoNoChapters": "Geçerli bölüm başlığı tanınmadı; yeniden sıralama yapılamaz",
     "reorderComplete": "Bölüm yeniden sıralaması tamamlandı ({chapters} bölüm toplam)",
     "textInput": "Metin Girişi",
-    "typesetting": "Düzen Optimizasyonu",
-    "tooltipSmartLineBreak": "Akıllı satır sonu: noktalama işaretlerine göre satır sonlarını otomatik olarak optimize eder ve parçalanmış paragrafları birleştirir",
-    "tooltipIndent": "Paragraf girintisi: her paragrafın başına otomatik olarak iki tam genişlikli boşluk ekler",
-    "indent": "Paragraf Girintisi",
-    "tooltipTrim": "Akıllı temizlik: her satırın başındaki ve sonundaki boşlukları otomatik olarak kaldırır",
-    "trimSpaces": "Akıllı Boşluk Temizleme",
-    "tooltipDedup": "Tekilleştirme: bitişik yinelenen satırları kaldırır",
+    "typesetting": "Paragraf düzeni",
+    "hintSmartLineBreak": "Birden fazla satıra bölünmüş paragrafları yeniden birleştirir",
+    "indent": "İlk satır girintisi",
+    "trimSpaces": "Baştaki ve sondaki boşlukları temizle",
+    "paragraphSplit": "Uzun paragrafları böl",
+    "hintParagraphSplit": "Çok uzun paragrafları mobil okuma için cümle bazında böler",
+    "chapterGroup": "Bölüm işleme",
+    "chapterSplit": "Bölüm başlıklarını ayrı satıra al",
+    "hintChapterSplit": "Gövde metniyle aynı satırda kalmış bölüm başlığını kendi satırına taşır",
+    "mergeDuplicateChapterTitles": "Yinelenen bölüm başlıklarını birleştir",
+    "hintMergeChapterTitles": "Aynı bölüm başlığı birden fazla kez görünüyorsa yalnızca birini tutar",
     "removeDuplicates": "Yinelenen Satırları Kaldır",
-    "tooltipParagraphSplit": "Uzun paragraf optimizasyonu: mobil cihazlarda okuma deneyimini iyileştirmek için çok uzun paragrafları otomatik olarak böler",
-    "paragraphSplit": "Uzun Paragraf Optimizasyonu",
+    "lineEndNumbers": "Satır Sonu Sayılarını Kaldır",
+    "hintLineEndNumbers": "Her satırın sonundaki gereksiz sayfa numaralarını veya rakamları siler",
     "conversion": "Dönüşüm",
-    "tooltipConversion": "Tüm metni Basitleştirilmiş ve Geleneksel Çince arasında dönüştürür (OpenCC ile)",
     "rulesInactiveHint": "Yalnızca Geleneksel/Basitleştirilmiş dönüşümü etkinken etkili",
     "conversionNone": "Yok",
-    "contentCleaning": "İçerik Temizleme",
-    "tooltipChapterSplit": "Bölüm tanıma: «X. Bölüm» başlıklarını otomatik olarak tanır ve biçimlendirir",
-    "chapterSplit": "Bölüm Başlıklarını Tanı ve İşle",
-    "tooltipLineEndNumbers": "Satır sonu sayılarını kaldır: 10 karakterden uzun satırların sonundaki sayfa numaralarını veya sayaçları kaldırır",
-    "lineEndNumbers": "Satır Sonu Sayılarını Kaldır",
     "specialStartLabel": "Özel başlangıç satırları (birleştirme)",
+    "hintSpecialStart": "Bu metinle başlayan satırlar önceki paragrafa dahil edilmez",
     "specialStartPlaceholder": "Örn.: kitap adı, epigraf...",
     "specialStartAria": "Özel başlangıç satırları",
     "filterLabel": "İçerik Filtresi",
+    "hintFilter": "Bu anahtar kelimeleri içeren satırları siler",
     "filterPlaceholder": "Filtre anahtar kelimeleri girin (virgülle ayrılmış)",
-    "thresholdLabel": "Eşik",
-    "thresholdPlaceholder": "Uzunluk eşiği (0 = devre dışı)",
+    "thresholdLabel": "Uzun satırları koru",
+    "hintThreshold": "Bu karakter sayısından uzun satırlar anahtar kelime içerse bile korunur (0 = kapalı)",
+    "thresholdPlaceholder": "Karakter sayısı (0 = koruma yok)",
     "thresholdDisabled": "Devre dışı",
-    "thresholdAria": "Uzunluk eşiği",
+    "thresholdAria": "Uzun satır koruma karakter sayısı",
     "tooltipChapterSplitOnly": "Yalnızca bölüm bölme: yalnızca bölüm başlıklarını satırlara böler, diğer içeriği değiştirmez",
     "chapterSplitDone": "Bölüm bölme tamamlandı",
     "chapterSplitBtn": "Bölümleri Böl",
@@ -432,13 +442,19 @@
   },
   "feedback": {
     "feedback1": "Geri Bildirim & Öneriler",
-    "feedback2": "Sorun yaşarsanız veya önerileriniz varsa, bana bildirin! Geri bildiriminiz gelecekteki geliştirmeleri etkiler ve daha iyi araçlar oluşturmamıza yardımcı olur.",
+    "feedback2": "Sorun yaşarsanız veya önerileriniz varsa, bana bildirin!Geri bildiriminiz gelecekteki geliştirmeleri etkiler ve daha iyi araçlar oluşturmamıza yardımcı ol…",
     "feedback3": "Kullanım durumunuzu, sorunu veya fikri açıklayın. Her mesajı okuyorum ve en kısa sürede yanıtlayacağım/optimize edeceğim.",
     "reaction0": "Beğen",
     "reaction1": "Destek",
     "reaction2": "Harika",
     "reaction3": "Ne?",
     "reaction4": "Kafam Karıştı",
-    "placeholder": "Mesaj bırakın (giriş gerekmez, yanıt için e-posta isteğe bağlı)"
+    "placeholder": "Mesaj bırakın (giriş gerekmez, yanıt için e-posta isteğe bağlı)",
+    "metaDescription": "Tools By AI geri bildirim sayfası: hata bildir, özellik öner veya kullanım örneklerini paylaş. Waline tabanlı, anonim gönderim mümkün, ücretsiz."
+  },
+  "NotFound": {
+    "title": "Sayfa Bulunamadı",
+    "description": "Ziyaret ettiğiniz sayfa mevcut değil veya taşınmış.",
+    "goHome": "Ana Sayfaya Dön"
   }
 }

@@ -48,7 +48,7 @@
     "resultToSource": "结果 ➔ 原文",
     "resultToSourceTooltip": "将结果文本覆盖到输入框",
     "readOnlyMode": "只读模式",
-    "readOnlyModeTooltip": "文本过长，为保证页面性能已自动切换为只读模式",
+    "readOnlyModeTooltip": "文本过长，编辑框暂为只读、仅显示部分预览；完整内容不受影响，处理与导出仍按全文进行",
     "exportFile": "导出",
     "exportAllFile": "导出所有文件",
     "exportedFile": "已导出",
@@ -143,14 +143,15 @@
     "langPresetIndian": "印度系",
     "selectedCount": "已选 {count} 种",
     "recentLanguages": "最近使用",
-    "langGroupAmericasOceania": "美洲及大洋洲"
+    "langGroupAmericasOceania": "美洲及大洋洲",
+    "relatedTools": "相关工具"
   },
   "tools": {
     "novelProcessor": {
       "title": "小说排版整理",
       "description": "一键修复下载小说的格式问题，智能换行排版",
-      "metaTitle": "小说排版整理 | 网文 TXT、章节、Kindle 推送",
-      "metaDescription": "网文 TXT 排版乱？一键修复智能换行、章节分割、去重与繁简转换，让笔趣阁等下载的小说兼容 Kindle、FBReader、微信读书等阅读器。",
+      "metaTitle": "小说排版整理工具 - 网文 TXT 智能换行、章节分割与 Kindle 推送适配",
+      "metaDescription": "网文 TXT 智能排版工具，一键修复笔趣阁下载小说的段落误切、空行、章节标识、广告横幅、繁简混用，支持 300 万字超长篇秒级处理。",
       "howto": [
         {
           "name": "导入网文或小说文本",
@@ -180,12 +181,20 @@
           "a": "专治网文 TXT 7 大乱象：段落被误切成短行、每段末尾多余空行、章节标题没换行、段首没缩进、广告行（「更多小说请访问 xxx」「扫码关注公众号」）混杂、全角半角空格乱、繁简字体混用。不仅适用于笔趣阁下载，也适用于浏览器复制粘贴、Word 导出 TXT、同人文整理等场景。勾选规则一次批量修复，也可单独启用某项。支持处理 300 万字以上超长小说，速度不受文件大小影响。"
         },
         {
+          "q": "整理好的 TXT 能直接用于 Kindle、微信读书、掌阅阅读吗？章节目录会自动生成吗？",
+          "a": "处理后的 TXT 符合 Kindle（推送邮箱）、微信读书（本地导入）、掌阅（WiFi 传书）、静读天下、FBReader 的格式要求。启用「章节分割」后会在每章前加空行，Kindle 可自动生成目录。微信读书建议先用 Calibre 转 EPUB 再导入以获得最佳目录体验。TTS 听书用户启用「去重复行」+「垃圾过滤」后可避免朗读广告内容。"
+        },
+        {
+          "q": "网文是繁体版（台湾/香港），想转成简体阅读，或要保留人名地名不被误转，怎么办？",
+          "a": "本工具自带繁简转换规则，可在排版整理同时完成繁→简或简→繁；若需要更精细的「专有名词保护词典」（人名、地名、术语不被误转）和台湾繁体↔香港繁体↔日本新字体之间的细分互转，请用 [简繁转换](../chinese-conversion) 工具，两者共用同一份保护词典格式。整理完成后想对文本做进一步的批量替换、章节正则提取、敏感词过滤，可接 [文本处理神器](../text-toolbox)。"
+        },
+        {
           "q": "整理小说时会不会误删正文或对话？重复行规则如何识别广告？",
           "a": "重复行仅识别「连续 3 行以上完全相同」的内容（如多次出现的网站广告「本书首发于 xxx」）。正文中人物简短回答（如「好」「嗯」）不会被误删，因为检测的是连续重复模式而非单行重复。建议处理前备份原文，完成后对比字数（正文字数变化应 < 5%）可确认安全。章节分割使用正则匹配「第X章」「Chapter X」「X、」等常见格式。"
         },
         {
-          "q": "整理好的 TXT 能直接用于 Kindle、微信读书、掌阅阅读吗？章节目录会自动生成吗？",
-          "a": "处理后的 TXT 符合 Kindle（推送邮箱）、微信读书（本地导入）、掌阅（WiFi 传书）、静读天下、FBReader 的格式要求。启用「章节分割」后会在每章前加空行，Kindle 可自动生成目录。微信读书建议先用 Calibre 转 EPUB 再导入以获得最佳目录体验。TTS 听书用户启用「去重复行」+「垃圾过滤」后可避免朗读广告内容。"
+          "q": "上传的小说会保存到服务器吗？开源吗？",
+          "a": "100% 浏览器本地处理：小说文本读取、格式修复、繁简转换、导出全部在浏览器内完成，原文不上传任何服务器。源代码开源在 GitHub（rockbenben/novel-processor），可自部署。"
         }
       ]
     }
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "description": "寻找高效开发工具？ToolsByAI 汇集字幕翻译、i18n 处理等 20+ 款免费开源应用。接入 DeepSeek 等主流模型，支持批量处理且数据隐私安全，立即开启 AI 提效之旅！",
+    "description": "ToolsByAI 集合 17 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。",
     "homeTitle": "ToolsByAI 工具集",
     "homeDescription": "20+ 实用工具，涵盖多语言翻译、文本处理、JSON 编辑和数据转换，助力开发者和创作者提升效率。",
     "ogTitle": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "ogDescription": "寻找高效开发工具？ToolsByAI 汇集字幕翻译、i18n 处理等 20+ 款免费开源应用。接入 DeepSeek 等主流模型，支持批量处理且数据隐私安全，立即开启 AI 提效之旅！"
+    "ogDescription": "ToolsByAI 集合 17 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。"
   },
   "languages": {
     "auto": "自动检测",
@@ -396,34 +405,35 @@
     "infoNoChapters": "未识别到有效章节标题，无法重排",
     "reorderComplete": "章节重排完成（共 {chapters} 章）",
     "textInput": "文本输入",
-    "typesetting": "排版优化",
-    "tooltipSmartLineBreak": "智能换行：依据标点符号自动优化换行，合并破碎段落",
-    "tooltipIndent": "段落缩进：段首自动添加两个全角空格",
-    "indent": "段落缩进",
-    "tooltipTrim": "智能清理：自动移除每行首尾空格",
-    "trimSpaces": "智能清理空格",
-    "tooltipDedup": "去重：移除相邻的重复行",
+    "typesetting": "段落排版",
+    "hintSmartLineBreak": "自动把断成多行的段落接成整段",
+    "indent": "段首缩进",
+    "trimSpaces": "清理首尾空格",
+    "paragraphSplit": "长段落拆分",
+    "hintParagraphSplit": "把过长的段落按句子拆开，方便手机阅读",
+    "chapterGroup": "章节处理",
+    "chapterSplit": "章节标题分行",
+    "hintChapterSplit": "把和正文粘在一行的「第X章」拆成独立行",
+    "mergeDuplicateChapterTitles": "合并重复章节标题",
+    "hintMergeChapterTitles": "同一章标题重复出现时，只保留一个",
     "removeDuplicates": "去除重复行",
-    "tooltipParagraphSplit": "长段落优化：自动拆分过长段落，提升移动端阅读体验",
-    "paragraphSplit": "长段落优化",
+    "lineEndNumbers": "清除行尾数字",
+    "hintLineEndNumbers": "删除每行末尾多余的页码或数字",
     "conversion": "繁简转换",
-    "tooltipConversion": "繁简体之间互相转换全文（基于 OpenCC 引擎）",
     "rulesInactiveHint": "仅在启用「繁简转换」时生效",
     "conversionNone": "不变",
-    "contentCleaning": "内容清洗",
-    "tooltipChapterSplit": "章节识别：自动识别并格式化「第X章」标题",
-    "chapterSplit": "识别并处理章节标题",
-    "tooltipLineEndNumbers": "清除行尾数字：移除行末的页码或统计数字（仅限该行长度超过10）",
-    "lineEndNumbers": "清除行尾数字",
     "specialStartLabel": "特殊起始行（不合并）",
+    "hintSpecialStart": "以这些文字开头的行不会被并入上一段",
     "specialStartPlaceholder": "例如：书名、卷首语...",
     "specialStartAria": "特殊起始行",
     "filterLabel": "内容筛选",
+    "hintFilter": "删除包含这些关键词的行",
     "filterPlaceholder": "输入筛选关键词（逗号分隔）",
-    "thresholdLabel": "阈值",
-    "thresholdPlaceholder": "长度阈值（0 = 不启用）",
+    "thresholdLabel": "保护长行",
+    "hintThreshold": "超过这个字数的行即使含关键词也保留（0 = 不保护）",
+    "thresholdPlaceholder": "字数（0 = 不保护）",
     "thresholdDisabled": "未启用",
-    "thresholdAria": "长度阈值",
+    "thresholdAria": "保护长行字数",
     "tooltipChapterSplitOnly": "仅分割章节：仅对章节标题进行分行，不修改其他内容",
     "chapterSplitDone": "章节分割完成",
     "chapterSplitBtn": "章节分割",
@@ -439,6 +449,12 @@
     "reaction2": "有点酷",
     "reaction3": "啥玩意",
     "reaction4": "看不懂",
-    "placeholder": "请留言，无需登录（填写邮箱可获回复提醒）"
+    "placeholder": "请留言，无需登录（填写邮箱可获回复提醒）",
+    "metaDescription": "意见反馈页：报告使用问题、提交功能建议、参与工具改进。基于 Waline 评论系统，匿名也可发言。"
+  },
+  "NotFound": {
+    "title": "页面未找到",
+    "description": "你访问的页面不存在或已移动。",
+    "goHome": "返回首页"
   }
 }

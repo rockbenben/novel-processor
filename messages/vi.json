@@ -117,7 +117,7 @@
     "resultToSource": "Kết quả ➔ Nguồn",
     "resultToSourceTooltip": "Ghi đè văn bản kết quả vào ô nhập liệu",
     "readOnlyMode": "Chế độ chỉ đọc",
-    "readOnlyModeTooltip": "Văn bản quá dài, đã tự động chuyển sang chế độ chỉ đọc để đảm bảo hiệu suất trang",
+    "readOnlyModeTooltip": "Văn bản quá dài: trình soạn thảo tạm thời ở chế độ chỉ đọc và chỉ hiển thị bản xem trước một phần. Toàn bộ nội dung của bạn không bị ảnh hưởng — xử lý và xuất vẫn dùng toàn bộ văn bản.",
     "clearInputTooltip": "Xóa nội dung đã nhập và tệp đã tải lên",
     "fileExported": "Đã xuất tệp: {fileName}",
     "exportSuccess": "Xuất thành công: {fileName}",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Tiểu lục địa Ấn Độ",
     "selectedCount": "Đã chọn {count}",
     "recentLanguages": "Gần đây",
-    "langGroupAmericasOceania": "Châu Mỹ và Châu Đại Dương"
+    "langGroupAmericasOceania": "Châu Mỹ và Châu Đại Dương",
+    "relatedTools": "Công cụ liên quan"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Trình định dạng tiểu thuyết",
-      "description": "Sửa hàng loạt lỗi định dạng tiểu thuyết tải về, hỗ trợ ngắt dòng thông minh",
-      "metaTitle": "Định dạng tiểu thuyết - TXT, chương, Kindle",
-      "metaDescription": "TXT tiểu thuyết mạng lộn xộn? Sửa một cú nhấp cho ngắt dòng, tách chương, loại bỏ trùng và phồn/giản thể. Tương thích Kindle/FBReader.",
+      "title": "Trình định dạng tiểu thuyết mạng Trung Quốc",
+      "description": "Sửa hàng loạt lỗi định dạng tiểu thuyết mạng Trung Quốc tải về, hỗ trợ ngắt dòng thông minh",
+      "metaTitle": "Định Dạng TXT Tiểu Thuyết Web Trung Quốc - Chia Chương 第X章, Kindle",
+      "metaDescription": "Trình định dạng truyện web Trung Quốc TXT: sửa đoạn văn, quảng cáo, chương 第X章, mã hóa hỗn hợp trong một cú nhấp. Xử lý 3M+ ký tự. Xuất Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "File TXT tiểu thuyết tải từ website hoặc sao chép bị lộn xộn, công cụ này có thể sửa những vấn đề gì?",
           "a": "Xử lý 7 vấn đề điển hình của TXT tiểu thuyết: đoạn văn bị chia thành dòng ngắn sai, dòng trống thừa cuối đoạn, tiêu đề chương không xuống dòng, không thụt đầu dòng, dòng quảng cáo lẫn lộn (ví dụ \"Xem thêm tại xxx\" hoặc \"Theo dõi tài khoản chính thức\"), khoảng trắng toàn/bán chiều lộn xộn, chữ phồn/giản lẫn lộn. Bạn có thể tích chọn để sửa hàng loạt hoặc kích hoạt từng mục riêng lẻ. Hỗ trợ xử lý nhanh tiểu thuyết trên 3 triệu chữ."
         },
         {
-          "q": "Khi chỉnh lý tiểu thuyết có vô tình xóa nội dung chính hay lời thoại không? Quy tắc dòng trùng lặp nhận diện quảng cáo như thế nào?",
+          "q": "TXT sau khi chỉnh lý có dùng được trực tiếp trên Kindle, Reavol hoặc Kobo không?",
+          "a": "TXT đã xử lý đáp ứng yêu cầu định dạng của Kindle (Send-to-Kindle), Reavol, Kobo và FBReader. Bật \"Tách chương\" để Kindle tự động tạo mục lục. Với Reavol hoặc Kobo, chuyển sang EPUB qua Calibre trước khi nhập để có trải nghiệm mục lục tốt nhất. Người dùng TTS có thể bật \"Xóa trùng lặp\" và \"Lọc rác\" để tránh đọc quảng cáo."
+        },
+        {
+          "q": "Tiểu thuyết của tôi là Phồn thể (Đài Loan/HK) và muốn Giản thể, hoặc muốn giữ một số tên không bị chuyển. Quy…",
+          "a": "Công cụ này có quy tắc Phồn ↔ Giản bạn có thể bật khi định dạng. Để kiểm soát tinh tế hơn — từ điển từ được bảo vệ (tên người, địa danh, thuật ngữ) và chuyển giữa Phồn Đài Loan ↔ Phồn Hong Kong ↔ Shinjitai Nhật — nối tiếp với [Chuyển Đổi Chữ Hán](../chinese-conversion); cả hai công cụ chia sẻ cùng định dạng từ bảo vệ. Để thêm tìm/thay regex, trích xuất chương hoặc lọc từ nhạy cảm, [Hộp Công Cụ Văn Bản](../text-toolbox) hoàn tất chu trình."
+        },
+        {
+          "q": "Khi chỉnh lý tiểu thuyết có vô tình xóa nội dung chính hay lời thoại không?",
           "a": "Dòng trùng lặp chỉ nhận diện nội dung \"3 dòng liên tiếp hoàn toàn giống nhau\" (như quảng cáo trang web lặp lại \"Tiểu thuyết này đăng lần đầu tại xxx\"). Câu trả lời ngắn của nhân vật trong nội dung (như \"Ừ\" \"Được\") sẽ không bị xóa nhầm vì hệ thống phát hiện mẫu lặp liên tiếp chứ không phải lặp đơn dòng. Khuyến nghị sao lưu bản gốc trước khi xử lý và kiểm tra số chữ sau khi hoàn thành (số chữ nội dung thay đổi dưới 5% là an toàn)."
         },
         {
-          "q": "TXT sau khi chỉnh lý có dùng được trực tiếp trên Kindle, Reavol hoặc Kobo không? Mục lục chương có được tự động tạo không?",
-          "a": "TXT đã xử lý đáp ứng yêu cầu định dạng của Kindle (Send-to-Kindle), Reavol, Kobo và FBReader. Bật \"Tách chương\" để Kindle tự động tạo mục lục. Với Reavol hoặc Kobo, chuyển sang EPUB qua Calibre trước khi nhập để có trải nghiệm mục lục tốt nhất. Người dùng TTS có thể bật \"Xóa trùng lặp\" và \"Lọc rác\" để tránh đọc quảng cáo."
+          "q": "Tiểu thuyết của tôi có được tải lên máy chủ không? Công cụ có mã nguồn mở không?",
+          "a": "100% chạy nội bộ trình duyệt: đọc văn bản, sửa định dạng, chuyển Phồn/Giản và xuất đều diễn ra trong trình duyệt — không có gì được tải lên. Mã nguồn mở trên GitHub (rockbenben/novel-processor) để tự host."
         }
       ],
       "howto": [
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - Bộ Công Cụ Dịch Thuật & Dữ Liệu AI Online",
-    "description": "Bộ công cụ AI miễn phí cho nhà phát triển: dịch phụ đề, i18n, Markdown và chỉnh sửa JSON. Xử lý cục bộ an toàn, mã nguồn mở và hỗ trợ xử lý hàng loạt.",
+    "description": "ToolsByAI: 17 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 25+ engine AI.",
     "homeTitle": "Bộ ToolsByAI",
     "homeDescription": "20+ công cụ cho dịch, văn bản, JSON và chuyển đổi dữ liệu. Tăng cường hiệu quả cho nhà phát triển và người sáng tạo.",
     "ogTitle": "ToolsByAI - Công Cụ Dev AI Miễn Phí & Mã Nguồn Mở",
-    "ogDescription": "20+ tiện ích cho nhà phát triển: dịch thuật, xử lý dữ liệu và JSON. Bảo vệ quyền riêng tư với xử lý cục bộ ngay trên trình duyệt."
+    "ogDescription": "ToolsByAI: 17 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 25+ engine AI."
   },
   "languages": {
     "auto": "Tự động phát hiện",
@@ -338,41 +347,42 @@
     "failure": "Sao chép thất bại, vui lòng sao chép thủ công"
   },
   "NovelProcessor": {
-    "description": "Được thiết kế chuyên biệt để chỉnh lý văn bản tiểu thuyết mạng, sửa hàng loạt lỗi định dạng của tiểu thuyết tải về chỉ bằng một cú nhấp. Tích hợp ngắt dòng thông minh, chia chương, thụt đầu dòng, chuyển đổi phồn giản, xóa dòng trùng lặp, lọc nội dung rác, biến văn bản tiểu thuyết lộn xộn thành gọn gàng dễ đọc.",
+    "description": "Được thiết kế chuyên biệt để chỉnh lý văn bản tiểu thuyết mạng Trung Quốc, sửa hàng loạt lỗi định dạng của tiểu thuyết Trung Quốc tải về chỉ bằng một cú nhấp. Tích hợp ngắt dòng thông minh, chia chương 第X章, thụt đầu dòng, chuyển đổi phồn giản, xóa dòng trùng lặp, lọc nội dung rác, biến văn bản tiểu thuyết lộn xộn thành gọn gàng dễ đọc.",
     "errorNoInput": "Vui lòng nhập hoặc dán văn bản cần xử lý",
     "errorNoFile": "Vui lòng tải lên file cần xử lý",
     "warningNoText": "Vui lòng nhập hoặc dán văn bản trước",
     "infoNoChapters": "Không nhận diện được tiêu đề chương hợp lệ, không thể sắp xếp lại",
     "reorderComplete": "Sắp xếp lại chương hoàn tất (tổng {chapters} chương)",
     "textInput": "Nhập văn bản",
-    "typesetting": "Tối ưu bố cục",
-    "tooltipSmartLineBreak": "Ngắt dòng thông minh: tự động tối ưu ngắt dòng theo dấu câu, gộp các đoạn bị vỡ",
-    "tooltipIndent": "Thụt đầu dòng: tự động thêm hai khoảng trắng toàn chiều vào đầu đoạn",
-    "indent": "Thụt đầu dòng",
-    "tooltipTrim": "Dọn dẹp thông minh: tự động xóa khoảng trắng đầu và cuối mỗi dòng",
-    "trimSpaces": "Dọn khoảng trắng thông minh",
-    "tooltipDedup": "Xóa trùng: xóa các dòng liền kề bị trùng lặp",
+    "typesetting": "Bố cục đoạn văn",
+    "indent": "Thụt lề dòng đầu",
+    "trimSpaces": "Xóa khoảng trắng đầu và cuối",
     "removeDuplicates": "Xóa dòng trùng lặp",
-    "tooltipParagraphSplit": "Tối ưu đoạn dài: tự động tách các đoạn quá dài, cải thiện trải nghiệm đọc trên mobile",
-    "paragraphSplit": "Tối ưu đoạn dài",
+    "mergeDuplicateChapterTitles": "Gộp tiêu đề chương trùng lặp",
+    "hintSmartLineBreak": "Ghép lại các đoạn văn bị vỡ thành nhiều dòng",
+    "hintParagraphSplit": "Tách các đoạn quá dài theo câu để dễ đọc trên điện thoại",
+    "paragraphSplit": "Tách đoạn văn dài",
+    "chapterGroup": "Xử lý chương",
+    "hintChapterSplit": "Chuyển tiêu đề chương đang dính cùng dòng với nội dung sang dòng riêng",
+    "chapterSplit": "Đặt tiêu đề chương trên dòng riêng",
+    "hintMergeChapterTitles": "Khi cùng một tiêu đề chương xuất hiện nhiều lần, chỉ giữ lại một",
+    "hintLineEndNumbers": "Xóa số trang hoặc chữ số lạc ở cuối mỗi dòng",
+    "lineEndNumbers": "Xóa số cuối dòng",
+    "hintSpecialStart": "Các dòng bắt đầu bằng văn bản này sẽ không bị gộp vào đoạn trước",
+    "hintFilter": "Xóa các dòng chứa các từ khóa này",
+    "hintThreshold": "Các dòng dài hơn số ký tự này được giữ lại dù có chứa từ khóa (0 = tắt)",
     "conversion": "Phồn/Giản",
-    "tooltipConversion": "Chuyển toàn bộ văn bản giữa tiếng Trung giản thể và phồn thể (qua OpenCC)",
     "rulesInactiveHint": "Chỉ có hiệu lực khi bật chuyển đổi phồn thể/giản thể",
     "conversionNone": "Không",
-    "contentCleaning": "Làm sạch nội dung",
-    "tooltipChapterSplit": "Nhận diện chương: tự động nhận diện và định dạng tiêu đề「第X章」",
-    "chapterSplit": "Nhận diện và xử lý tiêu đề chương",
-    "tooltipLineEndNumbers": "Xóa số cuối dòng: xóa số trang hoặc số thống kê ở cuối dòng (chỉ khi dòng dài hơn 10 ký tự)",
-    "lineEndNumbers": "Xóa số cuối dòng",
     "specialStartLabel": "Dòng mở đầu đặc biệt (không gộp)",
     "specialStartPlaceholder": "Ví dụ: tên sách, lời mở đầu...",
     "specialStartAria": "Dòng mở đầu đặc biệt",
     "filterLabel": "Lọc nội dung",
     "filterPlaceholder": "Nhập từ khóa lọc (phân cách bằng dấu phẩy)",
-    "thresholdLabel": "Ngưỡng",
-    "thresholdPlaceholder": "Ngưỡng độ dài (0 = không dùng)",
+    "thresholdLabel": "Bảo vệ dòng dài",
+    "thresholdPlaceholder": "Số ký tự (0 = không bảo vệ)",
     "thresholdDisabled": "Không dùng",
-    "thresholdAria": "Ngưỡng độ dài",
+    "thresholdAria": "Số ký tự bảo vệ dòng dài",
     "tooltipChapterSplitOnly": "Chỉ chia chương: chỉ xuống dòng tại tiêu đề chương, không sửa nội dung khác",
     "chapterSplitDone": "Chia chương hoàn tất",
     "chapterSplitBtn": "Chia chương",
@@ -432,13 +442,19 @@
   },
   "feedback": {
     "feedback1": "Phản hồi & Gợi ý",
-    "feedback2": "Nếu bạn gặp vấn đề hoặc có gợi ý, hãy cho tôi biết! Phản hồi của bạn ảnh hưởng đến sự phát triển trong tương lai và giúp chúng tôi tạo ra các công cụ tốt hơn.",
+    "feedback2": "Nếu bạn gặp vấn đề hoặc có gợi ý, hãy cho tôi biết!Phản hồi của bạn ảnh hưởng đến sự phát triển trong tương lai và giúp chúng tôi tạo ra các công cụ tốt h…",
     "feedback3": "Mô tả trường hợp sử dụng, vấn đề hoặc ý tưởng của bạn. Tôi đọc từng tin nhắn và sẽ phản hồi/tối ưu hóa sớm nhất có thể.",
     "reaction0": "Thích",
     "reaction1": "Ủng hộ",
     "reaction2": "Tuyệt",
     "reaction3": "Cái gì?",
     "reaction4": "Bối rối",
-    "placeholder": "Để lại tin nhắn (không cần đăng nhập, email tùy chọn để trả lời)"
+    "placeholder": "Để lại tin nhắn (không cần đăng nhập, email tùy chọn để trả lời)",
+    "metaDescription": "Trang phản hồi Tools By AI: báo lỗi, đề xuất tính năng, chia sẻ tình huống sử dụng. Dựa trên Waline, đăng ẩn danh được phép, miễn phí."
+  },
+  "NotFound": {
+    "title": "Không tìm thấy trang",
+    "description": "Trang bạn truy cập không tồn tại hoặc đã được di chuyển.",
+    "goHome": "Về trang chủ"
   }
 }

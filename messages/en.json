@@ -77,7 +77,7 @@
     "resultToSource": "Result ➔ Source",
     "resultToSourceTooltip": "Overwrite input area with result text",
     "readOnlyMode": "Read-Only Mode",
-    "readOnlyModeTooltip": "Text is too long; automatically switched to read-only mode to maintain page performance",
+    "readOnlyModeTooltip": "Text is too long: the editor is temporarily read-only and shows a partial preview only. Your full content is unaffected — processing and export still use the entire text.",
     "clearInputTooltip": "Clear input content and uploaded files",
     "smartLineBreak": "Smart Line Break",
     "replaceText": "Replace Text",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Indian Subcontinent",
     "selectedCount": "{count} selected",
     "recentLanguages": "Recent",
-    "langGroupAmericasOceania": "Americas & Oceania"
+    "langGroupAmericasOceania": "Americas & Oceania",
+    "relatedTools": "Related Tools"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Novel Text Formatter",
-      "description": "One-click fix for formatting issues in downloaded novels, with smart line-break layout",
-      "metaTitle": "Web Novel TXT Formatter | Chapter Split & Kindle Export",
-      "metaDescription": "Web novel TXT a mess? One-click fix for line breaks, chapter splits, dedup, and Traditional/Simplified conversion. Kindle and FBReader compatible.",
+      "title": "Chinese Novel Formatter",
+      "description": "One-click formatting for downloaded Chinese web novels — smart line breaks, chapter splitting, and clean layout.",
+      "metaTitle": "Chinese Web Novel TXT Formatter - Chapter Split, Kindle Export",
+      "metaDescription": "Chinese web novel TXT formatter: fix broken paragraphs, ads, 第X章 chapters, and Simplified/Traditional mix in one click. Handles 3M+ chars. Exports Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "My downloaded TXT novel has messy formatting — what issues can this tool fix?",
           "a": "Fixes 7 common web-novel TXT problems: paragraphs broken into short lines, extra blank lines at paragraph ends, chapter headings missing line breaks, missing paragraph indentation, ad lines mixed in, inconsistent full-width/half-width spaces, and mixed Traditional/Simplified characters. Works for browser copy-paste, Word-exported TXT, fanfic compilations, and more. Check the rules you need and batch-fix in one pass; each rule can also be enabled individually. Supports novels of 3 million+ characters without slowdown."
         },
         {
+          "q": "Can the formatted TXT be used directly with Kindle, FBReader, and other e-readers?",
+          "a": "Processed TXT meets the format requirements of Kindle (push email), FBReader, and other readers. Enabling \"Chapter Split\" adds a blank line before each chapter so Kindle can auto-generate a table of contents. TTS users can enable \"Remove Duplicate Lines\" and \"Junk Filter\" to avoid the reader speaking ad content."
+        },
+        {
+          "q": "My novel is in Traditional Chinese (Taiwan/HK) and I want Simplified — or I want to keep specific names from…",
+          "a": "This tool includes a Traditional ↔ Simplified rule you can enable during formatting. For finer control — a protected-words dictionary (names, places, terminology) and conversion between Taiwan Traditional ↔ Hong Kong Traditional ↔ Japanese Shinjitai — chain with [Chinese Converter](../chinese-conversion); both tools share the same protected-words format. For further regex search/replace, chapter extraction, or sensitive-word filtering, the [Text Toolbox](../text-toolbox) closes the loop."
+        },
+        {
           "q": "Will the tool accidentally delete actual story content or dialogue? How does duplicate detection work?",
           "a": "Duplicate detection only targets content that appears identically on 3 or more consecutive lines (e.g. a repeated ad like \"First published at xxx\"). Short character responses like \"Yes\" or \"Mm\" in the body text are never removed, because the algorithm detects consecutive repetition, not single-line duplicates. Back up the original before processing; a body word-count change of less than 5% after processing confirms safety. Chapter splitting uses regex to match patterns like \"Chapter X\", \"Chapter X\", \"X.\" and similar common formats."
         },
         {
-          "q": "Can the formatted TXT be used directly with Kindle, FBReader, and other e-readers? Are chapter tables of contents generated automatically?",
-          "a": "Processed TXT meets the format requirements of Kindle (push email), FBReader, and other readers. Enabling \"Chapter Split\" adds a blank line before each chapter so Kindle can auto-generate a table of contents. TTS users can enable \"Remove Duplicate Lines\" and \"Junk Filter\" to avoid the reader speaking ad content."
+          "q": "Is my novel uploaded to a server? Is the tool open source?",
+          "a": "100% browser-local: text reading, format repair, Traditional/Simplified conversion, and export all happen in your browser — nothing is uploaded. Source code is open on GitHub (rockbenben/novel-processor) for self-hosting."
         }
       ],
       "howto": [
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | Free Open Source AI Translation & Data Tools",
-    "description": "Looking for efficient dev tools? ToolsByAI offers 20+ free apps like Subtitle Translator & JSON Editor. Powered by DeepSeek & AI, secure & local. Start now!",
+    "description": "ToolsByAI: 17 free open-source tools for subtitle, Markdown, JSON i18n translation and text/JSON batch processing. 25+ AI engines.",
     "homeTitle": "ToolsByAI Toolset",
     "homeDescription": "20+ tools for translation, text, JSON, and data conversion. Boost efficiency for developers and creators.",
     "ogTitle": "ToolsByAI | Free Open Source AI Translation & Data Tools",
-    "ogDescription": "Looking for efficient dev tools? ToolsByAI offers 20+ free apps like Subtitle Translator & JSON Editor. Powered by DeepSeek & AI, secure & local. Start now!"
+    "ogDescription": "ToolsByAI: 17 free open-source tools for subtitle, Markdown, JSON i18n translation and text/JSON batch processing. 25+ AI engines."
   },
   "languages": {
     "auto": "Auto Detect",
@@ -338,41 +347,42 @@
     "failure": "Copy failed, please copy manually"
   },
   "NovelProcessor": {
-    "description": "Designed for formatting web novel text, fixing layout issues from downloaded novels with one click. Features include smart line breaks, chapter splitting, paragraph indentation, Traditional/Simplified conversion, duplicate line removal, and junk content filtering — turning messy novel text into clean, readable content.",
+    "description": "Designed for formatting Chinese web novels, fixing layout issues from downloaded text in one click. Features smart line breaks, 第X章 chapter splitting, paragraph indentation, Simplified/Traditional conversion, duplicate-line removal, and junk-content filtering — turning messy novel text into clean, readable content.",
     "errorNoInput": "Please enter or paste text to process",
     "errorNoFile": "Please upload a file to process",
     "warningNoText": "Please enter or paste text first",
     "infoNoChapters": "No valid chapter headings detected, reorder unavailable",
     "reorderComplete": "Chapter reorder complete ({chapters} chapters)",
     "textInput": "Text Input",
-    "typesetting": "Layout Optimization",
-    "tooltipSmartLineBreak": "Smart Line Break: auto-optimize line breaks based on punctuation, merge fragmented paragraphs",
-    "tooltipIndent": "Paragraph Indent: automatically add two full-width spaces at the start of each paragraph",
-    "indent": "Paragraph Indent",
-    "tooltipTrim": "Smart Trim: automatically remove leading/trailing spaces from each line",
-    "trimSpaces": "Smart Trim Spaces",
-    "tooltipDedup": "Dedup: remove adjacent duplicate lines",
+    "typesetting": "Paragraph layout",
+    "indent": "First-line indent",
+    "trimSpaces": "Trim leading and trailing spaces",
     "removeDuplicates": "Remove Duplicate Lines",
-    "tooltipParagraphSplit": "Long Paragraph Optimization: auto-split overly long paragraphs for better mobile reading",
-    "paragraphSplit": "Long Paragraph Optimization",
+    "mergeDuplicateChapterTitles": "Merge duplicate chapter titles",
+    "paragraphSplit": "Split long paragraphs",
+    "chapterGroup": "Chapter handling",
+    "chapterSplit": "Put chapter titles on their own line",
     "conversion": "Conversion",
-    "tooltipConversion": "Convert between Simplified and Traditional Chinese throughout the text (powered by OpenCC)",
     "rulesInactiveHint": "Active only when Traditional/Simplified conversion is enabled",
     "conversionNone": "None",
-    "contentCleaning": "Content Cleaning",
-    "tooltipChapterSplit": "Chapter Detection: automatically detect and format chapter headings like \"Chapter X\"",
-    "chapterSplit": "Detect and Format Chapter Headings",
-    "tooltipLineEndNumbers": "Remove trailing numbers: strip page numbers or statistics at line ends (only if line length > 10)",
     "lineEndNumbers": "Remove Trailing Numbers",
     "specialStartLabel": "Special Start Lines (no merge)",
     "specialStartPlaceholder": "e.g. title, preface...",
     "specialStartAria": "Special Start Lines",
     "filterLabel": "Content Filter",
     "filterPlaceholder": "Enter filter keywords (comma-separated)",
-    "thresholdLabel": "Threshold",
-    "thresholdPlaceholder": "Length threshold (0 = disabled)",
+    "thresholdLabel": "Protect long lines",
+    "thresholdPlaceholder": "Characters (0 = no protection)",
     "thresholdDisabled": "Disabled",
-    "thresholdAria": "Length Threshold",
+    "thresholdAria": "Protect-long-lines character count",
+    "hintSmartLineBreak": "Rejoin paragraphs that were broken across multiple lines",
+    "hintParagraphSplit": "Split overly long paragraphs by sentence for easier reading on mobile",
+    "hintChapterSplit": "Move a chapter heading stuck on the same line as the body text onto its own line",
+    "hintMergeChapterTitles": "When the same chapter title appears more than once, keep only one",
+    "hintLineEndNumbers": "Remove stray page numbers or digits at the end of each line",
+    "hintSpecialStart": "Lines starting with this text will not be merged into the previous paragraph",
+    "hintFilter": "Delete lines that contain these keywords",
+    "hintThreshold": "Lines longer than this many characters are kept even if they contain a keyword (0 = off)",
     "tooltipChapterSplitOnly": "Chapter Split Only: split on chapter headings only, do not modify other content",
     "chapterSplitDone": "Chapter split complete",
     "chapterSplitBtn": "Chapter Split",
@@ -439,6 +449,12 @@
     "reaction2": "Cool",
     "reaction3": "What?",
     "reaction4": "Confused",
-    "placeholder": "Leave a message (no login required, email optional for reply)"
+    "placeholder": "Leave a message (no login required, email optional for reply)",
+    "metaDescription": "Feedback for Tools By AI: report bugs, suggest features, share use-case ideas. Built on Waline, anonymous posting allowed, free."
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "The page you visited doesn't exist or has been moved.",
+    "goHome": "Back to Home"
   }
 }

@@ -117,7 +117,7 @@
     "resultToSource": "Hasil ➔ Sumber",
     "resultToSourceTooltip": "Timpa kotak input dengan teks hasil",
     "readOnlyMode": "Mode Hanya-Baca",
-    "readOnlyModeTooltip": "Teks terlalu panjang, otomatis beralih ke mode hanya-baca untuk menjaga performa halaman",
+    "readOnlyModeTooltip": "Teks terlalu panjang: editor sementara hanya-baca dan hanya menampilkan pratinjau sebagian. Konten lengkap Anda tidak terpengaruh — pemrosesan dan ekspor tetap menggunakan seluruh teks.",
     "clearInputTooltip": "Bersihkan konten input dan file yang diunggah",
     "fileExported": "File diekspor: {fileName}",
     "exportSuccess": "Ekspor berhasil: {fileName}",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Anak Benua India",
     "selectedCount": "{count} dipilih",
     "recentLanguages": "Terbaru",
-    "langGroupAmericasOceania": "Amerika & Oseania"
+    "langGroupAmericasOceania": "Amerika & Oseania",
+    "relatedTools": "Alat Terkait"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Pemformat Novel",
-      "description": "Perbaiki masalah format novel yang diunduh dengan satu klik",
-      "metaTitle": "Format Novel - TXT, Bab, Kompatibel Kindle",
-      "metaDescription": "TXT novel web berantakan? Perbaikan satu klik untuk pemecah baris, pemisahan bab, deduplikasi dan Tradisional/Sederhana. Kompatibel Kindle/FBReader.",
+      "title": "Pemformat Novel Web China",
+      "description": "Perbaiki masalah format novel web China yang diunduh dengan satu klik",
+      "metaTitle": "Pemformat TXT Novel Web China - Pisah Bab 第X章, Ekspor Kindle",
+      "metaDescription": "Formatter novel web China TXT: perbaiki paragraf, iklan, bab 第X章, encoding dalam satu klik. 3M+ karakter. Ekspor Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Masalah format apa saja yang dapat diperbaiki alat ini pada TXT novel yang diunduh?",
           "a": "7 masalah umum: baris yang terputus, baris kosong berlebih, judul bab tanpa pemisah baris, tidak ada indentasi, baris iklan, campuran spasi, dan campuran karakter Sederhana/Tradisional."
         },
         {
+          "q": "Apakah TXT yang sudah dirapikan bisa langsung digunakan di Kindle dan e-reader?",
+          "a": "TXT yang diproses memenuhi persyaratan format Kindle (Send-to-Kindle), Gramedia Digital, Kobo, dan FBReader. Mengaktifkan 'Pembagian Bab' membuat Kindle otomatis menghasilkan daftar isi. Untuk Gramedia atau Kobo, konversi terlebih dahulu ke EPUB via Calibre untuk pengalaman TOC terbaik. Pengguna TTS dapat mengaktifkan 'Hapus Duplikat' dan 'Filter Sampah' untuk mencegah pembacaan iklan."
+        },
+        {
+          "q": "Novel dalam Tradisional (Taiwan/HK), ingin baca dalam Sederhana, atau pertahankan nama tokoh/tempat agar…",
+          "a": "Alat ini sudah memiliki aturan konversi Sederhana-Tradisional, bisa selesaikan Tradisional→Sederhana atau sebaliknya bersama pemformatan; untuk «kamus kata-kata terlindungi» yang lebih halus (nama tokoh, tempat, istilah dilindungi) dan konversi halus antara Tradisional Taiwan↔Hong Kong↔Shinjitai Jepang, gunakan [Konversi Tionghoa](../chinese-conversion), kedua alat berbagi format kamus terlindungi yang sama. Setelah pemformatan, untuk penggantian massal, ekstraksi regex bab, atau filter kata sensitif, hubungkan dengan [Pemroses Teks](../text-toolbox)."
+        },
+        {
           "q": "Apakah baris cerita utama akan terhapus saat menggunakan opsi hapus duplikat?",
           "a": "Tidak. Opsi ini hanya menghapus konten yang berulang secara berturutan (3 baris identik atau lebih). Dialog pendek tetap aman. Disarankan backup sebelum diproses."
         },
         {
-          "q": "Apakah TXT yang sudah dirapikan bisa langsung digunakan di Kindle dan e-reader?",
-          "a": "TXT yang diproses memenuhi persyaratan format Kindle (Send-to-Kindle), Gramedia Digital, Kobo, dan FBReader. Mengaktifkan 'Pembagian Bab' membuat Kindle otomatis menghasilkan daftar isi. Untuk Gramedia atau Kobo, konversi terlebih dahulu ke EPUB via Calibre untuk pengalaman TOC terbaik. Pengguna TTS dapat mengaktifkan 'Hapus Duplikat' dan 'Filter Sampah' untuk mencegah pembacaan iklan."
+          "q": "Apakah novel yang diunggah disimpan di server? Open source?",
+          "a": "Pemrosesan lokal browser 100%: pembacaan teks novel, perbaikan format, konversi Sederhana-Tradisional, ekspor semua di browser, teks asli tidak diunggah ke server. Kode sumber open source di GitHub (rockbenben/novel-processor), bisa self-deploy."
         }
       ],
       "howto": [
@@ -172,18 +181,18 @@
         },
         {
           "name": "Konfigurasi kombinasi aturan perbaikan",
-          "text": "Centang aturan yang Anda butuhkan: pemecah baris pintar (perbaiki paragraf yang salah dipotong), pemisahan bab (baris kosong sebelum setiap bab), indentasi baris pertama (2 karakter), penghapusan baris duplikat (bersihkan iklan), konversi Tradisional-ke-Sederhana, filter konten sampah. Aturan ditumpuk atau diaktifkan secara individual."
+          "text": "Centang aturan yang Anda butuhkan: pemecah baris pintar (perbaiki paragraf yang salah dipotong), pemisahan bab (baris kosong sebelum setiap bab), indentasi baris pertama (2 karakter), penghapusan baris duplikat (bersihkan iklan), konversi Tradisional-ke-Sederhana, filter konten sampah. Aturan…"
         },
         {
           "name": "Ekspor TXT yang ramah pembaca",
-          "text": "Kirim ekspor langsung ke Kindle melalui Send-to-Kindle, atau impor secara lokal ke Kobo, FBReader, atau Moon+ Reader. Dengan pemisahan bab diaktifkan, Kindle secara otomatis menghasilkan daftar isi. Untuk Kobo atau pembaca lainnya, konversi terlebih dahulu ke EPUB melalui Calibre untuk pengalaman daftar isi terbaik."
+          "text": "Kirim ekspor langsung ke Kindle melalui Send-to-Kindle, atau impor secara lokal ke Kobo, FBReader, atau Moon+ Reader. Dengan pemisahan bab diaktifkan, Kindle secara otomatis menghasilkan daftar isi. Untuk Kobo atau pembaca lainnya, konversi terlebih dahulu ke EPUB melalui Calibre untuk pengalaman…"
         }
       ],
       "features": [
         "Memperbaiki 7 masalah format umum dalam file TXT novel web (unduhan, salin-tempel web, ekspor Word)",
         "Mendeteksi judul bab seperti 「第X章」 atau Chapter X secara otomatis dan memisahkannya",
         "Deteksi baris duplikat berdekatan — baris berturut-turut yang identik (mis. spanduk iklan berulang) dihapus",
-        "Indentasi baris pertama (2 karakter), menghapus baris kosong berlebih, memperbaiki baris pendek yang salah dipotong",
+        "Indentasi baris pertama (2 karakter), menghapus baris kosong berlebih, memperbaiki baris pendek…",
         "Konversi Tradisional-ke-Sederhana, normalisasi spasi lebar penuh/setengah",
         "Menangani novel lebih dari 3 juta karakter dengan pemrosesan cepat",
         "Kompatibel dengan Kindle Send-to-Email, Kobo, FBReader, dan Moon+ Reader"
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - Peralatan Data & Terjemahan AI untuk Developer",
-    "description": "Kumpulan alat AI gratis untuk developer: terjemahan subtitle, i18n, Markdown, dan edit JSON. Proses batch cepat, aman secara lokal, dan open source.",
+    "description": "ToolsByAI: 17 alat open source gratis untuk penerjemahan subtitle, Markdown, JSON i18n, dan pemrosesan teks/JSON batch. 25+ AI engine.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "20+ alat untuk terjemahan, teks, JSON, dan konversi data. Tingkatkan efisiensi pengembang dan kreator.",
     "ogTitle": "ToolsByAI - Alat Dev AI Gratis dan Open Source",
-    "ogDescription": "20+ utilitas untuk pengembang: terjemahan, pemrosesan data, dan JSON. Hormati privasi Anda dengan pemrosesan lokal di browser."
+    "ogDescription": "ToolsByAI: 17 alat open source gratis untuk penerjemahan subtitle, Markdown, JSON i18n, dan pemrosesan teks/JSON batch. 25+ AI engine."
   },
   "languages": {
     "auto": "Deteksi Otomatis",
@@ -338,41 +347,42 @@
     "failure": "Gagal menyalin, salin secara manual"
   },
   "NovelProcessor": {
-    "description": "Dirancang untuk merapikan teks novel online, perbaiki masalah format dengan satu klik. Fitur: pemisah baris cerdas, pemisah bab, indentasi paragraf, konversi Sederhana/Tradisional, hapus baris duplikat, dan filter konten sampah.",
+    "description": "Dirancang untuk merapikan teks novel web China, perbaiki masalah format novel China dengan satu klik. Fitur: pemisah baris cerdas, pemisah bab 第X章, indentasi paragraf, konversi Sederhana/Tradisional, hapus baris duplikat, dan filter konten sampah.",
     "errorNoInput": "Masukkan atau tempel teks yang akan diproses",
     "errorNoFile": "Unggah file yang akan diproses",
     "warningNoText": "Masukkan atau tempel teks terlebih dahulu",
     "infoNoChapters": "Tidak ditemukan judul bab yang valid, tidak dapat diurutkan ulang",
     "reorderComplete": "Pengurutan ulang bab selesai ({chapters} bab)",
     "textInput": "Input Teks",
-    "typesetting": "Peningkatan Tipografi",
-    "tooltipSmartLineBreak": "Pemisah Baris Cerdas: optimalkan pemisah baris secara otomatis berdasarkan tanda baca, gabungkan paragraf yang terputus",
-    "tooltipIndent": "Indentasi Paragraf: tambahkan dua spasi penuh di awal setiap paragraf",
-    "indent": "Indentasi Paragraf",
-    "tooltipTrim": "Bersihkan Cerdas: hapus spasi di awal dan akhir setiap baris",
-    "trimSpaces": "Bersihkan Spasi Cerdas",
-    "tooltipDedup": "Deduplikasi: hapus baris duplikat yang berurutan",
+    "typesetting": "Tata letak paragraf",
+    "hintSmartLineBreak": "Menyatukan kembali paragraf yang terpecah menjadi beberapa baris",
+    "indent": "Indentasi baris pertama",
+    "trimSpaces": "Hapus spasi di awal dan akhir baris",
+    "paragraphSplit": "Pecah paragraf panjang",
+    "hintParagraphSplit": "Memecah paragraf yang terlalu panjang per kalimat agar lebih mudah dibaca di ponsel",
+    "chapterGroup": "Penanganan bab",
+    "chapterSplit": "Letakkan judul bab di baris sendiri",
+    "hintChapterSplit": "Memindahkan judul bab yang menempel pada baris yang sama dengan teks utama ke barisnya sendiri",
+    "mergeDuplicateChapterTitles": "Gabungkan judul bab duplikat",
+    "hintMergeChapterTitles": "Jika judul bab yang sama muncul lebih dari sekali, hanya pertahankan satu",
     "removeDuplicates": "Hapus Baris Duplikat",
-    "tooltipParagraphSplit": "Optimasi Paragraf Panjang: pecah paragraf panjang secara otomatis untuk meningkatkan pengalaman membaca di ponsel",
-    "paragraphSplit": "Optimasi Paragraf Panjang",
+    "lineEndNumbers": "Hapus Angka di Akhir Baris",
+    "hintLineEndNumbers": "Menghapus nomor halaman atau angka yang tersesat di akhir setiap baris",
     "conversion": "Konversi",
-    "tooltipConversion": "Konversi seluruh teks antara Tionghoa Sederhana dan Tradisional (dengan OpenCC)",
     "rulesInactiveHint": "Hanya aktif saat konversi Tradisional/Sederhana diaktifkan",
     "conversionNone": "Tidak",
-    "contentCleaning": "Pembersihan Konten",
-    "tooltipChapterSplit": "Pengenalan Bab: kenali dan format judul bab 「第X章」 secara otomatis",
-    "chapterSplit": "Kenali dan Proses Judul Bab",
-    "tooltipLineEndNumbers": "Hapus Angka di Akhir Baris: hapus nomor halaman atau statistik di akhir baris (hanya baris dengan lebih dari 10 karakter)",
-    "lineEndNumbers": "Hapus Angka di Akhir Baris",
     "specialStartLabel": "Baris Awal Khusus (jangan digabung)",
+    "hintSpecialStart": "Baris yang diawali teks ini tidak akan digabungkan ke paragraf sebelumnya",
     "specialStartPlaceholder": "Contoh: judul buku, pembuka...",
     "specialStartAria": "Baris Awal Khusus",
     "filterLabel": "Filter Konten",
+    "hintFilter": "Menghapus baris yang mengandung kata kunci ini",
     "filterPlaceholder": "Masukkan kata kunci filter (pisahkan dengan koma)",
-    "thresholdLabel": "Ambang Batas",
-    "thresholdPlaceholder": "Ambang batas panjang (0 = nonaktif)",
+    "thresholdLabel": "Lindungi baris panjang",
+    "hintThreshold": "Baris yang lebih panjang dari jumlah karakter ini tetap dipertahankan meski mengandung kata kunci (0 = nonaktif)",
+    "thresholdPlaceholder": "Karakter (0 = tanpa perlindungan)",
     "thresholdDisabled": "Nonaktif",
-    "thresholdAria": "Ambang Batas Panjang",
+    "thresholdAria": "Jumlah karakter perlindungan baris panjang",
     "tooltipChapterSplitOnly": "Pisahkan Bab Saja: hanya tambahkan pemisah baris pada judul bab, konten lain tidak diubah",
     "chapterSplitDone": "Pemisahan bab selesai",
     "chapterSplitBtn": "Pisahkan Bab",
@@ -432,13 +442,19 @@
   },
   "feedback": {
     "feedback1": "Umpan Balik & Saran",
-    "feedback2": "Jika Anda menemukan masalah atau memiliki saran, beri tahu saya! Umpan balik Anda memengaruhi pengembangan masa depan dan membantu kami membuat alat yang lebih baik.",
+    "feedback2": "Jika Anda menemukan masalah atau memiliki saran, beri tahu saya!Umpan balik Anda memengaruhi pengembangan masa depan dan membantu kami membuat alat yang l…",
     "feedback3": "Jelaskan kasus penggunaan, masalah, atau ide Anda. Saya membaca setiap pesan dan akan merespons/mengoptimalkan sesegera mungkin.",
     "reaction0": "Suka",
     "reaction1": "Dukung",
     "reaction2": "Keren",
     "reaction3": "Apa?",
     "reaction4": "Bingung",
-    "placeholder": "Tinggalkan pesan (tidak perlu login, email opsional untuk balasan)"
+    "placeholder": "Tinggalkan pesan (tidak perlu login, email opsional untuk balasan)",
+    "metaDescription": "Halaman feedback Tools By AI: laporkan bug, sarankan fitur, atau bagikan ide penggunaan. Berbasis Waline, posting anonim diizinkan, gratis."
+  },
+  "NotFound": {
+    "title": "Halaman Tidak Ditemukan",
+    "description": "Halaman yang Anda kunjungi tidak ada atau telah dipindahkan.",
+    "goHome": "Kembali ke Beranda"
   }
 }

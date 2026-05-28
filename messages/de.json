@@ -77,7 +77,7 @@
     "resultToSource": "Ergebnis ➔ Quelle",
     "resultToSourceTooltip": "Eingabefeld mit dem Ergebnistext überschreiben",
     "readOnlyMode": "Nur-Lese-Modus",
-    "readOnlyModeTooltip": "Text zu lang; automatisch in den Nur-Lese-Modus gewechselt, um die Seitenleistung zu erhalten",
+    "readOnlyModeTooltip": "Text zu lang: Der Editor ist vorübergehend schreibgeschützt und zeigt nur eine Teilvorschau. Ihr vollständiger Inhalt bleibt unverändert – Verarbeitung und Export verwenden weiterhin den gesamten Text.",
     "clearInputTooltip": "Eingabe und hochgeladene Dateien löschen",
     "smartLineBreak": "Intelligenter Zeilenumbruch",
     "replaceText": "Text ersetzen",
@@ -143,26 +143,35 @@
     "langPresetIndian": "Indischer Subkontinent",
     "selectedCount": "{count} ausgewählt",
     "recentLanguages": "Zuletzt verwendet",
-    "langGroupAmericasOceania": "Amerika & Ozeanien"
+    "langGroupAmericasOceania": "Amerika & Ozeanien",
+    "relatedTools": "Ähnliche Tools"
   },
   "tools": {
     "novelProcessor": {
-      "title": "Roman-Formatierer",
-      "description": "Formatierungsprobleme heruntergeladener Romane per Klick beheben, intelligente Zeilenumbrüche",
-      "metaTitle": "Roman-Formatierer - TXT, Kapitel, Kindle-kompatibel",
-      "metaDescription": "Web-Roman-TXT in Unordnung? Ein-Klick-Reparatur für Zeilenumbrüche, Kapitelteilung, Deduplizierung und Traditionell/Vereinfacht. Kindle/FBReader-kompatibel.",
+      "title": "Chinesischer Web-Roman-Formatierer",
+      "description": "Formatierungsprobleme heruntergeladener chinesischer Webromane per Klick beheben, intelligente Zeilenumbrüche",
+      "metaTitle": "Chinesischer Web-Roman-TXT-Formatierer - 第X章 Kapitelteilung, Kindle-Export",
+      "metaDescription": "Chinesischer Web-Novel TXT-Formatierer: behebt Absätze, Werbung, 第X章 Kapitel, Kodierungsmix per Klick. 3M+ Zeichen. Exporte für Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Meine heruntergeladene TXT-Romandatei hat ein unordentliches Format — welche Probleme kann dieses Tool beheben?",
           "a": "Behebt 7 häufige Web-Roman-TXT-Probleme: Absätze in kurze Zeilen unterbrochen, überflüssige Leerzeilen am Absatzende, Kapitelüberschriften ohne Zeilenumbruch, fehlender Absatzeinzug, gemischte Werbezeilen, inkonsistente Leerzeichen, gemischte Traditionell/Vereinfacht-Zeichen. Funktioniert für Browser-Kopieren/Einfügen, Word-exportiertes TXT und andere Quellen. Regeln ankreuzen für Massenkorrektur in einem Durchgang; jede Regel kann auch einzeln aktiviert werden. Unterstützt Romane mit über 3 Millionen Zeichen ohne Verlangsamung."
         },
         {
+          "q": "Kann die formatierte TXT direkt mit Kindle, FBReader und anderen E-Readern verwendet werden?",
+          "a": "Verarbeitete TXT erfüllt die Formatanforderungen von Kindle (Send-to-Kindle), Tolino, Kobo und FBReader. Das Aktivieren von „Kapitel aufteilen\" fügt vor jedem Kapitel eine Leerzeile ein, sodass Kindle automatisch ein Inhaltsverzeichnis generiert. Für Tolino oder Kobo empfiehlt sich eine vorherige EPUB-Konvertierung via Calibre. TTS-Nutzer können „Duplikate entfernen\" und „Spam-Filter\" aktivieren, um das Vorlesen von Werbung zu vermeiden."
+        },
+        {
+          "q": "Mein Roman ist in Traditionellem Chinesisch (Taiwan/HK) und ich möchte Vereinfacht — oder bestimmte Namen sollen…",
+          "a": "Dieses Tool enthält eine Traditionell ↔ Vereinfacht-Regel, die Sie während des Formatierens aktivieren können. Für feinere Kontrolle — ein Schutzwörter-Wörterbuch (Namen, Orte, Terminologie) und Konvertierung zwischen Taiwan-Traditionell ↔ Hongkong-Traditionell ↔ Japanisches Shinjitai — verketten Sie mit dem [Chinesisch-Konverter](../chinese-conversion); beide Tools teilen dasselbe Schutzwörter-Format. Für weitere Regex-Suche/-Ersetzung, Kapitelextraktion oder Sensitivwortfilterung schließt die [Text-Toolbox](../text-toolbox) den Kreis."
+        },
+        {
           "q": "Kann das Tool versehentlich Textinhalt oder Dialoge löschen? Wie funktioniert die Duplikaterkennung?",
           "a": "Die Duplikaterkennung zielt nur auf Inhalte, die auf 3 oder mehr aufeinanderfolgenden Zeilen identisch erscheinen (z. B. eine wiederholte Anzeige). Kurze Charakterantworten werden nie entfernt, da der Algorithmus aufeinanderfolgende Wiederholungen erkennt, nicht Einzelzeilen-Duplikate. Sichern Sie das Original vor der Verarbeitung; eine Textänderung von weniger als 5 % bestätigt die Sicherheit. Die Kapitelaufteilung nutzt Regex für gängige Formate wie 'Kapitel X'."
         },
         {
-          "q": "Kann die formatierte TXT direkt mit Kindle, FBReader und anderen E-Readern verwendet werden? Werden Kapitelinhaltsverzeichnisse automatisch erstellt?",
-          "a": "Verarbeitete TXT erfüllt die Formatanforderungen von Kindle (Send-to-Kindle), Tolino, Kobo und FBReader. Das Aktivieren von „Kapitel aufteilen\" fügt vor jedem Kapitel eine Leerzeile ein, sodass Kindle automatisch ein Inhaltsverzeichnis generiert. Für Tolino oder Kobo empfiehlt sich eine vorherige EPUB-Konvertierung via Calibre. TTS-Nutzer können „Duplikate entfernen\" und „Spam-Filter\" aktivieren, um das Vorlesen von Werbung zu vermeiden."
+          "q": "Wird mein Roman auf einen Server hochgeladen? Ist das Tool Open Source?",
+          "a": "100% browserlokal: Textlesen, Formatreparatur, Traditionell/Vereinfacht-Konvertierung und Export laufen alle in Ihrem Browser — nichts wird hochgeladen. Quellcode auf GitHub (rockbenben/novel-processor) für Self-Hosting."
         }
       ],
       "howto": [
@@ -172,7 +181,7 @@
         },
         {
           "name": "Reparaturregel-Kombinationen konfigurieren",
-          "text": "Wählen Sie die nötigen Regeln: intelligente Zeilenumbrüche (falsch geteilte Absätze reparieren), Kapitelteilung (Leerzeile vor jedem Kapitel), Erstzeileneinzug (2 Zeichen), Doppelzeilen-Entfernung (Werbung entfernen), Traditionell-zu-Vereinfacht-Konvertierung, Junk-Inhaltsfilter. Regeln stapelbar oder einzeln aktivierbar."
+          "text": "Wählen Sie die nötigen Regeln: intelligente Zeilenumbrüche (falsch geteilte Absätze reparieren), Kapitelteilung (Leerzeile vor jedem Kapitel), Erstzeileneinzug (2 Zeichen), Doppelzeilen-Entfernung (Werbung entfernen), Traditionell-zu-Vereinfacht-Konvertierung, Junk-Inhaltsfilter. Regeln stapelbar…"
         },
         {
           "name": "Reader-freundliche TXT exportieren",
@@ -201,11 +210,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | Kostenlose KI-Dev- & Übersetzungstools",
-    "description": "20+ Open-Source-Tools: Untertitel-Übersetzung, i18n, JSON & Markdown. Mit DeepSeek & ChatGPT. Lokal, sicher & effizient für Entwickler.",
+    "description": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung sowie Text- und JSON-Batch-Verarbeitung. 25+ KI-Engines.",
     "homeTitle": "ToolsByAI Werkzeugkasten",
     "homeDescription": "20+ Tools für Übersetzung, Text, JSON und Datenkonvertierung. Effizienzsteigerung für Entwickler und Creator.",
     "ogTitle": "ToolsByAI | Kostenlose KI-Dev- & Übersetzungstools",
-    "ogDescription": "20+ Open-Source-Tools: Untertitel-Übersetzung, i18n, JSON & Markdown. Mit DeepSeek & ChatGPT. Lokal, sicher & effizient für Entwickler."
+    "ogDescription": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung sowie Text- und JSON-Batch-Verarbeitung. 25+ KI-Engines."
   },
   "languages": {
     "auto": "Automatisch",
@@ -338,41 +347,42 @@
     "failure": "Kopieren fehlgeschlagen, bitte manuell kopieren"
   },
   "NovelProcessor": {
-    "description": "Entwickelt zum Formatieren von Web-Roman-Texten, behebt Layoutprobleme heruntergeladener Romane per Klick. Funktionen: intelligente Zeilenumbrüche, Kapitelaufteilung, Absatzeinzug, Traditionell/Vereinfacht-Konvertierung, Entfernen von Duplikatzeilen und Spam-Filterung — für sauberen, lesbaren Inhalt.",
+    "description": "Entwickelt zum Formatieren von chinesischen Web-Roman-Texten, behebt Layoutprobleme heruntergeladener chinesischer Romane per Klick. Funktionen: intelligente Zeilenumbrüche, 第X章 Kapitelaufteilung, Absatzeinzug, Traditionell/Vereinfacht-Konvertierung, Entfernen von Duplikatzeilen und Spam-Filterung — für sauberen, lesbaren Inhalt.",
     "errorNoInput": "Bitte Text zum Verarbeiten eingeben oder einfügen",
     "errorNoFile": "Bitte eine Datei zum Verarbeiten hochladen",
     "warningNoText": "Bitte zuerst Text eingeben oder einfügen",
     "infoNoChapters": "Keine gültigen Kapitelüberschriften erkannt, Neuordnung nicht möglich",
     "reorderComplete": "Kapitelneuordnung abgeschlossen ({chapters} Kapitel)",
     "textInput": "Texteingabe",
-    "typesetting": "Layout-Optimierung",
-    "tooltipSmartLineBreak": "Intelligenter Zeilenumbruch: optimiert Zeilenumbrüche automatisch anhand der Interpunktion, fügt fragmentierte Absätze zusammen",
-    "tooltipIndent": "Absatzeinzug: fügt am Absatzanfang automatisch zwei Vollbreitenzeichen hinzu",
-    "indent": "Absatzeinzug",
-    "tooltipTrim": "Intelligentes Trimmen: entfernt automatisch führende/nachfolgende Leerzeichen jeder Zeile",
-    "trimSpaces": "Intelligentes Leerzeichen-Trimmen",
-    "tooltipDedup": "Deduplizierung: entfernt aneinander angrenzende Duplikatzeilen",
+    "typesetting": "Absatzlayout",
+    "hintSmartLineBreak": "Absätze, die über mehrere Zeilen gebrochen wurden, wieder zusammenfügen",
+    "indent": "Erstzeileneinzug",
+    "trimSpaces": "Führende und nachfolgende Leerzeichen entfernen",
+    "paragraphSplit": "Lange Absätze aufteilen",
+    "hintParagraphSplit": "Übermäßig lange Absätze für bessere Lesbarkeit auf Mobilgeräten nach Sätzen aufteilen",
+    "chapterGroup": "Kapitelbehandlung",
+    "chapterSplit": "Kapitelüberschriften in eigene Zeile setzen",
+    "hintChapterSplit": "Eine Kapitelüberschrift, die mit dem Fließtext in einer Zeile klebt, auf eine eigene Zeile verschieben",
+    "mergeDuplicateChapterTitles": "Doppelte Kapiteltitel zusammenführen",
+    "hintMergeChapterTitles": "Wenn derselbe Kapiteltitel mehrfach vorkommt, nur einen behalten",
     "removeDuplicates": "Duplikatzeilen entfernen",
-    "tooltipParagraphSplit": "Lange-Absatz-Optimierung: teilt übermäßig lange Absätze automatisch auf für bessere mobile Lesbarkeit",
-    "paragraphSplit": "Lange-Absatz-Optimierung",
+    "lineEndNumbers": "Abschließende Zahlen entfernen",
+    "hintLineEndNumbers": "Überflüssige Seitenzahlen oder Ziffern am Zeilenende entfernen",
     "conversion": "Konvertierung",
-    "tooltipConversion": "Konvertiert zwischen Vereinfachtem und Traditionellem Chinesisch im gesamten Text (mit OpenCC)",
     "rulesInactiveHint": "Wirksam nur, wenn Traditionell/Vereinfacht-Konvertierung aktiviert ist",
     "conversionNone": "Keine",
-    "contentCleaning": "Inhaltsbereinigung",
-    "tooltipChapterSplit": "Kapitel-Erkennung: erkennt und formatiert automatisch Kapitelüberschriften wie 'Kapitel X'",
-    "chapterSplit": "Kapitelüberschriften erkennen und formatieren",
-    "tooltipLineEndNumbers": "Abschließende Zahlen entfernen: entfernt Seitenzahlen oder Statistiken am Zeilenende (nur wenn die Zeile länger als 10 Zeichen ist)",
-    "lineEndNumbers": "Abschließende Zahlen entfernen",
     "specialStartLabel": "Spezielle Anfangszeilen (kein Zusammenführen)",
+    "hintSpecialStart": "Zeilen, die mit diesem Text beginnen, werden nicht in den vorherigen Absatz eingefügt",
     "specialStartPlaceholder": "z. B. Titel, Vorwort...",
     "specialStartAria": "Spezielle Anfangszeilen",
     "filterLabel": "Inhaltsfilter",
+    "hintFilter": "Zeilen löschen, die diese Schlüsselwörter enthalten",
     "filterPlaceholder": "Filterschlüsselwörter eingeben (durch Komma getrennt)",
-    "thresholdLabel": "Schwellenwert",
-    "thresholdPlaceholder": "Längenschwellenwert (0 = deaktiviert)",
+    "thresholdLabel": "Lange Zeilen schützen",
+    "hintThreshold": "Zeilen, die länger als diese Zeichenanzahl sind, werden behalten, auch wenn sie ein Schlüsselwort enthalten (0 = aus)",
+    "thresholdPlaceholder": "Zeichen (0 = kein Schutz)",
     "thresholdDisabled": "Deaktiviert",
-    "thresholdAria": "Längenschwellenwert",
+    "thresholdAria": "Zeichenanzahl für den Schutz langer Zeilen",
     "tooltipChapterSplitOnly": "Nur Kapitelaufteilung: teilt nur bei Kapitelüberschriften, ohne anderen Inhalt zu ändern",
     "chapterSplitDone": "Kapitelaufteilung abgeschlossen",
     "chapterSplitBtn": "Kapitel aufteilen",
@@ -432,13 +442,19 @@
   },
   "feedback": {
     "feedback1": "Feedback & Vorschläge",
-    "feedback2": "Wenn Sie Probleme haben oder Vorschläge, lassen Sie es mich wissen! Ihr Feedback beeinflusst die zukünftige Entwicklung und hilft uns, bessere Tools zu bauen.",
+    "feedback2": "Wenn Sie Probleme haben oder Vorschläge, lassen Sie es mich wissen!Ihr Feedback beeinflusst die zukünftige Entwicklung und hilft uns, bessere Tools zu bau…",
     "feedback3": "Bitte beschreiben Sie Ihren Anwendungsfall, das Problem oder Ihre Idee. Ich lese jede Nachricht und werde so schnell wie möglich antworten/optimieren.",
     "reaction0": "Gefällt mir",
     "reaction1": "Unterstützung",
     "reaction2": "Cool",
     "reaction3": "Was?",
     "reaction4": "Verwirrt",
-    "placeholder": "Nachricht hinterlassen (kein Login nötig, E-Mail optional für Antwort)"
+    "placeholder": "Nachricht hinterlassen (kein Login nötig, E-Mail optional für Antwort)",
+    "metaDescription": "Feedback-Seite für Tools By AI: Fehler melden, Funktionen vorschlagen, Anwendungsfälle teilen. Basiert auf Waline, anonym möglich."
+  },
+  "NotFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die aufgerufene Seite existiert nicht oder wurde verschoben.",
+    "goHome": "Zur Startseite"
   }
 }
