@@ -17,7 +17,7 @@
 
 👉 **Try it online**: <https://tools.newzone.top/en/novel-processor>
 
-![Novel Processor interface](./public/novel-processor.png "Novel Processor interface")
+![Novel Processor interface](./public/img/novel-processor-en.webp "Novel Processor interface")
 
 ## What problems does it solve?
 
@@ -32,13 +32,27 @@ Typical pain points with downloaded novels:
 ## Key features
 
 - 📝 **Smart Line Break**: detect paragraph boundaries via Chinese punctuation, pure-numeric lines, and special starters; re-merge / re-split.
-- 🏷️ **Chapter Formatting**: recognize "第 X 章" / "Chapter N" patterns and normalize; supports chapter reorder.
-- 🎨 **Typesetting**: paragraph indent, long-paragraph splitting, whitespace trim, adjacent-duplicate removal.
-- 🧹 **Content cleaning**: custom keyword filtering, line-end digit stripping, body-paragraph protection threshold.
+- 🏷️ **Chapter Formatting**: recognize "第 X 章" / "Chapter N" patterns and normalize; supports chapter split and reorder by extracted index.
+- 🎨 **Typesetting**: paragraph indent, long-paragraph splitting, full-width → half-width, whitespace trim, adjacent-duplicate removal.
+- 🧹 **Content cleaning**: custom keyword filtering, line-end digit stripping, body-paragraph protection threshold, auto-removal of downloader watermarks / split-volume markers.
 - 🔄 **Trad/Simp Conversion**: built-in OpenCC engine for high-precision conversion.
 - 🛡️ **Protected Dictionary**: shared with the Chinese Converter — define terms that should NOT be converted.
-- 📦 **Batch Processing**: multi-file mode, large-file mode, auto-export option.
+- 📦 **Batch Processing**: multi-file mode, large-file mode, auto-export option — no file-size limit (handles 3M-character mega-novels).
+- 💻 **Runs Locally**: the entire pipeline runs in your browser; files never leave your machine.
 - 🌐 **Multi-locale UI**: powered by next-intl, with full UI translation across 18 languages.
+
+## Page layout
+
+Two columns:
+
+- **Left**: file upload + text input + three primary action buttons + result card
+- **Right**: three-section configuration Collapse + Protected Dictionary panel
+
+### File upload
+
+- Drag-and-drop or click; supports `.txt`, `.md`, `.markdown`, or paste text directly
+- Multi-file mode by default — drop an entire novel collection at once for batch processing
+- In Single-File Mode (toggle in Advanced Settings), uploading a new file replaces the current one
 
 ## Three primary action buttons
 
@@ -87,6 +101,45 @@ Bottom-right of the page:
 - **Manage Rules** button: opens the drawer to add/edit/delete rules, plus batch import/export
 
 The dictionary is shared with the [Chinese Converter](https://github.com/rockbenben/chinese-conversion) (same localStorage key) — edit in one place, applies in both. **Only participates in processing when Trad/Simp conversion is actually enabled in Advanced Settings**. When set to "None", the panel shows a "rules currently inactive" hint.
+
+## Full pipeline (Start Process button)
+
+Clicking **Start Process** runs the complete pipeline in this order (unchecked steps are skipped):
+
+1. **Trad/Simp conversion** (if enabled): applies the appropriate protected rules
+2. **Normalize newlines + strip novel artifacts**: unify `\r\n` → `\n`, remove common downloader watermarks / `分卷阅读` markers / horizontal-rule lines
+3. **Full-width → half-width**: normalize Latin letters, digits, and punctuation
+4. **Chapter mark formatting**: replace colons in `第 X 章：` with spaces, compress redundant spaces around chapter markers
+5. **Chapter split** (if enabled): break inline-written chapter titles
+6. **Keyword filtering** (if filled): drop lines matching keywords (subject to threshold exemption)
+7. **Line-end digit stripping** (if enabled): strip trailing digits on long lines
+8. **Paragraph splitting** (if enabled): break long paragraphs
+9. **Smart line break / paragraph indent**: re-merge broken sentences, add paragraph indent, collapse extra blank lines
+
+## Result card
+
+After processing, the result card appears at the bottom:
+
+- Auto-copied to clipboard
+- **Copy / Export / Edit in place**: same as the Chinese Converter
+- **Result → Source**: pipe the result back into the input for further processing (rare)
+- With **Auto-Export** enabled, the preview is skipped and the file downloads immediately
+
+## Tips
+
+- **Start small**: test on a small slice (1-2 chapters) first; tune the config before processing the full book
+- **Filter Threshold is the key trick**: set it to ~50 (or the average paragraph length) to surgically delete short watermark lines while keeping long body paragraphs; start filter words with 1-2 obvious watermark terms, then expand
+- **Run Chapter Reorder standalone**: when you only want to fix chapter order, click Chapter Reorder directly — don't run the full Start Process pipeline
+- **Pre-edit Protected Dictionary**: for novels with rare Trad/Simp-mixed proper names, add them first, then run Start Process
+- **Export to readers**: with Chapter Split enabled, the exported TXT lets Kindle auto-generate a TOC; also fits Moon+ Reader, Apple Books, and other readers
+- **Deeply-obfuscated watermarks**: for scrambled-character promotional content, pre-process with the [Text Toolbox](https://tools.newzone.top/en/text-toolbox) using a custom regex, then feed it back here for layout
+
+## When it shines
+
+- Format-broken text from novel sites
+- Novel collections harvested by scrapers / auto-downloaders
+- Long-form text from OCR / PDF copying
+- Pre-processing before importing into Kindle / Moon+ Reader / Apple Books
 
 ## Supported file formats
 
@@ -142,7 +195,7 @@ PRs and issues welcome.
 
 ## Links
 
-- 📖 [Documentation](https://docs.newzone.top/en/guide/tools/novel-processor)
+- 📖 [Documentation](https://docs.newzone.top/en/guide/text/novel-processor)
 - 🐛 [Report Issues](https://github.com/rockbenben/novel-processor/issues)
 - 🔗 [Chinese Converter](https://github.com/rockbenben/chinese-conversion) (shares protected dictionary)
 
