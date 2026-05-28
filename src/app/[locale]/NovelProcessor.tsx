@@ -5,28 +5,12 @@ import { Button, Input, InputNumber, Typography, Space, Flex, App, Tooltip, Uplo
 import { InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
 import {
   splitTextIntoLines,
-  cleanLines,
-  splitParagraph,
   downloadFile,
-  toHalfWidth,
-  dedupeAdjacentLines,
-  filterLines as filterLinesUtil,
-  normalizeNewlines,
-  compressNewlines,
-  punctuationEndRegex,
-  numberEndRegex,
-  specialLineStartRegex,
-  pureNumberRegex,
-  numberStartRegex,
-  chapterTitleRegex,
-  numberTitleRegex,
-  novelSectionHeaderRegex,
-  escapeRegExp,
   getFileTypePresetConfig,
 } from "@/app/utils";
 import { useTextStats } from "@/app/hooks/useTextStats";
 import { useCopyToClipboard } from "@/app/hooks/useCopyToClipboard";
-import { reorderChaptersByTitle, splitInlineChapterTitles, removeLineEndNumbers, stripNovelArtifacts } from "./novelUtils";
+import { reorderChaptersByTitle, splitInlineChapterTitles, formatNovelText } from "./novelUtils";
 import useFileUpload from "@/app/hooks/useFileUpload";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
@@ -40,6 +24,21 @@ const { Dragger } = Upload;
 const { Text } = Typography;
 
 const uploadFileTypes = getFileTypePresetConfig("markdownText");
+
+// 配置项行：标签 + 控件一行，可选在下方显示一行灰色说明（免去逐个悬停 tooltip）；sub 表示从属缩进项
+const ToggleRow = ({ label, hint, sub, children }: { label: React.ReactNode; hint?: React.ReactNode; sub?: boolean; children: React.ReactNode }) => (
+  <Flex vertical gap={2} style={sub ? { paddingInlineStart: 16 } : undefined}>
+    <Flex justify="space-between" align="center" gap="small">
+      <span>{label}</span>
+      {children}
+    </Flex>
+    {hint ? (
+      <Text type="secondary" className="!text-xs">
+        {hint}
+      </Text>
+    ) : null}
+  </Flex>
+);
 
 const NovelProcessor = () => {
   const { message } = App.useApp();
@@ -55,11 +54,12 @@ const NovelProcessor = () => {
   const [enableChapterSplit, setEnableChapterSplit] = useState(true);
   const [enableLineEndNumbers, setEnableLineEndNumbers] = useState(false);
   const [specialStart, setSpecialStart] = useLocalStorage("novel-processor-specialStart", "");
-  const [collapseKeys, setCollapseKeys] = useLocalStorage<string[]>("novel-processor-collapseKeys", ["1"]);
+  const [collapseKeys, setCollapseKeys] = useLocalStorage<string[]>("novel-processor-collapseKeys", ["1", "2"]);
   const [conversionMode, setConversionMode] = useState<"none" | "t2s" | "s2t">("none");
   const [enableTrim, setEnableTrim] = useState(true);
   const [enableParagraphSplit, setEnableParagraphSplit] = useState(false);
-  const [removeDuplicateLines, setRemoveDuplicateLines] = useLocalStorage("novel-processor-removeDuplicateLines", false);
+  const [removeDuplicateLines, setRemoveDuplicateLines] = useLocalStorage("novel-processor-removeDuplicateLines", true);
+  const [mergeDuplicateChapterTitles, setMergeDuplicateChapterTitles] = useLocalStorage("novel-processor-mergeDuplicateChapterTitles", true);
 
   // Custom replacement rules — shared with chinese-conversion tool via the
   // same localStorage keys so a user's protected dictionary applies in both.
@@ -121,109 +121,19 @@ const NovelProcessor = () => {
       processedInput = converter(processedInput);
     }
 
-    // 第一步：规范换行与清除常见小说杂质
-    processedInput = normalizeNewlines(processedInput);
-    processedInput = stripNovelArtifacts(processedInput);
-
-    // 第二步：处理全角字符转半角
-    processedInput = toHalfWidth(processedInput);
-
-    // 第三步：格式化章节标记和空格
-    processedInput = processedInput
-      // 章节标记后的标点符号替换为空格
-      .replace(/([章节卷集部篇])[、：:]/g, "$1 ")
-      // 替换乱码字符
-      .replace(/\uE4C6/g, " ")
-      .replace(/&nbsp/g, " ")
-      .replace(/([\u4e00-\u9fa5]) {2,}([\u4e00-\u9fa5])/g, (match, g1, g2) => {
-        // 仅压缩两个及以上连续空格为单个空格（保留单个空格，可能是人名/地名分隔）
-        // 同时保留章节标记后的空格
-        return /[章节卷集部篇]/.test(g1) ? match : g1 + " " + g2;
-      })
-      // 删除整行为五个或多个=的行
-      .replace(/^={5,}(\n|$)/gm, "");
-
-    if (enableChapterSplit) {
-      processedInput = splitInlineChapterTitles(processedInput);
-    }
-    // 处理过滤词
-    if (filterText) {
-      processedInput = filterLinesUtil(processedInput, filterText, maxFilterLineLength);
-    }
-    // 清除行尾数字
-    if (enableLineEndNumbers) {
-      processedInput = removeLineEndNumbers(processedInput, 10);
-    }
-    // 智能分段
-    if (enableParagraphSplit) {
-      processedInput = await splitParagraph(processedInput);
-    }
-
-    // 准备行数据
-    let lines: string[];
-    if (smartLineBreak) {
-      // 智能换行模式下，使用 cleanLines 过滤空行并根据选项修剪
-      lines = cleanLines(processedInput, enableTrim);
-    } else {
-      // 非智能换行模式，保留原始行结构，但根据选项修剪
-      lines = splitTextIntoLines(processedInput);
-      if (enableTrim) {
-        lines = lines.map((line) => line.trim());
-      }
-    }
-
-    // 删除相邻重复行（如果启用）
-    const processedLines = removeDuplicateLines ? dedupeAdjacentLines(lines) : lines;
-
-    if (smartLineBreak) {
-      const result = [];
-
-      // 预编译正则表达式，使用 escapeRegExp 转义用户输入防止正则注入
-      const specialStartRegex = specialStart ? new RegExp(`^${escapeRegExp(specialStart)}`) : null;
-
-      for (let i = 0; i < processedLines.length; i++) {
-        const currentLine = processedLines[i];
-        // 如果行以"分卷阅读"开头且长度不超过10个字符，则跳过该行
-        if (currentLine.startsWith("分卷阅读") && currentLine.length <= 10) {
-          continue;
-        }
-
-        const previousLine = i > 0 ? processedLines[i - 1].trim() : "";
-
-        // Check if line is a chapter title, or a pure number (grouped together)
-        const isChapterOrNumber = chapterTitleRegex.test(currentLine) || numberTitleRegex.test(currentLine) || pureNumberRegex.test(currentLine);
-
-        // 检查是否为特殊起始行，数字开头
-        const isSpecialStart = novelSectionHeaderRegex.test(currentLine) || specialStartRegex?.test(currentLine.trim()) || (specialStart && previousLine.startsWith(specialStart));
-
-        // 检查其他特殊情况
-        const startsWithSpecialChar = specialLineStartRegex.test(currentLine) || numberStartRegex.test(currentLine);
-        const prevEndsWithPunctuation = punctuationEndRegex.test(previousLine) || numberEndRegex.test(previousLine);
-
-        // 根据不同条件添加格式
-        if (isChapterOrNumber) {
-          // 对于标题不进行换行处理
-          result.push("\n\n" + currentLine + (enableIndent ? "\n\n\t" : "\n\n"));
-        } else if (isSpecialStart) {
-          result.push("\n\n" + currentLine);
-        } else if (startsWithSpecialChar || prevEndsWithPunctuation) {
-          result.push(enableIndent ? "\n\n\t" + currentLine : "\n\n" + currentLine);
-        } else {
-          result.push(currentLine);
-        }
-      }
-
-      // 合并结果并规范化多余的换行
-      processedInput = result.join("");
-      // 先处理包含缩进(\t)的特殊换行组合，避免被统一压缩破坏结构
-      processedInput = processedInput.replace(/\n{2,}\t\n{2,}\t/g, "\n\n\t").replace(/\n{2,}\t\n{2,}/g, "\n\n");
-      // 再统一将 3 个及以上换行压缩为 2 个
-      processedInput = compressNewlines(processedInput, 2).trim();
-    } else {
-      // 如果不应用智能换行，仅合并行并压缩换行
-      processedInput = processedLines.join("\n");
-      processedInput = compressNewlines(processedInput, 1).trim();
-    }
+    processedInput = await formatNovelText(processedInput, {
+      enableChapterSplit,
+      filterText,
+      maxFilterLineLength,
+      enableLineEndNumbers,
+      enableParagraphSplit,
+      smartLineBreak,
+      enableTrim,
+      mergeDuplicateChapterTitles,
+      removeDuplicateLines,
+      enableIndent,
+      specialStart,
+    });
 
     if (fileName) {
       await downloadFile(processedInput, fileName);
@@ -414,28 +324,20 @@ const NovelProcessor = () => {
                     ),
                     children: (
                       <Flex vertical gap="small">
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipSmartLineBreak")}>
-                            <span>{tCommon("smartLineBreak")}</span>
-                          </Tooltip>
+                        <ToggleRow label={tCommon("smartLineBreak")} hint={t("hintSmartLineBreak")}>
                           <Switch size="small" checked={smartLineBreak} onChange={setSmartLineBreak} aria-label={tCommon("smartLineBreak")} />
-                        </Flex>
-
+                        </ToggleRow>
                         {smartLineBreak && (
-                          <Flex justify="space-between" align="center" style={{ paddingLeft: 16 }}>
-                            <Tooltip title={t("tooltipIndent")}>
-                              <span>{t("indent")}</span>
-                            </Tooltip>
-                            <Switch checked={enableIndent} onChange={setEnableIndent} size="small" aria-label={t("indent")} />
-                          </Flex>
+                          <ToggleRow label={t("indent")} sub>
+                            <Switch size="small" checked={enableIndent} onChange={setEnableIndent} aria-label={t("indent")} />
+                          </ToggleRow>
                         )}
-
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipParagraphSplit")}>
-                            <span>{t("paragraphSplit")}</span>
-                          </Tooltip>
+                        <ToggleRow label={t("paragraphSplit")} hint={t("hintParagraphSplit")}>
                           <Switch size="small" checked={enableParagraphSplit} onChange={setEnableParagraphSplit} aria-label={t("paragraphSplit")} />
-                        </Flex>
+                        </ToggleRow>
+                        <ToggleRow label={t("trimSpaces")}>
+                          <Switch size="small" checked={enableTrim} onChange={setEnableTrim} aria-label={t("trimSpaces")} />
+                        </ToggleRow>
                       </Flex>
                     ),
                   },
@@ -443,71 +345,21 @@ const NovelProcessor = () => {
                     key: "2",
                     label: (
                       <Space>
-                        <ClearOutlined />
-                        <Typography.Text strong>{t("contentCleaning")}</Typography.Text>
+                        <OrderedListOutlined />
+                        <Typography.Text strong>{t("chapterGroup")}</Typography.Text>
                       </Space>
                     ),
                     children: (
                       <Flex vertical gap="small">
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipChapterSplit")}>
-                            <span>{t("chapterSplit")}</span>
-                          </Tooltip>
+                        <ToggleRow label={t("chapterSplit")} hint={t("hintChapterSplit")}>
                           <Switch size="small" checked={enableChapterSplit} onChange={setEnableChapterSplit} aria-label={t("chapterSplit")} />
-                        </Flex>
-
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipLineEndNumbers")}>
-                            <span>{t("lineEndNumbers")}</span>
-                          </Tooltip>
-                          <Switch size="small" checked={enableLineEndNumbers} onChange={setEnableLineEndNumbers} aria-label={t("lineEndNumbers")} />
-                        </Flex>
-
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipTrim")}>
-                            <span>{t("trimSpaces")}</span>
-                          </Tooltip>
-                          <Switch checked={enableTrim} onChange={setEnableTrim} size="small" aria-label={t("trimSpaces")} />
-                        </Flex>
-
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipDedup")}>
-                            <span>{t("removeDuplicates")}</span>
-                          </Tooltip>
+                        </ToggleRow>
+                        <ToggleRow label={t("mergeDuplicateChapterTitles")} hint={t("hintMergeChapterTitles")}>
+                          <Switch size="small" checked={mergeDuplicateChapterTitles} onChange={setMergeDuplicateChapterTitles} aria-label={t("mergeDuplicateChapterTitles")} />
+                        </ToggleRow>
+                        <ToggleRow label={t("removeDuplicates")}>
                           <Switch size="small" checked={removeDuplicateLines} onChange={setRemoveDuplicateLines} aria-label={t("removeDuplicates")} />
-                        </Flex>
-
-                        <Divider className="!my-0" />
-
-                        <Flex vertical gap={4}>
-                          <Text>{t("specialStartLabel")}</Text>
-                          <Input value={specialStart || ""} onChange={(e) => setSpecialStart(e.target.value)} placeholder={t("specialStartPlaceholder")} allowClear aria-label={t("specialStartAria")} />
-                        </Flex>
-
-                        <Flex vertical gap={4}>
-                          <Text>{t("filterLabel")}</Text>
-                          <Input placeholder={t("filterPlaceholder")} value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label={t("filterLabel")} />
-                          <Flex vertical gap={4}>
-                            <Text type="secondary" className="!text-xs">
-                              {t("thresholdLabel")}
-                            </Text>
-                            <InputNumber
-                              min={0}
-                              placeholder={t("thresholdPlaceholder")}
-                              value={maxFilterLineLength}
-                              onChange={(value) => setMaxFilterLineLength(value ?? 0)}
-                              suffix={
-                                maxFilterLineLength === 0 ? (
-                                  <Text type="secondary" className="!text-xs">
-                                    {t("thresholdDisabled")}
-                                  </Text>
-                                ) : null
-                              }
-                              className="!w-full"
-                              aria-label={t("thresholdAria")}
-                            />
-                          </Flex>
-                        </Flex>
+                        </ToggleRow>
                       </Flex>
                     ),
                   },
@@ -521,10 +373,10 @@ const NovelProcessor = () => {
                     ),
                     children: (
                       <Flex vertical gap="small">
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={t("tooltipConversion")}>
-                            <span>{t("conversion")}</span>
-                          </Tooltip>
+                        <ToggleRow label={t("lineEndNumbers")} hint={t("hintLineEndNumbers")}>
+                          <Switch size="small" checked={enableLineEndNumbers} onChange={setEnableLineEndNumbers} aria-label={t("lineEndNumbers")} />
+                        </ToggleRow>
+                        <ToggleRow label={t("conversion")}>
                           <Segmented
                             value={conversionMode}
                             onChange={(value) => setConversionMode(value as "none" | "t2s" | "s2t")}
@@ -535,20 +387,58 @@ const NovelProcessor = () => {
                               { label: tPR("directionS2t"), value: "s2t" },
                             ]}
                           />
+                        </ToggleRow>
+
+                        <Divider className="!my-0" />
+
+                        <Flex vertical gap={4}>
+                          <Text>{t("specialStartLabel")}</Text>
+                          <Text type="secondary" className="!text-xs">
+                            {t("hintSpecialStart")}
+                          </Text>
+                          <Input value={specialStart || ""} onChange={(e) => setSpecialStart(e.target.value)} placeholder={t("specialStartPlaceholder")} allowClear aria-label={t("specialStartAria")} />
                         </Flex>
 
-                        <Flex justify="space-between" align="center">
-                          <Tooltip title={tCommon("singleFileModeTooltip")}>
-                            <span>{tCommon("singleFileMode")}</span>
-                          </Tooltip>
+                        <Flex vertical gap={4}>
+                          <Text>{t("filterLabel")}</Text>
+                          <Text type="secondary" className="!text-xs">
+                            {t("hintFilter")}
+                          </Text>
+                          <Input placeholder={t("filterPlaceholder")} value={filterText || ""} onChange={(e) => setFilterText(e.target.value)} allowClear aria-label={t("filterLabel")} />
+                          {filterText ? (
+                            <Flex vertical gap={4} style={{ paddingInlineStart: 16 }}>
+                              <Text>{t("thresholdLabel")}</Text>
+                              <Text type="secondary" className="!text-xs">
+                                {t("hintThreshold")}
+                              </Text>
+                              <InputNumber
+                                min={0}
+                                placeholder={t("thresholdPlaceholder")}
+                                value={maxFilterLineLength}
+                                onChange={(value) => setMaxFilterLineLength(value ?? 0)}
+                                suffix={
+                                  maxFilterLineLength === 0 ? (
+                                    <Text type="secondary" className="!text-xs">
+                                      {t("thresholdDisabled")}
+                                    </Text>
+                                  ) : null
+                                }
+                                className="!w-full"
+                                aria-label={t("thresholdAria")}
+                              />
+                            </Flex>
+                          ) : null}
+                        </Flex>
+
+                        <Divider className="!my-0" />
+
+                        <ToggleRow label={tCommon("singleFileMode")} hint={tCommon("singleFileModeTooltip")}>
                           <Switch size="small" checked={singleFileMode} onChange={setSingleFileMode} aria-label={tCommon("singleFileMode")} />
-                        </Flex>
-
+                        </ToggleRow>
                         {multipleFiles.length < 2 && (
-                          <Flex justify="space-between" align="center">
-                            <span>{tCommon("directExport")}</span>
+                          <ToggleRow label={tCommon("directExport")}>
                             <Switch size="small" checked={directExport} onChange={setDirectExport} aria-label={tCommon("directExport")} />
-                          </Flex>
+                          </ToggleRow>
                         )}
                       </Flex>
                     ),
