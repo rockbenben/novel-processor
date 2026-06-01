@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "ファイルの処理に失敗しました。エンコードを確認するか、別のファイルをお試しください",
+    "fileReadFailed": "ファイルの読み込みに失敗しました",
+    "unrecognizedLangCodes": "認識できない言語コード：{codes}",
+    "ignoredLangCodes": "認識できない言語コードを無視しました：{codes}",
+    "partialExportFailed": "一部の言語のエクスポートに失敗しました：{items}",
     "userGuide": "利用ガイド",
     "privacyNotice": "APIキーとデータはローカルブラウザにのみ保存され、プライバシーは保護されます。ご質問やご提案がございましたら、コミュニティまたはフィードバックページからお問い合わせください。",
     "dragAndDropText": "クリックまたはファイルをここにドラッグしてアップロード",
@@ -76,10 +81,8 @@
     "importSettingError": "インポートに失敗しました。再試行してください",
     "removeCharsAfterTranslation": "翻訳後に文字を削除",
     "removeCharsAfterTranslationTooltip": "翻訳完了後に指定した文字を自動的に削除します（複数はスペースで区切る）",
-    "selectedLanguages": "選択済み",
     "search": "検索",
     "noMatches": "一致するツールがありません",
-    "selectAll": "すべて選択",
     "clearAll": "すべてクリア",
     "cancel": "キャンセル",
     "apply": "適用",
@@ -120,7 +123,6 @@
     "readOnlyModeTooltip": "テキストが長すぎるため、エディターは一時的に読み取り専用となり、一部のみをプレビュー表示しています。完全な内容は影響を受けず、処理と書き出しは全文に対して行われます。",
     "clearInputTooltip": "入力内容とアップロードされたファイルをクリア",
     "fileExported": "ファイルをエクスポートしました：{fileName}",
-    "exportSuccess": "エクスポート成功：{fileName}",
     "batchDownloaded": "処理完了、ファイルを自動ダウンロードしました",
     "sourceTextPlaceholder": "処理するテキストを入力または貼り付けてください...",
     "smartLineBreak": "スマート改行",
@@ -147,6 +149,26 @@
     "relatedTools": "関連ツール"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "字幕翻訳機",
+      "description": "SRT、ASS、VTT、LRC字幕を一括翻訳、120以上の言語に対応"
+    },
+    "jsonTranslate": {
+      "title": "i18n JSON翻訳",
+      "description": "効率的な多言語JSON翻訳ツール"
+    },
+    "mdTranslator": {
+      "title": "Markdown翻訳",
+      "description": "Markdownドキュメントを一括翻訳、書式とコードを保持"
+    },
+    "textSplitter": {
+      "title": "テキスト分割",
+      "description": "長文をスマートに分割、AI入力とSNSに最適"
+    },
+    "chineseConversion": {
+      "title": "繁体・簡体字変換",
+      "description": "簡体字・台湾繁体字・香港繁体字・日本新字体を一括変換"
+    },
     "novelProcessor": {
       "title": "中国語小説テキスト整理ツール",
       "description": "ダウンロードした中国語ネット小説の書式問題を一括修正、スマート改行対応",
@@ -197,6 +219,50 @@
         "300 万字以上の長編小説に対応、処理が高速",
         "Kindle Send-to-Email、楽天 Kobo、BookWalker、Moon+ Reader と互換"
       ]
+    },
+    "textToolbox": {
+      "title": "正規表現テキストアシスタント",
+      "description": "正規表現マッチング・ソート・フィルタリングなどを統合したテキスト一括処理ツール"
+    },
+    "dataBatch": {
+      "title": "テキスト処理ツール（自用）",
+      "description": "Excel 表データの一括重複削除・列抽出・テキスト結合、複数ルールを順次実行"
+    },
+    "jsonValueExtractor": {
+      "title": "JSON値抽出",
+      "description": "JSONフィールド値を一括抽出、フォーマット出力対応"
+    },
+    "jsonNodeEdit": {
+      "title": "JSON一括編集",
+      "description": "JSONノード値を一括編集、接頭辞/接尾辞と置換に対応"
+    },
+    "jsonValueTransformer": {
+      "title": "JSONキー値マッピング",
+      "description": "フィールド値のマッピングと移行、JSONPath位置特定に対応"
+    },
+    "jsonValueSwapper": {
+      "title": "JSONキー値交換",
+      "description": "2つのフィールドの値をワンクリックで交換"
+    },
+    "jsonNodeInserter": {
+      "title": "JSONノード挿入",
+      "description": "指定位置に新規ノードを一括挿入"
+    },
+    "jsonSortClassify": {
+      "title": "JSONソート分類",
+      "description": "配列のソートとグループ化、カスタムルールに対応"
+    },
+    "jsonMatchUpdate": {
+      "title": "JSONマッチング更新",
+      "description": "フィールドマッチングに基づいてデータを一括更新"
+    },
+    "dataParserFlare": {
+      "title": "Flareブックマーク変換",
+      "description": "ブラウザブックマークとFlare形式の相互変換"
+    },
+    "dataParserImgPrompt": {
+      "title": "IMGPromptデータ生成",
+      "description": "IMGPrompt JSONデータを一括生成"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",
     "ogDescription": "ToolsByAI、17 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。"
   },
-  "languages": {
-    "auto": "自動検出",
-    "en": "英語",
-    "zh": "中国語",
-    "zh-hant": "繁体字中国語",
-    "es": "スペイン語",
-    "fr": "フランス語",
-    "de": "ドイツ語",
-    "ja": "日本語",
-    "ko": "韓国語",
-    "hi": "ヒンディー語",
-    "ar": "アラビア語",
-    "ru": "ロシア語",
-    "pt-br": "ポルトガル語（ブラジル）",
-    "id": "インドネシア語",
-    "vi": "ベトナム語",
-    "it": "イタリア語",
-    "yue": "広東語",
-    "pl": "ポーランド語",
-    "uk": "ウクライナ語",
-    "nl": "オランダ語",
-    "ro": "ルーマニア語",
-    "el": "ギリシャ語",
-    "hu": "ハンガリー語",
-    "sv": "スウェーデン語",
-    "cs": "チェコ語",
-    "pt-pt": "ポルトガル語（ポルトガル）",
-    "ca": "カタルーニャ語",
-    "sr": "セルビア語",
-    "bg": "ブルガリア語",
-    "hy": "アルメニア語",
-    "da": "デンマーク語",
-    "sq": "アルバニア語",
-    "fi": "フィンランド語",
-    "nb": "ノルウェー語",
-    "sk": "スロバキア語",
-    "hr": "クロアチア語",
-    "be": "ベラルーシ語",
-    "scn": "シチリア語",
-    "ka": "グルジア語",
-    "lmo": "ロンバルド語",
-    "lt": "リトアニア語",
-    "gl": "ガリシア語",
-    "bs": "ボスニア語",
-    "sl": "スロベニア語",
-    "mk": "マケドニア語",
-    "lv": "ラトビア語",
-    "et": "エストニア語",
-    "is": "アイスランド語",
-    "mt": "マルタ語",
-    "cy": "ウェールズ語",
-    "ga": "アイルランド語",
-    "br": "ブルトン語",
-    "eu": "バスク語",
-    "yi": "イディッシュ語",
-    "lb": "ルクセンブルク語",
-    "oc": "オック語",
-    "an": "アラゴン語",
-    "la": "ラテン語",
-    "eo": "エスペラント語",
-    "tr": "トルコ語",
-    "he": "ヘブライ語",
-    "fa": "ペルシャ語",
-    "ur": "ウルドゥー語",
-    "ps": "パシュトー語",
-    "prs": "ダリー語",
-    "ckb": "中央クルド語",
-    "kmr": "北部クルド語",
-    "uz": "ウズベク語",
-    "kk": "カザフ語",
-    "ky": "キルギス語",
-    "tk": "トルクメン語",
-    "az": "アゼルバイジャン語",
-    "tg": "タジク語",
-    "mn": "モンゴル語",
-    "ba": "バシキール語",
-    "tt": "タタール語",
-    "ug": "ウイグル語",
-    "bn": "ベンガル語",
-    "mr": "マラーティー語",
-    "te": "テルグ語",
-    "ta": "タミル語",
-    "gu": "グジャラート語",
-    "kn": "カンナダ語",
-    "pa": "パンジャブ語",
-    "ml": "マラヤーラム語",
-    "bho": "ボージュプリー語",
-    "mai": "マイティリー語",
-    "ne": "ネパール語",
-    "si": "シンハラ語",
-    "as": "アッサム語",
-    "gom": "コンカニ語",
-    "sa": "サンスクリット語",
-    "th": "タイ語",
-    "lo": "ラオ語",
-    "my": "ビルマ語",
-    "ms": "マレー語",
-    "fil": "フィリピン語（タガログ語）",
-    "jv": "ジャワ語",
-    "su": "スンダ語",
-    "ace": "アチェ語",
-    "pag": "パンガシナン語",
-    "pam": "カパンパンガン語",
-    "ceb": "セブアノ語",
-    "sw": "スワヒリ語",
-    "ha": "ハウサ語",
-    "am": "アムハラ語",
-    "ig": "イボ語",
-    "wo": "ウォロフ語",
-    "xh": "コサ語",
-    "zu": "ズールー語",
-    "af": "アフリカーンス語",
-    "om": "オロモ語",
-    "st": "南ソト語",
-    "tn": "ツワナ語",
-    "ts": "ツォンガ語",
-    "mg": "マダガスカル語",
-    "ln": "リンガラ語",
-    "ht": "ハイチクレオール語",
-    "qu": "ケチュア語",
-    "ay": "アイマラ語",
-    "gn": "グアラニー語",
-    "mi": "マオリ語"
-  },
   "CopyToClipboard": {
     "empty": "内容が空です。コピーする必要はありません",
     "unsupported": "現在のブラウザはクリップボード操作をサポートしていません。手動でコピーするか、他のブラウザを試してください",
@@ -347,10 +289,9 @@
     "failure": "コピーに失敗しました。手動でコピーしてください"
   },
   "NovelProcessor": {
+    "processFailed": "処理に失敗しました",
     "description": "中国語ネット小説テキストの整理に特化した設計で、ダウンロードした中国語小説の書式問題をワンクリックで修正します。スマート改行・第X章分割・段落インデント・繁簡変換・重複行削除・ゴミコンテンツフィルタリングなどの機能を統合し、雑然とした小説テキストを整然と読みやすい状態に変換します。",
-    "errorNoInput": "処理するテキストを入力または貼り付けてください",
     "errorNoFile": "処理するファイルをアップロードしてください",
-    "warningNoText": "先にテキストを入力または貼り付けてください",
     "infoNoChapters": "有効な章タイトルが認識されなかったため、並び替えができません",
     "reorderComplete": "章の並び替えが完了しました（全 {chapters} 章）",
     "textInput": "テキスト入力",
@@ -378,7 +319,7 @@
     "hintSmartLineBreak": "複数行に分断された段落を自動的につなぎ合わせます",
     "hintParagraphSplit": "長すぎる段落を文単位で分割し、スマートフォンでの読みやすさを向上させます",
     "hintChapterSplit": "本文と同じ行にくっついている章タイトルを独立した行に移動させます",
-    "hintMergeChapterTitles": "同じ章タイトルが複数回現れた場合、1つだけ残します",
+    "hintMergeChapterTitles": "同じ章タイトルが繰り返し出現する場合は1つにまとめ、より完全なものを自動的に残します",
     "hintLineEndNumbers": "各行末尾の余分なページ番号や数字を削除します",
     "hintSpecialStart": "この文字で始まる行は前の段落に結合されません",
     "hintFilter": "これらのキーワードを含む行を削除します",
@@ -404,7 +345,6 @@
     "deletedNRules": "{count} 件のルールを削除しました",
     "exportEmpty": "エクスポートできる有効なルールがありません",
     "exportedNRules": "{count} 件のルールをエクスポートしました",
-    "fileReadFailed": "ファイルの読み取りに失敗しました",
     "importNoRules": "ファイルに有効なルールが見つかりませんでした（OpenCC形式：各行 key[TAB]value）",
     "importedWithDedup": "{direction} に {added} 件インポートし、同一ソースの重複 {dedup} 件を自動削除しました",
     "imported": "{added} 件を {direction} 方向にインポートしました",

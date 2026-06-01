@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "Elaborazione del file non riuscita — controlla la codifica o prova un altro file",
+    "fileReadFailed": "Lettura del file non riuscita",
+    "unrecognizedLangCodes": "Codici lingua non riconosciuti: {codes}",
+    "ignoredLangCodes": "Codici lingua non riconosciuti ignorati: {codes}",
+    "partialExportFailed": "Esportazione di alcune lingue non riuscita: {items}",
     "userGuide": "Guida Utente",
     "privacyNotice": "La tua chiave API e i dati sono memorizzati solo localmente nel tuo browser per garantire la privacy. Se hai domande o suggerimenti, contattaci tramite la community o la pagina di feedback.",
     "dragAndDropText": "Clicca o trascina un file qui per caricare",
@@ -76,10 +81,8 @@
     "importSettingError": "Importazione fallita, riprova",
     "removeCharsAfterTranslation": "Rimuovi caratteri dopo traduzione",
     "removeCharsAfterTranslationTooltip": "Rimuovi automaticamente caratteri specificati dopo la traduzione (separare con spazi)",
-    "selectedLanguages": "Selezionati",
     "search": "Cerca",
     "noMatches": "Nessuno strumento corrispondente",
-    "selectAll": "Seleziona tutto",
     "clearAll": "Cancella tutto",
     "cancel": "Annulla",
     "apply": "Applica",
@@ -120,11 +123,10 @@
     "readOnlyModeTooltip": "Testo troppo lungo: l'editor è temporaneamente di sola lettura e mostra solo un'anteprima parziale. Il contenuto completo non è interessato: elaborazione ed esportazione usano comunque l'intero testo.",
     "clearInputTooltip": "Cancella contenuto di input e file caricati",
     "fileExported": "File esportato: {fileName}",
-    "exportSuccess": "Esportazione riuscita: {fileName}",
     "batchDownloaded": "Elaborazione completata, file scaricati automaticamente",
     "sourceTextPlaceholder": "Inserisci o incolla il testo da elaborare...",
     "smartLineBreak": "A capo automatico intelligente",
-    "replaceText": "Sostituisci testo",
+    "replaceText": "Sostituisci testo ",
     "generateJson": "Genera JSON",
     "gtxFreeAPIUnavailable": "Il servizio GTX Free è temporaneamente irraggiungibile — potrebbe essere una restrizione di rete. Riprova più tardi o passa a un altro servizio di traduzione.",
     "translategemmaUnavailable": "Il servizio TranslateGemma è temporaneamente irraggiungibile, assicurati che il tuo server locale (LM Studio / llama.cpp / Ollama) sia in esecuzione e l'URL sia corretto.",
@@ -147,6 +149,26 @@
     "relatedTools": "Strumenti correlati"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "Traduttore Sottotitoli",
+      "description": "Traduzione in batch SRT, ASS, VTT, LRC. 120+ lingue."
+    },
+    "jsonTranslate": {
+      "title": "Traduttore JSON i18n",
+      "description": "Strumento efficiente di traduzione JSON multilingua"
+    },
+    "mdTranslator": {
+      "title": "Traduttore Markdown",
+      "description": "Traduzione Markdown in batch, preserva formato e codice"
+    },
+    "textSplitter": {
+      "title": "Divisore Testo",
+      "description": "Divisione intelligente testo lungo per IA e social media"
+    },
+    "chineseConversion": {
+      "title": "Conversor Semp/Trad",
+      "description": "Converti in batch semplificato, tradizionale di Taiwan, Hong Kong e caratteri giapponesi"
+    },
     "novelProcessor": {
       "title": "Formattatore di romanzi web cinesi",
       "description": "Correggi i problemi di formattazione dei romanzi web cinesi scaricati con un clic, con interruzione di riga intelligente",
@@ -197,6 +219,50 @@
         "Gestisce romanzi di oltre 3 milioni di caratteri con elaborazione veloce",
         "Compatibile con Kindle Send-to-Email, Kobo, FBReader e Moon+ Reader"
       ]
+    },
+    "textToolbox": {
+      "title": "Assistente Testo Regex",
+      "description": "Integra corrispondenza regex, ordinamento, filtraggio e altre funzionalità per elaborazione in batch"
+    },
+    "dataBatch": {
+      "title": "Elaboratore di Testo",
+      "description": "Elaborazione batch di dati Excel — deduplicazione, estrazione colonne, fusione, regole concatenate"
+    },
+    "jsonValueExtractor": {
+      "title": "Estrattore Valore JSON",
+      "description": "Estrai valori JSON in batch, output formattato"
+    },
+    "jsonNodeEdit": {
+      "title": "Modifica JSON in Batch",
+      "description": "Modifica nodi JSON in batch, prefisso/suffisso/sostituisci"
+    },
+    "jsonValueTransformer": {
+      "title": "Mappatore Valore JSON",
+      "description": "Mappatura e migrazione valori con JSONPath"
+    },
+    "jsonValueSwapper": {
+      "title": "Scambiatore Valore JSON",
+      "description": "Scambia valori di due campi in un clic"
+    },
+    "jsonNodeInserter": {
+      "title": "Inseritore Nodo JSON",
+      "description": "Inserisci nuovi nodi in posizione specificata in batch"
+    },
+    "jsonSortClassify": {
+      "title": "Ordina & Classifica JSON",
+      "description": "Ordina e raggruppa array, regole personalizzate"
+    },
+    "jsonMatchUpdate": {
+      "title": "Aggiornamento Match JSON",
+      "description": "Aggiornamento in batch basato su corrispondenza campi"
+    },
+    "dataParserFlare": {
+      "title": "Convertitore Flare",
+      "description": "Conversione preferiti browser e formato Flare"
+    },
+    "dataParserImgPrompt": {
+      "title": "Generatore Dati IMGPrompt",
+      "description": "Genera dati JSON IMGPrompt in batch"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI - Strumenti Dev IA Gratuiti e Open Source",
     "ogDescription": "ToolsByAI: 17 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 25+ motori IA."
   },
-  "languages": {
-    "auto": "Rilevamento Auto",
-    "en": "Inglese",
-    "zh": "Cinese",
-    "zh-hant": "Cinese Tradizionale",
-    "es": "Spagnolo",
-    "fr": "Francese",
-    "de": "Tedesco",
-    "ja": "Giapponese",
-    "ko": "Coreano",
-    "hi": "Hindi",
-    "ar": "Arabo",
-    "ru": "Russo",
-    "pt-br": "Portoghese (Brasile)",
-    "id": "Indonesiano",
-    "vi": "Vietnamita",
-    "it": "Italiano",
-    "yue": "Cantonese",
-    "pl": "Polacco",
-    "uk": "Ucraino",
-    "nl": "Olandese",
-    "ro": "Rumeno",
-    "el": "Greco",
-    "hu": "Ungherese",
-    "sv": "Svedese",
-    "cs": "Ceco",
-    "pt-pt": "Portoghese (Portogallo)",
-    "ca": "Catalano",
-    "sr": "Serbo",
-    "bg": "Bulgaro",
-    "hy": "Armeno",
-    "da": "Danese",
-    "sq": "Albanese",
-    "fi": "Finlandese",
-    "nb": "Norvegese",
-    "sk": "Slovacco",
-    "hr": "Croato",
-    "be": "Bielorusso",
-    "scn": "Siciliano",
-    "ka": "Georgiano",
-    "lmo": "Lombardo",
-    "lt": "Lituano",
-    "gl": "Galiziano",
-    "bs": "Bosniaco",
-    "sl": "Sloveno",
-    "mk": "Macedone",
-    "lv": "Lettone",
-    "et": "Estone",
-    "is": "Islandese",
-    "mt": "Maltese",
-    "cy": "Gallese",
-    "ga": "Irlandese",
-    "br": "Bretone",
-    "eu": "Basco",
-    "yi": "Yiddish",
-    "lb": "Lussemburghese",
-    "oc": "Occitano",
-    "an": "Aragonese",
-    "la": "Latino",
-    "eo": "Esperanto",
-    "tr": "Turco",
-    "he": "Ebraico",
-    "fa": "Persiano",
-    "ur": "Urdu",
-    "ps": "Pashto",
-    "prs": "Dari",
-    "ckb": "Curdo centrale",
-    "kmr": "Curdo settentrionale",
-    "uz": "Uzbeko",
-    "kk": "Kazako",
-    "ky": "Kirghiso",
-    "tk": "Turkmeno",
-    "az": "Azero",
-    "tg": "Tagiko",
-    "mn": "Mongolo",
-    "ba": "Baschiro",
-    "tt": "Tataro",
-    "ug": "Uiguro",
-    "bn": "Bengalese",
-    "mr": "Marathi",
-    "te": "Telugu",
-    "ta": "Tamil",
-    "gu": "Gujarati",
-    "kn": "Kannada",
-    "pa": "Punjabi",
-    "ml": "Malayalam",
-    "bho": "Bhojpuri",
-    "mai": "Maithili",
-    "ne": "Nepalese",
-    "si": "Singalese",
-    "as": "Assamese",
-    "gom": "Konkani",
-    "sa": "Sanscrito",
-    "th": "Tailandese",
-    "lo": "Lao",
-    "my": "Birmano",
-    "ms": "Malese",
-    "fil": "Filippino (Tagalog)",
-    "jv": "Giavanese",
-    "su": "Sundanese",
-    "ace": "Aceh",
-    "pag": "Pangasinan",
-    "pam": "Kapampangan",
-    "ceb": "Cebuano",
-    "sw": "Swahili",
-    "ha": "Hausa",
-    "am": "Amarico",
-    "ig": "Igbo",
-    "wo": "Wolof",
-    "xh": "Xhosa",
-    "zu": "Zulu",
-    "af": "Afrikaans",
-    "om": "Oromo",
-    "st": "Sotho meridionale",
-    "tn": "Tswana",
-    "ts": "Tsonga",
-    "mg": "Malgascio",
-    "ln": "Lingala",
-    "ht": "Creolo haitiano",
-    "qu": "Quechua",
-    "ay": "Aymara",
-    "gn": "Guaranì",
-    "mi": "Maori"
-  },
   "CopyToClipboard": {
     "empty": "Contenuto vuoto, nulla da copiare",
     "unsupported": "Browser non supportato, copia manualmente",
@@ -347,10 +289,9 @@
     "failure": "Copia fallita, copia manualmente"
   },
   "NovelProcessor": {
+    "processFailed": "Elaborazione non riuscita",
     "description": "Progettato per l'organizzazione del testo di romanzi web cinesi, corregge i problemi di formattazione dei romanzi cinesi scaricati con un clic. Integra interruzione di riga intelligente, suddivisione in capitoli 第X章, rientro dei paragrafi, conversione semplificato/tradizionale, rimozione delle righe duplicate e filtraggio dei contenuti indesiderati, rendendo il testo caotico del romanzo ordinato e facile da leggere.",
-    "errorNoInput": "Inserisci o incolla il testo da elaborare",
     "errorNoFile": "Carica il file da elaborare",
-    "warningNoText": "Inserisci o incolla il testo prima",
     "infoNoChapters": "Nessun titolo di capitolo valido riconosciuto; impossibile riordinare",
     "reorderComplete": "Riordinamento dei capitoli completato ({chapters} capitoli in totale)",
     "textInput": "Input Testo",
@@ -364,7 +305,7 @@
     "chapterSplit": "Metti i titoli dei capitoli su una riga propria",
     "hintChapterSplit": "Sposta un'intestazione di capitolo incollata sulla stessa riga del corpo del testo sulla propria riga",
     "mergeDuplicateChapterTitles": "Unisci titoli di capitolo duplicati",
-    "hintMergeChapterTitles": "Quando lo stesso titolo di capitolo appare più di una volta, ne viene mantenuto solo uno",
+    "hintMergeChapterTitles": "Quando un titolo di capitolo si ripete, li unisce in uno solo mantenendo automaticamente la versione più completa",
     "removeDuplicates": "Rimuovi Righe Duplicate",
     "lineEndNumbers": "Rimuovi Numeri a Fine Riga",
     "hintLineEndNumbers": "Rimuove numeri di pagina o cifre isolate alla fine di ogni riga",
@@ -404,7 +345,6 @@
     "deletedNRules": "{count} regola/e eliminata/e",
     "exportEmpty": "Nessuna regola valida da esportare",
     "exportedNRules": "{count} regola/e esportata/e",
-    "fileReadFailed": "Lettura file fallita",
     "importNoRules": "Nessuna regola valida trovata nel file (formato OpenCC: ogni riga: chiave[TAB]valore)",
     "importedWithDedup": "{added} regola/e importata/e in {direction}, {dedup} duplicato/i con la stessa origine rimosso/i automaticamente",
     "imported": "{added} regola/e importata/e nella direzione {direction}",

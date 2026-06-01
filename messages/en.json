@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "Failed to process the file — check its encoding or try another",
+    "fileReadFailed": "Failed to read the file",
+    "unrecognizedLangCodes": "Unrecognized language codes: {codes}",
+    "ignoredLangCodes": "Ignored unrecognized language codes: {codes}",
+    "partialExportFailed": "Failed to export some languages: {items}",
     "userGuide": "User Guide",
     "privacyNotice": "Your API key and data are stored locally in your browser to ensure privacy. If you have any questions or suggestions, please contact us via the community or feedback page.",
     "dragAndDropText": "Click or drag file here to upload",
@@ -47,7 +52,6 @@
     "exportAllFile": "Export All",
     "exportedFile": "Exported",
     "fileExported": "File exported: {fileName}",
-    "exportSuccess": "Export successful: {fileName}",
     "batchDownloaded": "Processing complete, file downloaded automatically",
     "extractedText": "Extracted Text",
     "translating": "Translating",
@@ -64,7 +68,7 @@
     "translationExported": "Translation complete, files exported",
     "sourceTextPlaceholder": "Enter or paste text to process...",
     "noSourceText": "Please enter or paste text content.",
-    "textExtracted": "Text extracted,",
+    "textExtracted": "Text extracted, ",
     "sourceArea": "Input Area",
     "resultArea": "Result Area",
     "translationMode": "Translation Mode",
@@ -80,7 +84,7 @@
     "readOnlyModeTooltip": "Text is too long: the editor is temporarily read-only and shows a partial preview only. Your full content is unaffected — processing and export still use the entire text.",
     "clearInputTooltip": "Clear input content and uploaded files",
     "smartLineBreak": "Smart Line Break",
-    "replaceText": "Replace Text",
+    "replaceText": "Replace Text ",
     "generateJson": "Generate JSON",
     "exportSettingTooltip": "Export configuration to file",
     "importSettingTooltip": "Import configuration from file",
@@ -90,10 +94,8 @@
     "importSettingError": "Import failed, please retry",
     "removeCharsAfterTranslation": "Remove Chars After Translation",
     "removeCharsAfterTranslationTooltip": "Automatically remove specified characters after translation (separate multiple with spaces)",
-    "selectedLanguages": "Selected",
     "search": "Search",
     "noMatches": "No matching tools",
-    "selectAll": "Select All",
     "clearAll": "Clear All",
     "cancel": "Cancel",
     "apply": "Apply",
@@ -147,6 +149,26 @@
     "relatedTools": "Related Tools"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "Subtitle Translator",
+      "description": "Batch translate SRT, ASS, VTT, LRC subtitles. 120+ languages."
+    },
+    "jsonTranslate": {
+      "title": "JSON Multi-Language Translator",
+      "description": "Efficient multi-language JSON translation tool"
+    },
+    "mdTranslator": {
+      "title": "Markdown Translator",
+      "description": "Batch translate Markdown, preserving format and code"
+    },
+    "textSplitter": {
+      "title": "Text Splitter",
+      "description": "Smart long text splitter for AI and social media"
+    },
+    "chineseConversion": {
+      "title": "Chinese Conversion",
+      "description": "Bulk convert Simplified, Taiwan Traditional, Hong Kong Traditional, and Japanese New Character Form"
+    },
     "novelProcessor": {
       "title": "Chinese Novel Formatter",
       "description": "One-click formatting for downloaded Chinese web novels — smart line breaks, chapter splitting, and clean layout.",
@@ -197,6 +219,50 @@
         "Handles novels over 3 million characters with fast processing",
         "Compatible with Kindle Send-to-Email, Kobo, FBReader, and Moon+ Reader"
       ]
+    },
+    "textToolbox": {
+      "title": "Multi-Function Text Processor",
+      "description": "Integrated regex matching, sorting, filtering, and more for bulk text processing"
+    },
+    "dataBatch": {
+      "title": "Batch Data Processor",
+      "description": "Excel batch data processing — dedup, column extraction, text merge, custom rules chained in sequence"
+    },
+    "jsonValueExtractor": {
+      "title": "JSON Field Value Extractor",
+      "description": "Batch extract JSON fields with formatting"
+    },
+    "jsonNodeEdit": {
+      "title": "JSON Node Bulk Edit",
+      "description": "Batch edit JSON nodes with prefix/suffix/replace"
+    },
+    "jsonValueTransformer": {
+      "title": "JSON Field Value Mapper",
+      "description": "Field value mapping and migration with JSONPath"
+    },
+    "jsonValueSwapper": {
+      "title": "JSON Value Swapper",
+      "description": "One-click swap of two field values"
+    },
+    "jsonNodeInserter": {
+      "title": "JSON Node Bulk Insert",
+      "description": "Batch insert new nodes at specified position"
+    },
+    "jsonSortClassify": {
+      "title": "JSON Sort & Group",
+      "description": "Sort and group arrays with custom rules"
+    },
+    "jsonMatchUpdate": {
+      "title": "JSON Match Update",
+      "description": "Batch update data by matching fields"
+    },
+    "dataParserFlare": {
+      "title": "Flare Bookmark Converter",
+      "description": "Convert bookmarks to/from Flare format"
+    },
+    "dataParserImgPrompt": {
+      "title": "IMGPrompt Data Gen",
+      "description": "Batch generate IMGPrompt JSON data"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI | Free Open Source AI Translation & Data Tools",
     "ogDescription": "ToolsByAI: 17 free open-source tools for subtitle, Markdown, JSON i18n translation and text/JSON batch processing. 25+ AI engines."
   },
-  "languages": {
-    "auto": "Auto Detect",
-    "en": "English",
-    "zh": "Chinese",
-    "zh-hant": "Traditional Chinese",
-    "es": "Spanish",
-    "fr": "French",
-    "de": "German",
-    "ja": "Japanese",
-    "ko": "Korean",
-    "hi": "Hindi",
-    "ar": "Arabic",
-    "ru": "Russian",
-    "pt-br": "Portuguese (Brazil)",
-    "id": "Indonesian",
-    "vi": "Vietnamese",
-    "it": "Italian",
-    "yue": "Cantonese",
-    "pl": "Polish",
-    "uk": "Ukrainian",
-    "nl": "Dutch",
-    "ro": "Romanian",
-    "el": "Greek",
-    "hu": "Hungarian",
-    "sv": "Swedish",
-    "cs": "Czech",
-    "pt-pt": "Portuguese (Portugal)",
-    "ca": "Catalan",
-    "sr": "Serbian",
-    "bg": "Bulgarian",
-    "hy": "Armenian",
-    "da": "Danish",
-    "sq": "Albanian",
-    "fi": "Finnish",
-    "nb": "Norwegian",
-    "sk": "Slovak",
-    "hr": "Croatian",
-    "be": "Belarusian",
-    "scn": "Sicilian",
-    "ka": "Georgian",
-    "lmo": "Lombard",
-    "lt": "Lithuanian",
-    "gl": "Galician",
-    "bs": "Bosnian",
-    "sl": "Slovenian",
-    "mk": "Macedonian",
-    "lv": "Latvian",
-    "et": "Estonian",
-    "is": "Icelandic",
-    "mt": "Maltese",
-    "cy": "Welsh",
-    "ga": "Irish",
-    "br": "Breton",
-    "eu": "Basque",
-    "yi": "Yiddish",
-    "lb": "Luxembourgish",
-    "oc": "Occitan",
-    "an": "Aragonese",
-    "la": "Latin",
-    "eo": "Esperanto",
-    "tr": "Turkish",
-    "he": "Hebrew",
-    "fa": "Persian",
-    "ur": "Urdu",
-    "ps": "Pashto",
-    "prs": "Dari",
-    "ckb": "Central Kurdish",
-    "kmr": "Northern Kurdish",
-    "uz": "Uzbek",
-    "kk": "Kazakh",
-    "ky": "Kyrgyz",
-    "tk": "Turkmen",
-    "az": "Azerbaijani",
-    "tg": "Tajik",
-    "mn": "Mongolian",
-    "ba": "Bashkir",
-    "tt": "Tatar",
-    "ug": "Uyghur",
-    "bn": "Bengali",
-    "mr": "Marathi",
-    "te": "Telugu",
-    "ta": "Tamil",
-    "gu": "Gujarati",
-    "kn": "Kannada",
-    "pa": "Punjabi",
-    "ml": "Malayalam",
-    "bho": "Bhojpuri",
-    "mai": "Maithili",
-    "ne": "Nepali",
-    "si": "Sinhala",
-    "as": "Assamese",
-    "gom": "Konkani",
-    "sa": "Sanskrit",
-    "th": "Thai",
-    "lo": "Lao",
-    "my": "Burmese",
-    "ms": "Malay",
-    "fil": "Filipino (Tagalog)",
-    "jv": "Javanese",
-    "su": "Sundanese",
-    "ace": "Acehnese",
-    "pag": "Pangasinan",
-    "pam": "Kapampangan",
-    "ceb": "Cebuano",
-    "sw": "Swahili",
-    "ha": "Hausa",
-    "am": "Amharic",
-    "ig": "Igbo",
-    "wo": "Wolof",
-    "xh": "Xhosa",
-    "zu": "Zulu",
-    "af": "Afrikaans",
-    "om": "Oromo",
-    "st": "Southern Sotho",
-    "tn": "Tswana",
-    "ts": "Tsonga",
-    "mg": "Malagasy",
-    "ln": "Lingala",
-    "ht": "Haitian Creole",
-    "qu": "Quechua",
-    "ay": "Aymara",
-    "gn": "Guarani",
-    "mi": "Maori"
-  },
   "CopyToClipboard": {
     "empty": "Content empty, nothing to copy",
     "unsupported": "Browser does not support clipboard, please copy manually",
@@ -347,10 +289,9 @@
     "failure": "Copy failed, please copy manually"
   },
   "NovelProcessor": {
+    "processFailed": "Processing failed",
     "description": "Designed for formatting Chinese web novels, fixing layout issues from downloaded text in one click. Features smart line breaks, 第X章 chapter splitting, paragraph indentation, Simplified/Traditional conversion, duplicate-line removal, and junk-content filtering — turning messy novel text into clean, readable content.",
-    "errorNoInput": "Please enter or paste text to process",
     "errorNoFile": "Please upload a file to process",
-    "warningNoText": "Please enter or paste text first",
     "infoNoChapters": "No valid chapter headings detected, reorder unavailable",
     "reorderComplete": "Chapter reorder complete ({chapters} chapters)",
     "textInput": "Text Input",
@@ -378,7 +319,7 @@
     "hintSmartLineBreak": "Rejoin paragraphs that were broken across multiple lines",
     "hintParagraphSplit": "Split overly long paragraphs by sentence for easier reading on mobile",
     "hintChapterSplit": "Move a chapter heading stuck on the same line as the body text onto its own line",
-    "hintMergeChapterTitles": "When the same chapter title appears more than once, keep only one",
+    "hintMergeChapterTitles": "When a chapter title repeats, merge them into one and automatically keep the more complete version",
     "hintLineEndNumbers": "Remove stray page numbers or digits at the end of each line",
     "hintSpecialStart": "Lines starting with this text will not be merged into the previous paragraph",
     "hintFilter": "Delete lines that contain these keywords",
@@ -404,7 +345,6 @@
     "deletedNRules": "Deleted {count} rule(s)",
     "exportEmpty": "No valid rules to export",
     "exportedNRules": "Exported {count} rule(s)",
-    "fileReadFailed": "Failed to read file",
     "importNoRules": "No valid rules found in file (OpenCC format: each line key[TAB]value)",
     "importedWithDedup": "Imported {added} rule(s) to {direction}, automatically removed {dedup} duplicate source(s)",
     "imported": "Imported {added} rule(s) to {direction} direction",

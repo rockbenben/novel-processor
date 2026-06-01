@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "Dosya işlenemedi — kodlamasını kontrol edin veya başka bir dosya deneyin",
+    "fileReadFailed": "Dosya okunamadı",
+    "unrecognizedLangCodes": "Tanınmayan dil kodları: {codes}",
+    "ignoredLangCodes": "Tanınmayan dil kodları yoksayıldı: {codes}",
+    "partialExportFailed": "Bazı diller dışa aktarılamadı: {items}",
     "userGuide": "Kullanıcı Rehberi",
     "privacyNotice": "API anahtarınız ve verileriniz gizliliğinizi sağlamak için yalnızca yerel tarayıcınızda saklanır. Sorularınız veya önerileriniz varsa, topluluk veya geri bildirim sayfası aracılığıyla bizimle iletişime geçin.",
     "dragAndDropText": "Yüklemek için buraya tıklayın veya dosyayı sürükleyin",
@@ -76,10 +81,8 @@
     "importSettingError": "İçe aktarma başarısız, tekrar deneyin",
     "removeCharsAfterTranslation": "Çeviriden sonra karakterleri kaldır",
     "removeCharsAfterTranslationTooltip": "Çeviriden sonra belirtilen karakterleri otomatik olarak kaldır (boşlukla ayırın)",
-    "selectedLanguages": "Seçili",
     "search": "Ara",
     "noMatches": "Eşleşen araç yok",
-    "selectAll": "Tümünü seç",
     "clearAll": "Tümünü temizle",
     "cancel": "İptal",
     "apply": "Uygula",
@@ -120,11 +123,10 @@
     "readOnlyModeTooltip": "Metin çok uzun: düzenleyici geçici olarak salt okunur ve yalnızca kısmi bir önizleme gösteriyor. Tüm içeriğiniz etkilenmez; işleme ve dışa aktarma hâlâ metnin tamamını kullanır.",
     "clearInputTooltip": "Giriş içeriğini ve yüklenen dosyaları temizle",
     "fileExported": "Dışa aktarılan dosya: {fileName}",
-    "exportSuccess": "Dışa aktarma başarılı: {fileName}",
     "batchDownloaded": "İşlem tamamlandı, dosyalar otomatik olarak indirildi",
     "sourceTextPlaceholder": "İşlenecek metni girin veya yapıştırın...",
     "smartLineBreak": "Akıllı satır sonu",
-    "replaceText": "Metni değiştir",
+    "replaceText": "Metni değiştir ",
     "generateJson": "JSON Oluştur",
     "gtxFreeAPIUnavailable": "GTX Free hizmetine geçici olarak ulaşılamıyor — ağ kısıtlaması olabilir. Lütfen daha sonra tekrar deneyin veya başka bir çeviri hizmetine geçin.",
     "translategemmaUnavailable": "TranslateGemma hizmetine geçici olarak ulaşılamıyor, yerel sunucunuzun (LM Studio / llama.cpp / Ollama) çalıştığından ve URL'nin doğru olduğundan emin olun.",
@@ -147,6 +149,26 @@
     "relatedTools": "İlgili Araçlar"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "Altyazı Çevirici",
+      "description": "Toplu SRT, ASS, VTT, LRC çevirisi. 120+ dil."
+    },
+    "jsonTranslate": {
+      "title": "i18n JSON Çevirici",
+      "description": "Verimli çok dilli JSON çeviri aracı"
+    },
+    "mdTranslator": {
+      "title": "Markdown Çevirici",
+      "description": "Toplu Markdown çevirisi, format ve kodu korur"
+    },
+    "textSplitter": {
+      "title": "Metin Bölücü",
+      "description": "AI ve sosyal medya için akıllı uzun metin bölme"
+    },
+    "chineseConversion": {
+      "title": "Bas/Gel Çince Dönüştürücü",
+      "description": "Basitleştirilmiş, Tayvan geleneksel, Hong Kong geleneksel ve Japonca karakterleri toplu dönüştür"
+    },
     "novelProcessor": {
       "title": "Çince Web Roman Düzenleyici",
       "description": "İndirilen Çince web romanların biçimlendirme sorunlarını tek tıkla düzeltin, akıllı satır sonu ile",
@@ -197,6 +219,50 @@
         "3 milyondan fazla karakterli romanları hızlı işlemeyle yönetir",
         "Kindle Send-to-Email, Kobo, FBReader ve Moon+ Reader ile uyumlu"
       ]
+    },
+    "textToolbox": {
+      "title": "Regex Metin Asistanı",
+      "description": "Toplu işlem için regex eşleştirme, sıralama, filtreleme ve diğer işlevleri entegre eder"
+    },
+    "dataBatch": {
+      "title": "Kişisel Metin İşleyici",
+      "description": "Excel toplu veri işleme — tekilleştirme, sütun çıkarma, metin birleştirme, zincirli kurallar"
+    },
+    "jsonValueExtractor": {
+      "title": "JSON Değer Çıkarıcı",
+      "description": "JSON değerlerini toplu çıkar, formatlı çıktı"
+    },
+    "jsonNodeEdit": {
+      "title": "Toplu JSON Düzenleme",
+      "description": "JSON düğümlerini toplu düzenle, önek/sonek/değiştir"
+    },
+    "jsonValueTransformer": {
+      "title": "JSON Değer Eşleyici",
+      "description": "JSONPath ile değer eşleme ve taşıma"
+    },
+    "jsonValueSwapper": {
+      "title": "JSON Değer Değiştirici",
+      "description": "Tek tıkla iki alanın değerlerini değiştir"
+    },
+    "jsonNodeInserter": {
+      "title": "JSON Düğüm Ekleyici",
+      "description": "Belirtilen konuma toplu yeni düğümler ekle"
+    },
+    "jsonSortClassify": {
+      "title": "JSON Sırala & Sınıflandır",
+      "description": "Dizileri sırala ve grupla, özel kurallar"
+    },
+    "jsonMatchUpdate": {
+      "title": "JSON Eşleşme Güncelleme",
+      "description": "Alan eşleşmesine dayalı toplu güncelleme"
+    },
+    "dataParserFlare": {
+      "title": "Flare Dönüştürücü",
+      "description": "Tarayıcı yer imleri ve Flare formatı dönüşümü"
+    },
+    "dataParserImgPrompt": {
+      "title": "IMGPrompt Veri Oluşturucu",
+      "description": "Toplu IMGPrompt JSON verileri oluştur"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI - Ücretsiz ve Açık Kaynak Geliştirici Araçları",
     "ogDescription": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 17 ücretsiz açık kaynak araç. 25+ AI motoru."
   },
-  "languages": {
-    "auto": "Otomatik Algılama",
-    "en": "İngilizce",
-    "zh": "Çince",
-    "zh-hant": "Geleneksel Çince",
-    "es": "İspanyolca",
-    "fr": "Fransızca",
-    "de": "Almanca",
-    "ja": "Japonca",
-    "ko": "Korece",
-    "hi": "Hintçe",
-    "ar": "Arapça",
-    "ru": "Rusça",
-    "pt-br": "Portekizce (Brezilya)",
-    "id": "Endonezce",
-    "vi": "Vietnamca",
-    "it": "İtalyanca",
-    "yue": "Kantonca",
-    "pl": "Lehçe",
-    "uk": "Ukraynaca",
-    "nl": "Hollandaca",
-    "ro": "Romence",
-    "el": "Yunanca",
-    "hu": "Macarca",
-    "sv": "İsveççe",
-    "cs": "Çekçe",
-    "pt-pt": "Portekizce (Portekiz)",
-    "ca": "Katalanca",
-    "sr": "Sırpça",
-    "bg": "Bulgarca",
-    "hy": "Ermenice",
-    "da": "Danca",
-    "sq": "Arnavutça",
-    "fi": "Fince",
-    "nb": "Norveççe Bokmål",
-    "sk": "Slovakça",
-    "hr": "Hırvatça",
-    "be": "Belarusça",
-    "scn": "Sicilyaca",
-    "ka": "Gürcüce",
-    "lmo": "Lombardca",
-    "lt": "Litvanca",
-    "gl": "Galiçyaca",
-    "bs": "Boşnakça",
-    "sl": "Slovence",
-    "mk": "Makedonca",
-    "lv": "Letonca",
-    "et": "Estonca",
-    "is": "İzlandaca",
-    "mt": "Maltaca",
-    "cy": "Galce",
-    "ga": "İrlandaca",
-    "br": "Bretonca",
-    "eu": "Baskça",
-    "yi": "Yidiş",
-    "lb": "Lüksemburgca",
-    "oc": "Oksitanca",
-    "an": "Aragonca",
-    "la": "Latince",
-    "eo": "Esperanto",
-    "tr": "Türkçe",
-    "he": "İbranice",
-    "fa": "Farsça",
-    "ur": "Urduca",
-    "ps": "Peştuca",
-    "prs": "Darice",
-    "ckb": "Orta Kürtçe",
-    "kmr": "Kuzey Kürtçe",
-    "uz": "Özbekçe",
-    "kk": "Kazakça",
-    "ky": "Kırgızca",
-    "tk": "Türkmence",
-    "az": "Azerice",
-    "tg": "Tacikçe",
-    "mn": "Moğolca",
-    "ba": "Başkurtça",
-    "tt": "Tatarca",
-    "ug": "Uygurca",
-    "bn": "Bengalce",
-    "mr": "Marathi",
-    "te": "Telugu",
-    "ta": "Tamilce",
-    "gu": "Gucaratça",
-    "kn": "Kannada",
-    "pa": "Pencapça",
-    "ml": "Malayalamca",
-    "bho": "Bhojpuri",
-    "mai": "Maithili",
-    "ne": "Nepalce",
-    "si": "Sinhala dili",
-    "as": "Assamca",
-    "gom": "Konkani",
-    "sa": "Sanskritçe",
-    "th": "Tayca",
-    "lo": "Laoca",
-    "my": "Birmanca",
-    "ms": "Malayca",
-    "fil": "Filipince (Tagalog)",
-    "jv": "Cava Dili",
-    "su": "Sundaca",
-    "ace": "Açece",
-    "pag": "Pangasinanca",
-    "pam": "Kapampangan",
-    "ceb": "Sebuanca",
-    "sw": "Svahili",
-    "ha": "Hausa",
-    "am": "Amharca",
-    "ig": "İbo",
-    "wo": "Volofça",
-    "xh": "Xhosa",
-    "zu": "Zuluca",
-    "af": "Afrikaans",
-    "om": "Oromo",
-    "st": "Güney Sotho",
-    "tn": "Tsvana",
-    "ts": "Tsongaca",
-    "mg": "Malgaşça",
-    "ln": "Lingala",
-    "ht": "Haiti Kreolü",
-    "qu": "Keçuva",
-    "ay": "Aymara",
-    "gn": "Guarani",
-    "mi": "Maori"
-  },
   "CopyToClipboard": {
     "empty": "İçerik boş, kopyalanacak bir şey yok",
     "unsupported": "Tarayıcı desteklenmiyor, manuel kopyalayın",
@@ -347,10 +289,9 @@
     "failure": "Kopyalama başarısız, manuel kopyalayın"
   },
   "NovelProcessor": {
+    "processFailed": "İşleme başarısız",
     "description": "Çince web romanlarının metin düzenlemesi için tasarlanmış olan bu araç, indirilen Çince romanların biçimlendirme sorunlarını tek tıkla giderir. Akıllı satır sonu, 第X章 bölüm bölme, paragraf girintisi, basitleştirilmiş/geleneksel dönüştürme, yinelenen satır kaldırma ve istenmeyen içerik filtreleme gibi özellikleri entegre ederek karmaşık roman metnini düzenli ve okunması kolay hale getirir.",
-    "errorNoInput": "İşlenecek metni girin veya yapıştırın",
     "errorNoFile": "İşlenecek dosyayı yükleyin",
-    "warningNoText": "Önce metni girin veya yapıştırın",
     "infoNoChapters": "Geçerli bölüm başlığı tanınmadı; yeniden sıralama yapılamaz",
     "reorderComplete": "Bölüm yeniden sıralaması tamamlandı ({chapters} bölüm toplam)",
     "textInput": "Metin Girişi",
@@ -364,7 +305,7 @@
     "chapterSplit": "Bölüm başlıklarını ayrı satıra al",
     "hintChapterSplit": "Gövde metniyle aynı satırda kalmış bölüm başlığını kendi satırına taşır",
     "mergeDuplicateChapterTitles": "Yinelenen bölüm başlıklarını birleştir",
-    "hintMergeChapterTitles": "Aynı bölüm başlığı birden fazla kez görünüyorsa yalnızca birini tutar",
+    "hintMergeChapterTitles": "Aynı bölüm başlığı tekrarlandığında bunları tek bir başlıkta birleştirir ve daha eksiksiz olanı otomatik olarak tutar",
     "removeDuplicates": "Yinelenen Satırları Kaldır",
     "lineEndNumbers": "Satır Sonu Sayılarını Kaldır",
     "hintLineEndNumbers": "Her satırın sonundaki gereksiz sayfa numaralarını veya rakamları siler",
@@ -404,7 +345,6 @@
     "deletedNRules": "{count} kural silindi",
     "exportEmpty": "Dışa aktarılacak geçerli kural yok",
     "exportedNRules": "{count} kural dışa aktarıldı",
-    "fileReadFailed": "Dosya okunamadı",
     "importNoRules": "Dosyada geçerli kural bulunamadı (OpenCC biçimi: her satır: anahtar[TAB]değer)",
     "importedWithDedup": "{direction} yönüne {added} kural içe aktarıldı, aynı kaynaktan {dedup} yineleme otomatik olarak kaldırıldı",
     "imported": "{direction} yönüne {added} kural içe aktarıldı",

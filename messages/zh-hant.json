@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "檔案處理失敗，請檢查檔案編碼或換一個檔案",
+    "fileReadFailed": "讀取檔案失敗",
+    "unrecognizedLangCodes": "無法識別的語言代碼：{codes}",
+    "ignoredLangCodes": "已忽略無法識別的語言代碼：{codes}",
+    "partialExportFailed": "部分語言匯出失敗：{items}",
     "userGuide": "使用說明",
     "privacyNotice": "您的 API 金鑰及資料僅存儲在本地瀏覽器，確保隱私安全。如有問題或建議，歡迎通過社群或反饋頁面聯繫我們。",
     "dragAndDropText": "點擊或將檔案拖拽至此上傳",
@@ -82,10 +87,8 @@
     "importSettingError": "匯入失敗，請重試",
     "removeCharsAfterTranslation": "翻譯後移除字元",
     "removeCharsAfterTranslationTooltip": "翻譯完成後自動移除指定字元（多個用空格分隔）",
-    "selectedLanguages": "已選語言",
     "search": "搜尋",
     "noMatches": "沒有匹配的工具",
-    "selectAll": "全選",
     "clearAll": "清空",
     "cancel": "取消",
     "apply": "套用",
@@ -120,7 +123,6 @@
     "moreProviderSettings": "更多 Provider 設定",
     "clearInputTooltip": "清空輸入內容和上傳的檔案",
     "fileExported": "已匯出檔案：{fileName}",
-    "exportSuccess": "匯出成功：{fileName}",
     "batchDownloaded": "處理完成，檔案已自動下載",
     "sourceTextPlaceholder": "請輸入或貼上待處理文字...",
     "smartLineBreak": "智慧換行",
@@ -147,6 +149,26 @@
     "relatedTools": "相關工具"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "字幕翻譯器",
+      "description": "批次翻譯 SRT、ASS、VTT、LRC 字幕，支援 120+ 語言"
+    },
+    "jsonTranslate": {
+      "title": "JSON 多語言翻譯",
+      "description": "高效的多語言 JSON 翻譯工具"
+    },
+    "mdTranslator": {
+      "title": "Markdown 翻譯",
+      "description": "批次翻譯 Markdown 文檔，保留格式和代碼"
+    },
+    "textSplitter": {
+      "title": "文字分割",
+      "description": "智慧分割長文字，適用於 AI 輸入和社交媒體"
+    },
+    "chineseConversion": {
+      "title": "簡繁轉換",
+      "description": "批次轉換簡體、臺灣繁體、香港繁體和日本新字體"
+    },
     "novelProcessor": {
       "title": "小說排版整理",
       "description": "一鍵修復下載小說的格式問題，智慧換行排版",
@@ -197,6 +219,50 @@
         "支援 300 萬字以上超長小說，處理速度快",
         "Kindle 推送郵箱、微信讀書、掌閱、靜讀天下相容"
       ]
+    },
+    "textToolbox": {
+      "title": "多功能文字處理",
+      "description": "集成正則匹配、排序、過濾等功能，進行文字批次處理"
+    },
+    "dataBatch": {
+      "title": "資料批處理",
+      "description": "Excel 表格批次去重、欄位提取、文字合併，多規則按序執行"
+    },
+    "jsonValueExtractor": {
+      "title": "JSON 欄位值提取",
+      "description": "批次提取 JSON 欄位值，支援格式化輸出"
+    },
+    "jsonNodeEdit": {
+      "title": "JSON 節點批次編輯",
+      "description": "批次編輯 JSON 節點值，支援前後綴和替換"
+    },
+    "jsonValueTransformer": {
+      "title": "JSON 欄位值映射",
+      "description": "欄位值映射和遷移，支援 JSONPath 定位"
+    },
+    "jsonValueSwapper": {
+      "title": "JSON 鍵值互換",
+      "description": "一鍵交換兩個欄位的值"
+    },
+    "jsonNodeInserter": {
+      "title": "JSON 節點批次插入",
+      "description": "在指定位置批次插入新節點"
+    },
+    "jsonSortClassify": {
+      "title": "JSON 排序分組",
+      "description": "數組排序和分組，支援自訂規則"
+    },
+    "jsonMatchUpdate": {
+      "title": "JSON 匹配更新",
+      "description": "根據欄位匹配批次更新資料"
+    },
+    "dataParserFlare": {
+      "title": "Flare 書籤轉換",
+      "description": "瀏覽器書籤與 Flare 格式互轉"
+    },
+    "dataParserImgPrompt": {
+      "title": "IMGPrompt 資料產生",
+      "description": "批次產生 IMGPrompt JSON 資料"
     }
   },
   "navigation": {
@@ -215,130 +281,6 @@
     "homeDescription": "20+ 實用工具，涵蓋多語言翻譯、文字處理、JSON 編輯和資料轉換，助力開發者和創作者提升效率。",
     "ogTitle": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
     "ogDescription": "ToolsByAI 集合 17 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。25+ AI 引擎，全前端處理。"
-  },
-  "languages": {
-    "auto": "自動檢測",
-    "en": "英語",
-    "zh": "中文",
-    "zh-hant": "繁體中文",
-    "es": "西班牙語",
-    "fr": "法語",
-    "de": "德語",
-    "ja": "日語",
-    "ko": "韓語",
-    "hi": "印地語",
-    "ar": "阿拉伯語",
-    "ru": "俄語",
-    "pt-br": "葡萄牙語（巴西）",
-    "id": "印尼語",
-    "vi": "越南語",
-    "it": "意大利語",
-    "yue": "粵語",
-    "pl": "波蘭語",
-    "uk": "烏克蘭語",
-    "nl": "荷蘭語",
-    "ro": "羅馬尼亞語",
-    "el": "希臘語",
-    "hu": "匈牙利語",
-    "sv": "瑞典語",
-    "cs": "捷克語",
-    "pt-pt": "葡萄牙語（葡萄牙）",
-    "ca": "加泰羅尼亞語",
-    "sr": "塞爾維亞語",
-    "bg": "保加利亞語",
-    "hy": "亞美尼亞語",
-    "da": "丹麥語",
-    "sq": "阿爾巴尼亞語",
-    "fi": "芬蘭語",
-    "nb": "挪威語",
-    "sk": "斯洛伐克語",
-    "hr": "克羅地亞語",
-    "be": "白俄羅斯語",
-    "scn": "西西里語",
-    "ka": "格魯吉亞語",
-    "lmo": "倫巴底語",
-    "lt": "立陶宛語",
-    "gl": "加利西亞語",
-    "bs": "波斯尼亞語",
-    "sl": "斯洛文尼亞語",
-    "mk": "馬其頓語",
-    "lv": "拉脫維亞語",
-    "et": "愛沙尼亞語",
-    "is": "冰島語",
-    "mt": "馬耳他語",
-    "cy": "威爾斯語",
-    "ga": "愛爾蘭語",
-    "br": "布列塔尼語",
-    "eu": "巴斯克語",
-    "yi": "意第緒語",
-    "lb": "盧森堡語",
-    "oc": "奧克語",
-    "an": "阿拉貢語",
-    "la": "拉丁語",
-    "eo": "世界語",
-    "tr": "土耳其語",
-    "he": "希伯來語",
-    "fa": "波斯語",
-    "ur": "烏爾都語",
-    "ps": "普什圖語",
-    "prs": "達利語",
-    "ckb": "中庫德語",
-    "kmr": "北庫德語",
-    "uz": "烏茲別克語",
-    "kk": "哈薩克語",
-    "ky": "吉爾吉斯語",
-    "tk": "土庫曼語",
-    "az": "阿塞拜疆語",
-    "tg": "塔吉克語",
-    "mn": "蒙古語",
-    "ba": "巴什基爾語",
-    "tt": "韃靼語",
-    "ug": "維吾爾語",
-    "bn": "孟加拉語",
-    "mr": "馬拉地語",
-    "te": "泰盧固語",
-    "ta": "泰米爾語",
-    "gu": "古吉拉特語",
-    "kn": "卡納達語",
-    "pa": "旁遮普語",
-    "ml": "馬拉雅拉姆語",
-    "bho": "博傑普爾語",
-    "mai": "邁蒂利語",
-    "ne": "尼泊爾語",
-    "si": "僧伽羅語",
-    "as": "阿薩姆語",
-    "gom": "孔卡尼語",
-    "sa": "梵語",
-    "th": "泰語",
-    "lo": "老撾語",
-    "my": "緬甸語",
-    "ms": "馬來語",
-    "fil": "菲律賓語(塔加拉語)",
-    "jv": "爪哇語",
-    "su": "巽他語",
-    "ace": "亞齊語",
-    "pag": "邦阿西楠語",
-    "pam": "邦板牙語",
-    "ceb": "宿霧語",
-    "sw": "斯瓦希里語",
-    "ha": "豪薩語",
-    "am": "阿姆哈拉語",
-    "ig": "伊博語",
-    "wo": "沃洛夫語",
-    "xh": "科薩語",
-    "zu": "祖魯語",
-    "af": "南非荷蘭語",
-    "om": "奧羅莫語",
-    "st": "南索托語",
-    "tn": "茨瓦納語",
-    "ts": "聰加語",
-    "mg": "馬拉加西語",
-    "ln": "林加拉語",
-    "ht": "海地克里奧爾語",
-    "qu": "克丘亞語",
-    "ay": "艾馬拉語",
-    "gn": "瓜拉尼語",
-    "mi": "毛利語"
   },
   "CopyToClipboard": {
     "empty": "內容為空，無需複製",
@@ -361,7 +303,6 @@
     "deletedNRules": "已刪除 {count} 條規則",
     "exportEmpty": "無有效規則可匯出",
     "exportedNRules": "已匯出 {count} 條規則",
-    "fileReadFailed": "讀取檔案失敗",
     "importNoRules": "檔案中未發現有效規則（OpenCC 格式：每行 key[TAB]value）",
     "importedWithDedup": "已匯入 {added} 條到 {direction}，自動去除 {dedup} 條同源重複",
     "imported": "已匯入 {added} 條到 {direction} 方向",
@@ -398,10 +339,9 @@
     "manageRules": "管理規則"
   },
   "NovelProcessor": {
+    "processFailed": "處理失敗",
     "description": "專為網路小說文字整理設計，一鍵修復下載小說的格式問題。整合智慧換行、章節分割、段落縮排、繁簡轉換、刪除重複行、垃圾內容過濾等功能，讓雜亂的小說文字變得整齊易讀。",
-    "errorNoInput": "請輸入或貼上待處理文字",
     "errorNoFile": "請上傳要處理的檔案",
-    "warningNoText": "請先輸入或貼上文字",
     "infoNoChapters": "未識別到有效章節標題，無法重排",
     "reorderComplete": "章節重排完成（共 {chapters} 章）",
     "textInput": "文字輸入",
@@ -429,7 +369,7 @@
     "hintSmartLineBreak": "自動把斷成多行的段落接成整段",
     "hintParagraphSplit": "把過長的段落按句子拆開，方便手機閱讀",
     "hintChapterSplit": "把和正文黏在一行的「第X章」拆成獨立行",
-    "hintMergeChapterTitles": "同一章標題重複出現時，只保留一個",
+    "hintMergeChapterTitles": "同一章標題重複出現時合併為一條，自動保留更完整的那條",
     "hintLineEndNumbers": "刪除每行末尾多餘的頁碼或數字",
     "hintSpecialStart": "以這些文字開頭的行不會被並入上一段",
     "hintFilter": "刪除包含這些關鍵詞的行",

@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "Échec du traitement du fichier — vérifiez son encodage ou essayez-en un autre",
+    "fileReadFailed": "Échec de la lecture du fichier",
+    "unrecognizedLangCodes": "Codes de langue non reconnus : {codes}",
+    "ignoredLangCodes": "Codes de langue non reconnus ignorés : {codes}",
+    "partialExportFailed": "Échec de l'export de certaines langues : {items}",
     "userGuide": "Guide d'utilisation",
     "privacyNotice": "Votre clé API et vos données sont stockées uniquement dans votre navigateur local, garantissant la confidentialité. Pour toute question ou suggestion, contactez-nous via la communauté ou la page de commentaires.",
     "dragAndDropText": "Cliquez ou glissez un fichier ici pour télécharger",
@@ -47,7 +52,6 @@
     "exportAllFile": "Tout exporter",
     "exportedFile": "Exporté",
     "fileExported": "Fichier exporté : {fileName}",
-    "exportSuccess": "Export réussi : {fileName}",
     "batchDownloaded": "Traitement terminé, le fichier a été téléchargé automatiquement",
     "extractedText": "Texte extrait",
     "translating": "Traduction...",
@@ -80,7 +84,7 @@
     "readOnlyModeTooltip": "Texte trop long : l'éditeur est temporairement en lecture seule et n'affiche qu'un aperçu partiel. Votre contenu complet n'est pas affecté — le traitement et l'export utilisent toujours l'intégralité du texte.",
     "clearInputTooltip": "Effacer le contenu saisi et les fichiers téléchargés",
     "smartLineBreak": "Saut de ligne intelligent",
-    "replaceText": "Remplacer le texte",
+    "replaceText": "Remplacer le texte ",
     "generateJson": "Générer JSON",
     "exportSettingTooltip": "Exporter la configuration vers un fichier",
     "importSettingTooltip": "Importer la configuration depuis un fichier",
@@ -90,10 +94,8 @@
     "importSettingError": "Échec de l'import, réessayez",
     "removeCharsAfterTranslation": "Supprimer caractères après traduction",
     "removeCharsAfterTranslationTooltip": "Supprimer automatiquement les caractères spécifiés après traduction (séparés par des espaces)",
-    "selectedLanguages": "Sélectionnés",
     "search": "Rechercher",
     "noMatches": "Aucun outil correspondant",
-    "selectAll": "Tout sélectionner",
     "clearAll": "Tout effacer",
     "cancel": "Annuler",
     "apply": "Appliquer",
@@ -147,6 +149,26 @@
     "relatedTools": "Outils associés"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "Traducteur Sous-titres",
+      "description": "Traduction par lot SRT, ASS, VTT, LRC. 120+ langues."
+    },
+    "jsonTranslate": {
+      "title": "Traducteur JSON i18n",
+      "description": "Outil de traduction JSON multilingue efficace"
+    },
+    "mdTranslator": {
+      "title": "Traducteur Markdown",
+      "description": "Traduction Markdown par lot, format et code préservés"
+    },
+    "textSplitter": {
+      "title": "Découpeur de Texte",
+      "description": "Découpe intelligente de texte long pour IA et réseaux sociaux"
+    },
+    "chineseConversion": {
+      "title": "Conversion chinois",
+      "description": "Convertir en masse simplifié, traditionnel Taïwan, traditionnel Hong Kong et nouveaux caractères japonais"
+    },
     "novelProcessor": {
       "title": "Formateur de romans web chinois",
       "description": "Correction des problèmes de mise en page des romans web chinois téléchargés en un clic, avec division automatique des chapitres.",
@@ -197,6 +219,50 @@
         "Gère les romans de plus de 3 millions de caractères avec un traitement rapide",
         "Compatible avec Kindle Send-to-Email, Kobo, Vivlio et Moon+ Reader"
       ]
+    },
+    "textToolbox": {
+      "title": "Assistant texte regex",
+      "description": "Correspondance regex, tri, filtrage et plus pour le traitement en masse de texte"
+    },
+    "dataBatch": {
+      "title": "Processeur de texte",
+      "description": "Traitement par lots de données Excel — déduplication, extraction de colonnes, fusion, règles enchaînées"
+    },
+    "jsonValueExtractor": {
+      "title": "Extracteur Valeur JSON",
+      "description": "Extraire valeurs JSON par lot, sortie formatée"
+    },
+    "jsonNodeEdit": {
+      "title": "Édition JSON par Lot",
+      "description": "Éditer nœuds JSON par lot, préfixe/suffixe/remplacer"
+    },
+    "jsonValueTransformer": {
+      "title": "Mappeur Valeur JSON",
+      "description": "Mappage et migration de valeurs avec JSONPath"
+    },
+    "jsonValueSwapper": {
+      "title": "Échangeur Valeur JSON",
+      "description": "Échanger valeurs de deux champs en un clic"
+    },
+    "jsonNodeInserter": {
+      "title": "Inséreur Nœud JSON",
+      "description": "Insérer nouveaux nœuds à position spécifiée par lot"
+    },
+    "jsonSortClassify": {
+      "title": "Tri & Classification JSON",
+      "description": "Trier et grouper tableaux, règles personnalisées"
+    },
+    "jsonMatchUpdate": {
+      "title": "Mise à jour Match JSON",
+      "description": "Mise à jour par lot basée sur correspondance de champs"
+    },
+    "dataParserFlare": {
+      "title": "Convertisseur Flare",
+      "description": "Conversion favoris navigateur et format Flare"
+    },
+    "dataParserImgPrompt": {
+      "title": "Générateur Données IMGPrompt",
+      "description": "Générer données JSON IMGPrompt par lot"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI | Outils de Traduction & Dev IA Gratuits",
     "ogDescription": "ToolsByAI: 17 outils open source gratuits pour la traduction de sous-titres, Markdown, JSON i18n et le traitement par lots. 25+ moteurs IA."
   },
-  "languages": {
-    "auto": "Détection auto",
-    "en": "Anglais",
-    "zh": "Chinois",
-    "zh-hant": "Chinois traditionnel",
-    "es": "Espagnol",
-    "fr": "Français",
-    "de": "Allemand",
-    "ja": "Japonais",
-    "ko": "Coréen",
-    "hi": "Hindi",
-    "ar": "Arabe",
-    "ru": "Russe",
-    "pt-br": "Portugais (Brésil)",
-    "id": "Indonésien",
-    "vi": "Vietnamien",
-    "it": "Italien",
-    "yue": "Cantonais",
-    "pl": "Polonais",
-    "uk": "Ukrainien",
-    "nl": "Néerlandais",
-    "ro": "Roumain",
-    "el": "Grec",
-    "hu": "Hongrois",
-    "sv": "Suédois",
-    "cs": "Tchèque",
-    "pt-pt": "Portugais (Portugal)",
-    "ca": "Catalan",
-    "sr": "Serbe",
-    "bg": "Bulgare",
-    "hy": "Arménien",
-    "da": "Danois",
-    "sq": "Albanais",
-    "fi": "Finnois",
-    "nb": "Norvégien",
-    "sk": "Slovaque",
-    "hr": "Croate",
-    "be": "Biélorusse",
-    "scn": "Sicilien",
-    "ka": "Géorgien",
-    "lmo": "Lombard",
-    "lt": "Lituanien",
-    "gl": "Galicien",
-    "bs": "Bosniaque",
-    "sl": "Slovène",
-    "mk": "Macédonien",
-    "lv": "Letton",
-    "et": "Estonien",
-    "is": "Islandais",
-    "mt": "Maltais",
-    "cy": "Gallois",
-    "ga": "Irlandais",
-    "br": "Breton",
-    "eu": "Basque",
-    "yi": "Yiddish",
-    "lb": "Luxembourgeois",
-    "oc": "Occitan",
-    "an": "Aragonais",
-    "la": "Latin",
-    "eo": "Espéranto",
-    "tr": "Turc",
-    "he": "Hébreu",
-    "fa": "Persan",
-    "ur": "Ourdou",
-    "ps": "Pachto",
-    "prs": "Dari",
-    "ckb": "Kurde central",
-    "kmr": "Kurde du nord",
-    "uz": "Ouzbek",
-    "kk": "Kazakh",
-    "ky": "Kirghize",
-    "tk": "Turkmène",
-    "az": "Azerbaïdjanais",
-    "tg": "Tadjik",
-    "mn": "Mongol",
-    "ba": "Bachkir",
-    "tt": "Tatar",
-    "ug": "Ouïghour",
-    "bn": "Bengali",
-    "mr": "Marathi",
-    "te": "Télougou",
-    "ta": "Tamoul",
-    "gu": "Gujarati",
-    "kn": "Kannada",
-    "pa": "Pendjabi",
-    "ml": "Malayalam",
-    "bho": "Bhojpuri",
-    "mai": "Maïthili",
-    "ne": "Népalais",
-    "si": "Cingalais",
-    "as": "Assamais",
-    "gom": "Konkani",
-    "sa": "Sanskrit",
-    "th": "Thaï",
-    "lo": "Lao",
-    "my": "Birman",
-    "ms": "Malais",
-    "fil": "Philippin (Tagalog)",
-    "jv": "Javanais",
-    "su": "Soundanais",
-    "ace": "Acehnais",
-    "pag": "Pangasinan",
-    "pam": "Kapampangan",
-    "ceb": "Cebuano",
-    "sw": "Swahili",
-    "ha": "Haoussa",
-    "am": "Amharique",
-    "ig": "Igbo",
-    "wo": "Wolof",
-    "xh": "Xhosa",
-    "zu": "Zoulou",
-    "af": "Afrikaans",
-    "om": "Oromo",
-    "st": "Sotho du sud",
-    "tn": "Tswana",
-    "ts": "Tsonga",
-    "mg": "Malgache",
-    "ln": "Lingala",
-    "ht": "Créole haïtien",
-    "qu": "Quechua",
-    "ay": "Aymara",
-    "gn": "Guarani",
-    "mi": "Maori"
-  },
   "CopyToClipboard": {
     "empty": "Contenu vide, rien à copier",
     "unsupported": "Navigateur non supporté, copiez manuellement",
@@ -347,10 +289,9 @@
     "failure": "Échec copie, copiez manuellement"
   },
   "NovelProcessor": {
+    "processFailed": "Échec du traitement",
     "description": "Conçu pour formatter les textes de romans web chinois, corrigeant les problèmes de mise en page des romans chinois téléchargés en un clic. Fonctionnalités : retours à la ligne intelligents, découpage en chapitres 第X章, indentation des paragraphes, conversion Traditionnel/Simplifié, suppression des lignes dupliquées et filtrage des contenus indésirables — pour transformer un texte brut en contenu propre et lisible.",
-    "errorNoInput": "Veuillez saisir ou coller le texte à traiter",
     "errorNoFile": "Veuillez télécharger un fichier à traiter",
-    "warningNoText": "Veuillez d'abord saisir ou coller du texte",
     "infoNoChapters": "Aucun titre de chapitre valide détecté, réorganisation impossible",
     "reorderComplete": "Réorganisation des chapitres terminée ({chapters} chapitres)",
     "textInput": "Saisie de texte",
@@ -364,7 +305,7 @@
     "chapterSplit": "Mettre les titres de chapitre sur leur propre ligne",
     "hintChapterSplit": "Déplace un titre de chapitre collé sur la même ligne que le corps du texte sur sa propre ligne",
     "mergeDuplicateChapterTitles": "Fusionner les titres de chapitre en double",
-    "hintMergeChapterTitles": "Lorsque le même titre de chapitre apparaît plus d'une fois, n'en garde qu'un seul",
+    "hintMergeChapterTitles": "Quand un titre de chapitre se répète, les fusionne en un seul et conserve automatiquement la version la plus complète",
     "removeDuplicates": "Supprimer les lignes dupliquées",
     "lineEndNumbers": "Supprimer les chiffres en fin de ligne",
     "hintLineEndNumbers": "Supprime les numéros de page ou chiffres isolés à la fin de chaque ligne",
@@ -404,7 +345,6 @@
     "deletedNRules": "{count} règle(s) supprimée(s)",
     "exportEmpty": "Aucune règle valide à exporter",
     "exportedNRules": "{count} règle(s) exportée(s)",
-    "fileReadFailed": "Échec de la lecture du fichier",
     "importNoRules": "Aucune règle valide trouvée dans le fichier (format OpenCC : chaque ligne clé[TAB]valeur)",
     "importedWithDedup": "{added} règle(s) importée(s) dans {direction}, {dedup} doublon(s) source supprimé(s) automatiquement",
     "imported": "{added} règle(s) importée(s) dans la direction {direction}",

@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "Xử lý tệp thất bại — kiểm tra mã hóa hoặc thử tệp khác",
+    "fileReadFailed": "Đọc tệp thất bại",
+    "unrecognizedLangCodes": "Mã ngôn ngữ không nhận dạng được: {codes}",
+    "ignoredLangCodes": "Đã bỏ qua các mã ngôn ngữ không nhận dạng được: {codes}",
+    "partialExportFailed": "Xuất một số ngôn ngữ thất bại: {items}",
     "userGuide": "Hướng Dẫn Sử Dụng",
     "privacyNotice": "Khóa API và dữ liệu của bạn chỉ được lưu trữ cục bộ trên trình duyệt để đảm bảo quyền riêng tư. Nếu có thắc mắc hoặc góp ý, vui lòng liên hệ qua cộng đồng hoặc trang phản hồi.",
     "dragAndDropText": "Nhấp hoặc kéo tệp vào đây để tải lên",
@@ -76,10 +81,8 @@
     "importSettingError": "Nhập thất bại, vui lòng thử lại",
     "removeCharsAfterTranslation": "Xóa ký tự sau khi dịch",
     "removeCharsAfterTranslationTooltip": "Tự động xóa các ký tự được chỉ định sau khi dịch (phân tách bằng dấu cách)",
-    "selectedLanguages": "Đã chọn",
     "search": "Tìm kiếm",
     "noMatches": "Không có công cụ phù hợp",
-    "selectAll": "Chọn tất cả",
     "clearAll": "Xóa tất cả",
     "cancel": "Hủy",
     "apply": "Áp dụng",
@@ -120,11 +123,10 @@
     "readOnlyModeTooltip": "Văn bản quá dài: trình soạn thảo tạm thời ở chế độ chỉ đọc và chỉ hiển thị bản xem trước một phần. Toàn bộ nội dung của bạn không bị ảnh hưởng — xử lý và xuất vẫn dùng toàn bộ văn bản.",
     "clearInputTooltip": "Xóa nội dung đã nhập và tệp đã tải lên",
     "fileExported": "Đã xuất tệp: {fileName}",
-    "exportSuccess": "Xuất thành công: {fileName}",
     "batchDownloaded": "Xử lý hoàn tất, tệp đã được tải xuống tự động",
     "sourceTextPlaceholder": "Nhập hoặc dán văn bản cần xử lý...",
     "smartLineBreak": "Xuống dòng thông minh",
-    "replaceText": "Thay thế văn bản",
+    "replaceText": "Thay thế văn bản ",
     "generateJson": "Tạo JSON",
     "gtxFreeAPIUnavailable": "Dịch vụ GTX Free tạm thời không kết nối được — có thể do hạn chế mạng. Vui lòng thử lại sau hoặc chuyển sang dịch vụ dịch khác.",
     "translategemmaUnavailable": "Dịch vụ TranslateGemma tạm thời không kết nối được, hãy đảm bảo máy chủ cục bộ của bạn (LM Studio / llama.cpp / Ollama) đang chạy và URL chính xác.",
@@ -147,6 +149,26 @@
     "relatedTools": "Công cụ liên quan"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "Dịch giả Phụ đề",
+      "description": "Dịch hàng loạt SRT, ASS, VTT, LRC. 120+ ngôn ngữ."
+    },
+    "jsonTranslate": {
+      "title": "Dịch giả JSON i18n",
+      "description": "Công cụ dịch JSON đa ngôn ngữ hiệu quả"
+    },
+    "mdTranslator": {
+      "title": "Dịch giả Markdown",
+      "description": "Dịch Markdown hàng loạt, giữ định dạng và mã"
+    },
+    "textSplitter": {
+      "title": "Bộ chia văn bản",
+      "description": "Chia văn bản dài thông minh cho AI và mạng xã hội"
+    },
+    "chineseConversion": {
+      "title": "Chuyển đổi Giản thể ↔ Phồn thể",
+      "description": "Chuyển đổi hàng loạt giữa giản thể, phồn thể Đài Loan, phồn thể Hồng Kông và chữ Nhật mới"
+    },
     "novelProcessor": {
       "title": "Trình định dạng tiểu thuyết mạng Trung Quốc",
       "description": "Sửa hàng loạt lỗi định dạng tiểu thuyết mạng Trung Quốc tải về, hỗ trợ ngắt dòng thông minh",
@@ -197,6 +219,50 @@
         "Xử lý tiểu thuyết hơn 3 triệu ký tự với tốc độ nhanh",
         "Tương thích với Kindle Send-to-Email, Kobo, Reavol và Moon+ Reader"
       ]
+    },
+    "textToolbox": {
+      "title": "Trợ lý văn bản Regex",
+      "description": "Tích hợp regex, sắp xếp, lọc và nhiều tính năng xử lý văn bản hàng loạt"
+    },
+    "dataBatch": {
+      "title": "Xử lý văn bản",
+      "description": "Xử lý dữ liệu Excel hàng loạt — loại bỏ trùng, trích xuất cột, hợp nhất văn bản, quy tắc nối tiếp"
+    },
+    "jsonValueExtractor": {
+      "title": "Trình trích xuất Giá trị JSON",
+      "description": "Trích xuất giá trị JSON hàng loạt, đầu ra có định dạng"
+    },
+    "jsonNodeEdit": {
+      "title": "Chỉnh sửa JSON Hàng loạt",
+      "description": "Chỉnh sửa nút JSON hàng loạt, tiền tố/hậu tố/thay thế"
+    },
+    "jsonValueTransformer": {
+      "title": "Trình ánh xạ Giá trị JSON",
+      "description": "Ánh xạ và di chuyển giá trị với JSONPath"
+    },
+    "jsonValueSwapper": {
+      "title": "Trình hoán đổi Giá trị JSON",
+      "description": "Hoán đổi giá trị hai trường bằng một cú nhấp chuột"
+    },
+    "jsonNodeInserter": {
+      "title": "Trình chèn Nút JSON",
+      "description": "Chèn nút mới tại vị trí được chỉ định hàng loạt"
+    },
+    "jsonSortClassify": {
+      "title": "Sắp xếp & Phân loại JSON",
+      "description": "Sắp xếp và nhóm mảng, quy tắc tùy chỉnh"
+    },
+    "jsonMatchUpdate": {
+      "title": "Cập nhật JSON Match",
+      "description": "Cập nhật hàng loạt dựa trên khớp trường"
+    },
+    "dataParserFlare": {
+      "title": "Trình chuyển đổi Flare",
+      "description": "Chuyển đổi bookmark trình duyệt và định dạng Flare"
+    },
+    "dataParserImgPrompt": {
+      "title": "Trình tạo dữ liệu IMGPrompt",
+      "description": "Tạo dữ liệu JSON IMGPrompt hàng loạt"
     }
   },
   "navigation": {
@@ -216,130 +282,6 @@
     "ogTitle": "ToolsByAI - Công Cụ Dev AI Miễn Phí & Mã Nguồn Mở",
     "ogDescription": "ToolsByAI: 17 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 25+ engine AI."
   },
-  "languages": {
-    "auto": "Tự động phát hiện",
-    "en": "Tiếng Anh",
-    "zh": "Tiếng Trung giản thể",
-    "zh-hant": "Tiếng Trung Phồn thể",
-    "es": "Tiếng Tây Ban Nha",
-    "fr": "Tiếng Pháp",
-    "de": "Tiếng Đức",
-    "ja": "Tiếng Nhật",
-    "ko": "Tiếng Hàn",
-    "hi": "Tiếng Hindi",
-    "ar": "Tiếng Ả Rập",
-    "ru": "Tiếng Nga",
-    "pt-br": "Tiếng Bồ Đào Nha (Brazil)",
-    "id": "Tiếng Indonesia",
-    "vi": "Tiếng Việt",
-    "it": "Tiếng Ý",
-    "yue": "Tiếng Quảng Đông",
-    "pl": "Tiếng Ba Lan",
-    "uk": "Tiếng Ukraina",
-    "nl": "Tiếng Hà Lan",
-    "ro": "Tiếng Rumani",
-    "el": "Tiếng Hy Lạp",
-    "hu": "Tiếng Hungary",
-    "sv": "Tiếng Thụy Điển",
-    "cs": "Tiếng Séc",
-    "pt-pt": "Tiếng Bồ Đào Nha (Bồ Đào Nha)",
-    "ca": "Tiếng Catalan",
-    "sr": "Tiếng Serbia",
-    "bg": "Tiếng Bulgaria",
-    "hy": "Tiếng Armenia",
-    "da": "Tiếng Đan Mạch",
-    "sq": "Tiếng Albania",
-    "fi": "Tiếng Phần Lan",
-    "nb": "Tiếng Na Uy (Bokmål)",
-    "sk": "Tiếng Slovak",
-    "hr": "Tiếng Croatia",
-    "be": "Tiếng Belarus",
-    "scn": "Tiếng Sicilia",
-    "ka": "Tiếng Gruzia",
-    "lmo": "Tiếng Lombard",
-    "lt": "Tiếng Litva",
-    "gl": "Tiếng Galicia",
-    "bs": "Tiếng Bosnia",
-    "sl": "Tiếng Slovenia",
-    "mk": "Tiếng Macedonia",
-    "lv": "Tiếng Latvia",
-    "et": "Tiếng Estonia",
-    "is": "Tiếng Iceland",
-    "mt": "Tiếng Malta",
-    "cy": "Tiếng Wales",
-    "ga": "Tiếng Ailen",
-    "br": "Tiếng Breton",
-    "eu": "Tiếng Basque",
-    "yi": "Tiếng Yiddish",
-    "lb": "Tiếng Luxembourg",
-    "oc": "Tiếng Occitan",
-    "an": "Tiếng Aragon",
-    "la": "Tiếng Latinh",
-    "eo": "Quốc tế ngữ",
-    "tr": "Tiếng Thổ Nhĩ Kỳ",
-    "he": "Tiếng Do Thái",
-    "fa": "Tiếng Ba Tư",
-    "ur": "Tiếng Urdu",
-    "ps": "Tiếng Pashto",
-    "prs": "Tiếng Dari",
-    "ckb": "Tiếng Kurd Trung",
-    "kmr": "Tiếng Kurd Bắc",
-    "uz": "Tiếng Uzbek",
-    "kk": "Tiếng Kazakh",
-    "ky": "Tiếng Kyrgyz",
-    "tk": "Tiếng Turkmen",
-    "az": "Tiếng Azerbaijan",
-    "tg": "Tiếng Tajikistan",
-    "mn": "Tiếng Mông Cổ",
-    "ba": "Tiếng Bashkir",
-    "tt": "Tiếng Tatar",
-    "ug": "Tiếng Duy Ngô Nhĩ",
-    "bn": "Tiếng Bengali",
-    "mr": "Tiếng Marathi",
-    "te": "Tiếng Telugu",
-    "ta": "Tiếng Tamil",
-    "gu": "Tiếng Gujarati",
-    "kn": "Tiếng Kannada",
-    "pa": "Tiếng Punjabi",
-    "ml": "Tiếng Malayalam",
-    "bho": "Tiếng Bhojpuri",
-    "mai": "Tiếng Maithili",
-    "ne": "Tiếng Nepal",
-    "si": "Tiếng Sinhala",
-    "as": "Tiếng Assam",
-    "gom": "Tiếng Konkani",
-    "sa": "Tiếng Phạn",
-    "th": "Tiếng Thái",
-    "lo": "Tiếng Lào",
-    "my": "Tiếng Miến Điện",
-    "ms": "Tiếng Mã Lai",
-    "fil": "Tiếng Philippines (Tagalog)",
-    "jv": "Tiếng Java",
-    "su": "Tiếng Sunda",
-    "ace": "Tiếng Aceh",
-    "pag": "Tiếng Pangasinan",
-    "pam": "Tiếng Kapampangan",
-    "ceb": "Tiếng Cebuano",
-    "sw": "Tiếng Swahili",
-    "ha": "Tiếng Hausa",
-    "am": "Tiếng Amharic",
-    "ig": "Tiếng Igbo",
-    "wo": "Tiếng Wolof",
-    "xh": "Tiếng Xhosa",
-    "zu": "Tiếng Zulu",
-    "af": "Tiếng Afrikaans",
-    "om": "Tiếng Oromo",
-    "st": "Tiếng Sotho Nam",
-    "tn": "Tiếng Tswana",
-    "ts": "Tiếng Tsonga",
-    "mg": "Tiếng Malagasy",
-    "ln": "Tiếng Lingala",
-    "ht": "Tiếng Creole Haiti",
-    "qu": "Tiếng Quechua",
-    "ay": "Tiếng Aymara",
-    "gn": "Tiếng Guarani",
-    "mi": "Tiếng Maori"
-  },
   "CopyToClipboard": {
     "empty": "Nội dung trống, không có gì để sao chép",
     "unsupported": "Trình duyệt không được hỗ trợ, vui lòng sao chép thủ công",
@@ -347,10 +289,9 @@
     "failure": "Sao chép thất bại, vui lòng sao chép thủ công"
   },
   "NovelProcessor": {
+    "processFailed": "Xử lý thất bại",
     "description": "Được thiết kế chuyên biệt để chỉnh lý văn bản tiểu thuyết mạng Trung Quốc, sửa hàng loạt lỗi định dạng của tiểu thuyết Trung Quốc tải về chỉ bằng một cú nhấp. Tích hợp ngắt dòng thông minh, chia chương 第X章, thụt đầu dòng, chuyển đổi phồn giản, xóa dòng trùng lặp, lọc nội dung rác, biến văn bản tiểu thuyết lộn xộn thành gọn gàng dễ đọc.",
-    "errorNoInput": "Vui lòng nhập hoặc dán văn bản cần xử lý",
     "errorNoFile": "Vui lòng tải lên file cần xử lý",
-    "warningNoText": "Vui lòng nhập hoặc dán văn bản trước",
     "infoNoChapters": "Không nhận diện được tiêu đề chương hợp lệ, không thể sắp xếp lại",
     "reorderComplete": "Sắp xếp lại chương hoàn tất (tổng {chapters} chương)",
     "textInput": "Nhập văn bản",
@@ -365,7 +306,7 @@
     "chapterGroup": "Xử lý chương",
     "hintChapterSplit": "Chuyển tiêu đề chương đang dính cùng dòng với nội dung sang dòng riêng",
     "chapterSplit": "Đặt tiêu đề chương trên dòng riêng",
-    "hintMergeChapterTitles": "Khi cùng một tiêu đề chương xuất hiện nhiều lần, chỉ giữ lại một",
+    "hintMergeChapterTitles": "Khi tiêu đề chương lặp lại, gộp chúng thành một và tự động giữ lại bản đầy đủ hơn",
     "hintLineEndNumbers": "Xóa số trang hoặc chữ số lạc ở cuối mỗi dòng",
     "lineEndNumbers": "Xóa số cuối dòng",
     "hintSpecialStart": "Các dòng bắt đầu bằng văn bản này sẽ không bị gộp vào đoạn trước",
@@ -404,7 +345,6 @@
     "deletedNRules": "Đã xóa {count} quy tắc",
     "exportEmpty": "Không có quy tắc hợp lệ để xuất",
     "exportedNRules": "Đã xuất {count} quy tắc",
-    "fileReadFailed": "Đọc file thất bại",
     "importNoRules": "Không tìm thấy quy tắc hợp lệ trong file (định dạng OpenCC: mỗi dòng key[TAB]value)",
     "importedWithDedup": "Đã nhập {added} mục vào {direction}, tự động loại bỏ {dedup} mục trùng nguồn",
     "imported": "Đã nhập {added} mục vào hướng {direction}",

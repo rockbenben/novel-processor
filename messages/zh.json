@@ -1,5 +1,10 @@
 {
   "common": {
+    "fileProcessFailed": "文件处理失败，请检查文件编码或换一个文件",
+    "fileReadFailed": "读取文件失败",
+    "unrecognizedLangCodes": "无法识别的语言代码：{codes}",
+    "ignoredLangCodes": "已忽略无法识别的语言代码：{codes}",
+    "partialExportFailed": "部分语言导出失败：{items}",
     "userGuide": "使用说明",
     "privacyNotice": "您的 API 密钥及数据仅存储在本地浏览器，确保隐私安全。如有问题或建议，欢迎通过社群或反馈页面联系我们。",
     "dragAndDropText": "点击或将文件拖拽至此上传",
@@ -82,10 +87,8 @@
     "importSettingError": "导入失败，请重试",
     "removeCharsAfterTranslation": "翻译后移除字符",
     "removeCharsAfterTranslationTooltip": "翻译完成后自动移除指定字符（多个用空格分隔）",
-    "selectedLanguages": "已选语言",
     "search": "搜索",
     "noMatches": "没有匹配的工具",
-    "selectAll": "全选",
     "clearAll": "清空",
     "cancel": "取消",
     "apply": "应用",
@@ -120,7 +123,6 @@
     "moreProviderSettings": "更多 Provider 设置",
     "clearInputTooltip": "清空输入内容和上传的文件",
     "fileExported": "已导出文件：{fileName}",
-    "exportSuccess": "导出成功：{fileName}",
     "batchDownloaded": "处理完成，文件已自动下载",
     "sourceTextPlaceholder": "请输入或粘贴待处理文本...",
     "smartLineBreak": "智能换行",
@@ -147,6 +149,26 @@
     "relatedTools": "相关工具"
   },
   "tools": {
+    "subtitleTranslator": {
+      "title": "字幕翻译器",
+      "description": "批量翻译 SRT、ASS、VTT、LRC 字幕，支持 120+ 语言"
+    },
+    "jsonTranslate": {
+      "title": "JSON 多语言翻译",
+      "description": "高效的多语言 JSON 翻译工具"
+    },
+    "mdTranslator": {
+      "title": "Markdown 翻译",
+      "description": "批量翻译 Markdown 文档，保留格式和代码"
+    },
+    "textSplitter": {
+      "title": "文本分割",
+      "description": "智能分割长文本，适用于 AI 输入和社交媒体"
+    },
+    "chineseConversion": {
+      "title": "简繁转换",
+      "description": "批量转换简体、台湾繁体、香港繁体和日本新字体"
+    },
     "novelProcessor": {
       "title": "小说排版整理",
       "description": "一键修复下载小说的格式问题，智能换行排版",
@@ -197,6 +219,50 @@
           "a": "100% 浏览器本地处理：小说文本读取、格式修复、繁简转换、导出全部在浏览器内完成，原文不上传任何服务器。源代码开源在 GitHub（rockbenben/novel-processor），可自部署。"
         }
       ]
+    },
+    "textToolbox": {
+      "title": "多功能文本处理",
+      "description": "集成正则匹配、排序、过滤等功能，进行文本批量处理"
+    },
+    "dataBatch": {
+      "title": "数据批处理",
+      "description": "Excel 表格批量去重、列提取、文本合并，多规则按序执行"
+    },
+    "jsonValueExtractor": {
+      "title": "JSON 字段值提取",
+      "description": "批量提取 JSON 字段值，支持格式化输出"
+    },
+    "jsonNodeEdit": {
+      "title": "JSON 节点批量编辑",
+      "description": "批量编辑 JSON 节点值，支持前后缀和替换"
+    },
+    "jsonValueTransformer": {
+      "title": "JSON 字段值映射",
+      "description": "字段值映射和迁移，支持 JSONPath 定位"
+    },
+    "jsonValueSwapper": {
+      "title": "JSON 键值互换",
+      "description": "一键交换两个字段的值"
+    },
+    "jsonNodeInserter": {
+      "title": "JSON 节点批量插入",
+      "description": "在指定位置批量插入新节点"
+    },
+    "jsonSortClassify": {
+      "title": "JSON 排序分组",
+      "description": "数组排序和分组，支持自定义规则"
+    },
+    "jsonMatchUpdate": {
+      "title": "JSON 匹配更新",
+      "description": "根据字段匹配批量更新数据"
+    },
+    "dataParserFlare": {
+      "title": "Flare 书签转换",
+      "description": "浏览器书签与 Flare 格式互转"
+    },
+    "dataParserImgPrompt": {
+      "title": "IMGPrompt 数据生成",
+      "description": "批量生成 IMGPrompt JSON 数据"
     }
   },
   "navigation": {
@@ -215,130 +281,6 @@
     "homeDescription": "20+ 实用工具，涵盖多语言翻译、文本处理、JSON 编辑和数据转换，助力开发者和创作者提升效率。",
     "ogTitle": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
     "ogDescription": "ToolsByAI 集合 17 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。"
-  },
-  "languages": {
-    "auto": "自动检测",
-    "en": "英语",
-    "zh": "中文",
-    "zh-hant": "繁体中文",
-    "es": "西班牙语",
-    "fr": "法语",
-    "de": "德语",
-    "ja": "日语",
-    "ko": "韩语",
-    "hi": "印地语",
-    "ar": "阿拉伯语",
-    "ru": "俄语",
-    "pt-br": "葡萄牙语（巴西）",
-    "id": "印尼语",
-    "vi": "越南语",
-    "it": "意大利语",
-    "yue": "粤语",
-    "pl": "波兰语",
-    "uk": "乌克兰语",
-    "nl": "荷兰语",
-    "ro": "罗马尼亚语",
-    "el": "希腊语",
-    "hu": "匈牙利语",
-    "sv": "瑞典语",
-    "cs": "捷克语",
-    "pt-pt": "葡萄牙语（葡萄牙）",
-    "ca": "加泰罗尼亚语",
-    "sr": "塞尔维亚语",
-    "bg": "保加利亚语",
-    "hy": "亚美尼亚语",
-    "da": "丹麦语",
-    "sq": "阿尔巴尼亚语",
-    "fi": "芬兰语",
-    "nb": "挪威语",
-    "sk": "斯洛伐克语",
-    "hr": "克罗地亚语",
-    "be": "白俄罗斯语",
-    "scn": "西西里语",
-    "ka": "格鲁吉亚语",
-    "lmo": "伦巴第语",
-    "lt": "立陶宛语",
-    "gl": "加利西亚语",
-    "bs": "波斯尼亚语",
-    "sl": "斯洛文尼亚语",
-    "mk": "马其顿语",
-    "lv": "拉脱维亚语",
-    "et": "爱沙尼亚语",
-    "is": "冰岛语",
-    "mt": "马耳他语",
-    "cy": "威尔士语",
-    "ga": "爱尔兰语",
-    "br": "布列塔尼语",
-    "eu": "巴斯克语",
-    "yi": "意第绪语",
-    "lb": "卢森堡语",
-    "oc": "奥克语",
-    "an": "阿拉贡语",
-    "la": "拉丁语",
-    "eo": "世界语",
-    "tr": "土耳其语",
-    "he": "希伯来语",
-    "fa": "波斯语",
-    "ur": "乌尔都语",
-    "ps": "普什图语",
-    "prs": "达里语",
-    "ckb": "中库尔德语",
-    "kmr": "北库尔德语",
-    "uz": "乌兹别克语",
-    "kk": "哈萨克语",
-    "ky": "吉尔吉斯语",
-    "tk": "土库曼语",
-    "az": "阿塞拜疆语",
-    "tg": "塔吉克语",
-    "mn": "蒙古语",
-    "ba": "巴什基尔语",
-    "tt": "鞑靼语",
-    "ug": "维吾尔语",
-    "bn": "孟加拉语",
-    "mr": "马拉地语",
-    "te": "泰卢固语",
-    "ta": "泰米尔语",
-    "gu": "古吉拉特语",
-    "kn": "卡纳达语",
-    "pa": "旁遮普语",
-    "ml": "马拉雅拉姆语",
-    "bho": "博杰普尔语",
-    "mai": "迈蒂利语",
-    "ne": "尼泊尔语",
-    "si": "僧伽罗语",
-    "as": "阿萨姆语",
-    "gom": "孔卡尼语",
-    "sa": "梵语",
-    "th": "泰语",
-    "lo": "老挝语",
-    "my": "缅甸语",
-    "ms": "马来语",
-    "fil": "菲律宾语(塔加拉语)",
-    "jv": "爪哇语",
-    "su": "巽他语",
-    "ace": "亚齐语",
-    "pag": "邦阿西楠语",
-    "pam": "邦板牙语",
-    "ceb": "宿务语",
-    "sw": "斯瓦希里语",
-    "ha": "豪萨语",
-    "am": "阿姆哈拉语",
-    "ig": "伊博语",
-    "wo": "沃洛夫语",
-    "xh": "科萨语",
-    "zu": "祖鲁语",
-    "af": "南非荷兰语",
-    "om": "奥罗莫语",
-    "st": "南索托语",
-    "tn": "茨瓦纳语",
-    "ts": "聪加语",
-    "mg": "马拉加西语",
-    "ln": "林加拉语",
-    "ht": "海地克里奥尔语",
-    "qu": "克丘亚语",
-    "ay": "艾马拉语",
-    "gn": "瓜拉尼语",
-    "mi": "毛利语"
   },
   "CopyToClipboard": {
     "empty": "内容为空，无需复制",
@@ -361,7 +303,6 @@
     "deletedNRules": "已删除 {count} 条规则",
     "exportEmpty": "无有效规则可导出",
     "exportedNRules": "已导出 {count} 条规则",
-    "fileReadFailed": "读取文件失败",
     "importNoRules": "文件中未发现有效规则（OpenCC 格式：每行 key[TAB]value）",
     "importedWithDedup": "已导入 {added} 条到 {direction}，自动去除 {dedup} 条同源重复",
     "imported": "已导入 {added} 条到 {direction} 方向",
@@ -398,10 +339,9 @@
     "manageRules": "管理规则"
   },
   "NovelProcessor": {
+    "processFailed": "处理失败",
     "description": "专为网络小说文本整理设计，一键修复下载小说的格式问题。集成智能换行、章节分割、段落缩进、繁简转换、删除重复行、垃圾内容过滤等功能，让杂乱的小说文本变得整齐易读。",
-    "errorNoInput": "请输入或粘贴待处理文本",
     "errorNoFile": "请上传要处理的文件",
-    "warningNoText": "请先输入或粘贴文本",
     "infoNoChapters": "未识别到有效章节标题，无法重排",
     "reorderComplete": "章节重排完成（共 {chapters} 章）",
     "textInput": "文本输入",
@@ -415,7 +355,7 @@
     "chapterSplit": "章节标题分行",
     "hintChapterSplit": "把和正文粘在一行的「第X章」拆成独立行",
     "mergeDuplicateChapterTitles": "合并重复章节标题",
-    "hintMergeChapterTitles": "同一章标题重复出现时，只保留一个",
+    "hintMergeChapterTitles": "同一章标题重复出现时合并为一条，自动保留更完整的那条",
     "removeDuplicates": "去除重复行",
     "lineEndNumbers": "清除行尾数字",
     "hintLineEndNumbers": "删除每行末尾多余的页码或数字",
