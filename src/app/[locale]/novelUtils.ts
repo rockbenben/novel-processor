@@ -192,8 +192,8 @@ export const stripNovelArtifacts = (text: string): string => {
   // 重复空行压缩交给主流程
 };
 
-// 合并"同章标题 / 单行 / 同章标题"：删除中间行，保留较长（更完整）的标题，等长留靠前者。
-// 在"去空行后"的序列上判断（忽略空行），贪心吸收链式重复。
+// 合并同章重复标题：相邻（"同章标题 / 同章标题"）或隔一行（"同章标题 / 单行 / 同章标题"）两种形态，
+// 删除多余行，保留较长（更完整）的标题，等长留靠前者。在"去空行后"的序列上判断（忽略空行），贪心吸收链式重复。
 export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
   const nonEmpty = lines.map((l, i) => ({ l, i })).filter(({ l }) => l.trim());
   const drop = new Set<number>();
@@ -212,8 +212,17 @@ export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
     let keepIdx = nonEmpty[p].i;
     let keepText = nonEmpty[p].l;
     let q = p;
-    while (q + 2 < nonEmpty.length && !isTitleLine(nonEmpty[q + 1].l) && isTitleLine(nonEmpty[q + 2].l) && isSameChapter(keepText, nonEmpty[q + 2].l)) {
-      const next = nonEmpty[q + 2];
+    for (;;) {
+      // 找下一个「同章重复标题」：gap=0 相邻（中间仅空行，已被过滤）；或 gap=1（同章标题 / 一行内容 / 同章标题）。
+      // 相邻情形覆盖「半角() 与 全角（） 等仅标点宽度不同」的同章标题——它们逃过精确比较的 dedupeAdjacentLines，靠 isSameChapter 识别。
+      let nextPos: number | null = null;
+      if (q + 1 < nonEmpty.length && isTitleLine(nonEmpty[q + 1].l) && isSameChapter(keepText, nonEmpty[q + 1].l)) {
+        nextPos = q + 1;
+      } else if (q + 2 < nonEmpty.length && !isTitleLine(nonEmpty[q + 1].l) && isTitleLine(nonEmpty[q + 2].l) && isSameChapter(keepText, nonEmpty[q + 2].l)) {
+        nextPos = q + 2;
+      }
+      if (nextPos === null) break;
+      const next = nonEmpty[nextPos];
       if (next.l.trim().length > keepText.trim().length) {
         // 新标题更长：淘汰旧标题及其到新标题之间的所有行，保留新标题
         dropRange(keepIdx, next.i, next.i);
@@ -223,7 +232,7 @@ export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
         // 旧标题更长或等长：淘汰中间行到新标题之间的所有行，保留旧标题
         dropRange(keepIdx + 1, next.i, keepIdx);
       }
-      q += 2;
+      q = nextPos;
     }
     p = q + 1;
   }

@@ -34,7 +34,8 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
 
   const handleUpdate = (idx: number, field: "from" | "to", val: string) => {
     const { sanitized } = rm.updateRule(idx, field, val);
-    if (sanitized) message.warning(t("puaSanitized"));
+    // Keyed: editing several cells in a row collapses repeats into one toast.
+    if (sanitized) message.warning({ content: t("puaSanitized"), key: "pua-sanitized" });
   };
 
   const handleClearAll = () => {
@@ -48,15 +49,19 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
     message.success(t("deletedNRules", { count }));
   };
 
-  const writeExport = (rules: ProtectedRule[], suffix: string) => {
+  const writeExport = async (rules: ProtectedRule[], suffix: string) => {
     const lines = rules.map((r) => `${r.from}\t${r.to}`);
     if (lines.length === 0) {
       message.warning(t("exportEmpty"));
       return;
     }
     const header = `# js-opencc protected dictionary (${rm.activeKey} direction)\n# Format: <key><TAB><value>\n# Exported from chinese-conversion tool\n\n`;
-    downloadFile(header + lines.join("\n") + "\n", `protected_${rm.activeKey}${suffix}.txt`);
-    message.success(t("exportedNRules", { count: lines.length }));
+    try {
+      await downloadFile(header + lines.join("\n") + "\n", `protected_${rm.activeKey}${suffix}.txt`);
+      message.success(t("exportedNRules", { count: lines.length }));
+    } catch {
+      message.error(tCommon("exportSettingError"));
+    }
   };
 
   const handleExportAll = () => {
@@ -78,7 +83,7 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
     reader.onload = (e) => {
       const text = e.target?.result;
       if (typeof text !== "string") {
-        message.error(t("fileReadFailed"));
+        message.error(tCommon("fileReadFailed"));
         return;
       }
       const parsed = parseOpenCCDict(text);
@@ -94,7 +99,7 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
         message.success(t("imported", { added, direction: directionLabel }));
       }
     };
-    reader.onerror = () => message.error(t("fileReadFailed"));
+    reader.onerror = () => message.error(tCommon("fileReadFailed"));
     reader.readAsText(file);
   };
 

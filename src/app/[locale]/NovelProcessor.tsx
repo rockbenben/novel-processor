@@ -87,6 +87,9 @@ const NovelProcessor = () => {
   } = useFileUpload();
   const [result, setResult] = useState("");
   const [directExport, setDirectExport] = useState(false);
+  // Processing is async (cold js-opencc load + formatNovelText) and isn't covered by the
+  // file-reading Spin — track it so the process button shows progress and blocks re-clicks.
+  const [processing, setProcessing] = useState(false);
 
   const sourceStats = useTextStats(sourceText);
   const resultStats = useTextStats(result);
@@ -100,54 +103,64 @@ const NovelProcessor = () => {
   const handleExportFile = (text: string) => {
     const uploadFileName = multipleFiles[0]?.name;
     const fileName = uploadFileName || "novel.txt";
-    downloadFile(text, fileName);
-    return fileName;
+    void downloadFile(text, fileName);
+    message.success(tCommon("fileExported", { fileName }));
   };
 
-  const handleNovelProcessing = async (sourceText: string, fileName?: string) => {
+  const handleNovelProcessing = async (sourceText: string, fileName?: string): Promise<boolean> => {
     setResult("");
     if (!sourceText.trim()) {
-      message.error(t("errorNoInput"));
-      return;
+      message.warning(tCommon("noSourceText"));
+      return false;
     }
-    let processedInput = sourceText;
+    // Guard the whole async pipeline: createConverter lazy-loads js-opencc, formatNovelText
+    // and downloadFile can all throw. Without this an error vanished silently (single mode)
+    // or hung the multi-file loop (the resolve() below was skipped). Surface the real cause.
+    try {
+      let processedInput = sourceText;
 
-    if (conversionMode === "t2s" || conversionMode === "s2t") {
-      const direction = conversionMode;
-      const rules = enableProtectedRules ? (direction === "s2t" ? s2tRules : t2sRules) : [];
-      const protectedDict: string[][] = rules.filter((r) => r.from && r.to).map((r) => [r.from, r.to]);
-      const fromTo = direction === "t2s" ? ({ from: "tw" as const, to: "cn" as const }) : ({ from: "cn" as const, to: "tw" as const });
-      const converter = await createConverter(fromTo, protectedDict.length > 0 ? protectedDict : undefined);
-      processedInput = converter(processedInput);
+      if (conversionMode === "t2s" || conversionMode === "s2t") {
+        const direction = conversionMode;
+        const rules = enableProtectedRules ? (direction === "s2t" ? s2tRules : t2sRules) : [];
+        const protectedDict: string[][] = rules.filter((r) => r.from && r.to).map((r) => [r.from, r.to]);
+        const fromTo = direction === "t2s" ? ({ from: "tw" as const, to: "cn" as const }) : ({ from: "cn" as const, to: "tw" as const });
+        const converter = await createConverter(fromTo, protectedDict.length > 0 ? protectedDict : undefined);
+        processedInput = converter(processedInput);
+      }
+
+      processedInput = await formatNovelText(processedInput, {
+        enableChapterSplit,
+        filterText,
+        maxFilterLineLength,
+        enableLineEndNumbers,
+        enableParagraphSplit,
+        smartLineBreak,
+        enableTrim,
+        mergeDuplicateChapterTitles,
+        removeDuplicateLines,
+        enableIndent,
+        specialStart,
+      });
+
+      if (fileName) {
+        await downloadFile(processedInput, fileName);
+        return true;
+      }
+
+      if (directExport) {
+        handleExportFile(processedInput);
+        return true;
+      }
+
+      setResult(processedInput);
+      copyToClipboard(processedInput);
+      return true;
+    } catch (error) {
+      console.error("小说处理失败:", error);
+      const detail = error instanceof Error ? error.message : String(error);
+      message.error(detail ? `${t("processFailed")}: ${detail}` : t("processFailed"), 10);
+      return false;
     }
-
-    processedInput = await formatNovelText(processedInput, {
-      enableChapterSplit,
-      filterText,
-      maxFilterLineLength,
-      enableLineEndNumbers,
-      enableParagraphSplit,
-      smartLineBreak,
-      enableTrim,
-      mergeDuplicateChapterTitles,
-      removeDuplicateLines,
-      enableIndent,
-      specialStart,
-    });
-
-    if (fileName) {
-      await downloadFile(processedInput, fileName);
-      return;
-    }
-
-    if (directExport) {
-      const dfileName = handleExportFile(processedInput);
-      message.success(tCommon("exportSuccess", { fileName: dfileName }));
-      return;
-    }
-
-    setResult(processedInput);
-    copyToClipboard(processedInput);
   };
 
   const handleMultipleProcess = async () => {
@@ -156,24 +169,48 @@ const NovelProcessor = () => {
       return;
     }
 
+    const results: boolean[] = [];
     for (let i = 0; i < multipleFiles.length; i++) {
       const currentFile = multipleFiles[i];
       await new Promise<void>((resolve) => {
-        readFile(currentFile, async (text) => {
-          await handleNovelProcessing(text, currentFile.name);
-          resolve();
-        });
+        readFile(
+          currentFile,
+          async (text) => {
+            // Always resolve, even if processing throws, so one bad file can't hang the loop.
+            try {
+              results.push(await handleNovelProcessing(text, currentFile.name));
+            } finally {
+              resolve();
+            }
+          },
+          // Decode/read failure: count it as a failed file and unblock the loop.
+          () => {
+            results.push(false);
+            resolve();
+          }
+        );
       });
     }
 
-    message.success(tCommon("batchDownloaded"), 10);
+    // Only claim success when every file processed+downloaded; per-file failures already
+    // fired their own error toast, so a flat "batchDownloaded" would contradict them.
+    if (results.length === multipleFiles.length && results.every(Boolean)) {
+      message.success(tCommon("batchDownloaded"), 10);
+    } else {
+      message.error(t("processFailed"), 10);
+    }
   };
 
-  const handleProcess = () => {
-    if (uploadMode === "single") {
-      handleNovelProcessing(sourceText);
-    } else {
-      handleMultipleProcess();
+  const handleProcess = async () => {
+    setProcessing(true);
+    try {
+      if (uploadMode === "single") {
+        await handleNovelProcessing(sourceText);
+      } else {
+        await handleMultipleProcess();
+      }
+    } finally {
+      setProcessing(false);
     }
   };
 
@@ -182,7 +219,7 @@ const NovelProcessor = () => {
     const text = sourceText || "";
     const lines = splitTextIntoLines(text);
     if (lines.length === 0) {
-      message.warning(t("warningNoText"));
+      message.warning(tCommon("noSourceText"));
       return;
     }
     const { output, chapters } = reorderChaptersByTitle(text);
@@ -254,7 +291,7 @@ const NovelProcessor = () => {
               </Flex>
             </PageCard>
 
-            <Button type="primary" size="large" onClick={handleProcess} block icon={<PlayCircleOutlined />}>
+            <Button type="primary" size="large" loading={processing} onClick={handleProcess} block icon={<PlayCircleOutlined />}>
               {tCommon("startProcess")}
             </Button>
             <Flex gap="small">
@@ -284,10 +321,7 @@ const NovelProcessor = () => {
                 stats={resultStats}
                 onChange={setResult}
                 onCopy={() => copyToClipboard(result)}
-                onExport={() => {
-                  const fileName = handleExportFile(result);
-                  message.success(tCommon("fileExported", { fileName }));
-                }}
+                onExport={() => handleExportFile(result)}
                 rows={12}
               />
             )}
