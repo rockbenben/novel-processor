@@ -113,6 +113,7 @@
     "apiStatusTesting": "Testando",
     "apiStatusConnected": "✓ Conectado",
     "apiStatusFailed": "Falha na conexão",
+    "apiStatusTimeout": "Tempo de conexão esgotado",
     "testConnection": "Testar conexão",
     "moreProviderSettings": "Mais configurações do Provider",
     "format": "Formatar",
@@ -184,7 +185,7 @@
           "a": "O TXT processado é compatível com Kindle (Send-to-Kindle), Kobo, FBReader e outros leitores. Ao ativar «Divisão de Capítulos», o Kindle gera o índice automaticamente. Para Kobo e similares, converta para EPUB com o Calibre antes de importar para melhor experiência de índice. Usuários de TTS podem ativar «Remover Duplicatas» + «Filtro de Conteúdo» para evitar a leitura de anúncios."
         },
         {
-          "q": "Meu romance está em chinês tradicional (Taiwan/HK) e quero simplificado — ou quero manter nomes específicos sem…",
+          "q": "Meu romance web está em chinês tradicional (Taiwan/Hong Kong) e quero lê-lo em simplificado, ou quero que nomes de pessoas e lugares não sejam convertidos por engano. O que fazer?",
           "a": "Esta ferramenta inclui uma regra Tradicional ↔ Simplificado que você pode ativar durante a formatação. Para controle mais fino — um dicionário de palavras protegidas (nomes, lugares, terminologia) e conversão entre Tradicional Taiwan ↔ Tradicional Hong Kong ↔ Shinjitai japonês — encadeie com o [Conversor Chinês](../chinese-conversion); ambas as ferramentas compartilham o mesmo formato de palavras protegidas. Para busca/substituição por regex, extração de capítulos ou filtragem de palavras sensíveis, o [Manipulador de Texto](../text-toolbox) fecha o ciclo."
         },
         {
@@ -203,17 +204,17 @@
         },
         {
           "name": "Configurar combinações de regras de reparo",
-          "text": "Marque as regras necessárias: quebras de linha inteligentes (reparar parágrafos mal cortados), divisão em capítulos (linha em branco antes de cada capítulo), recuo de primeira linha (2 caracteres), remoção de linhas duplicadas (limpar anúncios), conversão tradicional-para-simplificado, filtro…"
+          "text": "Marque as regras necessárias: quebras de linha inteligentes (repara parágrafos cortados por engano), divisão em capítulos (linha em branco antes de cada capítulo), recuo de primeira linha (2 caracteres), remoção de linhas duplicadas (limpa anúncios), conversão entre chinês tradicional e simplificado e filtro de conteúdo lixo. As regras podem ser combinadas ou ativadas individualmente."
         },
         {
           "name": "Exportar TXT amigável para leitor",
-          "text": "Envie a exportação diretamente para Kindle via Send-to-Kindle, ou importe localmente no Kobo, FBReader ou Moon+ Reader. Com a divisão em capítulos ativada, o Kindle gera automaticamente um sumário. Para Kobo ou outros leitores, converta primeiro para EPUB via Calibre para a melhor experiência…"
+          "text": "Após a exportação, você pode enviar o arquivo diretamente para o Kindle pelo e-mail Send-to-Kindle, ou importá-lo localmente no WeChat Reading, iReader ou Moon+ Reader. Com a divisão em capítulos ativada, o Kindle gera automaticamente o sumário. Para o WeChat Reading, recomenda-se converter antes para EPUB com o Calibre para obter a melhor experiência de sumário."
         }
       ],
       "features": [
         "Corrige 7 problemas comuns de formato em arquivos TXT de web novels (downloads, cópia web, exportações Word)",
         "Detecta automaticamente títulos de capítulo como 「第X章」 ou Chapter X e os divide",
-        "Detecção de linhas duplicadas adjacentes — linhas consecutivas idênticas (p. ex. banners publicitários…",
+        "Detecção de linhas duplicadas adjacentes (linhas consecutivas idênticas são removidas, p. ex. banners publicitários repetidos)",
         "Recuo de primeira linha (2 caracteres), remove linhas em branco excedentes, repara linhas curtas mal cortadas",
         "Conversão tradicional-para-simplificado, normalização de espaços de largura total/meia",
         "Processa romances com mais de 3 milhões de caracteres com processamento rápido",

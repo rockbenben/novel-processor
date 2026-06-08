@@ -113,6 +113,7 @@
     "apiStatusTesting": "Đang kiểm tra",
     "apiStatusConnected": "✓ Đã kết nối",
     "apiStatusFailed": "Kết nối thất bại",
+    "apiStatusTimeout": "Hết thời gian kết nối",
     "testConnection": "Kiểm tra kết nối",
     "moreProviderSettings": "Thêm cài đặt Provider",
     "format": "Định dạng",
@@ -184,7 +185,7 @@
           "a": "TXT đã xử lý đáp ứng yêu cầu định dạng của Kindle (Send-to-Kindle), Reavol, Kobo và FBReader. Bật \"Tách chương\" để Kindle tự động tạo mục lục. Với Reavol hoặc Kobo, chuyển sang EPUB qua Calibre trước khi nhập để có trải nghiệm mục lục tốt nhất. Người dùng TTS có thể bật \"Xóa trùng lặp\" và \"Lọc rác\" để tránh đọc quảng cáo."
         },
         {
-          "q": "Tiểu thuyết của tôi là Phồn thể (Đài Loan/HK) và muốn Giản thể, hoặc muốn giữ một số tên không bị chuyển. Quy…",
+          "q": "Tiểu thuyết mạng của tôi là bản Phồn thể (Đài Loan/Hồng Kông), muốn chuyển sang Giản thể để đọc, hoặc muốn giữ nguyên tên người, địa danh không bị chuyển đổi sai thì làm thế nào?",
           "a": "Công cụ này có quy tắc Phồn ↔ Giản bạn có thể bật khi định dạng. Để kiểm soát tinh tế hơn — từ điển từ được bảo vệ (tên người, địa danh, thuật ngữ) và chuyển giữa Phồn Đài Loan ↔ Phồn Hong Kong ↔ Shinjitai Nhật — nối tiếp với [Chuyển Đổi Chữ Hán](../chinese-conversion); cả hai công cụ chia sẻ cùng định dạng từ bảo vệ. Để thêm tìm/thay regex, trích xuất chương hoặc lọc từ nhạy cảm, [Hộp Công Cụ Văn Bản](../text-toolbox) hoàn tất chu trình."
         },
         {
@@ -382,7 +383,7 @@
   },
   "feedback": {
     "feedback1": "Phản hồi & Gợi ý",
-    "feedback2": "Nếu bạn gặp vấn đề hoặc có gợi ý, hãy cho tôi biết!Phản hồi của bạn ảnh hưởng đến sự phát triển trong tương lai và giúp chúng tôi tạo ra các công cụ tốt h…",
+    "feedback2": "Nếu bạn gặp vấn đề trong quá trình sử dụng, hoặc có bất kỳ góp ý và ý tưởng nào, hãy cho tôi biết bất cứ lúc nào! Phản hồi của bạn sẽ ảnh hưởng trực tiếp đến việc phát triển và cải tiến các tính năng trong tương lai, giúp chúng tôi cùng nhau xây dựng những công cụ phù hợp hơn với nhu cầu của mọi người.",
     "feedback3": "Mô tả trường hợp sử dụng, vấn đề hoặc ý tưởng của bạn. Tôi đọc từng tin nhắn và sẽ phản hồi/tối ưu hóa sớm nhất có thể.",
     "reaction0": "Thích",
     "reaction1": "Ủng hộ",

@@ -113,6 +113,7 @@
     "apiStatusTesting": "Test ediliyor",
     "apiStatusConnected": "✓ Bağlandı",
     "apiStatusFailed": "Bağlantı başarısız",
+    "apiStatusTimeout": "Bağlantı zaman aşımına uğradı",
     "testConnection": "Bağlantıyı test et",
     "moreProviderSettings": "Daha fazla Provider ayarı",
     "format": "Biçimlendir",
@@ -184,7 +185,7 @@
           "a": "İşlenen TXT, Kindle (Send-to-Kindle), Kobo ve FBReader format gereksinimlerini karşılar. 'Bölüm bölme' etkinleştirildiğinde Kindle otomatik olarak içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için Calibre ile önce EPUB'a dönüştürmenizi öneririz. TTS kullanıcıları reklam okumalarını önlemek için 'Yinelenenleri Kaldır' ve 'Spam Filtresi'ni etkinleştirebilir."
         },
         {
-          "q": "Romanım Geleneksel Çince (Tayvan/HK) ve Basitleştirilmiş istiyorum — ya da belirli isimlerin dönüştürülmesini…",
+          "q": "Web romanım Geleneksel Çince (Tayvan/HK) ve Basitleştirilmiş Çince olarak okumak istiyorum — ya da kişi ve yer adlarının yanlış dönüştürülmesini önlemek istiyorum, ne yapmalıyım?",
           "a": "Bu araç biçimleme sırasında etkinleştirebileceğiniz bir Geleneksel ↔ Basitleştirilmiş kuralı içerir. Daha ince kontrol için — korunan kelime sözlüğü (isimler, yerler, terminoloji) ve Tayvan Geleneksel ↔ Hong Kong Geleneksel ↔ Japon Shinjitai arası dönüşüm — [Çince Dönüştürücü](../chinese-conversion) ile zincirleyin; her iki araç aynı korunan kelime biçimini paylaşır. Daha fazla regex bul/değiştir, bölüm ayıklama veya hassas kelime filtreleme için [Metin Araç Kutusu](../text-toolbox) döngüyü kapatır."
         },
         {
@@ -203,15 +204,15 @@
         },
         {
           "name": "Onarım kuralı kombinasyonlarını yapılandırın",
-          "text": "İhtiyaç duyduğunuz kuralları işaretleyin: akıllı satır sonları (yanlış bölünmüş paragrafları onar), bölüm bölme (her bölümden önce boş satır), ilk satır girintisi (2 karakter), yinelenen satır kaldırma (reklamları temizle), Geleneksel'den Basitleştirilmiş'e dönüşüm, gereksiz içerik filtresi.…"
+          "text": "İhtiyaç duyduğunuz kuralları işaretleyin: akıllı satır sonları (yanlış bölünmüş paragrafları onarır), bölüm bölme (her bölümden önce boş satır), ilk satır girintisi (2 karakter), yinelenen satır kaldırma (reklamları temizler), Geleneksel'den Basitleştirilmiş'e dönüşüm, gereksiz içerik filtresi. Kurallar birlikte uygulanabilir veya tek tek etkinleştirilebilir."
         },
         {
           "name": "Okuyucu dostu TXT dışa aktarın",
-          "text": "Dışa aktarımı Send-to-Kindle aracılığıyla doğrudan Kindle'a gönderin veya Kobo, FBReader veya Moon+ Reader'a yerel olarak içe aktarın. Bölüm bölme etkinken Kindle otomatik olarak bir içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için en iyi TOC deneyimi için önce Calibre aracılığıyla…"
+          "text": "Dışa aktarımı Send-to-Kindle aracılığıyla doğrudan Kindle'a gönderin veya Kobo, FBReader ya da Moon+ Reader'a yerel olarak içe aktarın. Bölüm bölme etkinken Kindle otomatik olarak bir içindekiler tablosu oluşturur. Kobo veya diğer okuyucularda en iyi içindekiler deneyimi için önce Calibre aracılığıyla EPUB'a dönüştürün."
         }
       ],
       "features": [
-        "Web romanı TXT dosyalarındaki 7 yaygın biçim sorununu düzeltir (indirmeler, web kopya-yapıştır, Word dışa…",
+        "Web romanı TXT dosyalarındaki 7 yaygın biçim sorununu düzeltir (indirilen dosyalar, web kopyala-yapıştır ve Word dışa aktarımları için geçerlidir)",
         "「第X章」 veya Chapter X gibi bölüm başlıklarını otomatik algılar ve böler",
         "Bitişik yinelenen satır algılama — özdeş ardışık satırlar (örn. tekrarlanan reklam afişleri) kaldırılır",
         "İlk satır girintisi (2 karakter), fazla boş satırları kaldırır, yanlış bölünmüş kısa satırları onarır",
@@ -382,7 +383,7 @@
   },
   "feedback": {
     "feedback1": "Geri Bildirim & Öneriler",
-    "feedback2": "Sorun yaşarsanız veya önerileriniz varsa, bana bildirin!Geri bildiriminiz gelecekteki geliştirmeleri etkiler ve daha iyi araçlar oluşturmamıza yardımcı ol…",
+    "feedback2": "Kullanım sırasında bir sorunla karşılaşırsanız veya herhangi bir öneriniz ya da fikriniz varsa, lütfen bana bildirin! Geri bildiriminiz gelecekteki özelliklerin geliştirilmesini ve iyileştirilmesini doğrudan etkiler ve herkesin ihtiyaçlarına daha uygun araçlar oluşturmamıza yardımcı olur.",
     "feedback3": "Kullanım durumunuzu, sorunu veya fikri açıklayın. Her mesajı okuyorum ve en kısa sürede yanıtlayacağım/optimize edeceğim.",
     "reaction0": "Beğen",
     "reaction1": "Destek",

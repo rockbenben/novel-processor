@@ -113,6 +113,7 @@
     "apiStatusTesting": "테스트 중",
     "apiStatusConnected": "✓ 연결됨",
     "apiStatusFailed": "연결 실패",
+    "apiStatusTimeout": "연결 시간 초과",
     "testConnection": "연결 테스트",
     "moreProviderSettings": "더 많은 Provider 설정",
     "format": "포맷",

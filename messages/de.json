@@ -126,6 +126,7 @@
     "apiStatusTesting": "Teste",
     "apiStatusConnected": "✓ Verbunden",
     "apiStatusFailed": "Verbindung fehlgeschlagen",
+    "apiStatusTimeout": "Zeitüberschreitung der Verbindung",
     "testConnection": "Verbindung testen",
     "moreProviderSettings": "Weitere Provider-Einstellungen",
     "gtxFreeAPIUnavailable": "Der GTX Free-Dienst ist vorübergehend nicht erreichbar — möglicherweise eine Netzwerkbeschränkung. Versuche es später erneut oder wechsle zu einem anderen Übersetzungsdienst.",
@@ -184,7 +185,7 @@
           "a": "Verarbeitete TXT erfüllt die Formatanforderungen von Kindle (Send-to-Kindle), Tolino, Kobo und FBReader. Das Aktivieren von „Kapitel aufteilen\" fügt vor jedem Kapitel eine Leerzeile ein, sodass Kindle automatisch ein Inhaltsverzeichnis generiert. Für Tolino oder Kobo empfiehlt sich eine vorherige EPUB-Konvertierung via Calibre. TTS-Nutzer können „Duplikate entfernen\" und „Spam-Filter\" aktivieren, um das Vorlesen von Werbung zu vermeiden."
         },
         {
-          "q": "Mein Roman ist in Traditionellem Chinesisch (Taiwan/HK) und ich möchte Vereinfacht — oder bestimmte Namen sollen…",
+          "q": "Mein Roman ist in Traditionellem Chinesisch (Taiwan/HK) und ich möchte Vereinfacht — oder Personen- und Ortsnamen sollen nicht versehentlich mitkonvertiert werden. Was tun?",
           "a": "Dieses Tool enthält eine Traditionell ↔ Vereinfacht-Regel, die Sie während des Formatierens aktivieren können. Für feinere Kontrolle — ein Schutzwörter-Wörterbuch (Namen, Orte, Terminologie) und Konvertierung zwischen Taiwan-Traditionell ↔ Hongkong-Traditionell ↔ Japanisches Shinjitai — verketten Sie mit dem [Chinesisch-Konverter](../chinese-conversion); beide Tools teilen dasselbe Schutzwörter-Format. Für weitere Regex-Suche/-Ersetzung, Kapitelextraktion oder Sensitivwortfilterung schließt die [Text-Toolbox](../text-toolbox) den Kreis."
         },
         {
@@ -203,7 +204,7 @@
         },
         {
           "name": "Reparaturregel-Kombinationen konfigurieren",
-          "text": "Wählen Sie die nötigen Regeln: intelligente Zeilenumbrüche (falsch geteilte Absätze reparieren), Kapitelteilung (Leerzeile vor jedem Kapitel), Erstzeileneinzug (2 Zeichen), Doppelzeilen-Entfernung (Werbung entfernen), Traditionell-zu-Vereinfacht-Konvertierung, Junk-Inhaltsfilter. Regeln stapelbar…"
+          "text": "Wählen Sie die nötigen Regeln: intelligente Zeilenumbrüche (falsch geteilte Absätze reparieren), Kapitelteilung (Leerzeile vor jedem Kapitel), Erstzeileneinzug (2 Zeichen), Doppelzeilen-Entfernung (Werbung entfernen), Traditionell-zu-Vereinfacht-Konvertierung, Junk-Inhaltsfilter. Regeln lassen sich kombinieren oder einzeln aktivieren."
         },
         {
           "name": "Reader-freundliche TXT exportieren",
@@ -369,7 +370,7 @@
     "colTo": "Nach",
     "fromEmpty": "Von ist leer",
     "toEmpty": "Nach ist leer",
-    "shadowedTooltip": "Verdeckt von Zeile {rowNumber}; effektives Ergebnis ist '{winnerTo}'",
+    "shadowedTooltip": "Verdeckt von Zeile {rowNumber}; effektives Ergebnis ist \"{winnerTo}\"",
     "fromPlaceholder": "Zu findender Begriff",
     "toPlaceholder": "Ersetzen durch",
     "emptyTable": "Keine Regeln. Klicken Sie auf 'Regel hinzufügen', um zu beginnen.",
@@ -382,7 +383,7 @@
   },
   "feedback": {
     "feedback1": "Feedback & Vorschläge",
-    "feedback2": "Wenn Sie Probleme haben oder Vorschläge, lassen Sie es mich wissen!Ihr Feedback beeinflusst die zukünftige Entwicklung und hilft uns, bessere Tools zu bau…",
+    "feedback2": "Wenn Sie bei der Nutzung auf Probleme stoßen oder Vorschläge und Ideen haben, lassen Sie es mich gerne jederzeit wissen! Ihr Feedback fließt direkt in die Entwicklung und Verbesserung künftiger Funktionen ein und hilft uns, gemeinsam Tools zu bauen, die den Bedürfnissen aller besser entsprechen.",
     "feedback3": "Bitte beschreiben Sie Ihren Anwendungsfall, das Problem oder Ihre Idee. Ich lese jede Nachricht und werde so schnell wie möglich antworten/optimieren.",
     "reaction0": "Gefällt mir",
     "reaction1": "Unterstützung",

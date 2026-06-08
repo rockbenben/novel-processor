@@ -126,6 +126,7 @@
     "apiStatusTesting": "Testing",
     "apiStatusConnected": "✓ Connected",
     "apiStatusFailed": "Connection Failed",
+    "apiStatusTimeout": "Connection timed out",
     "testConnection": "Test Connection",
     "moreProviderSettings": "More Provider Settings",
     "gtxFreeAPIUnavailable": "GTX Free service is temporarily unreachable — could be a network restriction. Please try again later, or switch to a different translation service.",
@@ -184,7 +185,7 @@
           "a": "Processed TXT meets the format requirements of Kindle (push email), FBReader, and other readers. Enabling \"Chapter Split\" adds a blank line before each chapter so Kindle can auto-generate a table of contents. TTS users can enable \"Remove Duplicate Lines\" and \"Junk Filter\" to avoid the reader speaking ad content."
         },
         {
-          "q": "My novel is in Traditional Chinese (Taiwan/HK) and I want Simplified — or I want to keep specific names from…",
+          "q": "My novel is in Traditional Chinese (Taiwan/HK) and I want Simplified — or I want to keep certain personal and place names from being converted by mistake. What should I do?",
           "a": "This tool includes a Traditional ↔ Simplified rule you can enable during formatting. For finer control — a protected-words dictionary (names, places, terminology) and conversion between Taiwan Traditional ↔ Hong Kong Traditional ↔ Japanese Shinjitai — chain with [Chinese Converter](../chinese-conversion); both tools share the same protected-words format. For further regex search/replace, chapter extraction, or sensitive-word filtering, the [Text Toolbox](../text-toolbox) closes the loop."
         },
         {

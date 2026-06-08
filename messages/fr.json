@@ -126,6 +126,7 @@
     "apiStatusTesting": "Test en cours",
     "apiStatusConnected": "✓ Connecté",
     "apiStatusFailed": "Échec de connexion",
+    "apiStatusTimeout": "Délai de connexion dépassé",
     "testConnection": "Tester la connexion",
     "moreProviderSettings": "Plus de paramètres Provider",
     "gtxFreeAPIUnavailable": "Le service GTX Free est temporairement inaccessible — il pourrait s'agir d'une restriction réseau. Réessayez plus tard ou changez de service de traduction.",
@@ -184,7 +185,7 @@
           "a": "Le TXT traité respecte les exigences de format de Kindle (Send-to-Kindle), Kobo, Vivlio et FBReader. L'activation de « Découpage chapitres » ajoute une ligne vide avant chaque chapitre pour que Kindle génère automatiquement une table des matières. Pour Kobo ou Vivlio, convertissez d'abord en EPUB via Calibre pour une meilleure expérience de TOC. Les utilisateurs de synthèse vocale peuvent activer « Supprimer les doublons » et « Filtre de contenu indésirable » pour éviter la lecture des publicités."
         },
         {
-          "q": "Mon roman est en chinois traditionnel (Taïwan/HK) et je veux du simplifié — ou je veux préserver…",
+          "q": "Mon roman est en chinois traditionnel (Taïwan/HK) et je veux du simplifié — ou je veux empêcher que les noms de personnes et de lieux soient convertis par erreur. Comment faire ?",
           "a": "Cet outil inclut une règle Traditionnel ↔ Simplifié activable pendant le formatage. Pour un contrôle plus fin — dictionnaire de mots protégés (noms, lieux, terminologie) et conversion entre Traditionnel Taïwan ↔ Traditionnel Hong Kong ↔ Shinjitai japonais — chaînez avec le [Convertisseur chinois](../chinese-conversion) ; les deux outils partagent le même format de mots protégés. Pour recherche/remplacement regex, extraction de chapitres ou filtrage de mots sensibles, la [Boîte à outils texte](../text-toolbox) clôt la boucle."
         },
         {
@@ -203,18 +204,18 @@
         },
         {
           "name": "Configurer les combinaisons de règles de réparation",
-          "text": "Cochez les règles nécessaires : sauts de ligne intelligents (réparer les paragraphes mal coupés), découpage en chapitres (ligne vide avant chaque chapitre), retrait de première ligne (2 caractères), suppression des lignes en double (retirer les publicités), conversion traditionnel-vers-simplifié…"
+          "text": "Cochez les règles nécessaires : sauts de ligne intelligents (réparer les paragraphes mal coupés), découpage en chapitres (ligne vide avant chaque chapitre), retrait de première ligne (2 caractères), suppression des lignes en double (retirer les publicités), conversion traditionnel-vers-simplifié, filtrage du contenu indésirable. Les règles peuvent se cumuler ou s'activer individuellement."
         },
         {
           "name": "Exporter un TXT adapté au lecteur",
-          "text": "Envoyez l'export directement à Kindle via Send-to-Kindle, ou importez localement dans Kobo, Vivlio ou Moon+ Reader. Avec le découpage en chapitres activé, Kindle génère automatiquement une table des matières. Pour Kobo ou Vivlio, convertissez d'abord en EPUB via Calibre pour la meilleure expérience…"
+          "text": "Envoyez l'export directement à Kindle via Send-to-Kindle, ou importez localement dans Kobo, Vivlio ou Moon+ Reader. Avec le découpage en chapitres activé, Kindle génère automatiquement une table des matières. Pour Kobo ou Vivlio, convertissez d'abord en EPUB via Calibre pour la meilleure expérience de table des matières."
         }
       ],
       "features": [
-        "Corrige 7 problèmes de format courants dans les fichiers TXT de romans web (téléchargements, copie web…",
+        "Corrige les 7 grands problèmes de format des fichiers TXT de romans web (téléchargements de sites, copie depuis une page web, export Word)",
         "Détecte automatiquement les titres de chapitre comme 「第X章」 ou Chapter X et les sépare",
-        "Détection de lignes en double adjacentes — les lignes consécutives identiques (par ex. bannières…",
-        "Retrait de première ligne (2 caractères), supprime les lignes vides excédentaires, répare les lignes…",
+        "Détection de lignes en double adjacentes — les lignes consécutives strictement identiques sont supprimées (par ex. bannières publicitaires répétées)",
+        "Retrait de première ligne (2 caractères), suppression des lignes vides excédentaires, réparation des lignes courtes mal coupées",
         "Conversion traditionnel-vers-simplifié, normalisation des espaces pleine/demi-largeur",
         "Gère les romans de plus de 3 millions de caractères avec un traitement rapide",
         "Compatible avec Kindle Send-to-Email, Kobo, Vivlio et Moon+ Reader"

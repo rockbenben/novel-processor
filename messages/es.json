@@ -126,6 +126,7 @@
     "apiStatusTesting": "Probando",
     "apiStatusConnected": "✓ Conectado",
     "apiStatusFailed": "Fallo de conexión",
+    "apiStatusTimeout": "Tiempo de conexión agotado",
     "testConnection": "Probar conexión",
     "moreProviderSettings": "Más ajustes del Provider",
     "gtxFreeAPIUnavailable": "El servicio GTX Free está temporalmente inaccesible — podría ser una restricción de red. Inténtalo de nuevo más tarde o cambia a otro servicio de traducción.",
@@ -184,7 +185,7 @@
           "a": "El TXT procesado cumple los requisitos de formato de Kindle (Send-to-Kindle), Kobo, Tagus y FBReader. Activar 'Dividir capítulos' añade una línea en blanco antes de cada capítulo para que Kindle genere automáticamente un índice. Para Kobo o Tagus, convierte primero a EPUB con Calibre para mejor experiencia de TOC. Los usuarios de TTS pueden activar 'Eliminar duplicados' y 'Filtro de basura' para evitar que se lean los anuncios."
         },
         {
-          "q": "Mi novela está en chino tradicional (Taiwán/HK) y quiero simplificado — o quiero preservar nombres específicos.…",
+          "q": "Mi novela web está en chino tradicional (Taiwán/Hong Kong) y quiero leerla en simplificado, o quiero que los nombres de personas y lugares no se conviertan por error. ¿Qué hago?",
           "a": "Esta herramienta incluye una regla Tradicional ↔ Simplificado que puedes activar durante el formateo. Para control más fino — diccionario de palabras protegidas (nombres, lugares, terminología) y conversión entre Tradicional Taiwán ↔ Tradicional Hong Kong ↔ Shinjitai japonés — encadena con el [Conversor chino](../chinese-conversion); ambas herramientas comparten el mismo formato de palabras protegidas. Para más búsqueda/reemplazo regex, extracción de capítulos o filtrado de palabras sensibles, la [Caja de herramientas de texto](../text-toolbox) cierra el ciclo."
         },
         {
@@ -203,7 +204,7 @@
         },
         {
           "name": "Configurar combinaciones de reglas de reparación",
-          "text": "Marca las reglas que necesites: saltos de línea inteligentes (reparar párrafos mal cortados), división en capítulos (línea en blanco antes de cada capítulo), sangría de primera línea (2 caracteres), eliminación de líneas duplicadas (quitar anuncios), conversión tradicional-a-simplificado, filtro…"
+          "text": "Marca las reglas que necesites: saltos de línea inteligentes (repara párrafos mal cortados), división en capítulos (línea en blanco antes de cada capítulo), sangría de primera línea (2 caracteres), eliminación de líneas duplicadas (quita anuncios), conversión entre chino tradicional y simplificado, y filtro de contenido basura. Las reglas se pueden combinar o activar por separado."
         },
         {
           "name": "Exportar TXT adaptado al lector",
@@ -211,10 +212,10 @@
         }
       ],
       "features": [
-        "Corrige 7 problemas de formato comunes en archivos TXT de novelas web (descargas, copia web…",
+        "Corrige los 7 problemas principales de formato en TXT de novelas web (válido para descargas de Biquge, copias de páginas web y exportaciones de Word)",
         "Detecta automáticamente títulos de capítulo como 「第X章」 o Chapter X y los divide",
-        "Detección de líneas duplicadas adyacentes — líneas consecutivas idénticas (p. ej. banners publicitarios…",
-        "Sangría de primera línea (2 caracteres), elimina líneas en blanco excedentes, repara líneas cortas mal…",
+        "Detección de líneas duplicadas adyacentes (las líneas consecutivas idénticas se eliminan, p. ej. banners publicitarios repetidos)",
+        "Sangría de primera línea (2 caracteres), eliminación de líneas en blanco sobrantes y reparación de líneas cortas mal divididas",
         "Conversión tradicional-a-simplificado, normalización de espacios ancho completo/medio",
         "Maneja novelas de más de 3 millones de caracteres con procesamiento rápido",
         "Compatible con Kindle Send-to-Email, Kobo, Tagus y Moon+ Reader"

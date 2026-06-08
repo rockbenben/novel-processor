@@ -119,6 +119,7 @@
     "apiStatusTesting": "測試中",
     "apiStatusConnected": "✓ 已連接",
     "apiStatusFailed": "連接失敗",
+    "apiStatusTimeout": "連線逾時",
     "testConnection": "測試連接",
     "moreProviderSettings": "更多 Provider 設定",
     "clearInputTooltip": "清空輸入內容和上傳的檔案",

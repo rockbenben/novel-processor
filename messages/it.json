@@ -113,6 +113,7 @@
     "apiStatusTesting": "Test in corso",
     "apiStatusConnected": "✓ Connesso",
     "apiStatusFailed": "Connessione fallita",
+    "apiStatusTimeout": "Connessione scaduta",
     "testConnection": "Testa connessione",
     "moreProviderSettings": "Altre impostazioni Provider",
     "format": "Formatta",
@@ -184,7 +185,7 @@
           "a": "Il TXT elaborato soddisfa i requisiti di formato di Kindle (Send-to-Kindle), Kobo, FBReader e altri lettori. Abilitando «Divisione capitoli» Kindle genera automaticamente un sommario. Per Kobo, converti prima in EPUB con Calibre per la migliore esperienza di sommario. Gli utenti di TTS possono attivare «Rimuovi duplicati» + «Filtro spam» per evitare la lettura di annunci."
         },
         {
-          "q": "Il mio romanzo è in cinese tradizionale (Taiwan/HK) e voglio semplificato — o voglio preservare nomi specifici.…",
+          "q": "Il mio romanzo web è in cinese tradizionale (Taiwan/Hong Kong) e voglio leggerlo in semplificato, oppure voglio che nomi di persone e luoghi non vengano convertiti per errore. Come faccio?",
           "a": "Questo strumento include una regola Tradizionale ↔ Semplificato attivabile durante la formattazione. Per un controllo più fine — dizionario di parole protette (nomi, luoghi, terminologia) e conversione tra Tradizionale Taiwan ↔ Tradizionale Hong Kong ↔ Shinjitai giapponese — concatena con il [Convertitore cinese](../chinese-conversion); entrambi gli strumenti condividono lo stesso formato di parole protette. Per ulteriore ricerca/sostituzione regex, estrazione capitoli o filtraggio parole sensibili, la [Cassetta strumenti testo](../text-toolbox) chiude il cerchio."
         },
         {
@@ -203,17 +204,17 @@
         },
         {
           "name": "Configura combinazioni di regole di riparazione",
-          "text": "Seleziona le regole necessarie: interruzioni di riga intelligenti (ripara paragrafi mal divisi), divisione in capitoli (riga vuota prima di ogni capitolo), rientro prima riga (2 caratteri), rimozione righe duplicate (rimuovi annunci), conversione tradizionale-a-semplificato, filtro contenuti…"
+          "text": "Seleziona le regole necessarie: interruzioni di riga intelligenti (ripara paragrafi divisi per errore), divisione in capitoli (riga vuota prima di ogni capitolo), rientro della prima riga (2 caratteri), rimozione delle righe duplicate (elimina la pubblicità), conversione tra cinese tradizionale e semplificato e filtro dei contenuti spazzatura. Le regole possono essere combinate o attivate singolarmente."
         },
         {
           "name": "Esporta TXT compatibile con il reader",
-          "text": "Invia l'esportazione direttamente a Kindle tramite Send-to-Kindle, o importa localmente in Kobo, FBReader o Moon+ Reader. Con la divisione in capitoli abilitata, Kindle genera automaticamente un sommario. Per Kobo o altri lettori, converti prima in EPUB tramite Calibre per la migliore esperienza di…"
+          "text": "Dopo l'esportazione puoi inviare il file direttamente a Kindle tramite l'email Send-to-Kindle, oppure importarlo localmente in WeChat Reading, iReader o Moon+ Reader. Con la divisione in capitoli attivata, Kindle genera automaticamente il sommario. Per WeChat Reading si consiglia di convertire prima in EPUB con Calibre per la migliore esperienza di navigazione del sommario."
         }
       ],
       "features": [
         "Corregge 7 problemi di formato comuni nei file TXT di web novel (download, copia web, esportazioni Word)",
         "Rileva automaticamente titoli di capitolo come 「第X章」 o Chapter X e li divide",
-        "Rilevamento di righe duplicate adiacenti — righe consecutive identiche (ad es. banner pubblicitari…",
+        "Rilevamento di righe duplicate adiacenti (le righe consecutive identiche vengono eliminate, ad es. banner pubblicitari ripetuti)",
         "Rientro prima riga (2 caratteri), rimuove righe vuote in eccesso, ripara righe corte mal divise",
         "Conversione tradizionale-a-semplificato, normalizzazione spazi a larghezza piena/mezza",
         "Gestisce romanzi di oltre 3 milioni di caratteri con elaborazione veloce",

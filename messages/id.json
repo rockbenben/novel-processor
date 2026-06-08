@@ -113,6 +113,7 @@
     "apiStatusTesting": "Menguji",
     "apiStatusConnected": "✓ Terhubung",
     "apiStatusFailed": "Koneksi gagal",
+    "apiStatusTimeout": "Waktu koneksi habis",
     "testConnection": "Uji koneksi",
     "moreProviderSettings": "Pengaturan Provider lain",
     "format": "Format",
@@ -180,7 +181,7 @@
           "a": "TXT yang diproses memenuhi persyaratan format Kindle (Send-to-Kindle), Gramedia Digital, Kobo, dan FBReader. Mengaktifkan 'Pembagian Bab' membuat Kindle otomatis menghasilkan daftar isi. Untuk Gramedia atau Kobo, konversi terlebih dahulu ke EPUB via Calibre untuk pengalaman TOC terbaik. Pengguna TTS dapat mengaktifkan 'Hapus Duplikat' dan 'Filter Sampah' untuk mencegah pembacaan iklan."
         },
         {
-          "q": "Novel dalam Tradisional (Taiwan/HK), ingin baca dalam Sederhana, atau pertahankan nama tokoh/tempat agar…",
+          "q": "Novel web saya dalam Tradisional (Taiwan/HK) dan ingin dibaca dalam Sederhana, atau ingin mempertahankan nama tokoh dan tempat agar tidak salah dikonversi — bagaimana caranya?",
           "a": "Alat ini sudah memiliki aturan konversi Sederhana-Tradisional, bisa selesaikan Tradisional→Sederhana atau sebaliknya bersama pemformatan; untuk «kamus kata-kata terlindungi» yang lebih halus (nama tokoh, tempat, istilah dilindungi) dan konversi halus antara Tradisional Taiwan↔Hong Kong↔Shinjitai Jepang, gunakan [Konversi Tionghoa](../chinese-conversion), kedua alat berbagi format kamus terlindungi yang sama. Setelah pemformatan, untuk penggantian massal, ekstraksi regex bab, atau filter kata sensitif, hubungkan dengan [Pemroses Teks](../text-toolbox)."
         },
         {
@@ -199,18 +200,18 @@
         },
         {
           "name": "Konfigurasi kombinasi aturan perbaikan",
-          "text": "Centang aturan yang Anda butuhkan: pemecah baris pintar (perbaiki paragraf yang salah dipotong), pemisahan bab (baris kosong sebelum setiap bab), indentasi baris pertama (2 karakter), penghapusan baris duplikat (bersihkan iklan), konversi Tradisional-ke-Sederhana, filter konten sampah. Aturan…"
+          "text": "Centang aturan yang Anda butuhkan: pemecah baris pintar (perbaiki paragraf yang salah dipotong), pemisahan bab (baris kosong sebelum setiap bab), indentasi baris pertama (2 karakter), penghapusan baris duplikat (bersihkan iklan), konversi Tradisional-ke-Sederhana, filter konten sampah. Aturan dapat digabungkan atau diaktifkan satu per satu."
         },
         {
           "name": "Ekspor TXT yang ramah pembaca",
-          "text": "Kirim ekspor langsung ke Kindle melalui Send-to-Kindle, atau impor secara lokal ke Kobo, FBReader, atau Moon+ Reader. Dengan pemisahan bab diaktifkan, Kindle secara otomatis menghasilkan daftar isi. Untuk Kobo atau pembaca lainnya, konversi terlebih dahulu ke EPUB melalui Calibre untuk pengalaman…"
+          "text": "Kirim hasil ekspor langsung ke Kindle melalui Send-to-Kindle, atau impor secara lokal ke Kobo, FBReader, atau Moon+ Reader. Dengan pemisahan bab diaktifkan, Kindle secara otomatis menghasilkan daftar isi. Untuk Kobo atau pembaca lainnya, konversi terlebih dahulu ke EPUB melalui Calibre demi pengalaman daftar isi terbaik."
         }
       ],
       "features": [
         "Memperbaiki 7 masalah format umum dalam file TXT novel web (unduhan, salin-tempel web, ekspor Word)",
         "Mendeteksi judul bab seperti 「第X章」 atau Chapter X secara otomatis dan memisahkannya",
         "Deteksi baris duplikat berdekatan — baris berturut-turut yang identik (mis. spanduk iklan berulang) dihapus",
-        "Indentasi baris pertama (2 karakter), menghapus baris kosong berlebih, memperbaiki baris pendek…",
+        "Indentasi baris pertama (2 karakter), menghapus baris kosong berlebih, memperbaiki baris pendek yang salah dipotong",
         "Konversi Tradisional-ke-Sederhana, normalisasi spasi lebar penuh/setengah",
         "Menangani novel lebih dari 3 juta karakter dengan pemrosesan cepat",
         "Kompatibel dengan Kindle Send-to-Email, Kobo, FBReader, dan Moon+ Reader"
@@ -382,7 +383,7 @@
   },
   "feedback": {
     "feedback1": "Umpan Balik & Saran",
-    "feedback2": "Jika Anda menemukan masalah atau memiliki saran, beri tahu saya!Umpan balik Anda memengaruhi pengembangan masa depan dan membantu kami membuat alat yang l…",
+    "feedback2": "Jika Anda menemukan masalah saat menggunakan alat ini, atau punya saran dan ide apa pun, jangan ragu untuk memberi tahu saya! Umpan balik Anda akan langsung memengaruhi pengembangan dan penyempurnaan fitur di masa depan, serta membantu kami bersama-sama membangun alat yang lebih sesuai dengan kebutuhan semua orang.",
     "feedback3": "Jelaskan kasus penggunaan, masalah, atau ide Anda. Saya membaca setiap pesan dan akan merespons/mengoptimalkan sesegera mungkin.",
     "reaction0": "Suka",
     "reaction1": "Dukung",
