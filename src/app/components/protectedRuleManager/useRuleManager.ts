@@ -141,7 +141,10 @@ export function useRuleManager(
     (indices: number[]) => {
       const toRemove = new Set(indices);
       setCurrentRules(currentRules.filter((_, i) => !toRemove.has(i)));
-      setSelectedKeys((prev) => prev.filter((k) => !toRemove.has(k)));
+      // 删除后行索引整体左移,但 selectedKeys 存的是删除前的索引 —— 仅过滤
+      // 被删 key 会让选中悄悄漂移到其它行,后续批量删除/导出命中错误规则。
+      // 重映射:每个保留的选中索引减去其前方被删元素的数量。
+      setSelectedKeys((prev) => prev.filter((k) => !toRemove.has(k)).map((k) => k - indices.filter((removed) => removed < k).length));
     },
     [currentRules, setCurrentRules]
   );

@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import { Drawer, Tabs, Button, Popconfirm, Typography, Flex, App } from "antd";
 import { PlusOutlined, ClearOutlined, ImportOutlined, ExportOutlined } from "@ant-design/icons";
-import { parseOpenCCDict } from "js-opencc";
 import { downloadFile } from "@/app/utils";
 import { useTranslations } from "next-intl";
 import { useRuleManager } from "./useRuleManager";
@@ -86,7 +85,21 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
         message.error(tCommon("fileReadFailed"));
         return;
       }
-      const parsed = parseOpenCCDict(text);
+      // 按【首个 TAB】切,target 整体保留(含空格)。parseOpenCCDict 的
+      // OpenCC 语义把空格当"多候选值"分隔符 —— 本工具导出的
+      // `纽约\tNew York` round-trip 会被截成 `New`(空格 target 是保护词典
+      // 的核心用例)。无 TAB 时退化按首个空格切,余下整体作 target。
+      const parsed = text
+        .split(/\r?\n/)
+        .map((l) => l.trim())
+        .filter((l) => l && !l.startsWith("#"))
+        .map((l): [string, string] | null => {
+          const tab = l.indexOf("\t");
+          const sep = tab !== -1 ? tab : l.indexOf(" ");
+          if (sep === -1) return null;
+          return [l.slice(0, sep).trim(), l.slice(sep + 1).trim()];
+        })
+        .filter((p): p is [string, string] => p !== null && !!p[0] && !!p[1]);
       if (parsed.length === 0) {
         message.warning(t("importNoRules"));
         return;

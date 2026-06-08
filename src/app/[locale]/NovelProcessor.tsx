@@ -124,7 +124,8 @@ const NovelProcessor = () => {
         const rules = enableProtectedRules ? (direction === "s2t" ? s2tRules : t2sRules) : [];
         const protectedDict: string[][] = rules.filter((r) => r.from && r.to).map((r) => [r.from, r.to]);
         const fromTo = direction === "t2s" ? ({ from: "tw" as const, to: "cn" as const }) : ({ from: "cn" as const, to: "tw" as const });
-        const converter = await createConverter(fromTo, protectedDict.length > 0 ? protectedDict : undefined);
+        // 传 [] 而非 undefined:跳过 createConverter 的 node:fs 自动加载(浏览器多余)
+        const converter = await createConverter(fromTo, protectedDict.length > 0 ? protectedDict : []);
         processedInput = converter(processedInput);
       }
 

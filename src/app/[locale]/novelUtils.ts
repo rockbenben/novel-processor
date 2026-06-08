@@ -5,11 +5,24 @@ const isTitleLine = (line: string): boolean => chapterTitleRegex.test(line) || n
 
 // 提取“第X<标记>”里的结构标记（章/节/卷/集/幕/回/部/篇）；无则 null（英文 / 纯数字标题等）
 const chapterMarker = (s: string): string | null => {
-  const m = s.match(/第\s*[〇零一二三四五六七八九十百千两\d]+\s*([章节卷集幕回部篇])/);
+  // 数字类与 extractChapterOrder/chineseNumeralToNumber 对齐:含 万/萬 与大写
+  // 数字(壹贰…拾佰仟)—— 否则「第一万章」「第壹拾章」取不到标记,同号去重
+  // 在万级和大写章节上静默失效。
+  const m = s.match(/第\s*[〇零一二三四五六七八九十百千万两壹贰叁肆伍陆柒捌玖拾佰仟萬\d]+\s*([章节卷集幕回部篇])/);
   return m ? m[1] : null;
 };
 
-// 两个标题是否属于同一章：文本相同；或章节号相同且结构标记一致（避免第3卷与第3章因序号相同被误判同章）
+// 两个标题是否属于同一章：文本相同；或章节号相同且结构标记一致（避免第3卷与第3章因序号相同被误判同章）。
+// 无结构标记的标题(英文/纯数字,chapterMarker 均为 null)不能只靠 null===null
+// 判同章 —— "5. Apples" 与 "5. Oranges" 只是序号巧合相同,误判会让合并逻辑
+// 把靠前整章(标题+正文)静默删除。去掉序号前缀后剩余文本须实质相同。
+const stripOrderPrefix = (s: string): string =>
+  s
+    .replace(/^(?:chapter|ch)\.?\s*(?:\d+|[ivxlcdm]+)\s*[.、:：\-]?\s*/i, "")
+    .replace(/^\s*(?:\d+|[ivxlcdm]+)\s*[.、．:：\-)\]】]?\s*/i, "")
+    .trim()
+    .toLowerCase();
+
 const isSameChapter = (a: string, b: string): boolean => {
   const ta = a.trim();
   const tb = b.trim();
@@ -17,14 +30,25 @@ const isSameChapter = (a: string, b: string): boolean => {
   const oa = extractChapterOrder(ta);
   const ob = extractChapterOrder(tb);
   if (oa === null || ob === null || oa !== ob) return false;
-  return chapterMarker(ta) === chapterMarker(tb);
+  const ma = chapterMarker(ta);
+  const mb = chapterMarker(tb);
+  if (ma !== mb) return false;
+  // 「第5章 初遇」vs「第5章 初遇(修)」:结构标记 + 同号 → 同章(标题修订)
+  if (ma !== null) return true;
+  return stripOrderPrefix(ta) === stripOrderPrefix(tb);
 };
 
-// 将中文数字转为阿拉伯数字（支持到千级）
+// 将中文数字转为阿拉伯数字（支持到万级,含大写数字）。
+// 万级与大写(壹贰叁…拾佰仟萬)必须支持:chapterTitleRegex 接受这些字符,
+// 长篇网文跨过第 9999 章是常态 —— 解析不出序号的章节全被排到文档末尾。
 export const chineseNumeralToNumber = (input: string): number | null => {
-  const map: Record<string, number> = { 零: 0, 〇: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
-  const unit: Record<string, number> = { 十: 10, 百: 100, 千: 1000 };
+  const map: Record<string, number> = {
+    零: 0, 〇: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9,
+    壹: 1, 贰: 2, 叁: 3, 肆: 4, 伍: 5, 陆: 6, 柒: 7, 捌: 8, 玖: 9,
+  };
+  const unit: Record<string, number> = { 十: 10, 拾: 10, 百: 100, 佰: 100, 千: 1000, 仟: 1000 };
   let total = 0;
+  let section = 0; // 当前万段内的累计
   let current = 0;
   let has = false;
   for (const ch of input) {
@@ -33,7 +57,14 @@ export const chineseNumeralToNumber = (input: string): number | null => {
       has = true;
     } else if (unit[ch] !== undefined) {
       if (current === 0) current = 1; // 十、百、千前省略“一”
-      total += current * unit[ch];
+      section += current * unit[ch];
+      current = 0;
+      has = true;
+    } else if (ch === "万" || ch === "萬") {
+      section += current;
+      if (section === 0) section = 1; // “万”前省略“一”
+      total += section * 10000;
+      section = 0;
       current = 0;
       has = true;
     } else if (/\d/.test(ch)) {
@@ -41,7 +72,7 @@ export const chineseNumeralToNumber = (input: string): number | null => {
     }
   }
   if (!has) return null;
-  return total + current;
+  return total + section + current;
 };
 
 export const romanToInt = (s: string): number | null => {
@@ -66,8 +97,8 @@ export const romanToInt = (s: string): number | null => {
 
 // 从章节标题提取顺序号
 export const extractChapterOrder = (title: string): number | null => {
-  // 常见：第十二章 / 第12章 / 第三卷 第四章 / Chapter 5 / CH 5
-  const m = title.match(/第([〇零一二三四五六七八九十百千两\d]+)\s*[章节卷集幕回部篇]/);
+  // 常见：第十二章 / 第12章 / 第一万章 / 第壹拾章 / Chapter 5 / CH 5
+  const m = title.match(/第([〇零一二三四五六七八九十百千万两壹贰叁肆伍陆柒捌玖拾佰仟萬\d]+)\s*[章节卷集幕回部篇]/);
   if (m) {
     const raw = m[1];
     if (/\d+/.test(raw)) {
