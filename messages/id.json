@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "Lewati ke konten utama",
     "fileProcessFailed": "Gagal memproses file — periksa encoding-nya atau coba file lain",
     "fileReadFailed": "Gagal membaca file",
     "unrecognizedLangCodes": "Kode bahasa tidak dikenali: {codes}",

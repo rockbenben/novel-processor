@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "ข้ามไปยังเนื้อหาหลัก",
     "fileProcessFailed": "ประมวลผลไฟล์ไม่สำเร็จ — ตรวจสอบการเข้ารหัสหรือลองไฟล์อื่น",
     "fileReadFailed": "อ่านไฟล์ไม่สำเร็จ",
     "unrecognizedLangCodes": "รหัสภาษาที่ไม่รู้จัก: {codes}",

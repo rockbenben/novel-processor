@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "تخطٍ إلى المحتوى الرئيسي",
     "fileProcessFailed": "تعذّرت معالجة الملف — تحقّق من ترميزه أو جرّب ملفًا آخر",
     "fileReadFailed": "تعذّرت قراءة الملف",
     "unrecognizedLangCodes": "رموز لغات غير معروفة: {codes}",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "মূল বিষয়বস্তুতে যান",
     "fileProcessFailed": "ফাইল প্রক্রিয়া করা ব্যর্থ — এর এনকোডিং পরীক্ষা করুন বা অন্য ফাইল চেষ্টা করুন",
     "fileReadFailed": "ফাইল পড়া ব্যর্থ",
     "unrecognizedLangCodes": "অজানা ভাষা কোড: {codes}",

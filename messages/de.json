@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "Zum Hauptinhalt springen",
     "fileProcessFailed": "Datei konnte nicht verarbeitet werden – prüfen Sie die Kodierung oder versuchen Sie eine andere",
     "fileReadFailed": "Datei konnte nicht gelesen werden",
     "unrecognizedLangCodes": "Nicht erkannte Sprachcodes: {codes}",

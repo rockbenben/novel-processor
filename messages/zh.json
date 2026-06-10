@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "跳到主要内容",
     "fileProcessFailed": "文件处理失败，请检查文件编码或换一个文件",
     "fileReadFailed": "读取文件失败",
     "unrecognizedLangCodes": "无法识别的语言代码：{codes}",

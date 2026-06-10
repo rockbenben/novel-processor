@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "Chuyển đến nội dung chính",
     "fileProcessFailed": "Xử lý tệp thất bại — kiểm tra mã hóa hoặc thử tệp khác",
     "fileReadFailed": "Đọc tệp thất bại",
     "unrecognizedLangCodes": "Mã ngôn ngữ không nhận dạng được: {codes}",

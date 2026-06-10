@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "メインコンテンツにスキップ",
     "fileProcessFailed": "ファイルの処理に失敗しました。エンコードを確認するか、別のファイルをお試しください",
     "fileReadFailed": "ファイルの読み込みに失敗しました",
     "unrecognizedLangCodes": "認識できない言語コード：{codes}",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "跳至主要內容",
     "fileProcessFailed": "檔案處理失敗，請檢查檔案編碼或換一個檔案",
     "fileReadFailed": "讀取檔案失敗",
     "unrecognizedLangCodes": "無法識別的語言代碼：{codes}",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "Skip to main content",
     "fileProcessFailed": "Failed to process the file — check its encoding or try another",
     "fileReadFailed": "Failed to read the file",
     "unrecognizedLangCodes": "Unrecognized language codes: {codes}",

@@ -92,8 +92,10 @@ export function useRuleManager(
     const total = currentRules.length;
     const empty = issues.emptyRows.size;
     const shadowed = issues.shadowedRows.size;
-    // valid = 实际在 trie 中生效的条数（剔除空值和被覆盖）
-    const valid = total - empty - shadowed;
+    // valid = 实际在 trie 中生效的条数（剔除空值和被覆盖）。同一行可能同时落入
+    // 两个集合（非空 from + 空 to + 同 from 有后续胜者），按并集去重只扣一次，
+    // 否则会出现错误的负值/偏小值（与 effectiveCount 保持一致）。
+    const valid = total - new Set([...issues.emptyRows, ...issues.shadowedRows.keys()]).size;
     return { total, valid, empty, shadowed };
   }, [currentRules, issues]);
 
@@ -161,6 +163,10 @@ export function useRuleManager(
       const merged = [...currentRules, ...sanitized];
       const { deduped, removed } = dedupRules(merged);
       setCurrentRules(deduped);
+      // 导入后 dedup 可能删掉与导入项同 from 的【更早】现有行，使其后所有行索引左移；
+      // selectedKeys 存的是旧索引，不清会悄悄漂移到其它行，后续批量删除/导出命中错误规则
+      // （与 removeRules 的索引漂移同一隐患）。导入是低频操作，直接清空选择即可。
+      setSelectedKeys([]);
       return { added: sanitized.length, removedDup: removed };
     },
     [currentRules, setCurrentRules]

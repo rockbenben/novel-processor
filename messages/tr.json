@@ -1,5 +1,6 @@
 {
   "common": {
+    "skipToContent": "Ana içeriğe geç",
     "fileProcessFailed": "Dosya işlenemedi — kodlamasını kontrol edin veya başka bir dosya deneyin",
     "fileReadFailed": "Dosya okunamadı",
     "unrecognizedLangCodes": "Tanınmayan dil kodları: {codes}",
