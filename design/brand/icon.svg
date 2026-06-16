@@ -1,0 +1,23 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Novel Processor mark — an open book (novel / e-book). Clean amber text lines on
+       both pages signal tidy, reformatted reading. The single clearest metaphor. -->
+  <rect width="512" height="512" fill="#15171C"/>
+
+  <!-- left page -->
+  <path d="M256 180 C204 158 152 156 100 168 L100 348 C152 336 204 338 256 360 Z"
+        fill="#1A1D23" stroke="#D9883B" stroke-width="11" stroke-linejoin="round"/>
+  <!-- right page -->
+  <path d="M256 180 C308 158 360 156 412 168 L412 348 C360 336 308 338 256 360 Z"
+        fill="#1A1D23" stroke="#D9883B" stroke-width="11" stroke-linejoin="round"/>
+  <!-- spine -->
+  <rect x="250" y="182" width="12" height="178" rx="6" fill="#D9883B"/>
+
+  <!-- left page text lines -->
+  <rect x="132" y="222" width="96" height="13" rx="6.5" fill="#D9883B"/>
+  <rect x="132" y="256" width="96" height="13" rx="6.5" fill="#5A5247"/>
+  <rect x="132" y="290" width="72" height="13" rx="6.5" fill="#5A5247"/>
+  <!-- right page text lines -->
+  <rect x="284" y="222" width="96" height="13" rx="6.5" fill="#D9883B"/>
+  <rect x="284" y="256" width="96" height="13" rx="6.5" fill="#5A5247"/>
+  <rect x="284" y="290" width="72" height="13" rx="6.5" fill="#5A5247"/>
+</svg>

@@ -1,0 +1,28 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Novel Processor — an open book whose pages are now clean and ordered: numbered
+       chapter markers (amber) lead tidy, aligned text. Repaired & reformatted reading. -->
+  <rect width="512" height="512" fill="#15171C"/>
+
+  <!-- left page -->
+  <path d="M256 156 C200 132 144 130 88 144 L88 372 C144 358 200 360 256 384 Z"
+        fill="#1A1D23" stroke="#D9883B" stroke-width="11" stroke-linejoin="round"/>
+  <!-- right page -->
+  <path d="M256 156 C312 132 368 130 424 144 L424 372 C368 358 312 360 256 384 Z"
+        fill="#1A1D23" stroke="#D9883B" stroke-width="11" stroke-linejoin="round"/>
+  <!-- spine -->
+  <rect x="249" y="158" width="14" height="226" rx="7" fill="#D9883B"/>
+
+  <!-- left page: chapter marker + lines -->
+  <rect x="120" y="194" width="22" height="22" rx="6" fill="#D9883B"/>
+  <rect x="154" y="198" width="66" height="14" rx="6" fill="#C9C3B6"/>
+  <rect x="120" y="236" width="100" height="12" rx="6" fill="#5A5247"/>
+  <rect x="120" y="266" width="100" height="12" rx="6" fill="#5A5247"/>
+  <rect x="120" y="296" width="74" height="12" rx="6" fill="#5A5247"/>
+
+  <!-- right page: next chapter marker + lines -->
+  <rect x="292" y="194" width="22" height="22" rx="6" fill="#D9883B"/>
+  <rect x="326" y="198" width="66" height="14" rx="6" fill="#C9C3B6"/>
+  <rect x="292" y="236" width="100" height="12" rx="6" fill="#5A5247"/>
+  <rect x="292" y="266" width="100" height="12" rx="6" fill="#5A5247"/>
+  <rect x="292" y="296" width="74" height="12" rx="6" fill="#5A5247"/>
+</svg>
