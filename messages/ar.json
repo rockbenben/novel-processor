@@ -161,12 +161,14 @@
     "errorHint429": "تم تجاوز حد الطلبات، يرجى المحاولة لاحقًا",
     "errorHint456": "نفدت حصة الترجمة لهذه الفترة",
     "errorHint5xx": "خطأ في الخادم، يرجى المحاولة لاحقًا",
+    "errorHintRelay": "خطأ في الشبكة (قد يكون بسبب قيود CORS) — فعِّل «ترحيل API» في إعدادات API",
+    "errorHintRelay403": "أعادت واجهة API الخطأ 403 (محظور) — فعِّل «ترحيل API» في إعدادات API",
     "rateLimitCooldown": "تم تجاوز حد الطلبات — إيقاف مؤقت قصير ثم إعادة المحاولة تلقائيًا"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "مترجم الترجمة",
-      "description": "ترجمة مجمعة SRT، ASS، VTT، LRC. أكثر من 120 لغة."
+      "description": "ترجمة مجمعة SRT، ASS، VTT، SBV، LRC. أكثر من 120 لغة."
     },
     "jsonTranslate": {
       "title": "مترجم JSON i18n",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "مولد بيانات IMGPrompt",
       "description": "إنشاء بيانات JSON لـ IMGPrompt بشكل مجمع"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "قارن نصّين أو ملفّين جنبًا إلى جنب وحدّد أول فرق."
     }
   },
   "navigation": {

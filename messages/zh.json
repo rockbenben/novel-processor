@@ -161,12 +161,14 @@
     "errorHint429": "请求过于频繁，请稍后重试",
     "errorHint456": "本期翻译配额已用尽",
     "errorHint5xx": "服务器错误，请稍后重试",
+    "errorHintRelay": "网络错误（可能是 CORS 限制），请在 API 设置中开启「中转 API」",
+    "errorHintRelay403": "接口返回 403 禁止访问，请在 API 设置中开启「中转 API」",
     "rateLimitCooldown": "请求过于频繁，已自动暂停片刻后重试"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "字幕翻译器",
-      "description": "批量翻译 SRT、ASS、VTT、LRC 字幕，支持 120+ 语言"
+      "description": "批量翻译 SRT、ASS、VTT、SBV、LRC 字幕，支持 120+ 语言"
     },
     "jsonTranslate": {
       "title": "JSON 多语言翻译",
@@ -238,6 +240,10 @@
     "textToolbox": {
       "title": "多功能文本处理",
       "description": "集成正则匹配、排序、过滤等功能，进行文本批量处理"
+    },
+    "textDiff": {
+      "title": "文本对照",
+      "description": "在线对比两段文本或文件，双栏高亮差异并精确定位首处不同，支持 CSV/INI"
     },
     "dataBatch": {
       "title": "数据批处理",

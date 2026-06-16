@@ -161,12 +161,14 @@
     "errorHint429": "Vượt quá giới hạn yêu cầu, vui lòng thử lại sau",
     "errorHint456": "Đã hết hạn mức dịch của kỳ này",
     "errorHint5xx": "Lỗi máy chủ, vui lòng thử lại sau",
+    "errorHintRelay": "Lỗi mạng (có thể do CORS) — hãy bật \"Chuyển tiếp API\" trong Cài đặt API",
+    "errorHintRelay403": "API trả về 403 Forbidden — hãy bật \"Chuyển tiếp API\" trong Cài đặt API",
     "rateLimitCooldown": "Đạt giới hạn yêu cầu — tạm dừng một lát rồi tự động thử lại"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "Dịch giả Phụ đề",
-      "description": "Dịch hàng loạt SRT, ASS, VTT, LRC. 120+ ngôn ngữ."
+      "description": "Dịch hàng loạt SRT, ASS, VTT, SBV, LRC. 120+ ngôn ngữ."
     },
     "jsonTranslate": {
       "title": "Dịch giả JSON i18n",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "Trình tạo dữ liệu IMGPrompt",
       "description": "Tạo dữ liệu JSON IMGPrompt hàng loạt"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "So sánh hai văn bản hoặc tệp song song và xác định điểm khác biệt đầu tiên."
     }
   },
   "navigation": {

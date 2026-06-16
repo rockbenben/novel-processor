@@ -12,6 +12,7 @@ import { useTextStats } from "@/app/hooks/useTextStats";
 import { useCopyToClipboard } from "@/app/hooks/useCopyToClipboard";
 import { reorderChaptersByTitle, splitInlineChapterTitles, formatNovelText } from "./novelUtils";
 import useFileUpload from "@/app/hooks/useFileUpload";
+import { useResetOnSourceChange } from "@/app/hooks/useResetOnSourceChange";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
 import ResultCard from "@/app/components/ResultCard";
@@ -94,11 +95,7 @@ const NovelProcessor = () => {
   const sourceStats = useTextStats(sourceText);
   const resultStats = useTextStats(result);
 
-  const [prevSourceText, setPrevSourceText] = useState(sourceText);
-  if (sourceText !== prevSourceText) {
-    setPrevSourceText(sourceText);
-    setResult("");
-  }
+  useResetOnSourceChange(sourceText, () => setResult(""));
 
   const handleExportFile = (text: string) => {
     const uploadFileName = multipleFiles[0]?.name;

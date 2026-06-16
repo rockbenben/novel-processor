@@ -161,12 +161,14 @@
     "errorHint429": "請求過於頻繁，請稍後重試",
     "errorHint456": "本期翻譯配額已用盡",
     "errorHint5xx": "伺服器錯誤，請稍後重試",
+    "errorHintRelay": "網路錯誤（可能是 CORS 限制），請在 API 設定中開啟「中轉 API」",
+    "errorHintRelay403": "介面回傳 403 禁止存取，請在 API 設定中開啟「中轉 API」",
     "rateLimitCooldown": "請求過於頻繁，已自動暫停片刻後重試"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "字幕翻譯器",
-      "description": "批次翻譯 SRT、ASS、VTT、LRC 字幕，支援 120+ 語言"
+      "description": "批次翻譯 SRT、ASS、VTT、SBV、LRC 字幕，支援 120+ 語言"
     },
     "jsonTranslate": {
       "title": "JSON 多語言翻譯",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "IMGPrompt 資料產生",
       "description": "批次產生 IMGPrompt JSON 資料"
+    },
+    "textDiff": {
+      "title": "文字比對",
+      "description": "並排比較兩段文字或檔案，標示首處差異的確切位置。"
     }
   },
   "navigation": {

@@ -161,12 +161,14 @@
     "errorHint429": "अनुरोध सीमा पार हो गई, कृपया बाद में पुनः प्रयास करें",
     "errorHint456": "इस अवधि का अनुवाद कोटा समाप्त हो गया है",
     "errorHint5xx": "सर्वर त्रुटि, कृपया बाद में पुनः प्रयास करें",
+    "errorHintRelay": "नेटवर्क त्रुटि (संभवतः CORS प्रतिबंध)। API सेटिंग्स में \"API रिले\" चालू करें",
+    "errorHintRelay403": "API ने 403 Forbidden लौटाया। API सेटिंग्स में \"API रिले\" चालू करें",
     "rateLimitCooldown": "अनुरोध सीमा — थोड़ी देर रुककर स्वचालित रूप से पुनः प्रयास होगा"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "उपशीर्षक अनुवादक",
-      "description": "बैच SRT, ASS, VTT, LRC अनुवाद। 120+ भाषाएं।"
+      "description": "बैच SRT, ASS, VTT, SBV, LRC अनुवाद। 120+ भाषाएं।"
     },
     "jsonTranslate": {
       "title": "i18n JSON अनुवादक",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "IMGPrompt डेटा जेनरेटर",
       "description": "बैच IMGPrompt JSON डेटा उत्पन्न करें"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "दो पाठ या फ़ाइलें साथ-साथ तुलना करें और पहला अंतर खोजें।"
     }
   },
   "navigation": {

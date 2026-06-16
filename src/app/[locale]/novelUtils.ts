@@ -47,6 +47,15 @@ export const chineseNumeralToNumber = (input: string): number | null => {
     壹: 1, 贰: 2, 叁: 3, 肆: 4, 伍: 5, 陆: 6, 柒: 7, 捌: 8, 玖: 9,
   };
   const unit: Record<string, number> = { 十: 10, 拾: 10, 百: 100, 佰: 100, 千: 1000, 仟: 1000 };
+  // 位数式写法(一一〇/一二三):全串均为数字字符、不含任何单位且长度>1 时
+  // 按位拼接(一一〇 → 110)。下方累加路径会逐位【求和】得到 2 —— 在任何中文
+  // 数字读法下都不成立,还会与真实低号章节撞号,触发同章误判整段删除。
+  const chars = [...input];
+  if (chars.length > 1 && chars.every((ch) => map[ch] !== undefined || /\d/.test(ch))) {
+    let v = 0;
+    for (const ch of chars) v = v * 10 + (map[ch] ?? Number(ch));
+    return v;
+  }
   let total = 0;
   let section = 0; // 当前万段内的累计
   let current = 0;
@@ -68,7 +77,11 @@ export const chineseNumeralToNumber = (input: string): number | null => {
       current = 0;
       has = true;
     } else if (/\d/.test(ch)) {
-      return parseInt((input.match(/\d+/) || [""])[0], 10);
+      // 阿拉伯数字逐位累入 current,与中文单位正常结合:旧实现遇到任何数字
+      // 就 parseInt 首段数字直接返回 —— "第1万章" 解析成 1 而非 10000,
+      // reorder 把万章级章节排到最前,同号去重还会把它与"第一章"误判同章。
+      current = current * 10 + Number(ch);
+      has = true;
     }
   }
   if (!has) return null;
@@ -100,12 +113,9 @@ export const extractChapterOrder = (title: string): number | null => {
   // 常见：第十二章 / 第12章 / 第一万章 / 第壹拾章 / Chapter 5 / CH 5
   const m = title.match(/第([〇零一二三四五六七八九十百千万两壹贰叁肆伍陆柒捌玖拾佰仟萬\d]+)\s*[章节卷集幕回部篇]/);
   if (m) {
-    const raw = m[1];
-    if (/\d+/.test(raw)) {
-      const match = raw.match(/\d+/);
-      return match ? parseInt(match[0], 10) : null;
-    }
-    const cn = chineseNumeralToNumber(raw);
+    // 纯数字与混合写法("1万"、"2万3千")统一走 chineseNumeralToNumber:
+    // 旧的 /\d+/ 短路只取首段数字,单位被丢弃("第1万章" → 1)。
+    const cn = chineseNumeralToNumber(m[1]);
     if (cn !== null) return cn;
   }
   const en = title.match(/\b(?:chapter|ch)\.?\s*(\d+)\b/i);
@@ -117,6 +127,11 @@ export const extractChapterOrder = (title: string): number | null => {
     if (r !== null) return r;
   }
 
+  // 带编号的前后置标记标题(番外1/后记2):编号是番外自身的序列,不是正文
+  // 章节号 —— anyNum 兜底会让「番外1」拿到 order=1,reorder 按同号排进第一、
+  // 二章之间(静默内容易位)。返回 null 走「前置留前/后置排后」通道。
+  // 「番外第三章」由上方第X章分支先行命中,不进此守卫。
+  if (/^\s*(?:序章|序言|引子|前言|卷首语|扉页|楔子|终章|后记|附录|尾声|番外)/.test(title)) return null;
   const anyNum = title.match(/\d+/);
   if (anyNum) return parseInt(anyNum[0], 10);
   return null;
@@ -146,11 +161,16 @@ export const reorderChaptersByTitle = (text: string): { output: string; chapters
   }
 
   const withIndex = chapters.map((c, i) => ({ ...c, i }));
+  // 无序号章节分两类:出现在首个【有序号】章节之前的(序章/楔子/前言等
+  // 前置内容)留在最前;之后出现的(终章/后记/番外)排到最后。旧实现把
+  // null 一律排到末尾 —— 序章被搬到全书结尾(静默内容易位)。
+  const firstNumbered = chapters.findIndex((c) => c.order !== null);
+  const rank = (c: { order: number | null; i: number }) => (c.order !== null ? 1 : firstNumbered === -1 || c.i < firstNumbered ? 0 : 2);
   withIndex.sort((a, b) => {
-    if (a.order === null && b.order === null) return a.i - b.i;
-    if (a.order === null) return 1;
-    if (b.order === null) return -1;
-    if (a.order !== b.order) return a.order - b.order;
+    const ra = rank(a);
+    const rb = rank(b);
+    if (ra !== rb) return ra - rb;
+    if (ra === 1 && a.order !== b.order) return a.order! - b.order!;
     return a.i - b.i;
   });
 
@@ -214,7 +234,11 @@ export const stripNovelArtifacts = (text: string): string => {
       .replace(/Added Url/g, "")
       .replace(/【待续】/g, "")
       .replace(/本文是使用怠惰小说下载器（DownloadAllContent）下载的/g, "")
-      .replace(/本书由【.*?】整理[\s\S]{0,500}?请在下载后\d+小时内删除[\s\S]{0,500}?本群免费提取全网平台[\s\S]{0,50}?私聊群主。/g, "")
+      // 【[^】]*】而非【.*?】:.*? 会跨多个"本书由【…】整理"水印锚点向后扩张,
+      // 粘贴含大量该水印残片的盗版小说文本时退化为 O(n²)~O(n³),主流程
+      // (formatNovelText)无条件调用本函数 → 点"处理"即冻结标签页。字符类
+      // [^】]* 把括号内容锁在单个水印内,降为线性;对真实完整水印的匹配等价。
+      .replace(/本书由【[^】]*】整理[\s\S]{0,500}?请在下载后\d+小时内删除[\s\S]{0,500}?本群免费提取全网平台[\s\S]{0,50}?私聊群主。/g, "")
       .replace(/={10,}\n?[\s\S]{0,500}?刺猬猫，飞卢，点娘，少年梦等全网小说资源每日更新[\s\S]{0,500}?如不慎该资源侵犯了您的权益，请麻烦通知我们及时删除。\n?={10,}/g, "")
       // 没有等号包裹的版本
       .replace(/刺猬猫，飞卢，点娘，少年梦等全网小说资源每日更新[\s\S]{0,500}?如不慎该资源侵犯了您的权益，请麻烦通知我们及时删除。/g, "")

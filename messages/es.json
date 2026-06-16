@@ -161,12 +161,14 @@
     "errorHint429": "Límite de solicitudes superado, inténtelo más tarde",
     "errorHint456": "Cuota de traducción agotada para este período",
     "errorHint5xx": "Error del servidor, inténtelo más tarde",
+    "errorHintRelay": "Error de red (posiblemente CORS): active \"Relé API\" en los ajustes de API",
+    "errorHintRelay403": "La API devolvió 403 Forbidden: active \"Relé API\" en los ajustes de API",
     "rateLimitCooldown": "Límite de solicitudes alcanzado — pausa breve, se reintentará automáticamente"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "Traductor Subtítulos",
-      "description": "Traducción por lote SRT, ASS, VTT, LRC. 120+ idiomas."
+      "description": "Traducción por lote SRT, ASS, VTT, SBV, LRC. 120+ idiomas."
     },
     "jsonTranslate": {
       "title": "Traductor JSON i18n",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "Generador Datos IMGPrompt",
       "description": "Generar datos JSON IMGPrompt por lote"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "Compare dos textos o archivos en paralelo y localice la primera diferencia."
     }
   },
   "navigation": {

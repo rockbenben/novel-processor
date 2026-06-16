@@ -161,12 +161,14 @@
     "errorHint429": "リクエストが多すぎます。しばらくしてから再試行してください",
     "errorHint456": "今期の翻訳クォータを使い切りました",
     "errorHint5xx": "サーバーエラーです。しばらくしてから再試行してください",
+    "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。API 設定で「API 中継」を有効にしてください",
+    "errorHintRelay403": "API が 403 Forbidden を返しました。API 設定で「API 中継」を有効にしてください",
     "rateLimitCooldown": "レート制限に達したため少し待機し、自動的に再試行します"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "字幕翻訳機",
-      "description": "SRT、ASS、VTT、LRC字幕を一括翻訳、120以上の言語に対応"
+      "description": "SRT、ASS、VTT、SBV、LRC字幕を一括翻訳、120以上の言語に対応"
     },
     "jsonTranslate": {
       "title": "i18n JSON翻訳",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "IMGPromptデータ生成",
       "description": "IMGPrompt JSONデータを一括生成"
+    },
+    "textDiff": {
+      "title": "テキスト差分",
+      "description": "2つのテキストまたはファイルを並べて比較し、最初の差異を特定します。"
     }
   },
   "navigation": {

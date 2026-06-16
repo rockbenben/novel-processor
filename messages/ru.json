@@ -161,12 +161,14 @@
     "errorHint429": "Превышен лимит запросов, повторите попытку позже",
     "errorHint456": "Квота перевода на этот период исчерпана",
     "errorHint5xx": "Ошибка сервера, повторите попытку позже",
+    "errorHintRelay": "Ошибка сети (возможно, CORS) — включите «Ретранслятор API» в настройках API",
+    "errorHintRelay403": "API вернул 403 Forbidden — включите «Ретранслятор API» в настройках API",
     "rateLimitCooldown": "Достигнут лимит запросов — короткая пауза, повтор произойдёт автоматически"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "Переводчик субтитров",
-      "description": "Пакетный перевод субтитров SRT, ASS, VTT, LRC, поддержка 120+ языков"
+      "description": "Пакетный перевод субтитров SRT, ASS, VTT, SBV, LRC, поддержка 120+ языков"
     },
     "jsonTranslate": {
       "title": "i18n JSON Перевод",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "Генерация данных IMGPrompt",
       "description": "Пакетная генерация данных JSON для IMGPrompt"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "Сравните два текста или файла рядом и найдите первое отличие."
     }
   },
   "navigation": {

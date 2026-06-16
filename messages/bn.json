@@ -161,12 +161,14 @@
     "errorHint429": "অনুরোধের সীমা ছাড়িয়ে গেছে, পরে আবার চেষ্টা করুন",
     "errorHint456": "এই মেয়াদের অনুবাদ কোটা শেষ হয়ে গেছে",
     "errorHint5xx": "সার্ভার ত্রুটি, পরে আবার চেষ্টা করুন",
+    "errorHintRelay": "নেটওয়ার্ক ত্রুটি (সম্ভবত CORS সীমাবদ্ধতা)। API সেটিংসে \"API রিলে\" চালু করুন",
+    "errorHintRelay403": "API 403 Forbidden ফেরত দিয়েছে। API সেটিংসে \"API রিলে\" চালু করুন",
     "rateLimitCooldown": "অনুরোধের সীমায় পৌঁছেছে — কিছুক্ষণ থেমে স্বয়ংক্রিয়ভাবে আবার চেষ্টা হবে"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "সাবটাইটেল অনুবাদক",
-      "description": "ব্যাচ SRT, ASS, VTT, LRC অনুবাদ। 120+ ভাষা।"
+      "description": "ব্যাচ SRT, ASS, VTT, SBV, LRC অনুবাদ। 120+ ভাষা।"
     },
     "jsonTranslate": {
       "title": "i18n JSON অনুবাদক",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "IMGPrompt ডেটা জেনারেটর",
       "description": "ব্যাচ IMGPrompt JSON ডেটা তৈরি করুন"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "দুটি পাঠ্য বা ফাইল পাশাপাশি তুলনা করুন এবং প্রথম পার্থক্য খুঁজুন।"
     }
   },
   "navigation": {

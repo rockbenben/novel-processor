@@ -161,12 +161,14 @@
     "errorHint429": "Batas permintaan terlampaui, silakan coba lagi nanti",
     "errorHint456": "Kuota terjemahan periode ini telah habis",
     "errorHint5xx": "Kesalahan server, silakan coba lagi nanti",
+    "errorHintRelay": "Kesalahan jaringan (kemungkinan CORS) — aktifkan \"Relay API\" di Pengaturan API",
+    "errorHintRelay403": "API mengembalikan 403 Forbidden — aktifkan \"Relay API\" di Pengaturan API",
     "rateLimitCooldown": "Batas permintaan tercapai — jeda sejenak, akan dicoba ulang otomatis"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "Penerjemah Subtitle",
-      "description": "Terjemahan batch SRT, ASS, VTT, LRC. 120+ bahasa."
+      "description": "Terjemahan batch SRT, ASS, VTT, SBV, LRC. 120+ bahasa."
     },
     "jsonTranslate": {
       "title": "Penerjemah JSON i18n",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "Generator Data IMGPrompt",
       "description": "Hasilkan data JSON IMGPrompt secara batch"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "Bandingkan dua teks atau file berdampingan dan temukan perbedaan pertama."
     }
   },
   "navigation": {

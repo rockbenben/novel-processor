@@ -186,6 +186,10 @@ export function useRuleManager(
     const t2sResult = dedupRules(t2sRules);
     if (s2tResult.removed > 0) setS2tRules(s2tResult.deduped);
     if (t2sResult.removed > 0) setT2sRules(t2sResult.deduped);
+    // 抽屉关闭时自动 dedup 也会左移行索引,而 selectedKeys 存的是旧索引 ——
+    // 抽屉 destroyOnHidden=false,重开后勾选漂移到别的规则,批量删除/导出
+    // 命中错误行(与 removeRules/importRules 处理的是同一索引漂移隐患)。
+    if (s2tResult.removed + t2sResult.removed > 0) setSelectedKeys([]);
     return s2tResult.removed + t2sResult.removed;
   }, [s2tRules, t2sRules, setS2tRules, setT2sRules]);
 

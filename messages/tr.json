@@ -161,12 +161,14 @@
     "errorHint429": "İstek sınırı aşıldı, lütfen daha sonra tekrar deneyin",
     "errorHint456": "Bu dönemin çeviri kotası tükendi",
     "errorHint5xx": "Sunucu hatası, lütfen daha sonra tekrar deneyin",
+    "errorHintRelay": "Ağ hatası (muhtemelen CORS) — API Ayarlarında \"API Aktarıcı\"yı açın",
+    "errorHintRelay403": "API 403 Forbidden döndürdü — API Ayarlarında \"API Aktarıcı\"yı açın",
     "rateLimitCooldown": "İstek sınırına ulaşıldı — kısa bir duraklamadan sonra otomatik olarak yeniden denenecek"
   },
   "tools": {
     "subtitleTranslator": {
       "title": "Altyazı Çevirici",
-      "description": "Toplu SRT, ASS, VTT, LRC çevirisi. 120+ dil."
+      "description": "Toplu SRT, ASS, VTT, SBV, LRC çevirisi. 120+ dil."
     },
     "jsonTranslate": {
       "title": "i18n JSON Çevirici",
@@ -278,6 +280,10 @@
     "dataParserImgPrompt": {
       "title": "IMGPrompt Veri Oluşturucu",
       "description": "Toplu IMGPrompt JSON verileri oluştur"
+    },
+    "textDiff": {
+      "title": "Text Diff",
+      "description": "İki metni veya dosyayı yan yana karşılaştırın ve ilk farkı bulun."
     }
   },
   "navigation": {

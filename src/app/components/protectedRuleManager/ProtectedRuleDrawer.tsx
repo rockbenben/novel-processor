@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { Drawer, Tabs, Button, Popconfirm, Typography, Flex, App } from "antd";
 import { PlusOutlined, ClearOutlined, ImportOutlined, ExportOutlined } from "@ant-design/icons";
-import { downloadFile } from "@/app/utils";
+import { downloadFile, decodeFileBytes } from "@/app/utils";
 import { useTranslations } from "next-intl";
 import { useRuleManager } from "./useRuleManager";
 import StatusBar from "./StatusBar";
@@ -79,9 +79,15 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
 
   const handleImportFile = (file: File) => {
     const reader = new FileReader();
-    reader.onload = (e) => {
-      const text = e.target?.result;
-      if (typeof text !== "string") {
+    // readAsArrayBuffer + decodeFileBytes 而非 readAsText:readAsText 只按
+    // UTF-8 解,GBK/ANSI 词典(中文 Windows 导出常态)被解成 U+FFFD 乱码后
+    // 仍能过非空过滤 —— 损坏规则被静默持久化还报导入成功,转换时永不匹配。
+    reader.onload = async (e) => {
+      let text: string;
+      try {
+        text = await decodeFileBytes(e.target?.result as ArrayBuffer);
+      } catch (error) {
+        console.error("Rule import failed:", error);
         message.error(tCommon("fileReadFailed"));
         return;
       }
@@ -113,7 +119,7 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
       }
     };
     reader.onerror = () => message.error(tCommon("fileReadFailed"));
-    reader.readAsText(file);
+    reader.readAsArrayBuffer(file);
   };
 
   return (
