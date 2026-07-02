@@ -54,6 +54,7 @@
     "exportedFile": "Esportato",
     "extractedText": "Testo Estratto",
     "translating": "Traduzione in corso...",
+    "translateDone": "Traduzione completata",
     "multiTranslating": "Traduzione in corso, totale lingue:",
     "model": "Modello",
     "sameLanguageTarget": "Lingue sorgente e destinazione uguali; destinazione adattata automaticamente a",
@@ -97,7 +98,7 @@
     "requestTimeoutSec": "Timeout",
     "requestTimeoutSecTooltip": "Attesa massima per richiesta (secondi). Il pensiero LLM richiede più tempo; si consigliano 180 s o più.",
     "customExportFilename": "Modello nome file",
-    "customExportFilenameTooltip": "'{'name'}' = nome originale, '{'lang'}' = lingua, '{'ext'}' = estensione, '{'date'}' = data, '{'time'}' = ora",
+    "customExportFilenameTooltip": "'{'name'}' = nome originale, '{'lang'}' = lingua, '{'ext'}' = estensione, '{'date'}' = data, '{'time'}' = ora; in modalità multilingua '{'lang'}' viene aggiunto automaticamente per evitare conflitti di nome",
     "partialFailureTitle": "{count} riga/righe non riuscite",
     "partialFailureDesc": "Le righe non riuscite hanno mantenuto il testo originale come segnaposto, il file rimane utilizzabile. Questi fallimenti sono solitamente fluttuazioni di rete o instabilità temporanea del servizio di traduzione — i servizi gratuiti e i server auto-ospitati sono particolarmente soggetti a questo, e non è un problema della tua configurazione. Fai clic su Riprova per continuare (le righe riuscite vengono dalla cache, senza ritraduzione); se continua a fallire, riprova più tardi o prova un altro servizio di traduzione. O fai clic su Visualizza righe non riuscite per gestirle manualmente.",
     "retryFailedLines": "Riprova",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "Il servizio TranslateGemma è temporaneamente irraggiungibile, assicurati che il tuo server locale (LM Studio / llama.cpp / Ollama) sia in esecuzione e l'URL sia corretto.",
     "networkUnavailable": "Il servizio di traduzione è temporaneamente irraggiungibile — potrebbe essere un problema di rete o il servizio ha un piccolo intoppo. Riprova più tardi o passa a un altro servizio di traduzione.",
     "translationTimeout": "La richiesta di traduzione è scaduta — potrebbe essere una rete lenta o il servizio impiega troppo tempo a rispondere. Riprova più tardi o passa a un altro servizio di traduzione.",
+    "translationTimeoutLocal": "Traduzione con modello locale scaduta. Un LLM locale può bloccarsi in un ciclo di ripetizione: riduci max_tokens (il limite di output) nelle Impostazioni avanzate e assicurati che la lingua di origine selezionata corrisponda al testo effettivo.",
     "langGroupCommon": "Comuni",
     "langGroupEurope": "Europa",
     "langGroupMiddleEast": "Medio Oriente",
@@ -213,20 +215,6 @@
           "a": "100% locale nel browser: lettura, riparazione formato, conversione Tradizionale/Semplificato ed export avvengono nel tuo browser — nulla viene caricato. Codice sorgente aperto su GitHub (rockbenben/novel-processor) per self-hosting."
         }
       ],
-      "howto": [
-        {
-          "name": "Importa testo di web novel o romanzo",
-          "text": "Incolla testo o carica un file TXT — senza limiti di dimensione, gestisce romanzi di oltre 3 milioni di caratteri. Funziona per download TXT da siti come Biquge, copia web del browser, esportazioni TXT da Word, fan fiction, scrittura originale e altro."
-        },
-        {
-          "name": "Configura combinazioni di regole di riparazione",
-          "text": "Seleziona le regole necessarie: interruzioni di riga intelligenti (ripara paragrafi divisi per errore), divisione in capitoli (riga vuota prima di ogni capitolo), rientro della prima riga (2 caratteri), rimozione delle righe duplicate (elimina la pubblicità), conversione tra cinese tradizionale e semplificato e filtro dei contenuti spazzatura. Le regole possono essere combinate o attivate singolarmente."
-        },
-        {
-          "name": "Esporta TXT compatibile con il reader",
-          "text": "Dopo l'esportazione puoi inviare il file direttamente a Kindle tramite l'email Send-to-Kindle, oppure importarlo localmente in WeChat Reading, iReader o Moon+ Reader. Con la divisione in capitoli attivata, Kindle genera automaticamente il sommario. Per WeChat Reading si consiglia di convertire prima in EPUB con Calibre per la migliore esperienza di navigazione del sommario."
-        }
-      ],
       "features": [
         "Corregge 7 problemi di formato comuni nei file TXT di web novel (download, copia web, esportazioni Word)",
         "Rileva automaticamente titoli di capitolo come 「第X章」 o Chapter X e li divide",
@@ -293,7 +281,11 @@
     "textParser": "Strumenti Testo",
     "jsonParser": "Strumenti JSON",
     "dataParser": "Strumenti Dati",
-    "otherTools": "Altri Strumenti"
+    "otherTools": "Altri Strumenti",
+    "externalTools": {
+      "legendtalk": "Tavola rotonda dei pensatori IA",
+      "imgprompt": "Prompt per immagini IA"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI - Utility Sviluppatori & Traduzione IA Online",

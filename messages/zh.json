@@ -60,6 +60,7 @@
     "exportedFile": "已导出",
     "extractedText": "提取的文本",
     "translating": "翻译中",
+    "translateDone": "翻译完成",
     "multiTranslating": "正在翻译，目标语言共",
     "model": "模型",
     "sameLanguageTarget": "源语言与目标语言相同，已自动调整目标语言为",
@@ -103,7 +104,7 @@
     "requestTimeoutSec": "超时时间",
     "requestTimeoutSecTooltip": "单次请求的最大等待时间（秒）。LLM 思考耗时较长，建议 180 秒以上",
     "customExportFilename": "导出文件名格式",
-    "customExportFilenameTooltip": "'{'name'}' = 原始文件名, '{'lang'}' = 语言, '{'ext'}' = 扩展名, '{'date'}' = 日期, '{'time'}' = 时间",
+    "customExportFilenameTooltip": "'{'name'}' = 原始文件名, '{'lang'}' = 语言, '{'ext'}' = 扩展名, '{'date'}' = 日期, '{'time'}' = 时间；多语言模式会自动加 '{'lang'}' 防止文件名冲突",
     "partialFailureTitle": "翻译失败 {count} 行",
     "partialFailureDesc": "失败的行已用原文占位（不影响文件结构）。这种失败大多是网络抖动或翻译服务临时不稳定——免费服务和自建服务器特别容易碰到，不是你的设置问题。点「再试一次」即可继续，已成功的行走缓存不会重翻；如果还是失败，稍后再点或换个翻译服务试试。也可点「查看失败行」自己处理。",
     "retryFailedLines": "再试一次",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "TranslateGemma 服务暂时连不上，请确认本地服务器（LM Studio / llama.cpp / Ollama）已启动且 URL 正确。",
     "networkUnavailable": "翻译服务暂时连不上，可能是网络或服务的临时问题。稍后再试，或换一个翻译服务。",
     "translationTimeout": "翻译请求超时，可能是网络较慢或翻译服务响应慢。稍后再试，或换一个翻译服务。",
+    "translationTimeoutLocal": "本地模型翻译超时。本地大模型可能陷入复读循环——请在高级设置中调低 max_tokens（输出上限），并确认所选源语言与文本实际语言一致。",
     "langGroupCommon": "常用",
     "langGroupEurope": "欧洲",
     "langGroupMiddleEast": "中东",
@@ -191,20 +193,6 @@
       "description": "一键修复下载小说的格式问题，智能换行排版",
       "metaTitle": "小说排版整理工具 - 网文 TXT 智能换行、章节分割与 Kindle 推送适配",
       "metaDescription": "网文 TXT 智能排版工具，一键修复笔趣阁下载小说的段落误切、空行、章节标识、广告横幅、繁简混用，支持 300 万字超长篇秒级处理。",
-      "howto": [
-        {
-          "name": "导入网文或小说文本",
-          "text": "支持粘贴文本或上传 TXT 文件（无大小限制，可处理 300 万字以上超长小说）。适用于笔趣阁等网站下载的 TXT、浏览器网页复制的文本、Word 导出 TXT、同人文/自写作品等各种场景。"
-        },
-        {
-          "name": "配置修复规则组合",
-          "text": "勾选需要的规则：智能换行（修复段落被误切）、章节分割（每章前加空行）、段首缩进（两字符）、去重复行（删广告）、繁简转换、垃圾内容过滤。规则可叠加，也可单独启用。"
-        },
-        {
-          "name": "导出适配阅读器的 TXT",
-          "text": "导出后可直接通过推送邮箱发送到 Kindle，或本地导入微信读书、掌阅、静读天下。启用章节分割后 Kindle 可自动生成目录。微信读书建议先用 Calibre 转 EPUB 以获得最佳目录体验。"
-        }
-      ],
       "features": [
         "修复网文 TXT 格式乱的 7 大问题（笔趣阁下载、网页复制、Word 导出均适用）",
         "智能识别「第X章」「Chapter X」等章节标题自动分割",
@@ -293,7 +281,11 @@
     "textParser": "文本处理",
     "jsonParser": "JSON 处理",
     "dataParser": "数据转换",
-    "otherTools": "其他工具"
+    "otherTools": "其他工具",
+    "externalTools": {
+      "legendtalk": "AI 思想家圆桌",
+      "imgprompt": "AI 绘图提示词"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",

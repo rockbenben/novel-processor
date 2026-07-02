@@ -54,6 +54,7 @@
     "exportedFile": "Diekspor",
     "extractedText": "Teks Diekstrak",
     "translating": "Menerjemahkan...",
+    "translateDone": "Terjemahan selesai",
     "multiTranslating": "Menerjemahkan, total bahasa:",
     "model": "Model",
     "sameLanguageTarget": "Bahasa sumber dan target sama; target otomatis disesuaikan ke",
@@ -97,7 +98,7 @@
     "requestTimeoutSec": "Batas Waktu",
     "requestTimeoutSecTooltip": "Waktu tunggu maksimum per permintaan (detik). Pemikiran LLM membutuhkan waktu lebih lama; direkomendasikan 180 detik atau lebih.",
     "customExportFilename": "Pola Nama File Ekspor",
-    "customExportFilenameTooltip": "'{'name'}' = nama file asli, '{'lang'}' = bahasa, '{'ext'}' = ekstensi, '{'date'}' = tanggal, '{'time'}' = waktu",
+    "customExportFilenameTooltip": "'{'name'}' = nama file asli, '{'lang'}' = bahasa, '{'ext'}' = ekstensi, '{'date'}' = tanggal, '{'time'}' = waktu; dalam mode multibahasa, '{'lang'}' ditambahkan otomatis untuk mencegah bentrokan nama",
     "partialFailureTitle": "{count} baris gagal diterjemahkan",
     "partialFailureDesc": "Baris yang gagal mempertahankan teks asli sebagai placeholder, file tetap dapat digunakan. Kegagalan semacam ini biasanya disebabkan oleh fluktuasi jaringan atau ketidakstabilan sementara layanan terjemahan — layanan gratis dan server yang di-host sendiri sangat rentan, dan ini bukan masalah konfigurasi Anda. Klik Coba lagi untuk melanjutkan (baris yang berhasil berasal dari cache, tanpa penerjemahan ulang); jika tetap gagal, coba lagi nanti atau beralih ke layanan terjemahan lain. Atau klik Lihat baris yang gagal untuk menanganinya secara manual.",
     "retryFailedLines": "Coba lagi",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "Layanan TranslateGemma sementara tidak dapat dijangkau, pastikan server lokal Anda (LM Studio / llama.cpp / Ollama) sedang berjalan dan URL sudah benar.",
     "networkUnavailable": "Layanan terjemahan sementara tidak dapat dijangkau — bisa jadi masalah jaringan atau gangguan sementara pada layanan. Silakan coba lagi nanti atau beralih ke layanan terjemahan lain.",
     "translationTimeout": "Permintaan terjemahan habis waktu — bisa jadi jaringan lambat atau layanan terlalu lama merespons. Silakan coba lagi nanti atau beralih ke layanan terjemahan lain.",
+    "translationTimeoutLocal": "Penerjemahan model lokal kehabisan waktu. LLM lokal bisa macet dalam perulangan berulang — turunkan max_tokens (batas keluaran) di Pengaturan Lanjutan, dan pastikan bahasa sumber yang dipilih sesuai dengan teks sebenarnya.",
     "langGroupCommon": "Umum",
     "langGroupEurope": "Eropa",
     "langGroupMiddleEast": "Timur Tengah",
@@ -209,20 +211,6 @@
           "a": "Pemrosesan lokal browser 100%: pembacaan teks novel, perbaikan format, konversi Sederhana-Tradisional, ekspor semua di browser, teks asli tidak diunggah ke server. Kode sumber open source di GitHub (rockbenben/novel-processor), bisa self-deploy."
         }
       ],
-      "howto": [
-        {
-          "name": "Impor teks novel web atau fiksi",
-          "text": "Tempel teks atau unggah file TXT — tanpa batas ukuran, menangani novel lebih dari 3 juta karakter. Bekerja untuk unduhan TXT dari situs seperti Biquge, salinan web browser, ekspor TXT Word, fanfiksi, tulisan asli, dan lainnya."
-        },
-        {
-          "name": "Konfigurasi kombinasi aturan perbaikan",
-          "text": "Centang aturan yang Anda butuhkan: pemecah baris pintar (perbaiki paragraf yang salah dipotong), pemisahan bab (baris kosong sebelum setiap bab), indentasi baris pertama (2 karakter), penghapusan baris duplikat (bersihkan iklan), konversi Tradisional-ke-Sederhana, filter konten sampah. Aturan dapat digabungkan atau diaktifkan satu per satu."
-        },
-        {
-          "name": "Ekspor TXT yang ramah pembaca",
-          "text": "Kirim hasil ekspor langsung ke Kindle melalui Send-to-Kindle, atau impor secara lokal ke Kobo, FBReader, atau Moon+ Reader. Dengan pemisahan bab diaktifkan, Kindle secara otomatis menghasilkan daftar isi. Untuk Kobo atau pembaca lainnya, konversi terlebih dahulu ke EPUB melalui Calibre demi pengalaman daftar isi terbaik."
-        }
-      ],
       "features": [
         "Memperbaiki 7 masalah format umum dalam file TXT novel web (unduhan, salin-tempel web, ekspor Word)",
         "Mendeteksi judul bab seperti 「第X章」 atau Chapter X secara otomatis dan memisahkannya",
@@ -293,7 +281,11 @@
     "textParser": "Alat Teks",
     "jsonParser": "Alat JSON",
     "dataParser": "Alat Data",
-    "otherTools": "Alat Lainnya"
+    "otherTools": "Alat Lainnya",
+    "externalTools": {
+      "legendtalk": "Meja Bundar Pemikir AI",
+      "imgprompt": "Prompt Gambar AI"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI - Peralatan Data & Terjemahan AI untuk Developer",

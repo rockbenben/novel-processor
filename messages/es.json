@@ -56,6 +56,7 @@
     "batchDownloaded": "Procesamiento completo, el archivo se descargó automáticamente",
     "extractedText": "Texto Extraído",
     "translating": "Traduciendo...",
+    "translateDone": "Traducción completada",
     "multiTranslating": "Traduciendo, total idiomas:",
     "model": "Modelo",
     "sameLanguageTarget": "Idiomas origen y destino iguales; destino ajustado automáticamente a",
@@ -110,7 +111,7 @@
     "requestTimeoutSec": "Tiempo de espera",
     "requestTimeoutSecTooltip": "Espera máxima por solicitud (segundos). El pensamiento de LLM tarda más; se recomiendan 180 s o más.",
     "customExportFilename": "Patrón de nombre de archivo",
-    "customExportFilenameTooltip": "'{'name'}' = nombre original, '{'lang'}' = idioma, '{'ext'}' = extensión, '{'date'}' = fecha, '{'time'}' = hora",
+    "customExportFilenameTooltip": "'{'name'}' = nombre original, '{'lang'}' = idioma, '{'ext'}' = extensión, '{'date'}' = fecha, '{'time'}' = hora; en modo multiidioma se agrega '{'lang'}' automáticamente para evitar conflictos de nombres",
     "partialFailureTitle": "{count} línea(s) fallaron",
     "partialFailureDesc": "Las líneas fallidas conservaron el texto original como marcador de posición, manteniendo el archivo utilizable. Estos fallos suelen ser interrupciones de red o problemas temporales del servicio de traducción — los servicios gratuitos y los servidores autoalojados son especialmente propensos a esto, y no es un problema de tu configuración. Haz clic en Reintentar para continuar (las líneas exitosas vienen de la caché, sin retraducción); si sigue fallando, inténtalo más tarde o prueba otro servicio de traducción. O haz clic en Ver líneas fallidas para gestionarlas manualmente.",
     "retryFailedLines": "Reintentar",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "El servicio TranslateGemma está temporalmente inaccesible, asegúrate de que tu servidor local (LM Studio / llama.cpp / Ollama) esté en ejecución y la URL sea correcta.",
     "networkUnavailable": "El servicio de traducción está temporalmente inaccesible — podría ser un problema de red o el servicio está teniendo un percance. Inténtalo de nuevo más tarde o cambia a otro servicio de traducción.",
     "translationTimeout": "La solicitud de traducción agotó el tiempo de espera — podría ser una red lenta o el servicio está tardando demasiado en responder. Inténtalo de nuevo más tarde o cambia a otro servicio de traducción.",
+    "translationTimeoutLocal": "Se agotó el tiempo de la traducción con el modelo local. Un LLM local puede quedarse atascado en un bucle de repetición: reduce max_tokens (el límite de salida) en la configuración avanzada y asegúrate de que el idioma de origen seleccionado coincida con el texto real.",
     "langGroupCommon": "Comunes",
     "langGroupEurope": "Europa",
     "langGroupMiddleEast": "Oriente Medio",
@@ -213,20 +215,6 @@
           "a": "100% local en el navegador: lectura, reparación de formato, conversión Tradicional/Simplificado y exportación ocurren en tu navegador — nada se sube. Código abierto en GitHub (rockbenben/novel-processor) para auto-hospedaje."
         }
       ],
-      "howto": [
-        {
-          "name": "Importar texto de novela web o ficción",
-          "text": "Pega texto o sube un archivo TXT — sin límite de tamaño, maneja novelas de más de 3 millones de caracteres. Funciona para descargas TXT de sitios como Biquge, copia web del navegador, exportaciones TXT de Word, fan fiction, escritura original y más."
-        },
-        {
-          "name": "Configurar combinaciones de reglas de reparación",
-          "text": "Marca las reglas que necesites: saltos de línea inteligentes (repara párrafos mal cortados), división en capítulos (línea en blanco antes de cada capítulo), sangría de primera línea (2 caracteres), eliminación de líneas duplicadas (quita anuncios), conversión entre chino tradicional y simplificado, y filtro de contenido basura. Las reglas se pueden combinar o activar por separado."
-        },
-        {
-          "name": "Exportar TXT adaptado al lector",
-          "text": "Envía la exportación directamente a Kindle vía Send-to-Kindle, o importa localmente en Kobo, Tagus o Moon+ Reader. Con la división en capítulos activada, Kindle genera automáticamente una tabla de contenido. Para Kobo o Tagus, convierte primero a EPUB vía Calibre para la mejor experiencia de índice."
-        }
-      ],
       "features": [
         "Corrige los 7 problemas principales de formato en TXT de novelas web (válido para descargas de Biquge, copias de páginas web y exportaciones de Word)",
         "Detecta automáticamente títulos de capítulo como 「第X章」 o Chapter X y los divide",
@@ -293,7 +281,11 @@
     "textParser": "Herramientas Texto",
     "jsonParser": "Herramientas JSON",
     "dataParser": "Herramientas Datos",
-    "otherTools": "Otras Herramientas"
+    "otherTools": "Otras Herramientas",
+    "externalTools": {
+      "legendtalk": "Mesa redonda de pensadores IA",
+      "imgprompt": "Prompts de imágenes IA"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI | Herramientas de Traducción y Dev con IA",

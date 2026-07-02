@@ -54,6 +54,7 @@
     "exportedFile": "Đã xuất",
     "extractedText": "Văn bản đã trích xuất",
     "translating": "Đang dịch...",
+    "translateDone": "Đã dịch xong",
     "multiTranslating": "Đang dịch, tổng số ngôn ngữ:",
     "model": "Mô hình",
     "sameLanguageTarget": "Ngôn ngữ nguồn và đích giống nhau; đích tự động điều chỉnh thành",
@@ -97,7 +98,7 @@
     "requestTimeoutSec": "Thời gian chờ",
     "requestTimeoutSecTooltip": "Thời gian chờ tối đa mỗi yêu cầu (giây). LLM suy nghĩ mất nhiều thời gian hơn; khuyến nghị 180 giây trở lên.",
     "customExportFilename": "Mẫu tên tệp xuất",
-    "customExportFilenameTooltip": "'{'name'}' = tên tệp gốc, '{'lang'}' = ngôn ngữ, '{'ext'}' = phần mở rộng, '{'date'}' = ngày, '{'time'}' = thời gian",
+    "customExportFilenameTooltip": "'{'name'}' = tên tệp gốc, '{'lang'}' = ngôn ngữ, '{'ext'}' = phần mở rộng, '{'date'}' = ngày, '{'time'}' = thời gian; ở chế độ đa ngôn ngữ, '{'lang'}' được thêm tự động để tránh trùng tên",
     "partialFailureTitle": "{count} dòng dịch thất bại",
     "partialFailureDesc": "Các dòng thất bại đã giữ nguyên văn bản gốc làm chỗ giữ chỗ, tệp vẫn dùng được. Những thất bại này thường do biến động mạng hoặc dịch vụ dịch tạm thời không ổn định — dịch vụ miễn phí và máy chủ tự lưu trữ đặc biệt dễ gặp, và không phải do cấu hình của bạn. Nhấp Thử lại để tiếp tục (các dòng thành công đến từ bộ nhớ đệm, không dịch lại); nếu vẫn thất bại, hãy thử lại sau hoặc chuyển sang dịch vụ dịch khác. Hoặc nhấp Xem các dòng thất bại để xử lý thủ công.",
     "retryFailedLines": "Thử lại",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "Dịch vụ TranslateGemma tạm thời không kết nối được, hãy đảm bảo máy chủ cục bộ của bạn (LM Studio / llama.cpp / Ollama) đang chạy và URL chính xác.",
     "networkUnavailable": "Dịch vụ dịch tạm thời không kết nối được — có thể là sự cố mạng hoặc dịch vụ đang gặp trục trặc tạm thời. Vui lòng thử lại sau hoặc chuyển sang dịch vụ dịch khác.",
     "translationTimeout": "Yêu cầu dịch đã hết thời gian — có thể là mạng chậm hoặc dịch vụ phản hồi quá lâu. Vui lòng thử lại sau hoặc chuyển sang dịch vụ dịch khác.",
+    "translationTimeoutLocal": "Dịch bằng mô hình cục bộ đã hết thời gian. Một LLM cục bộ có thể bị kẹt trong vòng lặp lặp lại — hãy giảm max_tokens (giới hạn đầu ra) trong Cài đặt nâng cao và đảm bảo ngôn ngữ nguồn đã chọn khớp với văn bản thực tế.",
     "langGroupCommon": "Phổ biến",
     "langGroupEurope": "Châu Âu",
     "langGroupMiddleEast": "Trung Đông",
@@ -213,20 +215,6 @@
           "a": "100% chạy nội bộ trình duyệt: đọc văn bản, sửa định dạng, chuyển Phồn/Giản và xuất đều diễn ra trong trình duyệt — không có gì được tải lên. Mã nguồn mở trên GitHub (rockbenben/novel-processor) để tự host."
         }
       ],
-      "howto": [
-        {
-          "name": "Nhập văn bản tiểu thuyết mạng hoặc tiểu thuyết",
-          "text": "Dán văn bản hoặc tải lên tệp TXT — không giới hạn kích thước, xử lý tiểu thuyết hơn 3 triệu ký tự. Hoạt động với tải xuống TXT từ các trang như Biquge, sao chép web trình duyệt, xuất TXT Word, fanfic, tác phẩm gốc và nhiều hơn nữa."
-        },
-        {
-          "name": "Cấu hình tổ hợp quy tắc sửa chữa",
-          "text": "Đánh dấu các quy tắc bạn cần: ngắt dòng thông minh (sửa đoạn văn bị cắt sai), tách chương (dòng trống trước mỗi chương), thụt đầu dòng (2 ký tự), loại bỏ dòng trùng lặp (xóa quảng cáo), chuyển phồn thể sang giản thể, lọc nội dung rác. Các quy tắc có thể chồng hoặc kích hoạt riêng."
-        },
-        {
-          "name": "Xuất TXT thân thiện với máy đọc",
-          "text": "Gửi xuất trực tiếp đến Kindle qua Send-to-Kindle, hoặc nhập cục bộ vào Kobo, Reavol, hoặc Moon+ Reader. Khi bật tách chương, Kindle tự động tạo bảng mục lục. Đối với Kobo hoặc Reavol, hãy chuyển đổi sang EPUB qua Calibre trước để có trải nghiệm mục lục tốt nhất."
-        }
-      ],
       "features": [
         "Sửa 7 vấn đề định dạng phổ biến trong tệp TXT tiểu thuyết mạng (tải xuống, sao chép web, xuất Word)",
         "Tự động phát hiện tiêu đề chương như 「第X章」 hoặc Chapter X và tách chúng",
@@ -293,7 +281,11 @@
     "textParser": "Công cụ Văn bản",
     "jsonParser": "Công cụ JSON",
     "dataParser": "Công cụ Dữ liệu",
-    "otherTools": "Công cụ Khác"
+    "otherTools": "Công cụ Khác",
+    "externalTools": {
+      "legendtalk": "Bàn tròn nhà tư tưởng AI",
+      "imgprompt": "Câu lệnh tạo ảnh AI"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI - Bộ Công Cụ Dịch Thuật & Dữ Liệu AI Online",

@@ -54,6 +54,7 @@
     "exportedFile": "Dışa Aktarıldı",
     "extractedText": "Çıkarılan Metin",
     "translating": "Çevriliyor...",
+    "translateDone": "Çeviri tamamlandı",
     "multiTranslating": "Çevriliyor, toplam dil:",
     "model": "Model",
     "sameLanguageTarget": "Kaynak ve hedef diller aynı; hedef otomatik olarak şuna ayarlandı:",
@@ -97,7 +98,7 @@
     "requestTimeoutSec": "Zaman Aşımı",
     "requestTimeoutSecTooltip": "İstek başına maksimum bekleme süresi (saniye). LLM düşünmesi daha uzun sürer; 180 saniye veya daha fazlası önerilir.",
     "customExportFilename": "Dışa Aktarma Dosya Adı Kalıbı",
-    "customExportFilenameTooltip": "'{'name'}' = orijinal dosya adı, '{'lang'}' = dil, '{'ext'}' = uzantı, '{'date'}' = tarih, '{'time'}' = saat",
+    "customExportFilenameTooltip": "'{'name'}' = orijinal dosya adı, '{'lang'}' = dil, '{'ext'}' = uzantı, '{'date'}' = tarih, '{'time'}' = saat; çok dilli modda ad çakışmalarını önlemek için '{'lang'}' otomatik eklenir",
     "partialFailureTitle": "{count} satır çevrilemedi",
     "partialFailureDesc": "Başarısız satırlar yer tutucu olarak orijinal metni korudu, dosya kullanılabilir kalır. Bu tür hatalar genellikle ağ dalgalanmaları veya çeviri hizmetinin geçici kararsızlığından kaynaklanır — ücretsiz hizmetler ve kendi barındırılan sunucular özellikle bu duruma eğilimlidir ve sizin yapılandırmanızla ilgili bir sorun değildir. Devam etmek için Yeniden Dene'ye tıklayın (başarılı satırlar önbellekten gelir, yeniden çevrilmez); hata devam ederse, daha sonra tekrar deneyin veya başka bir çeviri hizmetine geçin. Veya manuel olarak işlemek için Başarısız satırları gör'e tıklayın.",
     "retryFailedLines": "Yeniden dene",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "TranslateGemma hizmetine geçici olarak ulaşılamıyor, yerel sunucunuzun (LM Studio / llama.cpp / Ollama) çalıştığından ve URL'nin doğru olduğundan emin olun.",
     "networkUnavailable": "Çeviri hizmetine geçici olarak ulaşılamıyor — ağ sorunu veya hizmette geçici bir aksaklık olabilir. Lütfen daha sonra tekrar deneyin veya başka bir çeviri hizmetine geçin.",
     "translationTimeout": "Çeviri isteği zaman aşımına uğradı — yavaş bir ağ veya hizmet yanıt vermekte gecikiyor olabilir. Lütfen daha sonra tekrar deneyin veya başka bir çeviri hizmetine geçin.",
+    "translationTimeoutLocal": "Yerel model çevirisi zaman aşımına uğradı. Yerel bir LLM tekrar döngüsünde takılabilir — Gelişmiş Ayarlar'da max_tokens (çıktı sınırı) değerini düşürün ve seçili kaynak dilin gerçek metinle eşleştiğinden emin olun.",
     "langGroupCommon": "Yaygın",
     "langGroupEurope": "Avrupa",
     "langGroupMiddleEast": "Orta Doğu",
@@ -213,20 +215,6 @@
           "a": "%100 tarayıcıda yerel: metin okuma, biçim onarımı, Geleneksel/Basitleştirilmiş dönüşümü ve dışa aktarım hepsi tarayıcınızda olur — hiçbir şey yüklenmez. Kaynak kod GitHub'da (rockbenben/novel-processor) açık, kendi sunucunuza kurabilirsiniz."
         }
       ],
-      "howto": [
-        {
-          "name": "Web romanı veya roman metnini içe aktarın",
-          "text": "Metin yapıştırın veya bir TXT dosyası yükleyin — boyut sınırı yok, 3 milyondan fazla karakterli romanları işler. Biquge gibi sitelerden TXT indirmeleri, tarayıcı web kopyası, Word TXT dışa aktarımları, fan kurgu, özgün yazım ve daha fazlası için çalışır."
-        },
-        {
-          "name": "Onarım kuralı kombinasyonlarını yapılandırın",
-          "text": "İhtiyaç duyduğunuz kuralları işaretleyin: akıllı satır sonları (yanlış bölünmüş paragrafları onarır), bölüm bölme (her bölümden önce boş satır), ilk satır girintisi (2 karakter), yinelenen satır kaldırma (reklamları temizler), Geleneksel'den Basitleştirilmiş'e dönüşüm, gereksiz içerik filtresi. Kurallar birlikte uygulanabilir veya tek tek etkinleştirilebilir."
-        },
-        {
-          "name": "Okuyucu dostu TXT dışa aktarın",
-          "text": "Dışa aktarımı Send-to-Kindle aracılığıyla doğrudan Kindle'a gönderin veya Kobo, FBReader ya da Moon+ Reader'a yerel olarak içe aktarın. Bölüm bölme etkinken Kindle otomatik olarak bir içindekiler tablosu oluşturur. Kobo veya diğer okuyucularda en iyi içindekiler deneyimi için önce Calibre aracılığıyla EPUB'a dönüştürün."
-        }
-      ],
       "features": [
         "Web romanı TXT dosyalarındaki 7 yaygın biçim sorununu düzeltir (indirilen dosyalar, web kopyala-yapıştır ve Word dışa aktarımları için geçerlidir)",
         "「第X章」 veya Chapter X gibi bölüm başlıklarını otomatik algılar ve böler",
@@ -293,7 +281,11 @@
     "textParser": "Metin Araçları",
     "jsonParser": "JSON Araçları",
     "dataParser": "Veri Araçları",
-    "otherTools": "Diğer Araçlar"
+    "otherTools": "Diğer Araçlar",
+    "externalTools": {
+      "legendtalk": "AI Düşünürler Yuvarlak Masası",
+      "imgprompt": "AI Görsel İstemleri"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI - Geliştiriciler İçin Yapay Zeka ve Veri Araçları",

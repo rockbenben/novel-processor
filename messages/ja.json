@@ -54,6 +54,7 @@
     "exportedFile": "エクスポート済み",
     "extractedText": "抽出されたテキスト",
     "translating": "翻訳中",
+    "translateDone": "翻訳完了",
     "multiTranslating": "翻訳中、合計言語数：",
     "model": "モデル",
     "sameLanguageTarget": "翻訳元と翻訳先が同じ言語です。自動的に翻訳先を調整しました：",
@@ -97,7 +98,7 @@
     "requestTimeoutSec": "タイムアウト",
     "requestTimeoutSecTooltip": "リクエストあたりの最大待機時間（秒）。LLMの思考時間は長いため、180秒以上を推奨します。",
     "customExportFilename": "エクスポートファイル名の形式",
-    "customExportFilenameTooltip": "'{'name'}' = 元のファイル名, '{'lang'}' = 言語, '{'ext'}' = 拡張子, '{'date'}' = 日付, '{'time'}' = 時間",
+    "customExportFilenameTooltip": "'{'name'}' = 元のファイル名, '{'lang'}' = 言語, '{'ext'}' = 拡張子, '{'date'}' = 日付, '{'time'}' = 時間；多言語モードでは '{'lang'}' が自動追加され、ファイル名の衝突を防ぎます",
     "partialFailureTitle": "{count}行の翻訳に失敗しました",
     "partialFailureDesc": "失敗した行は元のテキストでプレースホルダーされており、ファイル構造に影響しません。この種の失敗は多くがネットワークの揺らぎや翻訳サービスの一時的な不安定によるもので、無料サービスやセルフホストのサーバーで特に起こりやすく、設定の問題ではありません。「再試行」をクリックすれば続行できます（成功した行はキャッシュから読み込まれ、再翻訳されません）。それでも失敗する場合は、しばらくしてから再試行するか別の翻訳サービスをお試しください。「失敗した行を表示」して手動で処理することもできます。",
     "retryFailedLines": "再試行",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "TranslateGemma サービスに一時的に接続できません。ローカルサーバー（LM Studio / llama.cpp / Ollama）が起動していて URL が正しいか確認してください。",
     "networkUnavailable": "翻訳サービスに一時的に接続できません。ネットワークの問題かサービス側の一時的な不具合の可能性があります。しばらくしてから再試行するか、別の翻訳サービスに切り替えてください。",
     "translationTimeout": "翻訳リクエストがタイムアウトしました。ネットワークが遅いか、サービスの応答に時間がかかっている可能性があります。しばらくしてから再試行するか、別の翻訳サービスに切り替えてください。",
+    "translationTimeoutLocal": "ローカルモデルの翻訳がタイムアウトしました。ローカル LLM は繰り返しループで停止することがあります。詳細設定で max_tokens（出力上限）を下げ、選択したソース言語が実際のテキストと一致しているか確認してください。",
     "langGroupCommon": "よく使う",
     "langGroupEurope": "ヨーロッパ",
     "langGroupMiddleEast": "中東",
@@ -213,20 +215,6 @@
           "a": "100% ブラウザ内ローカル処理：小説テキストの読み込み、書式修復、繁簡変換、エクスポートはすべてブラウザ内で完結し、原文はいかなるサーバーにもアップロードされません。ソースコードは GitHub（rockbenben/novel-processor）で公開され、セルフホスティング可能です。"
         }
       ],
-      "howto": [
-        {
-          "name": "小説本文の取り込み",
-          "text": "テキスト貼り付けまたは TXT ファイルアップロード — サイズ制限なし、300 万字以上の長編小説も処理可能。なろう・カクヨムなどの日本の小説投稿サイト、ブラウザ Web コピー、Word TXT エクスポート、二次創作・自作品、笔趣阁などの中国 Web 小説サイトからのテキストにも対応。"
-        },
-        {
-          "name": "修正ルールの組み合わせ",
-          "text": "必要なルールを選択：スマート改行（誤切断段落の修正）、章分割（各章の前に空行）、字下げ（2 文字）、重複行削除（広告除去）、繁体→簡体変換、ジャンクコンテンツフィルタ。ルールはスタック可能、単独でも利用可。"
-        },
-        {
-          "name": "リーダー向け TXT のエクスポート",
-          "text": "Send-to-Kindle メール経由で Kindle に直接送信、または楽天 Kobo・BookWalker・FBReader にローカルでインポート。章分割を有効にすると Kindle で目次が自動生成されます。Kobo や BookWalker は Calibre で EPUB に変換すると最良の目次体験になります。"
-        }
-      ],
       "features": [
         "Web 小説 TXT の 7 大フォーマット問題を修正（ダウンロード・Web コピー・Word エクスポート対応）",
         "「第X章」「Chapter X」などの章タイトルを自動認識して分割",
@@ -293,7 +281,11 @@
     "textParser": "テキスト処理",
     "jsonParser": "JSON処理",
     "dataParser": "データ変換",
-    "otherTools": "その他のツール"
+    "otherTools": "その他のツール",
+    "externalTools": {
+      "legendtalk": "AI思想家ラウンドテーブル",
+      "imgprompt": "AI画像プロンプト"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",

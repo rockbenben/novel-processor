@@ -60,6 +60,7 @@
     "exportedFile": "已匯出",
     "extractedText": "提取的文字",
     "translating": "翻譯中",
+    "translateDone": "翻譯完成",
     "multiTranslating": "正在翻譯，目標語言共",
     "model": "模型",
     "sameLanguageTarget": "源語言與目標語言相同，已自動調整目標語言為",
@@ -103,7 +104,7 @@
     "requestTimeoutSec": "超時時間",
     "requestTimeoutSecTooltip": "單次請求的最大等待時間（秒）。LLM 思考耗時較長，建議 180 秒以上",
     "customExportFilename": "匯出檔案名稱格式",
-    "customExportFilenameTooltip": "'{'name'}' = 原始檔案名稱, '{'lang'}' = 語言, '{'ext'}' = 副檔名, '{'date'}' = 日期, '{'time'}' = 時間",
+    "customExportFilenameTooltip": "'{'name'}' = 原始檔案名稱, '{'lang'}' = 語言, '{'ext'}' = 副檔名, '{'date'}' = 日期, '{'time'}' = 時間；多語言模式會自動加 '{'lang'}' 防止檔名衝突",
     "partialFailureTitle": "翻譯失敗 {count} 行",
     "partialFailureDesc": "失敗的行已用原文佔位（不影響檔案結構）。這種失敗大多是網路抖動或翻譯服務臨時不穩定——免費服務和自建伺服器特別容易碰到，不是你的設定問題。點「再試一次」即可繼續，已成功的行走快取不會重翻；如果還是失敗，稍後再點或換個翻譯服務試試。也可點「查看失敗行」自己處理。",
     "retryFailedLines": "再試一次",
@@ -135,6 +136,7 @@
     "translategemmaUnavailable": "TranslateGemma 服務暫時連不上，請確認本機伺服器（LM Studio / llama.cpp / Ollama）已啟動且 URL 正確。",
     "networkUnavailable": "翻譯服務暫時連不上，可能是網路或服務的臨時問題。稍後再試，或換一個翻譯服務。",
     "translationTimeout": "翻譯請求逾時，可能是網路較慢或翻譯服務回應慢。稍後再試，或換一個翻譯服務。",
+    "translationTimeoutLocal": "本地模型翻譯逾時。本地大模型可能陷入複讀迴圈——請在進階設定中調低 max_tokens（輸出上限），並確認所選來源語言與文字實際語言一致。",
     "langGroupCommon": "常用",
     "langGroupEurope": "歐洲",
     "langGroupMiddleEast": "中東",
@@ -213,20 +215,6 @@
           "a": "100% 瀏覽器本地處理：小說文字讀取、格式修復、繁簡轉換、匯出全部在瀏覽器內完成，原文不上傳任何伺服器。原始碼開源在 GitHub（rockbenben/novel-processor），可自部署。"
         }
       ],
-      "howto": [
-        {
-          "name": "匯入網文或小說文字",
-          "text": "支援粘貼文字或上傳 TXT 檔案（無大小限制，可處理 300 萬字以上超長小說）。適用於筆趣閣等網站下載的 TXT、瀏覽器網頁複製的文字、Word 匯出 TXT、同人文/自寫作品等各種場景。"
-        },
-        {
-          "name": "配置修復規則組合",
-          "text": "勾選需要的規則：智慧換行（修復段落被誤切）、章節分割（每章前加空行）、段首縮進（兩字元）、去重復行（刪廣告）、繁簡轉換、垃圾內容過濾。規則可疊加，也可單獨啟用。"
-        },
-        {
-          "name": "匯出適配閱讀器的 TXT",
-          "text": "匯出後可直接通過推送郵箱發送到 Kindle，或本地匯入微信讀書、掌閱、靜讀天下。啟用章節分割後 Kindle 可自動產生目錄。微信讀書建議先用 Calibre 轉 EPUB 以獲得最佳目錄體驗。"
-        }
-      ],
       "features": [
         "修復網文 TXT 格式亂的 7 大問題（筆趣閣下載、網頁複製、Word 匯出均適用）",
         "智慧識別「第X章」「Chapter X」等章節標題自動分割",
@@ -293,7 +281,11 @@
     "textParser": "文字處理",
     "jsonParser": "JSON 處理",
     "dataParser": "資料轉換",
-    "otherTools": "其他工具"
+    "otherTools": "其他工具",
+    "externalTools": {
+      "legendtalk": "AI 思想家圓桌",
+      "imgprompt": "AI 繪圖提示詞"
+    }
   },
   "Metadata": {
     "title": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
