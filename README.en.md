@@ -2,10 +2,11 @@
 📖 Novel Processor
 </h1>
 <p align="center">
-    English | <a href="./README.md">中文</a>
-</p>
-<p align="center">
     <em>One-click cleanup for web novels: smart line break, chapter reorder, Trad/Simp conversion, ad removal</em>
+</p>
+
+<p align="center">
+    <b>English</b> · <a href="./README.md">简体中文</a>
 </p>
 
 <p align="center">
@@ -145,16 +146,6 @@ After processing, the result card appears at the bottom:
 
 Drag-and-drop or paste support for `.txt`, `.md`, `.markdown` files.
 
-## Tech stack
-
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
-- **UI**: [Ant Design](https://ant.design/) + [Tailwind CSS 4](https://tailwindcss.com/)
-- **i18n**: [next-intl](https://next-intl-docs.vercel.app/)
-- **Text processing**:
-  - [js-opencc](https://github.com/rockbenben/js-opencc): Trad/Simp conversion
-  - [compromise](https://github.com/spencermountain/compromise): English NLP sentence boundaries
-  - [jschardet](https://github.com/aadsm/jschardet): encoding detection
-
 ## Getting started
 
 ### Requirements
@@ -198,7 +189,3 @@ PRs and issues welcome.
 - 📖 [Documentation](https://docs.newzone.top/en/guide/text/novel-processor)
 - 🐛 [Report Issues](https://github.com/rockbenben/novel-processor/issues)
 - 🔗 [Chinese Converter](https://github.com/rockbenben/chinese-conversion) (shares protected dictionary)
-
-## License
-
-[MIT](./LICENSE)

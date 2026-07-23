@@ -2,10 +2,11 @@
 📖 小说文本整理器
 </h1>
 <p align="center">
-    <a href="./README.en.md">English</a> | 中文
-</p>
-<p align="center">
     <em>一键修复网络小说排版、智能换行、章节重排、繁简转换、广告清理</em>
+</p>
+
+<p align="center">
+    <a href="./README.en.md">English</a> · <b>简体中文</b>
 </p>
 
 <p align="center">
@@ -13,7 +14,7 @@
   <a href="https://tools.newzone.top/zh/novel-processor"><img src="https://img.shields.io/badge/%E5%9C%A8%E7%BA%BF%E4%BD%93%E9%AA%8C-novel--processor-blue" alt="在线体验"></a>
 </p>
 
-**小说文本整理器** 是专为网络小说、电子书等长篇文本设计的一站式整理工具。自动修复格式错乱、清理广告水印、规范章节标题、按章节重排、可选繁简转换，让杂乱的小说文本秒变整齐易读。整个处理流程在浏览器本地运行，文件不会上传到任何服务器。
+**小说文本整理器** 专治从小说站下载来的杂乱 txt：修复错乱的换行与缩进、清掉夹带的广告水印、规范章节标题、按章节重排，可选繁简转换。整个处理流程在浏览器本地运行，文件不会上传到任何服务器。
 
 👉 **在线体验**：<https://tools.newzone.top/zh/novel-processor>
 
@@ -145,16 +146,6 @@
 
 支持拖拽上传 `.txt`、`.md`、`.markdown` 文件，或直接粘贴文本到输入框。
 
-## 技术栈
-
-- **框架**：[Next.js 16](https://nextjs.org/)（App Router）
-- **UI**：[Ant Design](https://ant.design/) + [Tailwind CSS 4](https://tailwindcss.com/)
-- **i18n**：[next-intl](https://next-intl-docs.vercel.app/)
-- **文本处理**：
-  - [js-opencc](https://github.com/rockbenben/js-opencc)：繁简转换
-  - [compromise](https://github.com/spencermountain/compromise)：英文 NLP 句子边界
-  - [jschardet](https://github.com/aadsm/jschardet)：编码检测
-
 ## 快速开始
 
 ### 环境要求
@@ -198,7 +189,3 @@ yarn build
 - 📖 [使用文档](https://docs.newzone.top/guide/text/novel-processor)
 - 🐛 [报告问题](https://github.com/rockbenben/novel-processor/issues)
 - 🔗 [简繁转换工具](https://github.com/rockbenben/chinese-conversion)（共享保护词典）
-
-## License
-
-本项目采用 [MIT](./LICENSE) 许可证。
