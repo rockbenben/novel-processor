@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "يدعم أحرف الهروب: \\n (سطر جديد)، \\r (إرجاع)، \\t (علامة تبويب)، \\s (مسافة)، \\\\ (شرطة مائلة عكسية)",
     "skipToContent": "تخطٍ إلى المحتوى الرئيسي",
     "fileProcessFailed": "تعذّرت معالجة الملف — تحقّق من ترميزه أو جرّب ملفًا آخر",
     "fileReadFailed": "تعذّرت قراءة الملف",
@@ -48,6 +49,7 @@
     "extractText": "استخراج النص",
     "translationResult": "النتيجة",
     "copy": "نسخ",
+    "expand": "المزيد",
     "remove": "إزالة",
     "exportFile": "تصدير",
     "exportAllFile": "تصدير الكل",
@@ -165,6 +167,7 @@
     "errorHint5xx": "خطأ في الخادم، يرجى المحاولة لاحقًا",
     "errorHintRelay": "خطأ في الشبكة (قد يكون بسبب قيود CORS) — فعِّل «ترحيل API» في إعدادات API",
     "errorHintRelay403": "أعادت واجهة API الخطأ 403 (محظور) — فعِّل «ترحيل API» في إعدادات API",
+    "errorHintGeminiKey": "تعذّر الوصول إلى Gemini: تحقق من الشبكة أولًا (بعض الشبكات لا تصل مباشرة إلى خدمات Google). إذا كانت الشبكة سليمة، فمنذ 19 يونيو 2026 ترفض Google مفاتيح API غير المقيّدة — أعد إنشاء مفتاحك في AI Studio (مقيّد افتراضيًا) أو أضف قيد Gemini API للمفتاح القديم في وحدة تحكم Google Cloud",
     "rateLimitCooldown": "تم تجاوز حد الطلبات — إيقاف مؤقت قصير ثم إعادة المحاولة تلقائيًا"
   },
   "tools": {
@@ -229,9 +232,13 @@
       "title": "أداة معالجة النصوص الشخصية",
       "description": "معالجة دفعية لبيانات Excel — إزالة التكرار، استخراج الأعمدة، الدمج، قواعد متسلسلة"
     },
+    "textJoiner": {
+      "title": "دامج النصوص",
+      "description": "دمج أعمدة نصية متعددة سطرًا بسطر باستخدام قوالب لتوليد CSV وSQL وJSON دفعة واحدة"
+    },
     "textSplitter": {
       "title": "مقسم النص",
-      "description": "تقسيم ذكي للنص الطويل للذكاء الاصطناعي ووسائل التواصل الاجتماعي"
+      "description": "قسّم النصوص الطويلة حسب الفاصل أو الطول أو الجملة — وأعد دمجها"
     },
     "jsonValueExtractor": {
       "title": "مستخرج قيم JSON",
@@ -281,7 +288,7 @@
     "textParser": "أدوات النص",
     "jsonParser": "أدوات JSON",
     "dataParser": "أدوات البيانات",
-    "otherTools": "أدوات أخرى",
+    "otherTools": "المزيد من الأدوات",
     "externalTools": {
       "legendtalk": "طاولة مفكري الذكاء الاصطناعي",
       "imgprompt": "موجهات صور الذكاء الاصطناعي"
@@ -328,9 +335,9 @@
     "conversion": "تحويل",
     "rulesInactiveHint": "يعمل فقط عند تفعيل تحويل التقليدي/المبسط",
     "conversionNone": "بدون",
-    "specialStartLabel": "الأسطر الابتدائية الخاصة (لا تُدمج)",
+    "specialStartLabel": "بدايات الأسطر التي تبقى منفصلة",
     "specialStartPlaceholder": "مثال: عنوان الكتاب، الاقتباس الافتتاحي...",
-    "specialStartAria": "الأسطر الابتدائية الخاصة",
+    "specialStartAria": "بدايات الأسطر التي تبقى منفصلة",
     "filterLabel": "فلتر المحتوى",
     "filterPlaceholder": "أدخل كلمات مفتاحية للفلترة (مفصولة بفواصل)",
     "thresholdLabel": "حماية الأسطر الطويلة",
@@ -367,7 +374,7 @@
     "clearFilter": "مسح الفلتر",
     "emptyCount": "⚠ {count} قيمة فارغة",
     "shadowedCount": "⚠ {count} مُغطّاة",
-    "searchPlaceholder": "بحث في الحقل الأصلي أو الهدف",
+    "searchPlaceholder": "ابحث في الأصل أو البديل",
     "searchAriaLabel": "بحث في القواعد",
     "sortOriginal": "الترتيب الأصلي",
     "sortAlphabetical": "أبجديًا",
@@ -379,12 +386,10 @@
     "exportSelected": "تصدير المحدد ({count})",
     "clearSelection": "إلغاء التحديد",
     "colFrom": "الأصل",
-    "colTo": "الهدف",
+    "colTo": "يُستبدل بـ",
     "fromEmpty": "الأصل فارغ",
-    "toEmpty": "الهدف فارغ",
+    "toEmpty": "البديل فارغ",
     "shadowedTooltip": "مُغطّى بالسطر {rowNumber}، النتيجة الفعلية هي「{winnerTo}」",
-    "fromPlaceholder": "الحقل المطابق",
-    "toPlaceholder": "يُستبدل بـ",
     "emptyTable": "لا توجد قواعد. انقر «إضافة قاعدة» للبدء.",
     "noRulesYet": "لا توجد قواعد بعد",
     "enableProtectedRules": "تطبيق القواعد المخصصة",
@@ -404,6 +409,11 @@
     "reaction4": "مرتبك",
     "placeholder": "اترك رسالة (لا يلزم تسجيل الدخول، البريد الإلكتروني اختياري للرد)",
     "metaDescription": "صفحة التعليقات على Tools By AI: أبلغ عن الأخطاء، اقترح ميزات، شارك أفكار استخدام. مبنية على Waline، النشر مجهول مسموح."
+  },
+  "AppError": {
+    "title": "تعذّر تحميل الصفحة",
+    "description": "تعذّر تحميل الصفحة — قد يحدث هذا مباشرة بعد تحديث الموقع. يُرجى إعادة التحميل.",
+    "reload": "إعادة التحميل"
   },
   "NotFound": {
     "title": "الصفحة غير موجودة",

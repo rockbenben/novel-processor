@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Unterstützt Escape-Zeichen: \\n (Zeilenumbruch), \\r (Wagenrücklauf), \\t (Tab), \\s (Leerzeichen), \\\\ (Backslash)",
     "skipToContent": "Zum Hauptinhalt springen",
     "fileProcessFailed": "Datei konnte nicht verarbeitet werden – prüfen Sie die Kodierung oder versuchen Sie eine andere",
     "fileReadFailed": "Datei konnte nicht gelesen werden",
@@ -48,6 +49,7 @@
     "extractText": "Text extrahieren",
     "translationResult": "Übersetzungsergebnis",
     "copy": "Kopieren",
+    "expand": "mehr",
     "remove": "Entfernen",
     "exportFile": "Exportieren",
     "exportAllFile": "Alle exportieren",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Serverfehler, bitte später erneut versuchen",
     "errorHintRelay": "Netzwerkfehler (möglicherweise CORS) — aktivieren Sie „API-Relay“ in den API-Einstellungen",
     "errorHintRelay403": "Die API hat 403 Forbidden zurückgegeben — aktivieren Sie „API-Relay“ in den API-Einstellungen",
+    "errorHintGeminiKey": "Gemini nicht erreichbar: Prüfen Sie zuerst Ihr Netzwerk (manche Netzwerke erreichen Google-Dienste nicht direkt). Ist das Netzwerk in Ordnung, lehnt Google seit dem 19.06.2026 uneingeschränkte API-Schlüssel ab — erstellen Sie Ihren Schlüssel in AI Studio neu (standardmäßig eingeschränkt) oder fügen Sie dem alten Schlüssel in der Google Cloud Console eine Gemini-API-Einschränkung hinzu",
     "rateLimitCooldown": "Anfragelimit erreicht — kurze Pause, automatischer neuer Versuch"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Text-Splitter",
-      "description": "Smarte Langtext-Teilung für KI und Social Media"
+      "description": "Lange Texte nach Trenner, Länge oder Satz teilen — und wieder zusammenführen"
     },
     "chineseConversion": {
       "title": "Chinesisch-Konvertierung",
@@ -191,8 +194,8 @@
     "novelProcessor": {
       "title": "Chinesischer Web-Roman-Formatierer",
       "description": "Formatierungsprobleme heruntergeladener chinesischer Webromane per Klick beheben, intelligente Zeilenumbrüche",
-      "metaTitle": "Chinesischer Web-Roman-TXT-Formatierer - 第X章 Kapitelteilung, Kindle-Export",
-      "metaDescription": "Chinesischer Web-Novel TXT-Formatierer: behebt Absätze, Werbung, 第X章 Kapitel, Kodierungsmix per Klick. 3M+ Zeichen. Exporte für Kindle, Kobo, FBReader.",
+      "metaTitle": "Chinesischer Web-Roman-Formatierer - 第X章 Kapitel, Kindle",
+      "metaDescription": "Chinesischer Web-Novel-TXT-Formatierer: behebt Absätze, Werbung, 第X章, Kodierung. 3M+ Zeichen. Export: Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Meine heruntergeladene TXT-Romandatei hat ein unordentliches Format — welche Probleme kann dieses Tool beheben?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Textprozessor",
       "description": "Excel-Stapelverarbeitung — Deduplizierung, Spaltenextraktion, Textverbindung, mehrere Regeln in Reihenfolge"
+    },
+    "textJoiner": {
+      "title": "Text-Zusammenführer",
+      "description": "Mehrere Textspalten zeilenweise per Vorlage zusammenführen, um im Batch CSV, SQL und JSON zu erzeugen"
     },
     "jsonValueExtractor": {
       "title": "JSON Wert-Extraktor",
@@ -281,7 +288,7 @@
     "textParser": "Text-Tools",
     "jsonParser": "JSON-Tools",
     "dataParser": "Daten-Tools",
-    "otherTools": "Andere Tools",
+    "otherTools": "Mehr Tools",
     "externalTools": {
       "legendtalk": "KI-Denkerrunde",
       "imgprompt": "KI-Bild-Prompts"
@@ -289,11 +296,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | Kostenlose KI-Dev- & Übersetzungstools",
-    "description": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung sowie Text- und JSON-Batch-Verarbeitung. 25+ KI-Engines.",
+    "description": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung. Ohne Installation, im Browser.",
     "homeTitle": "ToolsByAI Werkzeugkasten",
     "homeDescription": "20+ Tools für Übersetzung, Text, JSON und Datenkonvertierung. Effizienzsteigerung für Entwickler und Creator.",
     "ogTitle": "ToolsByAI | Kostenlose KI-Dev- & Übersetzungstools",
-    "ogDescription": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung sowie Text- und JSON-Batch-Verarbeitung. 25+ KI-Engines."
+    "ogDescription": "ToolsByAI: 17 Open-Source-Tools für Untertitel-, Markdown- und JSON-i18n-Übersetzung. Ohne Installation, im Browser."
   },
   "CopyToClipboard": {
     "empty": "Inhalt leer, nichts zu kopieren",
@@ -325,10 +332,10 @@
     "conversion": "Konvertierung",
     "rulesInactiveHint": "Wirksam nur, wenn Traditionell/Vereinfacht-Konvertierung aktiviert ist",
     "conversionNone": "Keine",
-    "specialStartLabel": "Spezielle Anfangszeilen (kein Zusammenführen)",
+    "specialStartLabel": "Zeilenanfänge, die getrennt bleiben",
     "hintSpecialStart": "Zeilen, die mit diesem Text beginnen, werden nicht in den vorherigen Absatz eingefügt",
     "specialStartPlaceholder": "z. B. Titel, Vorwort...",
-    "specialStartAria": "Spezielle Anfangszeilen",
+    "specialStartAria": "Zeilenanfänge, die getrennt bleiben",
     "filterLabel": "Inhaltsfilter",
     "hintFilter": "Zeilen löschen, die diese Schlüsselwörter enthalten",
     "filterPlaceholder": "Filterschlüsselwörter eingeben (durch Komma getrennt)",
@@ -367,7 +374,7 @@
     "clearFilter": "Filter löschen",
     "emptyCount": "⚠ {count} leere(r) Wert(e)",
     "shadowedCount": "⚠ {count} verdeckte Regel(n)",
-    "searchPlaceholder": "Von oder Nach suchen",
+    "searchPlaceholder": "Original oder Ersatz suchen",
     "searchAriaLabel": "Regeln suchen",
     "sortOriginal": "Ursprüngliche Reihenfolge",
     "sortAlphabetical": "Alphabetisch",
@@ -378,13 +385,11 @@
     "deleteSelected": "Auswahl löschen",
     "exportSelected": "Auswahl exportieren ({count})",
     "clearSelection": "Alles abwählen",
-    "colFrom": "Von",
-    "colTo": "Nach",
-    "fromEmpty": "Von ist leer",
-    "toEmpty": "Nach ist leer",
+    "colFrom": "Original",
+    "colTo": "Ersetzen durch",
+    "fromEmpty": "Original ist leer",
+    "toEmpty": "Ersatz ist leer",
     "shadowedTooltip": "Verdeckt von Zeile {rowNumber}; effektives Ergebnis ist \"{winnerTo}\"",
-    "fromPlaceholder": "Zu findender Begriff",
-    "toPlaceholder": "Ersetzen durch",
     "emptyTable": "Keine Regeln. Klicken Sie auf 'Regel hinzufügen', um zu beginnen.",
     "noRulesYet": "Noch keine Regeln",
     "enableProtectedRules": "Benutzerdefinierte Regeln anwenden",
@@ -404,6 +409,11 @@
     "reaction4": "Verwirrt",
     "placeholder": "Nachricht hinterlassen (kein Login nötig, E-Mail optional für Antwort)",
     "metaDescription": "Feedback-Seite für Tools By AI: Fehler melden, Funktionen vorschlagen, Anwendungsfälle teilen. Basiert auf Waline, anonym möglich."
+  },
+  "AppError": {
+    "title": "Seite konnte nicht geladen werden",
+    "description": "Die Seite konnte nicht geladen werden – das kann direkt nach einem Website-Update passieren. Bitte neu laden.",
+    "reload": "Neu laden"
   },
   "NotFound": {
     "title": "Seite nicht gefunden",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "รองรับอักขระ escape: \\n (ขึ้นบรรทัดใหม่), \\r (carriage return), \\t (แท็บ), \\s (ช่องว่าง), \\\\ (แบ็กสแลช)",
     "skipToContent": "ข้ามไปยังเนื้อหาหลัก",
     "fileProcessFailed": "ประมวลผลไฟล์ไม่สำเร็จ — ตรวจสอบการเข้ารหัสหรือลองไฟล์อื่น",
     "fileReadFailed": "อ่านไฟล์ไม่สำเร็จ",
@@ -48,6 +49,7 @@
     "extractText": "แยกข้อความ",
     "translationResult": "ผลลัพธ์",
     "copy": "คัดลอก",
+    "expand": "เพิ่มเติม",
     "remove": "ลบ",
     "exportFile": "ส่งออก",
     "exportAllFile": "ส่งออกทั้งหมด",
@@ -165,6 +167,7 @@
     "errorHint5xx": "เซิร์ฟเวอร์ขัดข้อง โปรดลองใหม่ภายหลัง",
     "errorHintRelay": "ข้อผิดพลาดเครือข่าย (อาจเกิดจาก CORS) — เปิดใช้ \"API Relay\" ในการตั้งค่า API",
     "errorHintRelay403": "API ส่งกลับ 403 Forbidden — เปิดใช้ \"API Relay\" ในการตั้งค่า API",
+    "errorHintGeminiKey": "เชื่อมต่อ Gemini ไม่ได้: โปรดตรวจสอบเครือข่ายก่อน (บางเครือข่ายไม่สามารถเข้าถึงบริการ Google โดยตรง) หากเครือข่ายปกติ ตั้งแต่ 19 มิ.ย. 2026 Google ปฏิเสธ API key แบบไม่จำกัดสิทธิ์ — โปรดสร้าง key ใหม่ใน AI Studio (จำกัดสิทธิ์โดยค่าเริ่มต้น) หรือเพิ่มข้อจำกัด Gemini API ให้ key เดิมใน Google Cloud Console",
     "rateLimitCooldown": "ถึงขีดจำกัดคำขอ — หยุดชั่วครู่แล้วจะลองใหม่อัตโนมัติ"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "ตัวแบ่งข้อความ",
-      "description": "แบ่งข้อความยาวอย่างชาญฉลาดสำหรับ AI และโซเชียลมีเดีย"
+      "description": "แบ่งข้อความยาวตามตัวคั่น จำนวนอักขระ หรือประโยค แล้วรวมกลับได้"
     },
     "chineseConversion": {
       "title": "แปลงอักษรจีนตัวย่อ ↔ ตัวเต็ม",
@@ -233,6 +236,10 @@
       "title": "ประมวลผลข้อความ",
       "description": "การประมวลผลข้อมูล Excel เป็นชุด — ขจัดซ้ำ แยกคอลัมน์ รวมข้อความ กฎต่อเนื่อง"
     },
+    "textJoiner": {
+      "title": "เครื่องมือรวมข้อความ",
+      "description": "รวมคอลัมน์ข้อความหลายคอลัมน์ทีละบรรทัดด้วยเทมเพลต เพื่อสร้าง CSV, SQL, JSON แบบเป็นชุด"
+    },
     "jsonValueExtractor": {
       "title": "ตัวแยกค่า JSON",
       "description": "แยกค่า JSON เป็นชุด เอาต์พุตมีการจัดรูปแบบ"
@@ -281,7 +288,7 @@
     "textParser": "เครื่องมือข้อความ",
     "jsonParser": "เครื่องมือ JSON",
     "dataParser": "เครื่องมือข้อมูล",
-    "otherTools": "เครื่องมืออื่นๆ",
+    "otherTools": "เครื่องมือเพิ่มเติม",
     "externalTools": {
       "legendtalk": "โต๊ะกลมนักคิด AI",
       "imgprompt": "พรอมต์รูปภาพ AI"
@@ -289,11 +296,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - ชุดเครื่องมือแปลภาษา & ข้อมูล AI ออนไลน์",
-    "description": "ToolsByAI: 17 เครื่องมือโอเพ่นซอร์สฟรีสำหรับแปลซับไตเติ้ล Markdown และ JSON i18n รวมการประมวลผลข้อความและ JSON เป็นชุด พร้อม 25+ AI engine",
+    "description": "ToolsByAI: 17 เครื่องมือโอเพ่นซอร์สสำหรับแปลซับไตเติ้ล Markdown และ JSON i18n ไม่ต้องติดตั้ง ทำงานบนเบราว์เซอร์",
     "homeTitle": "ชุด ToolsByAI",
     "homeDescription": "20+ เครื่องมือสำหรับแปล ข้อความ JSON และแปลงข้อมูล เพิ่มประสิทธิภาพสำหรับนักพัฒนาและผู้สร้างเนื้อหา",
     "ogTitle": "ToolsByAI - เครื่องมือ Dev AI ฟรี & โอเพนซอร์ส",
-    "ogDescription": "ToolsByAI: 17 เครื่องมือโอเพ่นซอร์สฟรีสำหรับแปลซับไตเติ้ล Markdown และ JSON i18n รวมการประมวลผลข้อความและ JSON เป็นชุด พร้อม 25+ AI engine"
+    "ogDescription": "ToolsByAI: 17 เครื่องมือโอเพ่นซอร์สสำหรับแปลซับไตเติ้ล Markdown และ JSON i18n ไม่ต้องติดตั้ง ทำงานบนเบราว์เซอร์"
   },
   "CopyToClipboard": {
     "empty": "เนื้อหาว่าง ไม่มีอะไรให้คัดลอก",
@@ -328,9 +335,9 @@
     "conversion": "繁簡 แปลง",
     "rulesInactiveHint": "ใช้งานได้เฉพาะเมื่อเปิดการแปลงตัวเต็ม/ตัวย่อ",
     "conversionNone": "ไม่",
-    "specialStartLabel": "บรรทัดเริ่มต้นพิเศษ (ไม่ผสาน)",
+    "specialStartLabel": "ข้อความขึ้นต้นที่ไม่รวมบรรทัด",
     "specialStartPlaceholder": "เช่น: ชื่อหนังสือ คำนำ...",
-    "specialStartAria": "บรรทัดเริ่มต้นพิเศษ",
+    "specialStartAria": "ข้อความขึ้นต้นที่ไม่รวมบรรทัด",
     "filterLabel": "กรองเนื้อหา",
     "filterPlaceholder": "ป้อนคำหลักกรอง (คั่นด้วยจุลภาค)",
     "thresholdLabel": "ป้องกันบรรทัดยาว",
@@ -367,7 +374,7 @@
     "clearFilter": "ล้างตัวกรอง",
     "emptyCount": "⚠ {count} รายการค่าว่าง",
     "shadowedCount": "⚠ {count} รายการถูกเขียนทับ",
-    "searchPlaceholder": "ค้นหา from หรือ to",
+    "searchPlaceholder": "ค้นหาคำเดิมหรือคำแทน",
     "searchAriaLabel": "ค้นหากฎ",
     "sortOriginal": "ลำดับเดิม",
     "sortAlphabetical": "ตามตัวอักษร",
@@ -378,13 +385,11 @@
     "deleteSelected": "ลบรายการที่เลือก",
     "exportSelected": "ส่งออกรายการที่เลือก ({count})",
     "clearSelection": "ยกเลิกการเลือก",
-    "colFrom": "ต้นทาง",
-    "colTo": "ปลายทาง",
-    "fromEmpty": "ต้นทางว่าง",
-    "toEmpty": "ปลายทางว่าง",
+    "colFrom": "คำเดิม",
+    "colTo": "แทนที่ด้วย",
+    "fromEmpty": "คำเดิมว่าง",
+    "toEmpty": "คำแทนว่าง",
     "shadowedTooltip": "ถูกเขียนทับโดยบรรทัดที่ {rowNumber} ผลที่แท้จริงคือ「{winnerTo}」",
-    "fromPlaceholder": "คำที่ต้องการจับคู่",
-    "toPlaceholder": "แทนที่ด้วย",
     "emptyTable": "ยังไม่มีกฎ คลิก「เพิ่มกฎ」เพื่อเริ่มต้น",
     "noRulesYet": "ยังไม่มีกฎ",
     "enableProtectedRules": "เปิดใช้กฎกำหนดเอง",
@@ -404,6 +409,11 @@
     "reaction4": "สับสน",
     "placeholder": "ฝากข้อความ (ไม่ต้องเข้าสู่ระบบ อีเมลเป็นตัวเลือกสำหรับการตอบกลับ)",
     "metaDescription": "หน้าฟีดแบ็ก Tools By AI: รายงานบั๊ก แนะนำฟีเจอร์ หรือแชร์เคสการใช้งาน ใช้ Waline โพสต์ไม่ต้องสมัครได้"
+  },
+  "AppError": {
+    "title": "โหลดหน้าไม่สำเร็จ",
+    "description": "ไม่สามารถโหลดหน้านี้ได้ อาจเกิดขึ้นทันทีหลังจากเว็บไซต์อัปเดต โปรดโหลดใหม่",
+    "reload": "โหลดใหม่"
   },
   "NotFound": {
     "title": "ไม่พบหน้า",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Soporta caracteres escape: \\n (nueva línea), \\r (retorno), \\t (tab), \\s (espacio), \\\\ (barra invertida)",
     "skipToContent": "Saltar al contenido principal",
     "fileProcessFailed": "No se pudo procesar el archivo: comprueba su codificación o prueba con otro",
     "fileReadFailed": "No se pudo leer el archivo",
@@ -48,6 +49,7 @@
     "extractText": "Extraer Texto",
     "translationResult": "Resultado",
     "copy": "Copiar",
+    "expand": "más",
     "remove": "Eliminar",
     "exportFile": "Exportar",
     "exportAllFile": "Exportar Todo",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Error del servidor, inténtelo más tarde",
     "errorHintRelay": "Error de red (posiblemente CORS): active \"Relé API\" en los ajustes de API",
     "errorHintRelay403": "La API devolvió 403 Forbidden: active \"Relé API\" en los ajustes de API",
+    "errorHintGeminiKey": "No se puede conectar con Gemini: compruebe primero su red (algunas redes no pueden acceder directamente a los servicios de Google). Si la red funciona, desde el 19 de junio de 2026 Google rechaza las claves API sin restricciones — regenere su clave en AI Studio (restringida por defecto) o añada una restricción de Gemini API a la clave antigua en la consola de Google Cloud",
     "rateLimitCooldown": "Límite de solicitudes alcanzado — pausa breve, se reintentará automáticamente"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Divisor de Texto",
-      "description": "División inteligente de texto largo para IA y redes sociales"
+      "description": "Divide textos largos por separador, longitud o frase — y vuelve a unirlos"
     },
     "chineseConversion": {
       "title": "Conversión chino",
@@ -191,8 +194,8 @@
     "novelProcessor": {
       "title": "Formateador de novelas web chinas",
       "description": "Corrección de problemas de formato de novelas web chinas descargadas con un clic, diseño con saltos de línea inteligentes",
-      "metaTitle": "Formateador TXT novelas web chinas - Capítulos 第X章, export Kindle",
-      "metaDescription": "Formateador de novelas web chinas TXT: corrige párrafos, anuncios, capítulos 第X章, codificación. Procesa 3M+ caracteres. Kindle, Kobo, FBReader.",
+      "metaTitle": "Formateador TXT novelas web chinas - 第X章, export Kindle",
+      "metaDescription": "Formateador de novelas web chinas TXT: corrige párrafos, anuncios, 第X章, codificación. 3M+ caracteres. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Mi TXT descargada tiene formato desordenado — ¿qué problemas puede corregir esta herramienta?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Procesador de texto",
       "description": "Procesamiento por lotes de datos Excel — deduplicación, extracción por columnas, fusión, reglas encadenadas"
+    },
+    "textJoiner": {
+      "title": "Unificador de Texto",
+      "description": "Combina varias columnas de texto línea por línea con plantillas para generar en lote CSV, SQL y JSON"
     },
     "jsonValueExtractor": {
       "title": "Extractor Valor JSON",
@@ -281,7 +288,7 @@
     "textParser": "Herramientas Texto",
     "jsonParser": "Herramientas JSON",
     "dataParser": "Herramientas Datos",
-    "otherTools": "Otras Herramientas",
+    "otherTools": "Más herramientas",
     "externalTools": {
       "legendtalk": "Mesa redonda de pensadores IA",
       "imgprompt": "Prompts de imágenes IA"
@@ -289,11 +296,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | Herramientas de Traducción y Dev con IA",
-    "description": "ToolsByAI: 17 herramientas open source gratis para traducción de subtítulos, Markdown, JSON i18n y procesamiento por lotes. 25+ motores IA.",
+    "description": "ToolsByAI: 17 herramientas open source para traducir subtítulos, Markdown y JSON i18n. Sin instalación, en el navegador.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "20+ herramientas para traducción, texto, JSON y conversión de datos. Impulsa la eficiencia de desarrolladores y creadores.",
     "ogTitle": "ToolsByAI | Herramientas de Traducción y Dev con IA",
-    "ogDescription": "ToolsByAI: 17 herramientas open source gratis para traducción de subtítulos, Markdown, JSON i18n y procesamiento por lotes. 25+ motores IA."
+    "ogDescription": "ToolsByAI: 17 herramientas open source para traducir subtítulos, Markdown y JSON i18n. Sin instalación, en el navegador."
   },
   "CopyToClipboard": {
     "empty": "Contenido vacío, nada que copiar",
@@ -325,10 +332,10 @@
     "conversion": "Conversión",
     "rulesInactiveHint": "Solo activo cuando la conversión tradicional/simplificado está habilitada",
     "conversionNone": "Ninguno",
-    "specialStartLabel": "Líneas de inicio especiales (sin fusión)",
+    "specialStartLabel": "Inicios de línea que no se unen",
     "hintSpecialStart": "Las líneas que comiencen con este texto no se fusionarán con el párrafo anterior",
     "specialStartPlaceholder": "p. ej. título, prólogo...",
-    "specialStartAria": "Líneas de inicio especiales",
+    "specialStartAria": "Inicios de línea que no se unen",
     "filterLabel": "Filtro de contenido",
     "hintFilter": "Elimina las líneas que contengan estas palabras clave",
     "filterPlaceholder": "Palabras clave de filtro (separadas por comas)",
@@ -367,7 +374,7 @@
     "clearFilter": "Borrar filtro",
     "emptyCount": "⚠ {count} valor(es) vacío(s)",
     "shadowedCount": "⚠ {count} regla(s) sombreada(s)",
-    "searchPlaceholder": "Buscar en origen o destino",
+    "searchPlaceholder": "Buscar original o reemplazo",
     "searchAriaLabel": "Buscar reglas",
     "sortOriginal": "Orden original",
     "sortAlphabetical": "Orden alfabético",
@@ -378,13 +385,11 @@
     "deleteSelected": "Eliminar selección",
     "exportSelected": "Exportar selección ({count})",
     "clearSelection": "Deseleccionar todo",
-    "colFrom": "Origen",
-    "colTo": "Destino",
-    "fromEmpty": "Origen está vacío",
-    "toEmpty": "Destino está vacío",
+    "colFrom": "Original",
+    "colTo": "Reemplazar por",
+    "fromEmpty": "El original está vacío",
+    "toEmpty": "El reemplazo está vacío",
     "shadowedTooltip": "Sombreado por la fila {rowNumber}; el resultado efectivo es \"{winnerTo}\"",
-    "fromPlaceholder": "Término a buscar",
-    "toPlaceholder": "Reemplazar con",
     "emptyTable": "No hay reglas. Haz clic en 'Añadir regla' para empezar.",
     "noRulesYet": "Aún no hay reglas",
     "enableProtectedRules": "Activar reglas personalizadas",
@@ -404,6 +409,11 @@
     "reaction4": "Confuso",
     "placeholder": "Deja un mensaje (no requiere login, email opcional para respuesta)",
     "metaDescription": "Página de feedback para Tools By AI: reporta errores, sugiere funciones, comparte casos de uso. Basada en Waline, publicación anónima."
+  },
+  "AppError": {
+    "title": "Error al cargar la página",
+    "description": "No se pudo cargar la página; puede ocurrir justo después de una actualización del sitio. Vuelve a cargarla.",
+    "reload": "Recargar"
   },
   "NotFound": {
     "title": "Página no encontrada",

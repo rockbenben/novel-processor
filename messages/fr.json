@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Supporte caractères d'échappement : \\n (nouvelle ligne), \\r (retour), \\t (tab), \\s (espace), \\\\ (antislash)",
     "skipToContent": "Aller au contenu principal",
     "fileProcessFailed": "Échec du traitement du fichier — vérifiez son encodage ou essayez-en un autre",
     "fileReadFailed": "Échec de la lecture du fichier",
@@ -48,6 +49,7 @@
     "extractText": "Extraire le texte",
     "translationResult": "Résultat",
     "copy": "Copier",
+    "expand": "plus",
     "remove": "Supprimer",
     "exportFile": "Exporter",
     "exportAllFile": "Tout exporter",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Erreur serveur, veuillez réessayer plus tard",
     "errorHintRelay": "Erreur réseau (probablement CORS) — activez « Relais API » dans les paramètres API",
     "errorHintRelay403": "L'API a renvoyé 403 Forbidden — activez « Relais API » dans les paramètres API",
+    "errorHintGeminiKey": "Impossible de joindre Gemini : vérifiez d'abord votre réseau (certains réseaux ne peuvent pas atteindre directement les services Google). Si le réseau fonctionne, Google rejette depuis le 19 juin 2026 les clés API sans restriction — régénérez votre clé dans AI Studio (restreinte par défaut) ou ajoutez une restriction Gemini API à l'ancienne clé dans la console Google Cloud",
     "rateLimitCooldown": "Limite de requêtes atteinte — courte pause, nouvelle tentative automatique"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Découpeur de Texte",
-      "description": "Découpe intelligente de texte long pour IA et réseaux sociaux"
+      "description": "Découper un long texte par séparateur, longueur ou phrase — et le refusionner"
     },
     "chineseConversion": {
       "title": "Conversion chinois",
@@ -192,7 +195,7 @@
       "title": "Formateur de romans web chinois",
       "description": "Correction des problèmes de mise en page des romans web chinois téléchargés en un clic, avec division automatique des chapitres.",
       "metaTitle": "Formateur TXT romans web chinois - Chapitres 第X章, export Kindle",
-      "metaDescription": "Formateur de roman web chinois TXT: corrige paragraphes, pubs, chapitres 第X章, encodage en un clic. 3M+ caractères. Exports Kindle, Kobo, FBReader.",
+      "metaDescription": "Formateur de roman web chinois TXT: corrige paragraphes, pubs, 第X章, encodage. 3M+ caractères. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Mon TXT téléchargé a une mise en page désordonnée — quels problèmes cet outil peut-il corriger ?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Processeur de texte",
       "description": "Traitement par lots de données Excel — déduplication, extraction de colonnes, fusion, règles enchaînées"
+    },
+    "textJoiner": {
+      "title": "Fusionneur de Texte",
+      "description": "Fusionnez plusieurs colonnes de texte ligne par ligne avec des modèles pour générer en lot du CSV, SQL et JSON"
     },
     "jsonValueExtractor": {
       "title": "Extracteur Valeur JSON",
@@ -281,7 +288,7 @@
     "textParser": "Outils Texte",
     "jsonParser": "Outils JSON",
     "dataParser": "Outils Données",
-    "otherTools": "Autres Outils",
+    "otherTools": "Plus d'outils",
     "externalTools": {
       "legendtalk": "Table ronde des penseurs IA",
       "imgprompt": "Prompts d'images IA"
@@ -325,10 +332,10 @@
     "conversion": "Conversion",
     "rulesInactiveHint": "Actif uniquement lorsque la conversion traditionnel/simplifié est activée",
     "conversionNone": "Aucun",
-    "specialStartLabel": "Lignes de début spéciales (sans fusion)",
+    "specialStartLabel": "Débuts de ligne à ne pas fusionner",
     "hintSpecialStart": "Les lignes commençant par ce texte ne seront pas fusionnées avec le paragraphe précédent",
     "specialStartPlaceholder": "ex. titre, avant-propos...",
-    "specialStartAria": "Lignes de début spéciales",
+    "specialStartAria": "Débuts de ligne à ne pas fusionner",
     "filterLabel": "Filtre de contenu",
     "hintFilter": "Supprime les lignes contenant ces mots-clés",
     "filterPlaceholder": "Mots-clés de filtre (séparés par des virgules)",
@@ -367,7 +374,7 @@
     "clearFilter": "Effacer le filtre",
     "emptyCount": "⚠ {count} valeur(s) vide(s)",
     "shadowedCount": "⚠ {count} règle(s) masquée(s)",
-    "searchPlaceholder": "Rechercher dans « de » ou « vers »",
+    "searchPlaceholder": "Rechercher l'original ou le remplacement",
     "searchAriaLabel": "Rechercher des règles",
     "sortOriginal": "Ordre original",
     "sortAlphabetical": "Ordre alphabétique",
@@ -378,13 +385,11 @@
     "deleteSelected": "Supprimer la sélection",
     "exportSelected": "Exporter la sélection ({count})",
     "clearSelection": "Tout désélectionner",
-    "colFrom": "De",
-    "colTo": "Vers",
-    "fromEmpty": "« De » est vide",
-    "toEmpty": "« Vers » est vide",
+    "colFrom": "Original",
+    "colTo": "Remplacer par",
+    "fromEmpty": "L'original est vide",
+    "toEmpty": "Le remplacement est vide",
     "shadowedTooltip": "Masqué par la ligne {rowNumber} ; le résultat effectif est « {winnerTo} »",
-    "fromPlaceholder": "Terme à rechercher",
-    "toPlaceholder": "Remplacer par",
     "emptyTable": "Aucune règle. Cliquez sur « Ajouter une règle » pour commencer.",
     "noRulesYet": "Aucune règle pour le moment",
     "enableProtectedRules": "Activer les règles personnalisées",
@@ -404,6 +409,11 @@
     "reaction4": "Confus",
     "placeholder": "Laissez un message (pas de connexion requise, email optionnel pour réponse)",
     "metaDescription": "Page de retours pour Tools By AI : signalez bugs, suggérez fonctionnalités, partagez cas d'usage. Basée sur Waline, publication anonyme."
+  },
+  "AppError": {
+    "title": "Échec du chargement de la page",
+    "description": "La page n'a pas pu être chargée — cela peut arriver juste après une mise à jour du site. Veuillez recharger.",
+    "reload": "Recharger"
   },
   "NotFound": {
     "title": "Page introuvable",

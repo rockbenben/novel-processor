@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Hỗ trợ ký tự thoát: \\n (dòng mới), \\r (xuống dòng), \\t (tab), \\s (dấu cách), \\\\ (dấu gạch chéo ngược)",
     "skipToContent": "Chuyển đến nội dung chính",
     "fileProcessFailed": "Xử lý tệp thất bại — kiểm tra mã hóa hoặc thử tệp khác",
     "fileReadFailed": "Đọc tệp thất bại",
@@ -48,6 +49,7 @@
     "extractText": "Trích xuất văn bản",
     "translationResult": "Kết quả",
     "copy": "Sao chép",
+    "expand": "xem thêm",
     "remove": "Xóa",
     "exportFile": "Xuất",
     "exportAllFile": "Xuất tất cả",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Lỗi máy chủ, vui lòng thử lại sau",
     "errorHintRelay": "Lỗi mạng (có thể do CORS) — hãy bật \"Chuyển tiếp API\" trong Cài đặt API",
     "errorHintRelay403": "API trả về 403 Forbidden — hãy bật \"Chuyển tiếp API\" trong Cài đặt API",
+    "errorHintGeminiKey": "Không thể kết nối Gemini: hãy kiểm tra mạng trước (một số mạng không thể truy cập trực tiếp dịch vụ Google). Nếu mạng bình thường, từ 19/06/2026 Google từ chối các API key không giới hạn — hãy tạo lại key trong AI Studio (mặc định đã giới hạn) hoặc thêm giới hạn Gemini API cho key cũ trong Google Cloud Console",
     "rateLimitCooldown": "Đạt giới hạn yêu cầu — tạm dừng một lát rồi tự động thử lại"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Bộ chia văn bản",
-      "description": "Chia văn bản dài thông minh cho AI và mạng xã hội"
+      "description": "Chia văn bản dài theo dấu phân tách, độ dài hoặc câu — và gộp lại"
     },
     "chineseConversion": {
       "title": "Chuyển đổi Giản thể ↔ Phồn thể",
@@ -191,8 +194,8 @@
     "novelProcessor": {
       "title": "Trình định dạng tiểu thuyết mạng Trung Quốc",
       "description": "Sửa hàng loạt lỗi định dạng tiểu thuyết mạng Trung Quốc tải về, hỗ trợ ngắt dòng thông minh",
-      "metaTitle": "Định Dạng TXT Tiểu Thuyết Web Trung Quốc - Chia Chương 第X章, Kindle",
-      "metaDescription": "Trình định dạng truyện web Trung Quốc TXT: sửa đoạn văn, quảng cáo, chương 第X章, mã hóa hỗn hợp trong một cú nhấp. Xử lý 3M+ ký tự. Xuất Kindle, Kobo, FBReader.",
+      "metaTitle": "Định Dạng TXT Tiểu Thuyết Trung Quốc - 第X章, Kindle",
+      "metaDescription": "Định dạng truyện web Trung Quốc TXT: sửa đoạn văn, quảng cáo, 第X章, mã hóa. Xử lý 3M+ ký tự. Xuất Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "File TXT tiểu thuyết tải từ website hoặc sao chép bị lộn xộn, công cụ này có thể sửa những vấn đề gì?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Xử lý văn bản",
       "description": "Xử lý dữ liệu Excel hàng loạt — loại bỏ trùng, trích xuất cột, hợp nhất văn bản, quy tắc nối tiếp"
+    },
+    "textJoiner": {
+      "title": "Công Cụ Ghép Văn Bản",
+      "description": "Ghép nhiều cột văn bản theo từng dòng bằng mẫu để tạo hàng loạt CSV, SQL và JSON"
     },
     "jsonValueExtractor": {
       "title": "Trình trích xuất Giá trị JSON",
@@ -281,7 +288,7 @@
     "textParser": "Công cụ Văn bản",
     "jsonParser": "Công cụ JSON",
     "dataParser": "Công cụ Dữ liệu",
-    "otherTools": "Công cụ Khác",
+    "otherTools": "Thêm công cụ",
     "externalTools": {
       "legendtalk": "Bàn tròn nhà tư tưởng AI",
       "imgprompt": "Câu lệnh tạo ảnh AI"
@@ -328,9 +335,9 @@
     "conversion": "Phồn/Giản",
     "rulesInactiveHint": "Chỉ có hiệu lực khi bật chuyển đổi phồn thể/giản thể",
     "conversionNone": "Không",
-    "specialStartLabel": "Dòng mở đầu đặc biệt (không gộp)",
+    "specialStartLabel": "Đầu dòng không gộp",
     "specialStartPlaceholder": "Ví dụ: tên sách, lời mở đầu...",
-    "specialStartAria": "Dòng mở đầu đặc biệt",
+    "specialStartAria": "Đầu dòng không gộp",
     "filterLabel": "Lọc nội dung",
     "filterPlaceholder": "Nhập từ khóa lọc (phân cách bằng dấu phẩy)",
     "thresholdLabel": "Bảo vệ dòng dài",
@@ -367,7 +374,7 @@
     "clearFilter": "Xóa bộ lọc",
     "emptyCount": "⚠ {count} mục giá trị rỗng",
     "shadowedCount": "⚠ {count} mục bị ghi đè",
-    "searchPlaceholder": "Tìm kiếm from hoặc to",
+    "searchPlaceholder": "Tìm từ gốc hoặc từ thay thế",
     "searchAriaLabel": "Tìm kiếm quy tắc",
     "sortOriginal": "Thứ tự gốc",
     "sortAlphabetical": "Theo bảng chữ cái",
@@ -378,13 +385,11 @@
     "deleteSelected": "Xóa đã chọn",
     "exportSelected": "Xuất đã chọn ({count})",
     "clearSelection": "Bỏ chọn",
-    "colFrom": "Nguồn",
-    "colTo": "Đích",
-    "fromEmpty": "Nguồn trống",
-    "toEmpty": "Đích trống",
+    "colFrom": "Từ gốc",
+    "colTo": "Thay bằng",
+    "fromEmpty": "Từ gốc trống",
+    "toEmpty": "Từ thay thế trống",
     "shadowedTooltip": "Bị ghi đè bởi dòng {rowNumber}, kết quả thực tế là「{winnerTo}」",
-    "fromPlaceholder": "Từ cần khớp",
-    "toPlaceholder": "Thay thế bằng",
     "emptyTable": "Chưa có quy tắc. Nhấp vào「Thêm quy tắc」để bắt đầu.",
     "noRulesYet": "Chưa có quy tắc",
     "enableProtectedRules": "Áp dụng quy tắc tùy chỉnh",
@@ -404,6 +409,11 @@
     "reaction4": "Bối rối",
     "placeholder": "Để lại tin nhắn (không cần đăng nhập, email tùy chọn để trả lời)",
     "metaDescription": "Trang phản hồi Tools By AI: báo lỗi, đề xuất tính năng, chia sẻ tình huống sử dụng. Dựa trên Waline, đăng ẩn danh được phép, miễn phí."
+  },
+  "AppError": {
+    "title": "Không tải được trang",
+    "description": "Không thể tải trang — điều này có thể xảy ra ngay sau khi trang web được cập nhật. Vui lòng tải lại.",
+    "reload": "Tải lại"
   },
   "NotFound": {
     "title": "Không tìm thấy trang",

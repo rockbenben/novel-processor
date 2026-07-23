@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "エスケープ文字対応：\\n (改行)、\\r (復帰)、\\t (タブ)、\\s (スペース)、\\\\ (バックスラッシュ)",
     "skipToContent": "メインコンテンツにスキップ",
     "fileProcessFailed": "ファイルの処理に失敗しました。エンコードを確認するか、別のファイルをお試しください",
     "fileReadFailed": "ファイルの読み込みに失敗しました",
@@ -48,6 +49,7 @@
     "extractText": "テキスト抽出",
     "translationResult": "翻訳結果",
     "copy": "コピー",
+    "expand": "続きを読む",
     "remove": "削除",
     "exportFile": "エクスポート",
     "exportAllFile": "すべてエクスポート",
@@ -165,6 +167,7 @@
     "errorHint5xx": "サーバーエラーです。しばらくしてから再試行してください",
     "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。API 設定で「API 中継」を有効にしてください",
     "errorHintRelay403": "API が 403 Forbidden を返しました。API 設定で「API 中継」を有効にしてください",
+    "errorHintGeminiKey": "Gemini に接続できません。まずネットワークを確認してください（一部のネットワークでは Google サービスに直接接続できません）。ネットワークに問題がなければ、2026年6月19日以降 Google は無制限の API キーを拒否しています。AI Studio でキーを再生成する（デフォルトで制限付き）か、Google Cloud コンソールで既存キーに Gemini API 制限を追加してください",
     "rateLimitCooldown": "レート制限に達したため少し待機し、自動的に再試行します"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "テキスト分割",
-      "description": "長文をスマートに分割、AI入力とSNSに最適"
+      "description": "長文を区切り記号・文字数・文単位で分割、結合し直しも可能"
     },
     "chineseConversion": {
       "title": "繁体・簡体字変換",
@@ -191,7 +194,7 @@
     "novelProcessor": {
       "title": "中国語小説テキスト整理ツール",
       "description": "ダウンロードした中国語ネット小説の書式問題を一括修正、スマート改行対応",
-      "metaTitle": "中国語ネット小説整形 - 中国語小説 TXT 改行修復、章節分割、Kindle 配信対応",
+      "metaTitle": "中国語ネット小説整形 - TXT 改行修復、章節分割、Kindle",
       "metaDescription": "中国語ウェブ小説 TXT 整形、段落崩れ・広告・章区切り（第X章）・文字化けをワンクリック修復、300 万字対応、Kindle 配信向け。",
       "faq": [
         {
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "テキスト処理ツール（自用）",
       "description": "Excel 表データの一括重複削除・列抽出・テキスト結合、複数ルールを順次実行"
+    },
+    "textJoiner": {
+      "title": "テキスト結合ツール",
+      "description": "複数のテキスト列をテンプレートで行ごとに結合し、CSV・SQL・JSONを一括生成"
     },
     "jsonValueExtractor": {
       "title": "JSON値抽出",
@@ -320,9 +327,9 @@
     "rulesInactiveHint": "「繁簡変換」を有効にしている時のみ適用されます",
     "conversionNone": "変換なし",
     "lineEndNumbers": "行末数字を削除",
-    "specialStartLabel": "特殊先頭行（結合しない）",
+    "specialStartLabel": "結合しない行頭の文字",
     "specialStartPlaceholder": "例：書名、まえがき...",
-    "specialStartAria": "特殊先頭行",
+    "specialStartAria": "結合しない行頭の文字",
     "filterLabel": "コンテンツフィルタリング",
     "filterPlaceholder": "フィルタリングキーワードを入力（カンマ区切り）",
     "thresholdLabel": "長い行を保護",
@@ -367,7 +374,7 @@
     "clearFilter": "フィルターをクリア",
     "emptyCount": "⚠ {count} 件の空値",
     "shadowedCount": "⚠ {count} 件が上書き",
-    "searchPlaceholder": "fromまたはtoを検索",
+    "searchPlaceholder": "元の語または置換語を検索",
     "searchAriaLabel": "ルールを検索",
     "sortOriginal": "元の順序",
     "sortAlphabetical": "辞書順",
@@ -378,13 +385,11 @@
     "deleteSelected": "選択した件を削除",
     "exportSelected": "選択した件をエクスポート ({count})",
     "clearSelection": "選択を解除",
-    "colFrom": "変換前",
-    "colTo": "変換後",
-    "fromEmpty": "変換前が空です",
-    "toEmpty": "変換後が空です",
+    "colFrom": "元の語",
+    "colTo": "置換後",
+    "fromEmpty": "元の語が空です",
+    "toEmpty": "置換後が空です",
     "shadowedTooltip": "第 {rowNumber} 行に上書きされており、実際の変換結果は「{winnerTo}」です",
-    "fromPlaceholder": "マッチするフィールド",
-    "toPlaceholder": "置換後",
     "emptyTable": "ルールがありません。「ルールを追加」をクリックして開始してください。",
     "noRulesYet": "ルールがありません",
     "enableProtectedRules": "カスタム置換を有効化",
@@ -404,6 +409,11 @@
     "reaction4": "不明",
     "placeholder": "メッセージを残してください。ログインは不要です（メールアドレスを入力すると返信通知を受け取れます）",
     "metaDescription": "Tools By AI のフィードバックページ：バグ報告、機能リクエスト、使用例を共有。Waline ベース、匿名投稿可。"
+  },
+  "AppError": {
+    "title": "ページの読み込みエラー",
+    "description": "ページを読み込めませんでした。サイトの更新直後に発生することがあります。再読み込みしてください。",
+    "reload": "再読み込み"
   },
   "NotFound": {
     "title": "ページが見つかりません",

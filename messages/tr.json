@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Kaçış karakterlerini destekler: \\n (yeni satır), \\r (dönüş), \\t (sekme), \\s (boşluk), \\\\ (ters eğik çizgi)",
     "skipToContent": "Ana içeriğe geç",
     "fileProcessFailed": "Dosya işlenemedi — kodlamasını kontrol edin veya başka bir dosya deneyin",
     "fileReadFailed": "Dosya okunamadı",
@@ -48,6 +49,7 @@
     "extractText": "Metni Çıkar",
     "translationResult": "Sonuç",
     "copy": "Kopyala",
+    "expand": "daha fazla",
     "remove": "Kaldır",
     "exportFile": "Dışa Aktar",
     "exportAllFile": "Tümünü Dışa Aktar",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Sunucu hatası, lütfen daha sonra tekrar deneyin",
     "errorHintRelay": "Ağ hatası (muhtemelen CORS) — API Ayarlarında \"API Aktarıcı\"yı açın",
     "errorHintRelay403": "API 403 Forbidden döndürdü — API Ayarlarında \"API Aktarıcı\"yı açın",
+    "errorHintGeminiKey": "Gemini'ye ulaşılamıyor: önce ağınızı kontrol edin (bazı ağlar Google hizmetlerine doğrudan erişemez). Ağ sorunsuzsa, 19 Haziran 2026'dan itibaren Google kısıtlamasız API anahtarlarını reddediyor — anahtarınızı AI Studio'da yeniden oluşturun (varsayılan olarak kısıtlı) veya Google Cloud Console'da eski anahtara Gemini API kısıtlaması ekleyin",
     "rateLimitCooldown": "İstek sınırına ulaşıldı — kısa bir duraklamadan sonra otomatik olarak yeniden denenecek"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Metin Bölücü",
-      "description": "AI ve sosyal medya için akıllı uzun metin bölme"
+      "description": "Uzun metni ayırıcıya, uzunluğa veya cümleye göre böl — sonra yeniden birleştir"
     },
     "chineseConversion": {
       "title": "Bas/Gel Çince Dönüştürücü",
@@ -191,7 +194,7 @@
     "novelProcessor": {
       "title": "Çince Web Roman Düzenleyici",
       "description": "İndirilen Çince web romanların biçimlendirme sorunlarını tek tıkla düzeltin, akıllı satır sonu ile",
-      "metaTitle": "Çince Web Roman TXT Düzenleyici - 第X章 Bölümler, Reklam, Kindle",
+      "metaTitle": "Çince Roman TXT Düzenleyici - 第X章, Reklam, Kindle",
       "metaDescription": "Çince web roman TXT biçimlendirici: paragraf, reklam, 第X章 bölüm, kodlama karışıklığı tek tıkla. 3M+ karakter. Kindle, Kobo, FBReader.",
       "faq": [
         {
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Kişisel Metin İşleyici",
       "description": "Excel toplu veri işleme — tekilleştirme, sütun çıkarma, metin birleştirme, zincirli kurallar"
+    },
+    "textJoiner": {
+      "title": "Metin Birleştirici",
+      "description": "Birden çok metin sütununu şablonlarla satır satır birleştirerek toplu CSV, SQL ve JSON oluşturun"
     },
     "jsonValueExtractor": {
       "title": "JSON Değer Çıkarıcı",
@@ -281,7 +288,7 @@
     "textParser": "Metin Araçları",
     "jsonParser": "JSON Araçları",
     "dataParser": "Veri Araçları",
-    "otherTools": "Diğer Araçlar",
+    "otherTools": "Daha Fazla Araç",
     "externalTools": {
       "legendtalk": "AI Düşünürler Yuvarlak Masası",
       "imgprompt": "AI Görsel İstemleri"
@@ -325,10 +332,10 @@
     "conversion": "Dönüşüm",
     "rulesInactiveHint": "Yalnızca Geleneksel/Basitleştirilmiş dönüşümü etkinken etkili",
     "conversionNone": "Yok",
-    "specialStartLabel": "Özel başlangıç satırları (birleştirme)",
+    "specialStartLabel": "Birleştirilmeyecek satır başlangıçları",
     "hintSpecialStart": "Bu metinle başlayan satırlar önceki paragrafa dahil edilmez",
     "specialStartPlaceholder": "Örn.: kitap adı, epigraf...",
-    "specialStartAria": "Özel başlangıç satırları",
+    "specialStartAria": "Birleştirilmeyecek satır başlangıçları",
     "filterLabel": "İçerik Filtresi",
     "hintFilter": "Bu anahtar kelimeleri içeren satırları siler",
     "filterPlaceholder": "Filtre anahtar kelimeleri girin (virgülle ayrılmış)",
@@ -367,7 +374,7 @@
     "clearFilter": "Filtreyi Temizle",
     "emptyCount": "⚠ {count} boş değer",
     "shadowedCount": "⚠ {count} kural üzerine yazılmış",
-    "searchPlaceholder": "«kaynak» veya «hedef» ara",
+    "searchPlaceholder": "Orijinali veya karşılığı ara",
     "searchAriaLabel": "Kuralları ara",
     "sortOriginal": "Orijinal sıra",
     "sortAlphabetical": "Alfabetik sıra",
@@ -378,13 +385,11 @@
     "deleteSelected": "Seçilileri Sil",
     "exportSelected": "Seçilileri Dışa Aktar ({count})",
     "clearSelection": "Seçimi İptal Et",
-    "colFrom": "Kaynak",
-    "colTo": "Hedef",
-    "fromEmpty": "Kaynak boş",
-    "toEmpty": "Hedef boş",
+    "colFrom": "Orijinal",
+    "colTo": "Şununla değiştir",
+    "fromEmpty": "Orijinal boş",
+    "toEmpty": "Karşılığı boş",
     "shadowedTooltip": "{rowNumber}. satır tarafından üzerine yazılmış; geçerli sonuç «{winnerTo}»",
-    "fromPlaceholder": "Eşleştirilecek alan",
-    "toPlaceholder": "Şununla değiştir",
     "emptyTable": "Kural yok. Başlamak için «Kural Ekle»ye tıklayın.",
     "noRulesYet": "Henüz kural yok",
     "enableProtectedRules": "Özel kuralları uygula",
@@ -403,7 +408,12 @@
     "reaction3": "Ne?",
     "reaction4": "Kafam Karıştı",
     "placeholder": "Mesaj bırakın (giriş gerekmez, yanıt için e-posta isteğe bağlı)",
-    "metaDescription": "Tools By AI geri bildirim sayfası: hata bildir, özellik öner veya kullanım örneklerini paylaş. Waline tabanlı, anonim gönderim mümkün, ücretsiz."
+    "metaDescription": "Tools By AI geri bildirim sayfası: hata bildir, özellik öner, kullanım örneği paylaş. Waline tabanlı, anonim, ücretsiz."
+  },
+  "AppError": {
+    "title": "Sayfa yüklenemedi",
+    "description": "Sayfa yüklenemedi — bu, site güncellemesinden hemen sonra olabilir. Lütfen yeniden yükleyin.",
+    "reload": "Yeniden yükle"
   },
   "NotFound": {
     "title": "Sayfa Bulunamadı",

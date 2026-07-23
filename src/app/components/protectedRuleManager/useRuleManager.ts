@@ -11,7 +11,11 @@ const sanitizeRuleField = (s: string): string =>
       const cp = c.codePointAt(0)!;
       return cp < 0xe000 || cp > 0xf8ff;
     })
-    .join("");
+    .join("")
+    // Tab/换行是 TSV 导出的字段/记录分隔符 —— 值里含 tab(如从表格粘贴,单行 input
+    // 不会剥 tab)会让导出行多出一列、re-import 按首个 tab 切分后 from/to 错位甚至
+    // 整条丢失(静默数据损坏)。折成空格从源头杜绝(同 glossary 的 cleanCell)。
+    .replace(/[\t\r\n]+/g, " ");
 
 export type RuleManagerAPI = {
   activeKey: Direction;

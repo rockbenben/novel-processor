@@ -45,7 +45,7 @@ const RuleTable: React.FC<Props> = ({ rows, allRules, issues, selectedKeys, onSe
             size="small"
             value={record.from}
             onChange={(e) => onUpdate(record.__originalIdx, "from", e.target.value)}
-            placeholder={t("fromPlaceholder")}
+            aria-label={t("colFrom")}
             suffix={
               <span style={{ display: "inline-flex", width: 14, justifyContent: "center" }}>
                 {tooltipText && (
@@ -69,7 +69,7 @@ const RuleTable: React.FC<Props> = ({ rows, allRules, issues, selectedKeys, onSe
           size="small"
           value={record.to}
           onChange={(e) => onUpdate(record.__originalIdx, "to", e.target.value)}
-          placeholder={t("toPlaceholder")}
+          aria-label={t("colTo")}
           suffix={
             <span style={{ display: "inline-flex", width: 14, justifyContent: "center" }}>
               {!record.to && (

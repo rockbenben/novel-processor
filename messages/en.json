@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Supports escape chars: \\n (newline), \\r (return), \\t (tab), \\s (space), \\\\ (backslash)",
     "skipToContent": "Skip to main content",
     "fileProcessFailed": "Failed to process the file — check its encoding or try another",
     "fileReadFailed": "Failed to read the file",
@@ -48,6 +49,7 @@
     "extractText": "Extract Text",
     "translationResult": "Translation Result",
     "copy": "Copy",
+    "expand": "more",
     "remove": "Remove",
     "exportFile": "Export",
     "exportAllFile": "Export All",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Server error, please retry later",
     "errorHintRelay": "Network error (possibly CORS) — enable \"API Relay\" in API Settings",
     "errorHintRelay403": "The API returned 403 Forbidden — enable \"API Relay\" in API Settings",
+    "errorHintGeminiKey": "Cannot reach Gemini: check your network first (some networks cannot reach Google services directly). If the network is fine, Google has been rejecting unrestricted API keys since June 19, 2026 — regenerate your key in AI Studio (restricted by default) or add a Gemini API restriction to the old key in Google Cloud Console",
     "rateLimitCooldown": "Rate limited — pausing briefly, will retry automatically"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Text Splitter",
-      "description": "Smart long text splitter for AI and social media"
+      "description": "Split long text by delimiter, length, or sentence — and merge it back"
     },
     "chineseConversion": {
       "title": "Chinese Conversion",
@@ -192,7 +195,7 @@
       "title": "Chinese Novel Formatter",
       "description": "One-click formatting for downloaded Chinese web novels — smart line breaks, chapter splitting, and clean layout.",
       "metaTitle": "Chinese Web Novel TXT Formatter - Chapter Split, Kindle Export",
-      "metaDescription": "Chinese web novel TXT formatter: fix broken paragraphs, ads, 第X章 chapters, and Simplified/Traditional mix in one click. Handles 3M+ chars. Exports Kindle, Kobo, FBReader.",
+      "metaDescription": "Chinese web novel TXT formatter: fix paragraphs, ads, 第X章 chapters, encoding. 3M+ chars. Exports Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "My downloaded TXT novel has messy formatting — what issues can this tool fix?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Batch Data Processor",
       "description": "Excel batch data processing — dedup, column extraction, text merge, custom rules chained in sequence"
+    },
+    "textJoiner": {
+      "title": "Text Joiner",
+      "description": "Merge multiple text columns line by line with templates to batch-generate CSV, SQL, and JSON"
     },
     "jsonValueExtractor": {
       "title": "JSON Field Value Extractor",
@@ -281,7 +288,7 @@
     "textParser": "Text Tools",
     "jsonParser": "JSON Tools",
     "dataParser": "Data Tools",
-    "otherTools": "Other Tools",
+    "otherTools": "More Tools",
     "externalTools": {
       "legendtalk": "AI Thinkers Roundtable",
       "imgprompt": "AI Image Prompts"
@@ -320,9 +327,9 @@
     "rulesInactiveHint": "Active only when Traditional/Simplified conversion is enabled",
     "conversionNone": "None",
     "lineEndNumbers": "Remove Trailing Numbers",
-    "specialStartLabel": "Special Start Lines (no merge)",
+    "specialStartLabel": "Line starts that stay separate",
     "specialStartPlaceholder": "e.g. title, preface...",
-    "specialStartAria": "Special Start Lines",
+    "specialStartAria": "Line starts that stay separate",
     "filterLabel": "Content Filter",
     "filterPlaceholder": "Enter filter keywords (comma-separated)",
     "thresholdLabel": "Protect long lines",
@@ -367,7 +374,7 @@
     "clearFilter": "Clear Filter",
     "emptyCount": "⚠ {count} empty value(s)",
     "shadowedCount": "⚠ {count} shadowed rule(s)",
-    "searchPlaceholder": "Search from or to",
+    "searchPlaceholder": "Search original or replacement",
     "searchAriaLabel": "Search Rules",
     "sortOriginal": "Original Order",
     "sortAlphabetical": "Alphabetical",
@@ -378,13 +385,11 @@
     "deleteSelected": "Delete Selected",
     "exportSelected": "Export Selected ({count})",
     "clearSelection": "Deselect All",
-    "colFrom": "From",
-    "colTo": "To",
-    "fromEmpty": "From is empty",
-    "toEmpty": "To is empty",
+    "colFrom": "Original",
+    "colTo": "Replace with",
+    "fromEmpty": "Original is empty",
+    "toEmpty": "Replacement is empty",
     "shadowedTooltip": "Shadowed by row {rowNumber}; effective result is \"{winnerTo}\"",
-    "fromPlaceholder": "Term to match",
-    "toPlaceholder": "Replace with",
     "emptyTable": "No rules yet. Click \"Add Rule\" to get started.",
     "noRulesYet": "No rules yet",
     "enableProtectedRules": "Apply custom rules",
@@ -404,6 +409,11 @@
     "reaction4": "Confused",
     "placeholder": "Leave a message (no login required, email optional for reply)",
     "metaDescription": "Feedback for Tools By AI: report bugs, suggest features, share use-case ideas. Built on Waline, anonymous posting allowed, free."
+  },
+  "AppError": {
+    "title": "Page failed to load",
+    "description": "The page could not be loaded — this can happen right after a site update. Please reload.",
+    "reload": "Reload"
   },
   "NotFound": {
     "title": "Page Not Found",

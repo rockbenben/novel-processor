@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Suporta caracteres escape: \\n (nova linha), \\r (retorno), \\t (tab), \\s (espaço), \\\\ (barra invertida)",
     "skipToContent": "Pular para o conteúdo principal",
     "fileProcessFailed": "Falha ao processar o arquivo — verifique a codificação ou tente outro",
     "fileReadFailed": "Falha ao ler o arquivo",
@@ -48,6 +49,7 @@
     "extractText": "Extrair Texto",
     "translationResult": "Resultado",
     "copy": "Copiar",
+    "expand": "mais",
     "remove": "Remover",
     "exportFile": "Exportar",
     "exportAllFile": "Exportar Tudo",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Erro do servidor, tente novamente mais tarde",
     "errorHintRelay": "Erro de rede (possivelmente CORS) — ative o \"Relay da API\" nas configurações de API",
     "errorHintRelay403": "A API retornou 403 Forbidden — ative o \"Relay da API\" nas configurações de API",
+    "errorHintGeminiKey": "Não foi possível conectar ao Gemini: verifique primeiro sua rede (algumas redes não alcançam diretamente os serviços do Google). Se a rede estiver bem, desde 19/06/2026 o Google rejeita chaves de API sem restrições — gere novamente sua chave no AI Studio (restrita por padrão) ou adicione uma restrição de Gemini API à chave antiga no Console do Google Cloud",
     "rateLimitCooldown": "Limite de requisições atingido — pausando brevemente, repetiremos automaticamente"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "Divisor de Texto",
-      "description": "Divisão inteligente de texto longo para IA e redes sociais"
+      "description": "Divida textos longos por separador, tamanho ou frase — e junte de volta"
     },
     "chineseConversion": {
       "title": "Conversor Simp/Trad",
@@ -191,8 +194,8 @@
     "novelProcessor": {
       "title": "Formatador de romances web chineses",
       "description": "Corrija problemas de formatação de novelas web chinesas baixadas com um clique, com quebra de linha inteligente",
-      "metaTitle": "Formatador de Romances Web Chineses TXT - Capítulos 第X章, Limpeza e Kindle",
-      "metaDescription": "Formatador de romance web chinês TXT: corrige parágrafos, anúncios, capítulos 第X章, codificação num clique. 3M+ caracteres. Kindle, Kobo, FBReader.",
+      "metaTitle": "Formatador TXT Romances Chineses - 第X章, Limpeza, Kindle",
+      "metaDescription": "Formatador de romance web chinês TXT: corrige parágrafos, anúncios, 第X章, codificação. 3M+ caracteres. Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Quais problemas de formatação de TXT baixado de sites de webnovels e fanfics esta ferramenta consegue corrigir?",
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "Processador de Texto",
       "description": "Processamento em lote de dados Excel — deduplicação, extração de colunas, fusão, regras encadeadas"
+    },
+    "textJoiner": {
+      "title": "Unificador de Texto",
+      "description": "Combine várias colunas de texto linha por linha com modelos para gerar em lote CSV, SQL e JSON"
     },
     "jsonValueExtractor": {
       "title": "Extrator Valor JSON",
@@ -281,7 +288,7 @@
     "textParser": "Ferramentas Texto",
     "jsonParser": "Ferramentas JSON",
     "dataParser": "Ferramentas Dados",
-    "otherTools": "Outras Ferramentas",
+    "otherTools": "Mais ferramentas",
     "externalTools": {
       "legendtalk": "Mesa-redonda de pensadores de IA",
       "imgprompt": "Prompts de imagem de IA"
@@ -325,10 +332,10 @@
     "conversion": "Conversão",
     "rulesInactiveHint": "Apenas ativo quando a conversão tradicional/simplificado está habilitada",
     "conversionNone": "Sem alt.",
-    "specialStartLabel": "Linhas de início especial (não mesclar)",
+    "specialStartLabel": "Inícios de linha que não se juntam",
     "hintSpecialStart": "Linhas que comecem com este texto não serão mescladas ao parágrafo anterior",
     "specialStartPlaceholder": "Ex.: título do livro, epígrafe...",
-    "specialStartAria": "Linhas de início especial",
+    "specialStartAria": "Inícios de linha que não se juntam",
     "filterLabel": "Filtro de Conteúdo",
     "hintFilter": "Exclui as linhas que contêm estas palavras-chave",
     "filterPlaceholder": "Insira palavras-chave de filtro (separadas por vírgula)",
@@ -367,7 +374,7 @@
     "clearFilter": "Limpar Filtro",
     "emptyCount": "⚠ {count} valor(es) vazio(s)",
     "shadowedCount": "⚠ {count} sobrescrita(s)",
-    "searchPlaceholder": "Pesquisar «de» ou «para»",
+    "searchPlaceholder": "Buscar original ou substituição",
     "searchAriaLabel": "Pesquisar regras",
     "sortOriginal": "Ordem original",
     "sortAlphabetical": "Ordem alfabética",
@@ -378,13 +385,11 @@
     "deleteSelected": "Excluir Selecionadas",
     "exportSelected": "Exportar Selecionadas ({count})",
     "clearSelection": "Cancelar Seleção",
-    "colFrom": "Origem",
-    "colTo": "Destino",
-    "fromEmpty": "Origem vazia",
-    "toEmpty": "Destino vazio",
+    "colFrom": "Original",
+    "colTo": "Substituir por",
+    "fromEmpty": "O original está vazio",
+    "toEmpty": "A substituição está vazia",
     "shadowedTooltip": "Sobrescrita pela linha {rowNumber}; o resultado em vigor é «{winnerTo}»",
-    "fromPlaceholder": "Campo a corresponder",
-    "toPlaceholder": "Substituir por",
     "emptyTable": "Nenhuma regra. Clique em «Adicionar Regra» para começar.",
     "noRulesYet": "Sem regras ainda",
     "enableProtectedRules": "Ativar regras personalizadas",
@@ -403,7 +408,12 @@
     "reaction3": "O quê?",
     "reaction4": "Confuso",
     "placeholder": "Deixe uma mensagem (não requer login, email opcional para resposta)",
-    "metaDescription": "Página de feedback do Tools By AI: relate bugs, sugira recursos, compartilhe casos de uso. Baseado em Waline, publicação anônima, grátis."
+    "metaDescription": "Página de feedback do Tools By AI: relate bugs, sugira recursos ou compartilhe ideias. Baseado em Waline, anônimo, grátis."
+  },
+  "AppError": {
+    "title": "Falha ao carregar a página",
+    "description": "Não foi possível carregar a página; isso pode acontecer logo após uma atualização do site. Recarregue a página.",
+    "reload": "Recarregar"
   },
   "NotFound": {
     "title": "Página não encontrada",

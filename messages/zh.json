@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "支持转义字符：\\n (换行)、\\r (回车)、\\t (制表符)、\\s (空格)、\\\\ (反斜杠)",
     "skipToContent": "跳到主要内容",
     "fileProcessFailed": "文件处理失败，请检查文件编码或换一个文件",
     "fileReadFailed": "读取文件失败",
@@ -48,6 +49,7 @@
     "extractText": "提取纯文本",
     "translationResult": "翻译结果",
     "copy": "复制",
+    "expand": "展开",
     "remove": "删除",
     "format": "格式化",
     "formatTooltip": "格式化：移除空行及首尾空格",
@@ -165,6 +167,7 @@
     "errorHint5xx": "服务器错误，请稍后重试",
     "errorHintRelay": "网络错误（可能是 CORS 限制），请在 API 设置中开启「中转 API」",
     "errorHintRelay403": "接口返回 403 禁止访问，请在 API 设置中开启「中转 API」",
+    "errorHintGeminiKey": "无法连接 Gemini：请先检查网络（部分网络环境无法直连 Google 服务）。若网络正常，则可能是 Google 自 2026-06-19 起拒绝「无限制 API Key」——请在 AI Studio 重新生成密钥（默认已限制），或在 Google Cloud 控制台为旧密钥添加 Gemini API 限制",
     "rateLimitCooldown": "请求过于频繁，已自动暂停片刻后重试"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "文本分割",
-      "description": "智能分割长文本，适用于 AI 输入和社交媒体"
+      "description": "按符号、字数或整句拆分长文本，适配 AI 投喂与分段发布"
     },
     "chineseConversion": {
       "title": "简繁转换",
@@ -191,7 +194,7 @@
     "novelProcessor": {
       "title": "小说排版整理",
       "description": "一键修复下载小说的格式问题，智能换行排版",
-      "metaTitle": "小说排版整理工具 - 网文 TXT 智能换行、章节分割与 Kindle 推送适配",
+      "metaTitle": "小说排版整理工具 - 网文 TXT 换行、章节分割、Kindle 推送",
       "metaDescription": "网文 TXT 智能排版工具，一键修复笔趣阁下载小说的段落误切、空行、章节标识、广告横幅、繁简混用，支持 300 万字超长篇秒级处理。",
       "features": [
         "修复网文 TXT 格式乱的 7 大问题（笔趣阁下载、网页复制、Word 导出均适用）",
@@ -237,6 +240,10 @@
       "title": "数据批处理",
       "description": "Excel 表格批量去重、列提取、文本合并，多规则按序执行"
     },
+    "textJoiner": {
+      "title": "文本拼接",
+      "description": "多列文本逐行按模板合并，批量生成 CSV、SQL、JSON"
+    },
     "jsonValueExtractor": {
       "title": "JSON 字段值提取",
       "description": "批量提取 JSON 字段值，支持格式化输出"
@@ -281,7 +288,7 @@
     "textParser": "文本处理",
     "jsonParser": "JSON 处理",
     "dataParser": "数据转换",
-    "otherTools": "其他工具",
+    "otherTools": "更多工具",
     "externalTools": {
       "legendtalk": "AI 思想家圆桌",
       "imgprompt": "AI 绘图提示词"
@@ -325,7 +332,7 @@
     "clearFilter": "清除过滤",
     "emptyCount": "⚠ {count} 条空值",
     "shadowedCount": "⚠ {count} 条被覆盖",
-    "searchPlaceholder": "搜索 from 或 to",
+    "searchPlaceholder": "搜索原词或替换词",
     "searchAriaLabel": "搜索规则",
     "sortOriginal": "原序",
     "sortAlphabetical": "字典序",
@@ -336,13 +343,11 @@
     "deleteSelected": "删除选中",
     "exportSelected": "导出选中 ({count})",
     "clearSelection": "取消选中",
-    "colFrom": "源",
-    "colTo": "目标",
-    "fromEmpty": "源为空",
-    "toEmpty": "目标为空",
+    "colFrom": "原词",
+    "colTo": "替换为",
+    "fromEmpty": "原词为空",
+    "toEmpty": "替换词为空",
     "shadowedTooltip": "被第 {rowNumber} 行覆盖，实际生效结果为「{winnerTo}」",
-    "fromPlaceholder": "命中的字段",
-    "toPlaceholder": "替换为",
     "emptyTable": "暂无规则。点击「添加规则」开始。",
     "noRulesYet": "暂无规则",
     "enableProtectedRules": "启用自定义替换",
@@ -375,10 +380,10 @@
     "conversion": "繁简转换",
     "rulesInactiveHint": "仅在启用「繁简转换」时生效",
     "conversionNone": "不变",
-    "specialStartLabel": "特殊起始行（不合并）",
+    "specialStartLabel": "不合并的开头文字",
     "hintSpecialStart": "以这些文字开头的行不会被并入上一段",
     "specialStartPlaceholder": "例如：书名、卷首语...",
-    "specialStartAria": "特殊起始行",
+    "specialStartAria": "不合并的开头文字",
     "filterLabel": "内容筛选",
     "hintFilter": "删除包含这些关键词的行",
     "filterPlaceholder": "输入筛选关键词（逗号分隔）",
@@ -404,6 +409,11 @@
     "reaction4": "看不懂",
     "placeholder": "请留言，无需登录（填写邮箱可获回复提醒）",
     "metaDescription": "意见反馈页：报告使用问题、提交功能建议、参与工具改进。基于 Waline 评论系统，匿名也可发言。"
+  },
+  "AppError": {
+    "title": "页面加载出错",
+    "description": "页面加载失败,可能是网站刚更新到新版本,请重新加载。",
+    "reload": "重新加载"
   },
   "NotFound": {
     "title": "页面未找到",

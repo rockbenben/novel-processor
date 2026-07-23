@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "एस्केप वर्णों का समर्थन करता है: \\n (नई लाइन), \\r (रिटर्न), \\t (टैब), \\s (स्पेस), \\\\ (बैकस्लैश)",
     "skipToContent": "मुख्य सामग्री पर जाएं",
     "fileProcessFailed": "फ़ाइल प्रोसेस करने में विफल — इसकी एन्कोडिंग जाँचें या कोई और फ़ाइल आज़माएँ",
     "fileReadFailed": "फ़ाइल पढ़ने में विफल",
@@ -48,6 +49,7 @@
     "extractText": "टेक्स्ट निकालें",
     "translationResult": "परिणाम",
     "copy": "कॉपी करें",
+    "expand": "और देखें",
     "remove": "हटाएँ",
     "exportFile": "निर्यात करें",
     "exportAllFile": "सभी निर्यात करें",
@@ -165,6 +167,7 @@
     "errorHint5xx": "सर्वर त्रुटि, कृपया बाद में पुनः प्रयास करें",
     "errorHintRelay": "नेटवर्क त्रुटि (संभवतः CORS प्रतिबंध)। API सेटिंग्स में \"API रिले\" चालू करें",
     "errorHintRelay403": "API ने 403 Forbidden लौटाया। API सेटिंग्स में \"API रिले\" चालू करें",
+    "errorHintGeminiKey": "Gemini से कनेक्ट नहीं हो सका: पहले नेटवर्क जांचें (कुछ नेटवर्क Google सेवाओं तक सीधे नहीं पहुंच पाते)। नेटवर्क ठीक होने पर, 19 जून 2026 से Google अप्रतिबंधित API कुंजियों को अस्वीकार करता है — AI Studio में कुंजी फिर से बनाएं (डिफ़ॉल्ट रूप से प्रतिबंधित) या Google Cloud कंसोल में पुरानी कुंजी पर Gemini API प्रतिबंध जोड़ें",
     "rateLimitCooldown": "अनुरोध सीमा — थोड़ी देर रुककर स्वचालित रूप से पुनः प्रयास होगा"
   },
   "tools": {
@@ -188,7 +191,7 @@
       "title": "चीनी वेब नॉवल फ़ॉर्मेटर",
       "description": "डाउनलोड किए चीनी वेब उपन्यास की फ़ॉर्मेटिंग समस्याएं एक क्लिक में ठीक करें",
       "metaTitle": "चीनी वेब नॉवल TXT फॉर्मेटर - अध्याय 第X章 विभाजन और Kindle निर्यात",
-      "metaDescription": "चीनी वेब नॉवल TXT फॉर्मेटर: एक क्लिक में पैराग्राफ, विज्ञापन, 第X章 चैप्टर ब्रेक, एनकोडिंग ठीक करें। 3M+ अक्षर समर्थन। Kindle, Kobo, FBReader के लिए।",
+      "metaDescription": "चीनी वेब नॉवल TXT फॉर्मेटर: पैराग्राफ, विज्ञापन, 第X章, एनकोडिंग ठीक करें। 3M+ अक्षर। Kindle, Kobo, FBReader के लिए।",
       "faq": [
         {
           "q": "यह टूल डाउनलोड किए TXT उपन्यास में क्या समस्याएं ठीक कर सकता है?",
@@ -229,9 +232,13 @@
       "title": "व्यक्तिगत टेक्स्ट प्रोसेसिंग",
       "description": "Excel डेटा बैच प्रोसेसिंग — डुप्लिकेट हटाना, कॉलम निष्कर्षण, टेक्स्ट विलय, श्रृंखला नियम"
     },
+    "textJoiner": {
+      "title": "टेक्स्ट जॉइनर",
+      "description": "टेम्पलेट के अनुसार कई टेक्स्ट कॉलम को लाइन-दर-लाइन मिलाकर बैच में CSV, SQL, JSON बनाएं"
+    },
     "textSplitter": {
       "title": "टेक्स्ट स्प्लिटर",
-      "description": "AI और सोशल मीडिया के लिए स्मार्ट लंबा टेक्स्ट विभाजन"
+      "description": "लंबे टेक्स्ट को विभाजक, लंबाई या वाक्य से बाँटें — और वापस जोड़ें"
     },
     "jsonValueExtractor": {
       "title": "JSON मान एक्सट्रैक्टर",
@@ -281,7 +288,7 @@
     "textParser": "टेक्स्ट उपकरण",
     "jsonParser": "JSON उपकरण",
     "dataParser": "डेटा उपकरण",
-    "otherTools": "अन्य उपकरण",
+    "otherTools": "अधिक टूल",
     "externalTools": {
       "legendtalk": "AI विचारक गोलमेज़",
       "imgprompt": "AI इमेज प्रॉम्प्ट"
@@ -328,9 +335,9 @@
     "conversion": "रूपांतरण",
     "rulesInactiveHint": "पारंपरिक/सरलीकृत रूपांतरण सक्षम होने पर ही सक्रिय",
     "conversionNone": "नहीं",
-    "specialStartLabel": "विशेष आरंभिक पंक्तियाँ (मर्ज न करें)",
+    "specialStartLabel": "जो पंक्ति-शुरुआत अलग रहेंगी",
     "specialStartPlaceholder": "उदाहरण: पुस्तक शीर्षक, भूमिका...",
-    "specialStartAria": "विशेष आरंभिक पंक्तियाँ",
+    "specialStartAria": "जो पंक्ति-शुरुआत अलग रहेंगी",
     "filterLabel": "कंटेंट फ़िल्टर",
     "filterPlaceholder": "फ़िल्टर कीवर्ड दर्ज करें (अल्पविराम से अलग)",
     "thresholdLabel": "लंबी पंक्तियाँ सुरक्षित करें",
@@ -367,7 +374,7 @@
     "clearFilter": "फ़िल्टर साफ़ करें",
     "emptyCount": "⚠ {count} खाली मान",
     "shadowedCount": "⚠ {count} ओवरराइड हुए",
-    "searchPlaceholder": "स्रोत या लक्ष्य खोजें",
+    "searchPlaceholder": "मूल या प्रतिस्थापन खोजें",
     "searchAriaLabel": "नियम खोजें",
     "sortOriginal": "मूल क्रम",
     "sortAlphabetical": "वर्णमाला क्रम",
@@ -378,13 +385,11 @@
     "deleteSelected": "चुने हटाएं",
     "exportSelected": "चुने निर्यात करें ({count})",
     "clearSelection": "चयन रद्द करें",
-    "colFrom": "स्रोत",
-    "colTo": "लक्ष्य",
-    "fromEmpty": "स्रोत खाली है",
-    "toEmpty": "लक्ष्य खाली है",
+    "colFrom": "मूल शब्द",
+    "colTo": "इससे बदलें",
+    "fromEmpty": "मूल शब्द खाली है",
+    "toEmpty": "प्रतिस्थापन खाली है",
     "shadowedTooltip": "पंक्ति {rowNumber} द्वारा ओवरराइड, वास्तविक परिणाम 「{winnerTo}」 है",
-    "fromPlaceholder": "मिलान फ़ील्ड",
-    "toPlaceholder": "इससे बदलें",
     "emptyTable": "कोई नियम नहीं। «नियम जोड़ें» पर क्लिक करें।",
     "noRulesYet": "अभी तक कोई नियम नहीं",
     "enableProtectedRules": "कस्टम नियम लागू करें",
@@ -404,6 +409,11 @@
     "reaction4": "उलझन में",
     "placeholder": "एक संदेश छोड़ें (लॉगिन की आवश्यकता नहीं, उत्तर के लिए ईमेल वैकल्पिक)",
     "metaDescription": "Tools By AI के लिए feedback पेज: bugs report करें, features सुझाएँ, use case शेयर करें। Waline पर आधारित, anonymous posting उपलब्ध।"
+  },
+  "AppError": {
+    "title": "पृष्ठ लोड नहीं हो सका",
+    "description": "पृष्ठ लोड नहीं हो सका — साइट अपडेट के तुरंत बाद ऐसा हो सकता है। कृपया फिर से लोड करें।",
+    "reload": "फिर से लोड करें"
   },
   "NotFound": {
     "title": "पृष्ठ नहीं मिला",

@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "支援轉義字元：\\n (換行)、\\r (回車)、\\t (製表符)、\\s (空格)、\\\\ (反斜槓)",
     "skipToContent": "跳至主要內容",
     "fileProcessFailed": "檔案處理失敗，請檢查檔案編碼或換一個檔案",
     "fileReadFailed": "讀取檔案失敗",
@@ -48,6 +49,7 @@
     "extractText": "提取純文字",
     "translationResult": "翻譯結果",
     "copy": "複製",
+    "expand": "展開",
     "remove": "刪除",
     "format": "格式化",
     "formatTooltip": "格式化：移除空行及首尾空格",
@@ -165,6 +167,7 @@
     "errorHint5xx": "伺服器錯誤，請稍後重試",
     "errorHintRelay": "網路錯誤（可能是 CORS 限制），請在 API 設定中開啟「中轉 API」",
     "errorHintRelay403": "介面回傳 403 禁止存取，請在 API 設定中開啟「中轉 API」",
+    "errorHintGeminiKey": "無法連線 Gemini：請先檢查網路（部分網路環境無法直連 Google 服務）。若網路正常，則可能是 Google 自 2026-06-19 起拒絕「無限制 API Key」——請在 AI Studio 重新產生金鑰（預設已限制），或在 Google Cloud 主控台為舊金鑰新增 Gemini API 限制",
     "rateLimitCooldown": "請求過於頻繁，已自動暫停片刻後重試"
   },
   "tools": {
@@ -182,7 +185,7 @@
     },
     "textSplitter": {
       "title": "文字分割",
-      "description": "智慧分割長文字，適用於 AI 輸入和社交媒體"
+      "description": "按符號、字數或整句拆分長文字，適配 AI 投餵與分段發布"
     },
     "chineseConversion": {
       "title": "簡繁轉換",
@@ -191,7 +194,7 @@
     "novelProcessor": {
       "title": "小說排版整理",
       "description": "一鍵修復下載小說的格式問題，智慧換行排版",
-      "metaTitle": "小說排版整理工具 - 網文 TXT 智慧換行、章節分割與 Kindle 推送適配",
+      "metaTitle": "小說排版整理工具 - 網文 TXT 換行、章節分割、Kindle 推送",
       "metaDescription": "網文 TXT 智能排版工具，一鍵修復下載小說的段落誤切、空行、章節標題、廣告橫幅、繁簡混用，支援 300 萬字超長篇秒級處理。",
       "faq": [
         {
@@ -232,6 +235,10 @@
     "dataBatch": {
       "title": "資料批處理",
       "description": "Excel 表格批次去重、欄位提取、文字合併，多規則按序執行"
+    },
+    "textJoiner": {
+      "title": "文字拼接",
+      "description": "多欄文字逐行按範本合併，批次生成 CSV、SQL、JSON"
     },
     "jsonValueExtractor": {
       "title": "JSON 欄位值提取",
@@ -281,7 +288,7 @@
     "textParser": "文字處理",
     "jsonParser": "JSON 處理",
     "dataParser": "資料轉換",
-    "otherTools": "其他工具",
+    "otherTools": "更多工具",
     "externalTools": {
       "legendtalk": "AI 思想家圓桌",
       "imgprompt": "AI 繪圖提示詞"
@@ -325,7 +332,7 @@
     "clearFilter": "清除過濾",
     "emptyCount": "⚠ {count} 條空值",
     "shadowedCount": "⚠ {count} 條被覆蓋",
-    "searchPlaceholder": "搜尋 from 或 to",
+    "searchPlaceholder": "搜尋原詞或替換詞",
     "searchAriaLabel": "搜尋規則",
     "sortOriginal": "原序",
     "sortAlphabetical": "字典序",
@@ -336,13 +343,11 @@
     "deleteSelected": "刪除選中",
     "exportSelected": "匯出選中 ({count})",
     "clearSelection": "取消選中",
-    "colFrom": "源",
-    "colTo": "目標",
-    "fromEmpty": "源為空",
-    "toEmpty": "目標為空",
+    "colFrom": "原詞",
+    "colTo": "替換為",
+    "fromEmpty": "原詞為空",
+    "toEmpty": "替換詞為空",
     "shadowedTooltip": "被第 {rowNumber} 行覆蓋，實際生效結果為「{winnerTo}」",
-    "fromPlaceholder": "命中的欄位",
-    "toPlaceholder": "替換為",
     "emptyTable": "暫無規則。點擊「加入規則」開始。",
     "noRulesYet": "暫無規則",
     "enableProtectedRules": "啟用自訂替換",
@@ -370,9 +375,9 @@
     "rulesInactiveHint": "僅在啟用「繁簡轉換」時生效",
     "conversionNone": "不變",
     "lineEndNumbers": "清除行尾數字",
-    "specialStartLabel": "特殊起始行（不合併）",
+    "specialStartLabel": "不合併的開頭文字",
     "specialStartPlaceholder": "例如：書名、卷首語...",
-    "specialStartAria": "特殊起始行",
+    "specialStartAria": "不合併的開頭文字",
     "filterLabel": "內容篩選",
     "filterPlaceholder": "輸入篩選關鍵詞（逗號分隔）",
     "thresholdLabel": "保護長行",
@@ -404,6 +409,11 @@
     "reaction4": "看不懂",
     "placeholder": "請留言，無需登錄（填寫郵箱可獲回復提醒）",
     "metaDescription": "意見回饋頁：回報使用問題、提交功能建議、參與工具改進。基於 Waline 評論系統，匿名也可發言。"
+  },
+  "AppError": {
+    "title": "頁面載入出錯",
+    "description": "頁面載入失敗,可能是網站剛更新到新版本,請重新載入。",
+    "reload": "重新載入"
   },
   "NotFound": {
     "title": "頁面未找到",

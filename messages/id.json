@@ -1,5 +1,6 @@
 {
   "common": {
+    "supportEscapeChars": "Mendukung karakter escape: \\n (baris baru), \\r (kembali), \\t (tab), \\s (spasi), \\\\ (garis miring terbalik)",
     "skipToContent": "Lewati ke konten utama",
     "fileProcessFailed": "Gagal memproses file — periksa encoding-nya atau coba file lain",
     "fileReadFailed": "Gagal membaca file",
@@ -48,6 +49,7 @@
     "extractText": "Ekstrak Teks",
     "translationResult": "Hasil",
     "copy": "Salin",
+    "expand": "selengkapnya",
     "remove": "Hapus",
     "exportFile": "Ekspor",
     "exportAllFile": "Ekspor Semua",
@@ -165,6 +167,7 @@
     "errorHint5xx": "Kesalahan server, silakan coba lagi nanti",
     "errorHintRelay": "Kesalahan jaringan (kemungkinan CORS) — aktifkan \"Relay API\" di Pengaturan API",
     "errorHintRelay403": "API mengembalikan 403 Forbidden — aktifkan \"Relay API\" di Pengaturan API",
+    "errorHintGeminiKey": "Tidak dapat terhubung ke Gemini: periksa jaringan Anda terlebih dahulu (beberapa jaringan tidak dapat mengakses layanan Google secara langsung). Jika jaringan baik-baik saja, sejak 19 Juni 2026 Google menolak kunci API tanpa pembatasan — buat ulang kunci di AI Studio (dibatasi secara default) atau tambahkan pembatasan Gemini API pada kunci lama di Google Cloud Console",
     "rateLimitCooldown": "Batas permintaan tercapai — jeda sejenak, akan dicoba ulang otomatis"
   },
   "tools": {
@@ -188,7 +191,7 @@
       "title": "Pemformat Novel Web China",
       "description": "Perbaiki masalah format novel web China yang diunduh dengan satu klik",
       "metaTitle": "Pemformat TXT Novel Web China - Pisah Bab 第X章, Ekspor Kindle",
-      "metaDescription": "Formatter novel web China TXT: perbaiki paragraf, iklan, bab 第X章, encoding dalam satu klik. 3M+ karakter. Ekspor Kindle, Kobo, FBReader.",
+      "metaDescription": "Formatter novel web China TXT: perbaiki paragraf, iklan, bab 第X章, encoding. 3M+ karakter. Ekspor Kindle, Kobo, FBReader.",
       "faq": [
         {
           "q": "Masalah format apa saja yang dapat diperbaiki alat ini pada TXT novel yang diunduh?",
@@ -229,9 +232,13 @@
       "title": "Pemrosesan Teks Pribadi",
       "description": "Pemrosesan data Excel batch — deduplikasi, ekstraksi kolom, gabung teks, aturan berurutan"
     },
+    "textJoiner": {
+      "title": "Penggabung Teks",
+      "description": "Gabungkan beberapa kolom teks baris demi baris dengan template untuk menghasilkan CSV, SQL, dan JSON secara massal"
+    },
     "textSplitter": {
       "title": "Pemisah Teks",
-      "description": "Pemisahan teks panjang cerdas untuk AI dan media sosial"
+      "description": "Bagi teks panjang per pemisah, panjang, atau kalimat — lalu gabungkan lagi"
     },
     "jsonValueExtractor": {
       "title": "Pengekstrak Nilai JSON",
@@ -289,11 +296,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI - Peralatan Data & Terjemahan AI untuk Developer",
-    "description": "ToolsByAI: 17 alat open source gratis untuk penerjemahan subtitle, Markdown, JSON i18n, dan pemrosesan teks/JSON batch. 25+ AI engine.",
+    "description": "ToolsByAI: 17 alat open source untuk menerjemahkan subtitle, Markdown, dan JSON i18n. Tanpa instalasi, berbasis browser.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "20+ alat untuk terjemahan, teks, JSON, dan konversi data. Tingkatkan efisiensi pengembang dan kreator.",
     "ogTitle": "ToolsByAI - Alat Dev AI Gratis dan Open Source",
-    "ogDescription": "ToolsByAI: 17 alat open source gratis untuk penerjemahan subtitle, Markdown, JSON i18n, dan pemrosesan teks/JSON batch. 25+ AI engine."
+    "ogDescription": "ToolsByAI: 17 alat open source untuk menerjemahkan subtitle, Markdown, dan JSON i18n. Tanpa instalasi, berbasis browser."
   },
   "CopyToClipboard": {
     "empty": "Konten kosong, tidak ada yang disalin",
@@ -325,10 +332,10 @@
     "conversion": "Konversi",
     "rulesInactiveHint": "Hanya aktif saat konversi Tradisional/Sederhana diaktifkan",
     "conversionNone": "Tidak",
-    "specialStartLabel": "Baris Awal Khusus (jangan digabung)",
+    "specialStartLabel": "Awalan baris yang tetap terpisah",
     "hintSpecialStart": "Baris yang diawali teks ini tidak akan digabungkan ke paragraf sebelumnya",
     "specialStartPlaceholder": "Contoh: judul buku, pembuka...",
-    "specialStartAria": "Baris Awal Khusus",
+    "specialStartAria": "Awalan baris yang tetap terpisah",
     "filterLabel": "Filter Konten",
     "hintFilter": "Menghapus baris yang mengandung kata kunci ini",
     "filterPlaceholder": "Masukkan kata kunci filter (pisahkan dengan koma)",
@@ -367,7 +374,7 @@
     "clearFilter": "Hapus Filter",
     "emptyCount": "⚠ {count} nilai kosong",
     "shadowedCount": "⚠ {count} ditimpa",
-    "searchPlaceholder": "Cari dari atau ke",
+    "searchPlaceholder": "Cari kata asli atau pengganti",
     "searchAriaLabel": "Cari aturan",
     "sortOriginal": "Urutan Asli",
     "sortAlphabetical": "Alfabetis",
@@ -378,13 +385,11 @@
     "deleteSelected": "Hapus Pilihan",
     "exportSelected": "Ekspor Pilihan ({count})",
     "clearSelection": "Batalkan Pilihan",
-    "colFrom": "Sumber",
-    "colTo": "Target",
-    "fromEmpty": "Sumber kosong",
-    "toEmpty": "Target kosong",
+    "colFrom": "Kata asli",
+    "colTo": "Ganti dengan",
+    "fromEmpty": "Kata asli kosong",
+    "toEmpty": "Penggantinya kosong",
     "shadowedTooltip": "Ditimpa baris {rowNumber}, hasil aktual adalah「{winnerTo}」",
-    "fromPlaceholder": "Bidang yang cocok",
-    "toPlaceholder": "Ganti dengan",
     "emptyTable": "Belum ada aturan. Klik «Tambah Aturan» untuk memulai.",
     "noRulesYet": "Belum ada aturan",
     "enableProtectedRules": "Terapkan aturan kustom",
@@ -403,7 +408,12 @@
     "reaction3": "Apa?",
     "reaction4": "Bingung",
     "placeholder": "Tinggalkan pesan (tidak perlu login, email opsional untuk balasan)",
-    "metaDescription": "Halaman feedback Tools By AI: laporkan bug, sarankan fitur, atau bagikan ide penggunaan. Berbasis Waline, posting anonim diizinkan, gratis."
+    "metaDescription": "Halaman feedback Tools By AI: laporkan bug, sarankan fitur, atau bagikan ide. Berbasis Waline, posting anonim, gratis."
+  },
+  "AppError": {
+    "title": "Halaman gagal dimuat",
+    "description": "Halaman tidak dapat dimuat — ini bisa terjadi tepat setelah situs diperbarui. Silakan muat ulang.",
+    "reload": "Muat ulang"
   },
   "NotFound": {
     "title": "Halaman Tidak Ditemukan",

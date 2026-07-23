@@ -329,7 +329,7 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
     processedInput = splitInlineChapterTitles(processedInput);
   }
   if (opts.filterText) {
-    processedInput = filterLines(processedInput, opts.filterText, opts.maxFilterLineLength);
+    processedInput = filterLines(processedInput, opts.filterText, { maxLen: opts.maxFilterLineLength });
   }
   if (opts.enableLineEndNumbers) {
     processedInput = removeLineEndNumbers(processedInput, 10);
@@ -361,7 +361,11 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
 
     for (let i = 0; i < processedLines.length; i++) {
       const currentLine = processedLines[i];
+      // 分卷阅读 导航标记(网文抓取常见)是噪声,剥离。但要像下方 isSeparatorBar 一样
+      // 补段落断点 —— 否则标记前后两段会被 join("") 焊成一行(前句无尾标点时直接粘死),
+      // 丢失卷/段边界。
       if (currentLine.startsWith("分卷阅读") && currentLine.length <= 10) {
+        result.push("\n\n");
         continue;
       }
 

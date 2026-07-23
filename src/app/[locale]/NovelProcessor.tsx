@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button, Input, InputNumber, Typography, Space, Flex, App, Tooltip, Upload, Switch, Spin, Row, Col, Collapse, Divider, Segmented } from "antd";
-import { InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
+import { SettingOutlined, InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
 import {
   splitTextIntoLines,
   downloadFile,
@@ -330,12 +330,7 @@ const NovelProcessor = () => {
         <Col xs={24} lg={10}>
           <Flex vertical gap="middle">
             <PageCard
-              title={
-                <Space>
-                  <ControlOutlined />
-                  <Typography.Text strong>{tCommon("configuration")}</Typography.Text>
-                </Space>
-              }
+              title={<Space><SettingOutlined /> {tCommon("configuration")}</Space>}
               variant="borderless"
               styles={{
                 body: { padding: "12px 24px" },
