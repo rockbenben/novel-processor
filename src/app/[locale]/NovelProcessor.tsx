@@ -15,6 +15,7 @@ import useFileUpload from "@/app/hooks/useFileUpload";
 import { useResetOnSourceChange } from "@/app/hooks/useResetOnSourceChange";
 import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
+import { tryAutoReload } from "@/app/lib/autoReload";
 import ResultCard from "@/app/components/ResultCard";
 import PageCard from "@/app/components/styled/PageCard";
 import SourceArea from "@/app/components/SourceArea";
@@ -155,6 +156,9 @@ const NovelProcessor = () => {
       return true;
     } catch (error) {
       console.error("小说处理失败:", error);
+      // 与简繁转换同因:createConverter / compromise 都是点击时才拉的 chunk,
+      // 旧会话拿旧 hash 名去取只会 404,不重载就永远好不了。
+      if (tryAutoReload()) return false;
       const detail = error instanceof Error ? error.message : String(error);
       message.error(detail ? `${t("processFailed")}: ${detail}` : t("processFailed"), 10);
       return false;

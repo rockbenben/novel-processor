@@ -3,7 +3,7 @@
 import React, { useRef } from "react";
 import { Drawer, Tabs, Button, Popconfirm, Typography, Flex, App } from "antd";
 import { PlusOutlined, ClearOutlined, ImportOutlined, ExportOutlined } from "@ant-design/icons";
-import { downloadFile, decodeFileBytes } from "@/app/utils";
+import { downloadFile, decodeFileBytes, getErrorMessage } from "@/app/utils";
 import { useTranslations } from "next-intl";
 import { useRuleManager } from "./useRuleManager";
 import StatusBar from "./StatusBar";
@@ -88,7 +88,10 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
         text = await decodeFileBytes(e.target?.result as ArrayBuffer);
       } catch (error) {
         console.error("Rule import failed:", error);
-        message.error(tCommon("fileReadFailed"));
+        // 【带上原始消息】,同 useFileUpload / GlossaryDrawer:decodeFileBytes 判不出
+        // 编码时抛的是可操作指引("re-save the file as UTF-8"),裸 fileReadFailed
+        // 把它吞掉,而本抽屉同样没有手动选编码的入口。
+        message.error(`${tCommon("fileReadFailed")}: ${getErrorMessage(error)}`);
         return;
       }
       // 按【首个 TAB】切,target 整体保留(含空格)。parseOpenCCDict 的
