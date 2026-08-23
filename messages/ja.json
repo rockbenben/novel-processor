@@ -69,7 +69,7 @@
     "sameLanguageTarget": "翻訳元と翻訳先が同じ言語です。自動的に翻訳先を調整しました：",
     "sameLanguageSource": "翻訳元と翻訳先が同じ言語です。自動的に翻訳元を調整しました：",
     "enterApiKey": "APIキーを入力するか、無料APIに切り替えてください。",
-    "enterApiUrl": "「API 設定」でAPIエンドポイントを設定してください。",
+    "enterApiUrl": "「その他のProvider設定」でAPIエンドポイントを設定してください。",
     "serviceUnavailable": "{service} に一時的に接続できません。ネットワークとサービスのアドレスを確認し、しばらくしてから再試行するか、別の翻訳サービスをご利用ください。",
     "serviceUnavailableSwitched": "{service} に一時的に接続できないため、{fallback} に自動で切り替えました。元のサービスを使い続ける場合は、確認後に設定で戻してください。",
     "noFileUploaded": "処理するファイルをアップロードしてください。",
@@ -87,6 +87,7 @@
     "importSettingTooltip": "ファイルから設定をインポート",
     "exportSettingSuccess": "設定をエクスポートしました",
     "exportSettingError": "エクスポートに失敗しました。再試行してください",
+    "dictLoadFailed": "変換辞書の読み込みに失敗しました。ネットワークを確認するかページを再読み込みしてください",
     "importSettingSuccess": "設定をインポートしました",
     "importSettingError": "インポートに失敗しました。再試行してください",
     "removeCharsAfterTranslation": "翻訳後に文字を削除",
@@ -142,7 +143,7 @@
     "generateJson": "JSON生成",
     "networkUnavailable": "翻訳サービスに一時的に接続できません。ネットワークの問題かサービス側の一時的な不具合の可能性があります。しばらくしてから再試行するか、別の翻訳サービスに切り替えてください。",
     "translationTimeout": "翻訳リクエストがタイムアウトしました。ネットワークが遅いか、サービスの応答に時間がかかっている可能性があります。しばらくしてから再試行するか、別の翻訳サービスに切り替えてください。",
-    "translationTimeoutLocal": "ローカルモデルの翻訳がタイムアウトしました。ローカル LLM は繰り返しループで停止することがあります。詳細設定で max_tokens（出力上限）を下げ、選択したソース言語が実際のテキストと一致しているか確認してください。",
+    "translationTimeoutLocal": "ローカルモデルの翻訳がタイムアウトしました。よくある原因：同時実行数がローカルサーバーの並列スロット数を超え、リクエストがサーバー側で待機したままタイムアウトする／モデルが同じ出力を繰り返すループに陥る（多くは元言語の選択ミス）。このサービスの「呼び出しパラメータ → 同時翻訳行数」を下げるか「詳細設定 → タイムアウト」を延ばし、選択した元言語が実際のテキストと一致しているか確認してください。",
     "langGroupCommon": "よく使う",
     "langGroupEurope": "ヨーロッパ",
     "langGroupMiddleEast": "中東",
@@ -169,8 +170,8 @@
     "errorHint429": "リクエストが多すぎます。しばらくしてから再試行してください",
     "errorHint456": "今期の翻訳クォータを使い切りました",
     "errorHint5xx": "サーバーエラーです。しばらくしてから再試行してください",
-    "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。API 設定で「API 中継」を有効にしてください",
-    "errorHintRelay403": "API が 403 Forbidden を返しました。API 設定で「API 中継」を有効にしてください",
+    "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。「その他のProvider設定」で「API 中継」を有効にしてください",
+    "errorHintRelay403": "API が 403 Forbidden を返しました。「その他のProvider設定」で「API 中継」を有効にしてください",
     "errorHintGeminiKey": "Gemini に接続できません。まずネットワークを確認してください（一部のネットワークでは Google サービスに直接接続できません）。ネットワークに問題がなければ、2026年6月19日以降 Google は無制限の API キーを拒否しています。AI Studio でキーを再生成する（デフォルトで制限付き）か、Google Cloud コンソールで既存キーに Gemini API 制限を追加してください",
     "rateLimitCooldown": "レート制限に達したため少し待機し、自動的に再試行します"
   },
@@ -300,11 +301,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",
-    "description": "ToolsByAI、17 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。",
+    "description": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。",
     "homeTitle": "ToolsByAI ツールセット",
-    "homeDescription": "20+ ツール。多言語翻訳、テキスト処理、JSONデータ変換など、開発者とクリエイターの効率向上を支援。",
+    "homeDescription": "19 ツール。多言語翻訳、テキスト処理、JSONデータ変換など、開発者とクリエイターの効率向上を支援。",
     "ogTitle": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",
-    "ogDescription": "ToolsByAI、17 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。"
+    "ogDescription": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。"
   },
   "CopyToClipboard": {
     "empty": "内容が空です。コピーする必要はありません",

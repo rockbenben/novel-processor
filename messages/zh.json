@@ -75,7 +75,7 @@
     "sameLanguageTarget": "源语言与目标语言相同，已自动调整目标语言为",
     "sameLanguageSource": "源语言与目标语言相同，已自动调整源语言为",
     "enterApiKey": "请输入 API 密钥或切换至免费 API。",
-    "enterApiUrl": "请在「API 设置」中配置接口地址。",
+    "enterApiUrl": "请在「更多 Provider 设置」中配置接口地址。",
     "serviceUnavailable": "{service} 暂时连不上：请检查网络与服务地址是否可用，稍后再试，或换一个翻译服务。",
     "serviceUnavailableSwitched": "{service} 暂时连不上，已自动切换到 {fallback}。如需继续使用原服务，请检查后在设置中切回。",
     "noFileUploaded": "请先上传需要处理的文件。",
@@ -93,6 +93,7 @@
     "importSettingTooltip": "从文件导入配置",
     "exportSettingSuccess": "设置已导出",
     "exportSettingError": "导出失败，请重试",
+    "dictLoadFailed": "转换字典加载失败，请检查网络或刷新页面",
     "importSettingSuccess": "设置已导入",
     "importSettingError": "导入失败，请重试",
     "removeCharsAfterTranslation": "翻译后移除字符",
@@ -142,7 +143,7 @@
     "generateJson": "生成 JSON",
     "networkUnavailable": "翻译服务暂时连不上，可能是网络或服务的临时问题。稍后再试，或换一个翻译服务。",
     "translationTimeout": "翻译请求超时，可能是网络较慢或翻译服务响应慢。稍后再试，或换一个翻译服务。",
-    "translationTimeoutLocal": "本地模型翻译超时。本地大模型可能陷入复读循环——请在高级设置中调低 max_tokens（输出上限），并确认所选源语言与文本实际语言一致。",
+    "translationTimeoutLocal": "本地模型翻译超时。常见原因：并发数超过本地服务的并行槽位，请求在服务端排队直到超时；或模型陷入复读循环（多因源语言选错）。请调低本服务「调用参数 → 并发行数」，或放宽「高级设置 → 超时时间」，并确认所选源语言与文本实际语言一致。",
     "langGroupCommon": "常用",
     "langGroupEurope": "欧洲",
     "langGroupMiddleEast": "中东",
@@ -169,8 +170,8 @@
     "errorHint429": "请求过于频繁，请稍后重试",
     "errorHint456": "本期翻译配额已用尽",
     "errorHint5xx": "服务器错误，请稍后重试",
-    "errorHintRelay": "网络错误（可能是 CORS 限制），请在 API 设置中开启「中转 API」",
-    "errorHintRelay403": "接口返回 403 禁止访问，请在 API 设置中开启「中转 API」",
+    "errorHintRelay": "网络错误（可能是 CORS 限制），请在「更多 Provider 设置」中开启「中转 API」",
+    "errorHintRelay403": "接口返回 403 禁止访问，请在「更多 Provider 设置」中开启「中转 API」",
     "errorHintGeminiKey": "无法连接 Gemini：请先检查网络（部分网络环境无法直连 Google 服务）。若网络正常，则可能是 Google 自 2026-06-19 起拒绝「无限制 API Key」——请在 AI Studio 重新生成密钥（默认已限制），或在 Google Cloud 控制台为旧密钥添加 Gemini API 限制",
     "rateLimitCooldown": "请求过于频繁，已自动暂停片刻后重试"
   },
@@ -300,11 +301,11 @@
   },
   "Metadata": {
     "title": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "description": "ToolsByAI 集合 17 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。",
+    "description": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。",
     "homeTitle": "ToolsByAI 工具集",
-    "homeDescription": "20+ 实用工具，涵盖多语言翻译、文本处理、JSON 编辑和数据转换，助力开发者和创作者提升效率。",
+    "homeDescription": "19 款实用工具，涵盖多语言翻译、文本处理、JSON 编辑和数据转换，助力开发者和创作者提升效率。",
     "ogTitle": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "ogDescription": "ToolsByAI 集合 17 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。"
+    "ogDescription": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。"
   },
   "CopyToClipboard": {
     "empty": "内容为空，无需复制",
