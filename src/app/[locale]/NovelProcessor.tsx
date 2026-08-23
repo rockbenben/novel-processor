@@ -30,7 +30,10 @@ const uploadFileTypes = getFileTypePresetConfig("markdownText");
 // 配置项行：标签 + 控件一行，可选在下方显示一行灰色说明（免去逐个悬停 tooltip）；sub 表示从属缩进项
 const ToggleRow = ({ label, hint, sub, children }: { label: React.ReactNode; hint?: React.ReactNode; sub?: boolean; children: React.ReactNode }) => (
   <Flex vertical gap={2} style={sub ? { paddingInlineStart: 16 } : undefined}>
-    <Flex justify="space-between" align="center" gap="small">
+    {/* 整行是 label —— 点说明文字就能切开关。size="small" 的 Switch 只有
+        32×18，而文字才是用户第一直觉会点的地方（design-system A5b）。
+        hint 留在 label 外：它是补充说明，不该也变成点击区。 */}
+    <Flex component="label" className="cursor-pointer" justify="space-between" align="center" gap="small">
       <span>{label}</span>
       {children}
     </Flex>
@@ -111,19 +114,33 @@ const NovelProcessor = () => {
       message.warning(tCommon("noSourceText"));
       return false;
     }
-    // Guard the whole async pipeline: createConverter lazy-loads js-opencc, formatNovelText
-    // and downloadFile can all throw. Without this an error vanished silently (single mode)
-    // or hung the multi-file loop (the resolve() below was skipped). Surface the real cause.
+    // 与简繁转换同规则:自愈重载【只】包 createConverter —— 它是这里唯一按 hash 名
+    // 拉字典 chunk 的一步(compromise 那条已由 textUtils 的 lazyImport 精确处理)。
+    // 整页重载会刷掉普通 useState 里几十万字的源文,而它对转换/格式化/导出的报错
+    // 一点用没有(如保护词条撑爆 6400 个 PUA 槽的 RangeError),那些只弹提示。
+    let converter: ((input: string) => string) | null = null;
+    if (conversionMode === "t2s" || conversionMode === "s2t") {
+      const rules = enableProtectedRules ? (conversionMode === "s2t" ? s2tRules : t2sRules) : [];
+      const protectedDict: string[][] = rules.filter((r) => r.from && r.to).map((r) => [r.from, r.to]);
+      // 传数组而非 undefined:跳过 createConverter 的 node:fs 自动加载(浏览器多余);空数组即「不保护」
+      const fromTo = conversionMode === "t2s" ? ({ from: "tw" as const, to: "cn" as const }) : ({ from: "cn" as const, to: "tw" as const });
+      try {
+        converter = await createConverter(fromTo, protectedDict);
+      } catch (error) {
+        console.error("小说处理:字典加载失败", error);
+        if (tryAutoReload()) return false;
+        message.error(tCommon("dictLoadFailed"), 10);
+        return false;
+      }
+    }
+
+    // Guard the rest of the async pipeline: formatNovelText and downloadFile can throw.
+    // Without this an error vanished silently (single mode) or hung the multi-file loop
+    // (the resolve() below was skipped). Surface the real cause.
     try {
       let processedInput = sourceText;
 
-      if (conversionMode === "t2s" || conversionMode === "s2t") {
-        const direction = conversionMode;
-        const rules = enableProtectedRules ? (direction === "s2t" ? s2tRules : t2sRules) : [];
-        const protectedDict: string[][] = rules.filter((r) => r.from && r.to).map((r) => [r.from, r.to]);
-        const fromTo = direction === "t2s" ? ({ from: "tw" as const, to: "cn" as const }) : ({ from: "cn" as const, to: "tw" as const });
-        // 传 [] 而非 undefined:跳过 createConverter 的 node:fs 自动加载(浏览器多余)
-        const converter = await createConverter(fromTo, protectedDict.length > 0 ? protectedDict : []);
+      if (converter) {
         processedInput = converter(processedInput);
       }
 
@@ -156,9 +173,6 @@ const NovelProcessor = () => {
       return true;
     } catch (error) {
       console.error("小说处理失败:", error);
-      // 与简繁转换同因:createConverter / compromise 都是点击时才拉的 chunk,
-      // 旧会话拿旧 hash 名去取只会 404,不重载就永远好不了。
-      if (tryAutoReload()) return false;
       const detail = error instanceof Error ? error.message : String(error);
       message.error(detail ? `${t("processFailed")}: ${detail}` : t("processFailed"), 10);
       return false;
