@@ -297,6 +297,7 @@ const NovelProcessor = () => {
 
                 {uploadMode === "single" && (
                   <SourceArea
+                    textDirection="auto"
                     sourceText={sourceText}
                     setSourceText={setSourceText}
                     stats={sourceStats}
@@ -333,6 +334,7 @@ const NovelProcessor = () => {
 
             {result && (
               <ResultCard
+                textDirection="auto"
                 content={result}
                 stats={resultStats}
                 onChange={setResult}
