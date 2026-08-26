@@ -21,7 +21,7 @@ const StatusBar: React.FC<Props> = ({ stats, issueFilter, onJumpToIssue, onClear
   const hasProblem = stats.empty > 0 || stats.shadowed > 0;
 
   return (
-    <Flex vertical gap={4} className="px-2 py-1 bg-[var(--ant-color-fill-quaternary)] rounded">
+    <Flex vertical gap={4} className="px-2 py-1 bg-[var(--ant-color-fill-quaternary)]">
       <Typography.Text type="secondary" className="!text-xs">
         {t("statusCounts", { total: stats.total, valid: stats.valid })}
       </Typography.Text>

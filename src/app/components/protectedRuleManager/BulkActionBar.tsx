@@ -18,7 +18,7 @@ const BulkActionBar: React.FC<Props> = ({ selectedCount, onDeleteSelected, onExp
   if (selectedCount === 0) return null;
 
   return (
-    <Flex gap="small" align="center" className="px-2 py-1 bg-[var(--ant-color-info-bg)] rounded">
+    <Flex gap="small" align="center" className="px-2 py-1 bg-[var(--ant-color-info-bg)]">
       <Typography.Text className="!text-xs">
         {t("selectedCount", { count: selectedCount })}
       </Typography.Text>

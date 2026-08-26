@@ -48,7 +48,9 @@ const ProtectedRulePanel = ({ enabled, onEnabledChange, s2tCount, t2sCount, onOp
       <Flex vertical gap="small">
         {showInactiveHint && (
           <Flex align="center" gap={6}>
-            <WarningOutlined style={{ color: token.colorWarning, fontSize: 12 }} />
+            {/* var() 而非 token.colorWarning：实测这个图标在亮色主题下会拿到暗色那套
+                (#bb8f14)。同文件夹的 RuleTable 早就用的是 CSS 变量写法。 */}
+            <WarningOutlined style={{ color: "var(--ant-color-warning)", fontSize: 12 }} />
             <Typography.Text type="warning" className="!text-xs">
               {inactiveHint}
             </Typography.Text>
