@@ -130,7 +130,7 @@
     "copyAllFailed": "Tout copier",
     "closeFailedLinesModal": "Fermer",
     "failedLanguagesTitle": "Échec de la traduction de {count} langue(s)",
-    "failedLanguagesDesc": "Tous les lots de ces langues ont échoué — généralement à cause de défauts de LLM local, de limites de débit API ou du refus du modèle pour une langue spécifique. Copiez les codes et relancez uniquement avec elles (collez dans Saisie rapide par codes de langue) ; les autres utiliseront le cache et seront ignorées.",
+    "failedLanguagesDesc": "Tous les lots de ces langues ont échoué — généralement à cause de défauts de LLM local, de limites de débit API ou du refus du modèle pour une langue spécifique. Copiez les codes et relancez uniquement avec elles (collez dans 'Paramètres multilingues') ; les autres utiliseront le cache et seront ignorées.",
     "copyAllFailedLanguages": "Copier les codes de langue",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Config. requise",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "Traducteur JSON i18n",
-      "description": "Outil de traduction JSON multilingue efficace"
+      "description": "Traduction par lot des fichiers de langue i18n, avec correspondance JSONPath et mappage de clés"
     },
     "mdTranslator": {
       "title": "Traducteur Markdown",
@@ -208,7 +208,7 @@
         },
         {
           "q": "Le TXT formaté peut-il être utilisé directement avec Kindle, FBReader et autres liseuses ?",
-          "a": "Le TXT traité respecte les exigences de format de Kindle (Send-to-Kindle), Kobo, Vivlio et FBReader. L'activation de « Découpage chapitres » ajoute une ligne vide avant chaque chapitre pour que Kindle génère automatiquement une table des matières. Pour Kobo ou Vivlio, convertissez d'abord en EPUB via Calibre pour une meilleure expérience de TOC. Les utilisateurs de synthèse vocale peuvent activer « Supprimer les doublons » et « Filtre de contenu indésirable » pour éviter la lecture des publicités."
+          "a": "Le TXT traité respecte les exigences de format de Kindle (Send-to-Kindle), Kobo, Vivlio et FBReader. L'activation de « Découper les chapitres » ajoute une ligne vide avant chaque chapitre pour que Kindle génère automatiquement une table des matières. Pour Kobo ou Vivlio, convertissez d'abord en EPUB via Calibre pour une meilleure expérience de TOC. Les utilisateurs de synthèse vocale peuvent activer « Supprimer les lignes dupliquées » et « Filtre de contenu » pour éviter la lecture des publicités."
         },
         {
           "q": "Mon roman est en chinois traditionnel (Taïwan/HK) et je veux du simplifié — ou je veux empêcher que les noms de personnes et de lieux soient convertis par erreur. Comment faire ?",

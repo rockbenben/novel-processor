@@ -117,7 +117,7 @@
     "copyAllFailed": "Tümünü kopyala",
     "closeFailedLinesModal": "Kapat",
     "failedLanguagesTitle": "{count} hedef dil başarısız oldu",
-    "failedLanguagesDesc": "Bu diller için tüm yığınlar başarısız oldu — genellikle yerel LLM aksaklıkları, API hız sınırları veya modelin belirli bir dili reddetmesi nedeniyle. Kodları kopyalayın ve yalnızca onlar için yeniden çalıştırın (Dil Kodları ile Hızlı Giriş alanına yapıştırın); diğerleri önbellekten atlanacak.",
+    "failedLanguagesDesc": "Bu diller için tüm yığınlar başarısız oldu — genellikle yerel LLM aksaklıkları, API hız sınırları veya modelin belirli bir dili reddetmesi nedeniyle. Kodları kopyalayın ve yalnızca onlar için yeniden çalıştırın ('Çok Dilli Ayarlar' bölümüne yapıştırın); diğerleri önbellekten atlanacak.",
     "copyAllFailedLanguages": "Dil kodlarını kopyala",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Yapılandırma gerekli",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "i18n JSON Çevirici",
-      "description": "Verimli çok dilli JSON çeviri aracı"
+      "description": "Toplu i18n dil dosyası çevirisi, JSONPath eşleştirme ve anahtar eşleme ile"
     },
     "mdTranslator": {
       "title": "Markdown Çevirici",
@@ -208,7 +208,7 @@
         },
         {
           "q": "Düzenlenen TXT doğrudan Kindle, Kobo veya FBReader'de kullanılabilir mi? Bölüm içindekiler tablosu otomatik oluşur mu?",
-          "a": "İşlenen TXT, Kindle (Send-to-Kindle), Kobo ve FBReader format gereksinimlerini karşılar. 'Bölüm bölme' etkinleştirildiğinde Kindle otomatik olarak içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için Calibre ile önce EPUB'a dönüştürmenizi öneririz. TTS kullanıcıları reklam okumalarını önlemek için 'Yinelenenleri Kaldır' ve 'Spam Filtresi'ni etkinleştirebilir."
+          "a": "İşlenen TXT, Kindle (Send-to-Kindle), Kobo ve FBReader format gereksinimlerini karşılar. 'Bölümleri Böl' etkinleştirildiğinde Kindle otomatik olarak içindekiler tablosu oluşturur. Kobo veya diğer okuyucular için Calibre ile önce EPUB'a dönüştürmenizi öneririz. TTS kullanıcıları reklam okumalarını önlemek için 'Yinelenen Satırları Kaldır' ve 'İçerik Filtresi'ni etkinleştirebilir."
         },
         {
           "q": "Web romanım Geleneksel Çince (Tayvan/HK) ve Basitleştirilmiş Çince olarak okumak istiyorum — ya da kişi ve yer adlarının yanlış dönüştürülmesini önlemek istiyorum, ne yapmalıyım?",

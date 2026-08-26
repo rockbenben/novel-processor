@@ -117,7 +117,7 @@
     "copyAllFailed": "Copiar tudo",
     "closeFailedLinesModal": "Fechar",
     "failedLanguagesTitle": "Falha em {count} idioma(s) de destino",
-    "failedLanguagesDesc": "Todos os lotes para estes idiomas falharam — geralmente devido a problemas LLM locais, limites de taxa de API ou recusa do modelo a um idioma específico. Copie os códigos e execute novamente apenas com eles (cole em Entrada Rápida por Códigos de Idioma); os outros usarão o cache e serão ignorados.",
+    "failedLanguagesDesc": "Todos os lotes para estes idiomas falharam — geralmente devido a problemas LLM locais, limites de taxa de API ou recusa do modelo a um idioma específico. Copie os códigos e execute novamente apenas com eles (cole em 'Configurações multilíngue'); os outros usarão o cache e serão ignorados.",
     "copyAllFailedLanguages": "Copiar códigos de idioma",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Requer config.",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "Tradutor JSON i18n",
-      "description": "Ferramenta eficiente de tradução JSON multilíngue"
+      "description": "Tradução em lote de arquivos de idioma i18n, com correspondência JSONPath e mapeamento de chaves"
     },
     "mdTranslator": {
       "title": "Tradutor Markdown",
@@ -208,7 +208,7 @@
         },
         {
           "q": "O TXT organizado pode ser usado diretamente no Kindle, Kobo ou FBReader?",
-          "a": "O TXT processado é compatível com Kindle (Send-to-Kindle), Kobo, FBReader e outros leitores. Ao ativar «Divisão de Capítulos», o Kindle gera o índice automaticamente. Para Kobo e similares, converta para EPUB com o Calibre antes de importar para melhor experiência de índice. Usuários de TTS podem ativar «Remover Duplicatas» + «Filtro de Conteúdo» para evitar a leitura de anúncios."
+          "a": "O TXT processado é compatível com Kindle (Send-to-Kindle), Kobo, FBReader e outros leitores. Ao ativar «Dividir Capítulos», o Kindle gera o índice automaticamente. Para Kobo e similares, converta para EPUB com o Calibre antes de importar para melhor experiência de índice. Usuários de TTS podem ativar «Remover Linhas Duplicadas» + «Filtro de Conteúdo» para evitar a leitura de anúncios."
         },
         {
           "q": "Meu romance web está em chinês tradicional (Taiwan/Hong Kong) e quero lê-lo em simplificado, ou quero que nomes de pessoas e lugares não sejam convertidos por engano. O que fazer?",

@@ -130,7 +130,7 @@
     "copyAllFailed": "Alle kopieren",
     "closeFailedLinesModal": "Schließen",
     "failedLanguagesTitle": "{count} Zielsprache(n) fehlgeschlagen",
-    "failedLanguagesDesc": "Alle Batches für diese Sprachen sind fehlgeschlagen — meist durch lokale LLM-Störungen, API-Ratenbegrenzungen oder Modellverweigerung einer bestimmten Sprache. Codes kopieren und nur damit erneut ausführen (in Schnelleingabe via Sprachcodes einfügen); die anderen werden aus dem Cache übersprungen.",
+    "failedLanguagesDesc": "Alle Batches für diese Sprachen sind fehlgeschlagen — meist durch lokale LLM-Störungen, API-Ratenbegrenzungen oder Modellverweigerung einer bestimmten Sprache. Codes kopieren und nur damit erneut ausführen (in 'Mehrsprachige Einstellungen' einfügen); die anderen werden aus dem Cache übersprungen.",
     "copyAllFailedLanguages": "Sprachcodes kopieren",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Konfig. erforderlich",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "i18n JSON-Übersetzer",
-      "description": "Effizientes mehrsprachiges JSON-Übersetzungstool"
+      "description": "i18n-Sprachdateien im Batch übersetzen, mit JSONPath-Abgleich und Schlüssel-Mapping"
     },
     "mdTranslator": {
       "title": "Markdown-Übersetzer",
@@ -208,7 +208,7 @@
         },
         {
           "q": "Kann die formatierte TXT direkt mit Kindle, FBReader und anderen E-Readern verwendet werden?",
-          "a": "Verarbeitete TXT erfüllt die Formatanforderungen von Kindle (Send-to-Kindle), Tolino, Kobo und FBReader. Das Aktivieren von „Kapitel aufteilen\" fügt vor jedem Kapitel eine Leerzeile ein, sodass Kindle automatisch ein Inhaltsverzeichnis generiert. Für Tolino oder Kobo empfiehlt sich eine vorherige EPUB-Konvertierung via Calibre. TTS-Nutzer können „Duplikate entfernen\" und „Spam-Filter\" aktivieren, um das Vorlesen von Werbung zu vermeiden."
+          "a": "Verarbeitete TXT erfüllt die Formatanforderungen von Kindle (Send-to-Kindle), Tolino, Kobo und FBReader. Das Aktivieren von „Kapitel aufteilen\" fügt vor jedem Kapitel eine Leerzeile ein, sodass Kindle automatisch ein Inhaltsverzeichnis generiert. Für Tolino oder Kobo empfiehlt sich eine vorherige EPUB-Konvertierung via Calibre. TTS-Nutzer können „Duplikatzeilen entfernen\" und „Inhaltsfilter\" aktivieren, um das Vorlesen von Werbung zu vermeiden."
         },
         {
           "q": "Mein Roman ist in Traditionellem Chinesisch (Taiwan/HK) und ich möchte Vereinfacht — oder Personen- und Ortsnamen sollen nicht versehentlich mitkonvertiert werden. Was tun?",

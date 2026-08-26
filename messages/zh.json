@@ -123,7 +123,7 @@
     "copyAllFailed": "复制全部",
     "closeFailedLinesModal": "关闭",
     "failedLanguagesTitle": "翻译失败 {count} 种语言",
-    "failedLanguagesDesc": "这几种语言的所有批次都翻挂了——常见于本地 LLM 抽风、API 限流或模型拒译特定语种。可点「复制语言代码」拿到清单,下次只对它们重跑(在「快速输入语言代码」里粘贴即可),其它语言走缓存不重翻。",
+    "failedLanguagesDesc": "这几种语言的所有批次都翻挂了——常见于本地 LLM 抽风、API 限流或模型拒译特定语种。可点「复制语言代码」拿到清单，下次只对它们重跑（在「多语言设置」里粘贴即可），其它语言走缓存不重翻。",
     "copyAllFailedLanguages": "复制语言代码",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "需配置",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "JSON 多语言翻译",
-      "description": "高效的多语言 JSON 翻译工具"
+      "description": "批量翻译 i18n 语言包，支持 JSONPath 匹配和键名映射"
     },
     "mdTranslator": {
       "title": "Markdown 翻译",
@@ -217,7 +217,7 @@
         },
         {
           "q": "整理好的 TXT 能直接用于 Kindle、微信读书、掌阅阅读吗？章节目录会自动生成吗？",
-          "a": "处理后的 TXT 符合 Kindle（推送邮箱）、微信读书（本地导入）、掌阅（WiFi 传书）、静读天下、FBReader 的格式要求。启用「章节分割」后会在每章前加空行，Kindle 可自动生成目录。微信读书建议先用 Calibre 转 EPUB 再导入以获得最佳目录体验。TTS 听书用户启用「去重复行」+「垃圾过滤」后可避免朗读广告内容。"
+          "a": "处理后的 TXT 符合 Kindle（推送邮箱）、微信读书（本地导入）、掌阅（WiFi 传书）、静读天下、FBReader 的格式要求。启用「章节分割」后会在每章前加空行，Kindle 可自动生成目录。微信读书建议先用 Calibre 转 EPUB 再导入以获得最佳目录体验。TTS 听书用户启用「去除重复行」+「内容筛选」后可避免朗读广告内容。"
         },
         {
           "q": "网文是繁体版（台湾/香港），想转成简体阅读，或要保留人名地名不被误转，怎么办？",
@@ -417,7 +417,7 @@
   },
   "AppError": {
     "title": "页面加载出错",
-    "description": "页面加载失败,可能是网站刚更新到新版本,请重新加载。",
+    "description": "页面加载失败，可能是网站刚更新到新版本，请重新加载。",
     "reload": "重新加载"
   },
   "NotFound": {

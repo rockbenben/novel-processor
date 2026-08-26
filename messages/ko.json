@@ -117,7 +117,7 @@
     "copyAllFailed": "모두 복사",
     "closeFailedLinesModal": "닫기",
     "failedLanguagesTitle": "{count}개 언어 번역 실패",
-    "failedLanguagesDesc": "이 언어들의 모든 배치가 실패했습니다 — 일반적으로 로컬 LLM 결함, API 속도 제한 또는 모델의 특정 언어 거부 때문입니다. 코드를 복사하여 해당 언어만 다시 실행할 수 있습니다(언어 코드 빠른 입력에 붙여넣기). 다른 언어는 캐시에서 건너뜁니다.",
+    "failedLanguagesDesc": "이 언어들의 모든 배치가 실패했습니다 — 일반적으로 로컬 LLM 결함, API 속도 제한 또는 모델의 특정 언어 거부 때문입니다. 코드를 복사하여 해당 언어만 다시 실행할 수 있습니다('다국어 설정'에 붙여넣기). 다른 언어는 캐시에서 건너뜁니다.",
     "copyAllFailedLanguages": "언어 코드 복사",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "설정 필요",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "i18n JSON 번역",
-      "description": "효율적인 다국어 JSON 번역 도구"
+      "description": "i18n 언어 파일 일괄 번역, JSONPath 매칭 및 키 이름 매핑 지원"
     },
     "mdTranslator": {
       "title": "Markdown 번역",
@@ -208,7 +208,7 @@
         },
         {
           "q": "정리된 TXT를 Kindle, RIDIBOOKS, KakaoPage에서 바로 사용할 수 있나요? 장 목차가 자동으로 생성되나요?",
-          "a": "처리된 TXT는 Kindle(Send-to-Kindle 이메일)·RIDIBOOKS·Yes24 Crema·KakaoPage·FBReader의 형식 요구사항을 충족합니다. 「장 분할」을 활성화하면 각 장 앞에 빈 줄이 추가되어 Kindle이 자동으로 목차를 생성합니다. RIDIBOOKS나 Yes24에서는 최적의 목차 경험을 위해 Calibre로 EPUB으로 변환 후 가져오는 것을 권장합니다. TTS 읽기 사용자는 「중복 행 삭제」와 「쓰레기 필터」를 활성화하면 광고 읽기를 방지할 수 있습니다."
+          "a": "처리된 TXT는 Kindle(Send-to-Kindle 이메일)·RIDIBOOKS·Yes24 Crema·KakaoPage·FBReader의 형식 요구사항을 충족합니다. 「장 분할」을 활성화하면 각 장 앞에 빈 줄이 추가되어 Kindle이 자동으로 목차를 생성합니다. RIDIBOOKS나 Yes24에서는 최적의 목차 경험을 위해 Calibre로 EPUB으로 변환 후 가져오는 것을 권장합니다. TTS 읽기 사용자는 「중복 행 삭제」와 「콘텐츠 필터링」를 활성화하면 광고 읽기를 방지할 수 있습니다."
         },
         {
           "q": "번체판(대만/홍콩) 소설을 간체로 변환하거나 특정 인명·지명이 잘못 변환되지 않게 보존하려면?",

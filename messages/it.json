@@ -117,7 +117,7 @@
     "copyAllFailed": "Copia tutto",
     "closeFailedLinesModal": "Chiudi",
     "failedLanguagesTitle": "{count} lingua(e) di destinazione fallite",
-    "failedLanguagesDesc": "Tutti i batch per queste lingue sono falliti — di solito a causa di problemi LLM locali, limiti di velocità API o rifiuto del modello per una lingua specifica. Copia i codici e riavvia solo per esse (incolla in Inserimento rapido tramite codici lingua); le altre utilizzeranno la cache e saranno saltate.",
+    "failedLanguagesDesc": "Tutti i batch per queste lingue sono falliti — di solito a causa di problemi LLM locali, limiti di velocità API o rifiuto del modello per una lingua specifica. Copia i codici e riavvia solo per esse (incolla in 'Impostazioni multilingue'); le altre utilizzeranno la cache e saranno saltate.",
     "copyAllFailedLanguages": "Copia codici lingua",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Config. necessaria",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "Traduttore JSON i18n",
-      "description": "Strumento efficiente di traduzione JSON multilingua"
+      "description": "Traduzione in batch dei file di lingua i18n, con corrispondenza JSONPath e mappatura delle chiavi"
     },
     "mdTranslator": {
       "title": "Traduttore Markdown",
@@ -208,7 +208,7 @@
         },
         {
           "q": "Il TXT organizzato può essere usato direttamente su Kindle, Kobo o FBReader?",
-          "a": "Il TXT elaborato soddisfa i requisiti di formato di Kindle (Send-to-Kindle), Kobo, FBReader e altri lettori. Abilitando «Divisione capitoli» Kindle genera automaticamente un sommario. Per Kobo, converti prima in EPUB con Calibre per la migliore esperienza di sommario. Gli utenti di TTS possono attivare «Rimuovi duplicati» + «Filtro spam» per evitare la lettura di annunci."
+          "a": "Il TXT elaborato soddisfa i requisiti di formato di Kindle (Send-to-Kindle), Kobo, FBReader e altri lettori. Abilitando «Suddividi Capitoli» Kindle genera automaticamente un sommario. Per Kobo, converti prima in EPUB con Calibre per la migliore esperienza di sommario. Gli utenti di TTS possono attivare «Rimuovi Righe Duplicate» + «Filtro Contenuto» per evitare la lettura di annunci."
         },
         {
           "q": "Il mio romanzo web è in cinese tradizionale (Taiwan/Hong Kong) e voglio leggerlo in semplificato, oppure voglio che nomi di persone e luoghi non vengano convertiti per errore. Come faccio?",

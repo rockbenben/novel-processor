@@ -117,7 +117,7 @@
     "copyAllFailed": "Salin semua",
     "closeFailedLinesModal": "Tutup",
     "failedLanguagesTitle": "{count} bahasa target gagal",
-    "failedLanguagesDesc": "Semua batch untuk bahasa-bahasa ini gagal — biasanya karena masalah LLM lokal, batas tingkat API, atau penolakan model terhadap bahasa tertentu. Salin kode dan jalankan ulang hanya untuk mereka (tempelkan di Entri Cepat melalui Kode Bahasa); yang lain akan dilewati dari cache.",
+    "failedLanguagesDesc": "Semua batch untuk bahasa-bahasa ini gagal — biasanya karena masalah LLM lokal, batas tingkat API, atau penolakan model terhadap bahasa tertentu. Salin kode dan jalankan ulang hanya untuk mereka (tempelkan di 'Pengaturan Multi-Bahasa'); yang lain akan dilewati dari cache.",
     "copyAllFailedLanguages": "Salin kode bahasa",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Perlu konfig.",
@@ -182,7 +182,7 @@
     },
     "jsonTranslate": {
       "title": "Penerjemah JSON i18n",
-      "description": "Alat terjemahan JSON multi-bahasa yang efisien"
+      "description": "Terjemahan file bahasa i18n batch, dengan pencocokan JSONPath dan pemetaan kunci"
     },
     "mdTranslator": {
       "title": "Penerjemah Markdown",
@@ -204,7 +204,7 @@
         },
         {
           "q": "Apakah TXT yang sudah dirapikan bisa langsung digunakan di Kindle dan e-reader?",
-          "a": "TXT yang diproses memenuhi persyaratan format Kindle (Send-to-Kindle), Gramedia Digital, Kobo, dan FBReader. Mengaktifkan 'Pembagian Bab' membuat Kindle otomatis menghasilkan daftar isi. Untuk Gramedia atau Kobo, konversi terlebih dahulu ke EPUB via Calibre untuk pengalaman TOC terbaik. Pengguna TTS dapat mengaktifkan 'Hapus Duplikat' dan 'Filter Sampah' untuk mencegah pembacaan iklan."
+          "a": "TXT yang diproses memenuhi persyaratan format Kindle (Send-to-Kindle), Gramedia Digital, Kobo, dan FBReader. Mengaktifkan 'Pisahkan Bab' membuat Kindle otomatis menghasilkan daftar isi. Untuk Gramedia atau Kobo, konversi terlebih dahulu ke EPUB via Calibre untuk pengalaman TOC terbaik. Pengguna TTS dapat mengaktifkan 'Hapus Baris Duplikat' dan 'Filter Konten' untuk mencegah pembacaan iklan."
         },
         {
           "q": "Novel web saya dalam Tradisional (Taiwan/HK) dan ingin dibaca dalam Sederhana, atau ingin mempertahankan nama tokoh dan tempat agar tidak salah dikonversi — bagaimana caranya?",
