@@ -21,6 +21,7 @@ import PageCard from "@/app/components/styled/PageCard";
 import SourceArea from "@/app/components/SourceArea";
 import { useTranslations } from "next-intl";
 import { ProtectedRuleDrawer, ProtectedRulePanel, effectiveCount, type ProtectedRule } from "@/app/components/protectedRuleManager";
+import { useFileExport } from "@/app/hooks/useFileExport";
 
 const { Dragger } = Upload;
 const { Text } = Typography;
@@ -47,6 +48,7 @@ const ToggleRow = ({ label, hint, sub, children }: { label: React.ReactNode; hin
 
 const NovelProcessor = () => {
   const { message } = App.useApp();
+  const exportFile = useFileExport();
   const { copyToClipboard } = useCopyToClipboard();
   const t = useTranslations("NovelProcessor");
   const tCommon = useTranslations("common");
@@ -104,8 +106,7 @@ const NovelProcessor = () => {
   const handleExportFile = (text: string) => {
     const uploadFileName = multipleFiles[0]?.name;
     const fileName = uploadFileName || "novel.txt";
-    void downloadFile(text, fileName);
-    message.success(tCommon("fileExported", { fileName }));
+    void exportFile(text, fileName);
   };
 
   const handleNovelProcessing = async (sourceText: string, fileName?: string): Promise<boolean> => {

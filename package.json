@@ -16,6 +16,7 @@
     "antd": "^6",
     "compromise": "^14",
     "file-saver": "^2.0.5",
+    "idb-keyval": "^6.3.0",
     "js-opencc": "^1",
     "jschardet": "^3.1.4",
     "next": "16.3.2",

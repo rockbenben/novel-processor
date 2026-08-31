@@ -13,7 +13,7 @@ const ClientPage = () => {
   const userGuideUrl = getDocUrl("guide/text/novel-processor.html", locale);
 
   return (
-    <ToolPage icon={<FontSizeOutlined />} toolKey="novelProcessor" description={t("description")} guideUrl={userGuideUrl}>
+    <ToolPage showExportFolder icon={<FontSizeOutlined />} toolKey="novelProcessor" description={t("description")} guideUrl={userGuideUrl}>
       <NovelProcessor />
     </ToolPage>
   );
