@@ -53,18 +53,22 @@ const NovelProcessor = () => {
   const t = useTranslations("NovelProcessor");
   const tCommon = useTranslations("common");
   const tPR = useTranslations("ProtectedRuleManager");
-  const [filterText, setFilterText] = useState("");
+  // 这一屏【全部落盘】。此前这里两种写法逐行交替(specialStart / collapseKeys /
+  // removeDuplicateLines / mergeDuplicateChapterTitles 记得住,紧挨着的排版开关记不住),
+  // 而它们在界面上就是同一个 Collapse 面板里上下相邻的 Switch —— 用户没有任何依据
+  // 猜出哪个会被记住。判据见 CLAUDE.md「设置落盘」:由可见控件驱动的偏好一律落盘。
+  const [filterText, setFilterText] = useLocalStorage("novel-processor-filterText", "");
   // 0 = 禁用阈值（不启用"超长行豁免"规则）；min=0 阻挡负数
-  const [maxFilterLineLength, setMaxFilterLineLength] = useState<number>(0);
-  const [smartLineBreak, setSmartLineBreak] = useState(true);
-  const [enableIndent, setEnableIndent] = useState(true);
-  const [enableChapterSplit, setEnableChapterSplit] = useState(true);
-  const [enableLineEndNumbers, setEnableLineEndNumbers] = useState(false);
+  const [maxFilterLineLength, setMaxFilterLineLength] = useLocalStorage<number>("novel-processor-maxFilterLineLength", 0);
+  const [smartLineBreak, setSmartLineBreak] = useLocalStorage("novel-processor-smartLineBreak", true);
+  const [enableIndent, setEnableIndent] = useLocalStorage("novel-processor-enableIndent", true);
+  const [enableChapterSplit, setEnableChapterSplit] = useLocalStorage("novel-processor-enableChapterSplit", true);
+  const [enableLineEndNumbers, setEnableLineEndNumbers] = useLocalStorage("novel-processor-enableLineEndNumbers", false);
   const [specialStart, setSpecialStart] = useLocalStorage("novel-processor-specialStart", "");
   const [collapseKeys, setCollapseKeys] = useLocalStorage<string[]>("novel-processor-collapseKeys", ["1", "2"]);
-  const [conversionMode, setConversionMode] = useState<"none" | "t2s" | "s2t">("none");
-  const [enableTrim, setEnableTrim] = useState(true);
-  const [enableParagraphSplit, setEnableParagraphSplit] = useState(false);
+  const [conversionMode, setConversionMode] = useLocalStorage<"none" | "t2s" | "s2t">("novel-processor-conversionMode", "none");
+  const [enableTrim, setEnableTrim] = useLocalStorage("novel-processor-enableTrim", true);
+  const [enableParagraphSplit, setEnableParagraphSplit] = useLocalStorage("novel-processor-enableParagraphSplit", false);
   const [removeDuplicateLines, setRemoveDuplicateLines] = useLocalStorage("novel-processor-removeDuplicateLines", true);
   const [mergeDuplicateChapterTitles, setMergeDuplicateChapterTitles] = useLocalStorage("novel-processor-mergeDuplicateChapterTitles", true);
 
@@ -91,9 +95,11 @@ const NovelProcessor = () => {
     handleUploadRemove,
     handleUploadChange,
     resetUpload,
-  } = useFileUpload();
+  } = useFileUpload("novel-processor");
   const [result, setResult] = useState("");
-  const [directExport, setDirectExport] = useState(false);
+  // 落盘 —— 与 chinese-conversion-directExport 对齐(同一个 tCommon("directExport")
+  // 标签、同一个 Switch,此前一个记得住一个记不住)。
+  const [directExport, setDirectExport] = useLocalStorage("novel-processor-directExport", false);
   // Processing is async (cold js-opencc load + formatNovelText) and isn't covered by the
   // file-reading Spin — track it so the process button shows progress and blocks re-clicks.
   const [processing, setProcessing] = useState(false);
