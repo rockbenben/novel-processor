@@ -1,16 +1,149 @@
 "use client";
 
 import React, { useRef } from "react";
-import { Drawer, Tabs, Button, Popconfirm, Typography, Flex, App } from "antd";
-import { PlusOutlined, ClearOutlined, ImportOutlined, ExportOutlined } from "@ant-design/icons";
-import { downloadFile, decodeFileBytes, getErrorMessage } from "@/app/utils";
+import { Drawer, Tabs, Button, Popconfirm, Typography, Flex, App, Input, Segmented, Tag } from "antd";
+import { PlusOutlined, ClearOutlined, ImportOutlined, ExportOutlined, DeleteOutlined, SearchOutlined } from "@ant-design/icons";
+import { downloadFile, readTextFile, getErrorMessage } from "@/app/utils";
 import { useTranslations } from "next-intl";
 import { useRuleManager } from "./useRuleManager";
-import StatusBar from "./StatusBar";
-import SearchSortBar from "./SearchSortBar";
-import BulkActionBar from "./BulkActionBar";
 import RuleTable from "./RuleTable";
-import type { Direction, ProtectedRule } from "./types";
+import type { Direction, IssueKind, ProtectedRule, SortMode, Stats } from "./types";
+
+// 三条只在这个抽屉里用的工具栏(状态 / 搜索排序 / 批量操作),曾各占一个文件。
+type StatusBarProps = {
+  stats: Stats;
+  issueFilter: IssueKind | null;
+  onJumpToIssue: (kind: IssueKind) => void;
+  onClearIssueFilter: () => void;
+};
+
+const StatusBar: React.FC<StatusBarProps> = ({ stats, issueFilter, onJumpToIssue, onClearIssueFilter }) => {
+  const t = useTranslations("ProtectedRuleManager");
+
+  if (stats.total === 0) return null;
+
+  const filteredCount = issueFilter === "empty" ? stats.empty : issueFilter === "shadowed" ? stats.shadowed : 0;
+  const hasProblem = stats.empty > 0 || stats.shadowed > 0;
+
+  return (
+    <Flex vertical gap={4} className="px-2 py-1 bg-[var(--ant-color-fill-quaternary)]">
+      <Typography.Text type="secondary" className="!text-xs">
+        {t("statusCounts", { total: stats.total, valid: stats.valid })}
+      </Typography.Text>
+
+      {issueFilter ? (
+        <Flex align="center" gap="small">
+          <Tag color="processing" className="!m-0">
+            {t("showingIssues", { count: filteredCount })}
+          </Tag>
+          <Button size="small" type="link" className="!p-0" onClick={onClearIssueFilter}>
+            {t("clearFilter")}
+          </Button>
+        </Flex>
+      ) : (
+        hasProblem && (
+          <Flex gap="small" align="center" wrap>
+            {stats.empty > 0 && (
+              <Button size="small" type="link" className="!p-0 !h-auto" onClick={() => onJumpToIssue("empty")}>
+                <Typography.Text type="warning" className="!text-xs">
+                  {t("emptyCount", { count: stats.empty })}
+                </Typography.Text>
+              </Button>
+            )}
+            {stats.shadowed > 0 && (
+              <Button size="small" type="link" className="!p-0 !h-auto" onClick={() => onJumpToIssue("shadowed")}>
+                <Typography.Text type="warning" className="!text-xs">
+                  {t("shadowedCount", { count: stats.shadowed })}
+                </Typography.Text>
+              </Button>
+            )}
+          </Flex>
+        )
+      )}
+    </Flex>
+  );
+};
+
+type SearchSortBarProps = {
+  searchText: string;
+  onSearchTextChange: (text: string) => void;
+  sortMode: SortMode;
+  onSortModeChange: (mode: SortMode) => void;
+  totalCount: number;
+  filteredCount: number;
+};
+
+const SearchSortBar: React.FC<SearchSortBarProps> = ({ searchText, onSearchTextChange, sortMode, onSortModeChange, totalCount, filteredCount }) => {
+  const t = useTranslations("ProtectedRuleManager");
+  const filtering = Boolean(searchText) && filteredCount !== totalCount;
+
+  return (
+    <Flex gap="small" align="center" wrap>
+      <Input
+        size="small"
+        prefix={<SearchOutlined />}
+        placeholder={t("searchPlaceholder")}
+        value={searchText}
+        onChange={(e) => onSearchTextChange(e.target.value)}
+        allowClear
+        className="flex-1 !min-w-[180px]"
+        aria-label={t("searchAriaLabel")}
+      />
+      <Segmented<SortMode>
+        size="small"
+        value={sortMode}
+        onChange={onSortModeChange}
+        options={[
+          { label: t("sortOriginal"), value: "original" },
+          { label: t("sortAlphabetical"), value: "from-asc" },
+          { label: t("sortRecent"), value: "recent" },
+        ]}
+      />
+      {filtering && (
+        <Typography.Text type="secondary" className="!text-xs">
+          {t("filteringCount", { filtered: filteredCount, total: totalCount })}
+        </Typography.Text>
+      )}
+    </Flex>
+  );
+};
+
+type BulkActionBarProps = {
+  selectedCount: number;
+  onDeleteSelected: () => void;
+  onExportSelected: () => void;
+  onClearSelection: () => void;
+};
+
+const BulkActionBar: React.FC<BulkActionBarProps> = ({ selectedCount, onDeleteSelected, onExportSelected, onClearSelection }) => {
+  const t = useTranslations("ProtectedRuleManager");
+  const tCommon = useTranslations("common");
+  if (selectedCount === 0) return null;
+
+  return (
+    <Flex gap="small" align="center" className="px-2 py-1 bg-[var(--ant-color-info-bg)]">
+      <Typography.Text className="!text-xs">
+        {t("selectedCount", { count: selectedCount })}
+      </Typography.Text>
+      <Popconfirm
+        title={t("confirmDeleteSelected", { count: selectedCount })}
+        onConfirm={onDeleteSelected}
+        okText={tCommon("remove")}
+        cancelText={tCommon("cancel")}
+        okButtonProps={{ danger: true }}>
+        <Button size="small" danger icon={<DeleteOutlined />}>
+          {t("deleteSelected")}
+        </Button>
+      </Popconfirm>
+      <Button size="small" icon={<ExportOutlined />} onClick={onExportSelected}>
+        {t("exportSelected", { count: selectedCount })}
+      </Button>
+      <Button size="small" type="link" className="!p-0" onClick={onClearSelection}>
+        {t("clearSelection")}
+      </Button>
+    </Flex>
+  );
+};
 
 type Props = {
   open: boolean;
@@ -77,52 +210,47 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
     onClose();
   };
 
-  const handleImportFile = (file: File) => {
-    const reader = new FileReader();
-    // readAsArrayBuffer + decodeFileBytes 而非 readAsText:readAsText 只按
-    // UTF-8 解,GBK/ANSI 词典(中文 Windows 导出常态)被解成 U+FFFD 乱码后
-    // 仍能过非空过滤 —— 损坏规则被静默持久化还报导入成功,转换时永不匹配。
-    reader.onload = async (e) => {
-      let text: string;
-      try {
-        text = await decodeFileBytes(e.target?.result as ArrayBuffer);
-      } catch (error) {
-        console.error("Rule import failed:", error);
-        // 【带上原始消息】,同 useFileUpload / GlossaryDrawer:decodeFileBytes 判不出
-        // 编码时抛的是可操作指引("re-save the file as UTF-8"),裸 fileReadFailed
-        // 把它吞掉,而本抽屉同样没有手动选编码的入口。
-        message.error(`${tCommon("fileReadFailed")}: ${getErrorMessage(error)}`);
-        return;
-      }
-      // 按【首个 TAB】切,target 整体保留(含空格)。parseOpenCCDict 的
-      // OpenCC 语义把空格当"多候选值"分隔符 —— 本工具导出的
-      // `纽约\tNew York` round-trip 会被截成 `New`(空格 target 是保护词典
-      // 的核心用例)。无 TAB 时退化按首个空格切,余下整体作 target。
-      const parsed = text
-        .split(/\r?\n/)
-        .map((l) => l.trim())
-        .filter((l) => l && !l.startsWith("#"))
-        .map((l): [string, string] | null => {
-          const tab = l.indexOf("\t");
-          const sep = tab !== -1 ? tab : l.indexOf(" ");
-          if (sep === -1) return null;
-          return [l.slice(0, sep).trim(), l.slice(sep + 1).trim()];
-        })
-        .filter((p): p is [string, string] => p !== null && !!p[0] && !!p[1]);
-      if (parsed.length === 0) {
-        message.warning(t("importNoRules"));
-        return;
-      }
-      const incoming: ProtectedRule[] = parsed.map(([from, to]) => ({ from, to }));
-      const { added, removedDup } = rm.importRules(incoming);
-      if (removedDup > 0) {
-        message.success(t("importedWithDedup", { added, direction: directionLabel, dedup: removedDup }));
-      } else {
-        message.success(t("imported", { added, direction: directionLabel }));
-      }
-    };
-    reader.onerror = () => message.error(tCommon("fileReadFailed"));
-    reader.readAsArrayBuffer(file);
+  const handleImportFile = async (file: File) => {
+    // readTextFile(decodeFileBytes)而非 readAsText:readAsText 只按 UTF-8 解,GBK/ANSI
+    // 词典(中文 Windows 导出常态)被解成 U+FFFD 乱码后仍能过非空过滤 —— 损坏规则被
+    // 静默持久化还报导入成功,转换时永不匹配。
+    let text: string;
+    try {
+      text = await readTextFile(file);
+    } catch (error) {
+      console.error("Rule import failed:", error);
+      // 【带上原始消息】,同 useFileUpload / GlossaryDrawer:decodeFileBytes 判不出
+      // 编码时抛的是可操作指引("re-save the file as UTF-8"),裸 fileReadFailed
+      // 把它吞掉,而本抽屉同样没有手动选编码的入口。
+      message.error(`${tCommon("fileReadFailed")}: ${getErrorMessage(error)}`);
+      return;
+    }
+    // 按【首个 TAB】切,target 整体保留(含空格)。parseOpenCCDict 的
+    // OpenCC 语义把空格当"多候选值"分隔符 —— 本工具导出的
+    // `纽约\tNew York` round-trip 会被截成 `New`(空格 target 是保护词典
+    // 的核心用例)。无 TAB 时退化按首个空格切,余下整体作 target。
+    const parsed = text
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l && !l.startsWith("#"))
+      .map((l): [string, string] | null => {
+        const tab = l.indexOf("\t");
+        const sep = tab !== -1 ? tab : l.indexOf(" ");
+        if (sep === -1) return null;
+        return [l.slice(0, sep).trim(), l.slice(sep + 1).trim()];
+      })
+      .filter((p): p is [string, string] => p !== null && !!p[0] && !!p[1]);
+    if (parsed.length === 0) {
+      message.warning(t("importNoRules"));
+      return;
+    }
+    const incoming: ProtectedRule[] = parsed.map(([from, to]) => ({ from, to }));
+    const { added, removedDup } = rm.importRules(incoming);
+    if (removedDup > 0) {
+      message.success(t("importedWithDedup", { added, direction: directionLabel, dedup: removedDup }));
+    } else {
+      message.success(t("imported", { added, direction: directionLabel }));
+    }
   };
 
   return (
@@ -216,7 +344,7 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
           accept=".txt,text/plain"
           onChange={(e) => {
             const f = e.target.files?.[0];
-            if (f) handleImportFile(f);
+            if (f) void handleImportFile(f);
             e.target.value = "";
           }}
         />

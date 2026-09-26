@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import { Button, Flex, Switch, Tooltip, Typography, theme } from "antd";
+import { Button, Flex, Switch, Tooltip, Typography, theme, Card } from "antd";
 import { EditOutlined, InboxOutlined, WarningOutlined } from "@ant-design/icons";
 import { useTranslations } from "next-intl";
-import PageCard from "@/app/components/styled/PageCard";
 
 interface ProtectedRulePanelProps {
   enabled: boolean;
@@ -20,7 +19,7 @@ interface ProtectedRulePanelProps {
 
 /**
  * Compact status panel for the OpenCC custom-replacement rule manager.
- * Renders inside a PageCard so callers just drop it into their settings column.
+ * Renders inside a Card so callers just drop it into their settings column.
  *
  * Shared between chinese-conversion and novel-processor (the two tools that
  * apply protectedDict during OpenCC conversion). i18n via the shared
@@ -34,7 +33,7 @@ const ProtectedRulePanel = ({ enabled, onEnabledChange, s2tCount, t2sCount, onOp
   const showInactiveHint = enabled && Boolean(inactiveHint);
 
   return (
-    <PageCard
+    <Card
       title={
         <Tooltip title={t("customReplaceTooltip")}>
           <span>{t("customReplace")}</span>
@@ -89,7 +88,7 @@ const ProtectedRulePanel = ({ enabled, onEnabledChange, s2tCount, t2sCount, onOp
           {t("manageRules")}
         </Button>
       </Flex>
-    </PageCard>
+    </Card>
   );
 };
 

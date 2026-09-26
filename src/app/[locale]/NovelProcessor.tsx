@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Input, InputNumber, Typography, Space, Flex, App, Tooltip, Upload, Switch, Spin, Row, Col, Collapse, Divider, Segmented } from "antd";
-import { SettingOutlined, InboxOutlined, FileTextOutlined, ScissorOutlined, ClearOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
+import { Button, Input, InputNumber, Typography, Space, Flex, App, Tooltip, Switch, Spin, Row, Col, Collapse, Divider, Segmented, Card } from "antd";
+import { SettingOutlined, ScissorOutlined, OrderedListOutlined, PlayCircleOutlined, ControlOutlined } from "@ant-design/icons";
 import {
   splitTextIntoLines,
   downloadFile,
@@ -17,34 +17,15 @@ import { useLocalStorage } from "@/app/hooks/useLocalStorage";
 import { createConverter } from "js-opencc";
 import { tryAutoReload } from "@/app/lib/autoReload";
 import ResultCard from "@/app/components/ResultCard";
-import PageCard from "@/app/components/styled/PageCard";
-import SourceArea from "@/app/components/SourceArea";
+import ToggleRow from "@/app/components/styled/ToggleRow";
+import UploadSourceCard from "@/app/components/UploadSourceCard";
 import { useTranslations } from "next-intl";
 import { ProtectedRuleDrawer, ProtectedRulePanel, effectiveCount, type ProtectedRule } from "@/app/components/protectedRuleManager";
 import { useFileExport } from "@/app/hooks/useFileExport";
 
-const { Dragger } = Upload;
 const { Text } = Typography;
 
 const uploadFileTypes = getFileTypePresetConfig("markdownText");
-
-// 配置项行：标签 + 控件一行，可选在下方显示一行灰色说明（免去逐个悬停 tooltip）；sub 表示从属缩进项
-const ToggleRow = ({ label, hint, sub, children }: { label: React.ReactNode; hint?: React.ReactNode; sub?: boolean; children: React.ReactNode }) => (
-  <Flex vertical gap={2} style={sub ? { paddingInlineStart: 16 } : undefined}>
-    {/* 整行是 label —— 点说明文字就能切开关。size="small" 的 Switch 只有
-        32×18，而文字才是用户第一直觉会点的地方（design-system A5b）。
-        hint 留在 label 外：它是补充说明，不该也变成点击区。 */}
-    <Flex component="label" className="cursor-pointer" justify="space-between" align="center" gap="small">
-      <span>{label}</span>
-      {children}
-    </Flex>
-    {hint ? (
-      <Text type="secondary" className="!text-xs">
-        {hint}
-      </Text>
-    ) : null}
-  </Flex>
-);
 
 const NovelProcessor = () => {
   const { message } = App.useApp();
@@ -81,21 +62,16 @@ const NovelProcessor = () => {
   const activeS2tCount = effectiveCount(s2tRules);
   const activeT2sCount = effectiveCount(t2sRules);
 
+  const upload = useFileUpload("novel-processor");
   const {
     isFileProcessing,
-    fileList,
     multipleFiles,
     readFile,
     sourceText,
-    setSourceText,
     uploadMode,
     singleFileMode,
     setSingleFileMode,
-    handleFileUpload,
-    handleUploadRemove,
-    handleUploadChange,
-    resetUpload,
-  } = useFileUpload("novel-processor");
+  } = upload;
   const [result, setResult] = useState("");
   // 落盘 —— 与 chinese-conversion-directExport 对齐(同一个 tCommon("directExport")
   // 标签、同一个 Switch,此前一个记得住一个记不住)。
@@ -122,7 +98,7 @@ const NovelProcessor = () => {
       return false;
     }
     // 与简繁转换同规则:自愈重载【只】包 createConverter —— 它是这里唯一按 hash 名
-    // 拉字典 chunk 的一步(compromise 那条已由 textUtils 的 lazyImport 精确处理)。
+    // 拉字典 chunk 的一步(英文分句已改用 Intl.Segmenter,textUtils 不再有懒加载的 chunk)。
     // 整页重载会刷掉普通 useState 里几十万字的源文,而它对转换/格式化/导出的报错
     // 一点用没有(如保护词条撑爆 6400 个 PUA 槽的 RangeError),那些只弹提示。
     let converter: ((input: string) => string) | null = null;
@@ -260,60 +236,7 @@ const NovelProcessor = () => {
         {/* Left Column: Input and Main Actions */}
         <Col xs={24} lg={14}>
           <Flex vertical gap="middle">
-            <PageCard
-              title={
-                <Space>
-                  <FileTextOutlined />
-                  <span>{t("textInput")}</span>
-                </Space>
-              }
-              extra={
-                <Tooltip title={tCommon("clearInputTooltip")}>
-                  <Button
-                    type="text"
-                    danger
-                    onClick={() => {
-                      resetUpload();
-                      message.success(tCommon("resetUploadSuccess"));
-                    }}
-                    icon={<ClearOutlined />}>
-                    {tCommon("clearAll")}
-                  </Button>
-                </Tooltip>
-              }
-              variant="borderless">
-              <Flex vertical gap="small">
-                <Dragger
-                  customRequest={({ file }) => handleFileUpload(file as File)}
-                  accept={uploadFileTypes.accept}
-                  multiple={!singleFileMode}
-                  showUploadList
-                  beforeUpload={singleFileMode ? resetUpload : undefined}
-                  onRemove={handleUploadRemove}
-                  onChange={handleUploadChange}
-                  fileList={fileList}>
-                  <p className="ant-upload-drag-icon">
-                    <InboxOutlined />
-                  </p>
-                  <p className="ant-upload-text">{tCommon("dragAndDropText")}</p>
-                  <p className="ant-upload-hint">
-                    {tCommon("supportedFormats")}
-                    {uploadFileTypes.label}
-                  </p>
-                </Dragger>
-
-                {uploadMode === "single" && (
-                  <SourceArea
-                    textDirection="auto"
-                    sourceText={sourceText}
-                    setSourceText={setSourceText}
-                    stats={sourceStats}
-                    placeholder={tCommon("sourceTextPlaceholder")}
-                    ariaLabel={t("textInput")}
-                  />
-                )}
-              </Flex>
-            </PageCard>
+            <UploadSourceCard upload={upload} stats={sourceStats} fileTypes={uploadFileTypes} multiFile textDirection="auto" />
 
             <Button type="primary" size="large" loading={processing} onClick={handleProcess} block icon={<PlayCircleOutlined />}>
               {tCommon("startProcess")}
@@ -356,7 +279,7 @@ const NovelProcessor = () => {
         {/* Right Column: Settings */}
         <Col xs={24} lg={10}>
           <Flex vertical gap="middle">
-            <PageCard
+            <Card
               title={<Space><SettingOutlined /> {tCommon("configuration")}</Space>}
               variant="borderless"
               styles={{
@@ -499,7 +422,7 @@ const NovelProcessor = () => {
                   },
                 ]}
               />
-            </PageCard>
+            </Card>
 
             <ProtectedRulePanel
               enabled={enableProtectedRules}

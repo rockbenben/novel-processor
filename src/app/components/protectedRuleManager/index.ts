@@ -3,5 +3,5 @@
 // (chinese-conversion, novel-processor, etc.).
 export { default as ProtectedRuleDrawer } from "./ProtectedRuleDrawer";
 export { default as ProtectedRulePanel } from "./ProtectedRulePanel";
-export type { ProtectedRule, Direction, SortMode, IssueKind, Issues, Stats, RuleRow } from "./types";
-export { dedupRules, effectiveCount, findEmpty, findShadowed } from "./ruleAnalysis";
+export type { ProtectedRule } from "./types";
+export { effectiveCount } from "./ruleAnalysis";

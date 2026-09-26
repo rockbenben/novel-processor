@@ -1,5 +1,3 @@
-import { lazyImport } from "@/app/lib/autoReload";
-
 // 统一换行符为 \n（将 Windows 的 \r\n 和旧 Mac 的 \r 规范为 \n），对已为 \n 的内容不做多余替换
 export const normalizeNewlines = (text: string): string => (text.includes("\r") ? text.replace(/\r\n?/g, "\n") : text);
 
@@ -54,11 +52,11 @@ const splitCNParagraph = (text: string) => {
   return text.replace(paragraphCNSplitRegex, "$1\n");
 };
 
-// 智能英文段落分割
-const splitEnglishParagraph = async (text: string): Promise<string> => {
-  const nlp = (await lazyImport(() => import("compromise"))).default;
-  return nlp(text).sentences().out("array").join("\n");
-};
+// 英文按句切分:Intl.Segmenter 的 sentence 粒度(曾经为这一句拉 350KB 的 compromise)
+const splitEnglishParagraph = async (text: string): Promise<string> =>
+  Array.from(new Intl.Segmenter("en", { granularity: "sentence" }).segment(text), (s) => s.segment.trim())
+    .filter(Boolean)
+    .join("\n");
 
 type ParagraphSplitMethod = "cn" | "en";
 export const splitParagraph = async (text: string, method: ParagraphSplitMethod = "cn"): Promise<string> => {
@@ -138,6 +136,97 @@ export const dedupeLines = (lines: string[], options: DedupeOptions = {}): strin
   return out;
 };
 
+/**
+ * 配对提取：逐行取锚点正则的第一个匹配，再用配对正则在【同一行、锚点匹配段之外】
+ * 抓配对内容，同行没有就看【下一行】；抓到后按模板渲染成一条记录，记录间由调用方
+ * 自行连接。
+ *
+ * 同行搜索要先把锚点所占区间替换成等长空白——否则默认配对正则 (\d+) 会先抓到
+ * URL 里面的数字（如 https://weibo.com/2708481871/... 的 UID），永远轮不到
+ * 链接旁真正的数值。
+ *
+ * 模板变量：$0 = 锚点全文；$1..$n = 配对正则的捕获组；配对正则没有分组时
+ * $1 兜底为配对全文；引用了不存在的组 → 空串（不保留字面 $2）。
+ *
+ * total：每条配对的第 1 捕获组都是纯数字时，给出数字的合计（只管数字本身，
+ * 不拼也不校验单位——「100万/2亿」照样按 100+2 求和，数字后没有单位也一样）；
+ * 配对正则无分组或任一捕获值不是数字时为 null。
+ */
+export interface PairedExtractResult {
+  lines: string[];
+  total: string | null;
+}
+
+const TEMPLATE_VAR_RE = /\$(\d+)/g;
+const NUMERIC_VALUE_RE = /^\d+(?:\.\d+)?$/;
+
+const renderPairTemplate = (template: string, anchor: string, pair: RegExpMatchArray): string =>
+  template.replace(TEMPLATE_VAR_RE, (_, digits: string) => {
+    const idx = Number(digits);
+    if (idx === 0) return anchor;
+    const group = pair[idx];
+    // undefined 有两种来源：正则没有分组（$1 兜底为配对全文）、有分组但本组未参与
+    // 匹配（交错分支，$1 同样兜底）；$2 及以上拿不到一律空串
+    return group === undefined ? (idx === 1 ? pair[0] : "") : group;
+  });
+
+// 0.1 + 0.2 这类浮点残渣修约到 6 位后去掉尾零；播放量场景没有更高精度需求
+const formatNumericSum = (n: number): string => n.toFixed(6).replace(/\.?0+$/, "");
+
+export const extractPairedLines = (text: string, anchorRegex: RegExp, pairRegex: RegExp, template: string, shouldTrim: boolean = true): PairedExtractResult => {
+  const lines = cleanLines(text, shouldTrim);
+  // 统一剥掉 g：exec 跨行复用带 g 的正则会从上次 lastIndex 继续；我们每行都要第一个匹配
+  const anchorFinder = new RegExp(anchorRegex.source, anchorRegex.flags.replace("g", ""));
+  const pairFinder = new RegExp(pairRegex.source, pairRegex.flags.replace("g", ""));
+  // 扫描用（要 g，才能拿到一行里的全部命中）。matchAll 不写回 lastIndex，循环外建一次即可。
+  const anchorScanner = new RegExp(anchorRegex.source, anchorRegex.flags.includes("g") ? anchorRegex.flags : `${anchorRegex.flags}g`);
+  /**
+   * 把一行里【所有】锚点命中掩成等长空白（不用空串 —— 会改变列位置）。
+   *
+   * ⚠ 只掩第一个是不够的：一行里若有第二条链接，它路径里的数字会被配对正则抓走。
+   * `https://a.com/1 https://b.com/2 100万` 曾产出「2----https://a.com/1」，
+   * 而 tooltip 上明写着「链接里的数字不会误抓」—— 那句话只在「一行一个链接」时成立。
+   */
+  const maskAnchors = (line: string): string => {
+    let out = "";
+    let last = 0;
+    for (const m of line.matchAll(anchorScanner)) {
+      const at = m.index ?? 0;
+      out += line.slice(last, at) + " ".repeat(m[0].length);
+      last = at + m[0].length;
+    }
+    return out + line.slice(last);
+  };
+  const out: string[] = [];
+  let allNumeric = true;
+  let sum = 0;
+
+  for (let i = 0; i < lines.length; i++) {
+    const anchorMatch = anchorFinder.exec(lines[i]);
+    if (!anchorMatch) continue;
+    const anchor = anchorMatch[0];
+    let pair = pairFinder.exec(maskAnchors(lines[i]));
+    // 兜底读下一行时同样要掩：下一行若本身就是另一条链接，它的路径数字会被抓成
+    // 本行的配对值，产出一条「数值其实来自另一条链接」的假记录。
+    if (!pair && i + 1 < lines.length) pair = pairFinder.exec(maskAnchors(lines[i + 1]));
+    if (!pair) continue;
+
+    out.push(renderPairTemplate(template, anchor, pair));
+
+    // 没有显式捕获组就无法从配对全文里隔离数字（$1 兜底的是全文），不参与合计；
+    // 单位一律忽略——只加捕获到的数字本身（数字后面带不带单位都一样）
+    const value = pair[1];
+    if (value === undefined || !NUMERIC_VALUE_RE.test(value)) {
+      allNumeric = false;
+    } else {
+      sum += Number(value);
+    }
+  }
+
+  const total = allNumeric && out.length > 0 ? formatNumericSum(sum) : null;
+  return { lines: out, total };
+};
+
 // Cache for compressNewlines regexes to avoid recompilation
 const compressNewlinesRegexCache = new Map<number, RegExp>();
 
@@ -158,10 +247,14 @@ export const compressNewlines = (text: string, maxConsecutive: number = 2): stri
 // 1) 去掉行首的引用竖线装饰（markdown `>`、终端块/框线竖条 ▎▌│ 等），保留竖线前的缩进；
 // 2) dedent：削掉所有非空行的公共行首缩进——覆盖「无竖线、纯缩进」的 CLI 文本，同时保留代码块/嵌套列表的相对缩进；
 // 3) 按段落重排：空行＝段落分隔；列表项与 ``` 围栏代码块逐行保留、不参与合并；其余连续行拼回整段；
-// 4) 折行拼接：两侧都是中日韩字符时不补空格（避免「中 文」），否则补一个空格（拼回英文折行）。
+// 4) 折行拼接：上一行末尾空格移除；中日韩字符及标点边界不补空格（避免「中 文」或标点前后多余空格），西文折行补单空格。
 const CLI_GUTTER_RE = /^([ \t]*)(?:[>▏▎▍▌▐█│┃┆┊║]\s?)+/;
-// 范围含平假名/片假名(U+3040–U+30FF):漏掉它们会让日文折行在拼接点插多余空格。
-const CJK_CHAR_RE = /[　-ヿ㐀-鿿豈-﫿＀-￯]/;
+// 范围含平假名/片假名(U+3040–U+30FF)、中文标点(引号“”‘’、破折号——、省略号……、间隔号·等):漏掉会让折行在标点边界插多余空格。
+const CJK_CHAR_RE = /[\u00B7\u2014\u2018-\u201D\u2026　-ヿ㐀-鿿豈-﫿＀-￯]/;
+// 行尾全角/中文标点自带宽度，其后连接无论中文还是西文都不补空格
+const CJK_NO_SPACE_AFTER_RE = /[，。！？：；、）》】」』”’…—～]/;
+// 行首闭合/顿号/叹号等标点或开括号紧跟前文，其前无论中文还是西文都不补空格
+const CJK_NO_SPACE_BEFORE_RE = /[，。！？：；、）》】」』”’…—～（《【「『“‘]/;
 const LIST_ITEM_RE = /^\s*(?:[-*+]|\d+[.)])\s+/;
 // markdown 表格行（以 | 开头）：与列表项同等保留整行、不并入段落。
 // | 已从 CLI_GUTTER_RE 移除——否则会吃掉表格行首竖线，整张表还会被并成一段。
@@ -179,16 +272,31 @@ const BOLD_LABEL_RE = /^\s*\*\*[^*]+\*\*[:：]?\s*$/;
 
 const isCJKChar = (ch: string): boolean => !!ch && CJK_CHAR_RE.test(ch);
 
-// 将同一段落的折行片段拼成一行：中日韩↔中日韩边界不补空格，其余补一个空格
+const shouldOmitSpace = (prevChar: string, nextChar: string): boolean => {
+  if (!prevChar || !nextChar) return true;
+  return (
+    (isCJKChar(prevChar) && isCJKChar(nextChar)) ||
+    CJK_NO_SPACE_AFTER_RE.test(prevChar) ||
+    CJK_NO_SPACE_BEFORE_RE.test(nextChar)
+  );
+};
+
+// 将同一段落的折行片段拼成一行：上一行末尾空格移除；中日韩↔中日韩及标点边界不补空格，其余补一个空格
 const joinParagraphFragments = (fragments: string[]): string => {
   let acc = "";
   for (const fragment of fragments) {
     if (!acc) {
-      acc = fragment;
+      acc = fragment.trimEnd();
       continue;
     }
-    const noSpace = isCJKChar(acc[acc.length - 1]) && isCJKChar(fragment[0]);
-    acc += (noSpace ? "" : " ") + fragment;
+    const prev = acc.trimEnd();
+    const next = fragment.trim();
+    if (!next) {
+      acc = prev;
+      continue;
+    }
+    const noSpace = shouldOmitSpace(prev[prev.length - 1], next[0]);
+    acc = prev + (noSpace ? "" : " ") + next;
   }
   return acc;
 };
