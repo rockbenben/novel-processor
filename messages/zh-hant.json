@@ -142,12 +142,10 @@
     "apiStatusTimeout": "連線逾時",
     "testConnection": "測試連接",
     "moreProviderSettings": "更多 Provider 設定",
-    "clearInputTooltip": "清空輸入內容和上傳的檔案",
     "fileExported": "已匯出檔案：{fileName}",
     "exportFailed": "匯出檔案失敗：{fileName}",
     "exportedToFolder": "已儲存到 {dir}：{fileName}",
     "batchDownloaded": "處理完成，檔案已自動下載",
-    "sourceTextPlaceholder": "請輸入或貼上待處理文字...",
     "smartLineBreak": "智慧換行",
     "replaceText": "替換文字",
     "generateJson": "產生 JSON",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "簡繁轉換",
-      "description": "批次轉換簡體、臺灣繁體、香港繁體和日本新字體"
+      "description": "支援檔案上傳與批次處理，精準轉換簡體、臺灣繁體、香港繁體和日本新字體"
     },
     "novelProcessor": {
       "title": "小說排版整理",
@@ -307,7 +305,9 @@
     "otherTools": "更多工具",
     "externalTools": {
       "legendtalk": "AI 思想家圓桌",
-      "imgprompt": "AI 繪圖提示詞"
+      "imgprompt": "AI 繪圖提示詞",
+      "lives": "千世書 人生模擬",
+      "learndata": "LearnData 開源筆記"
     }
   },
   "Metadata": {
@@ -378,7 +378,6 @@
     "errorNoFile": "請上傳要處理的檔案",
     "infoNoChapters": "未識別到有效章節標題，無法重排",
     "reorderComplete": "章節重排完成（共 {chapters} 章）",
-    "textInput": "文字輸入",
     "typesetting": "段落排版",
     "indent": "段首縮排",
     "trimSpaces": "清理首尾空格",

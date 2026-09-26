@@ -86,7 +86,6 @@
     "serviceUnavailableSwitched": "{service} est temporairement inaccessible : basculement automatique vers {fallback}. Vérifiez-le puis revenez-y dans les paramètres si vous souhaitez continuer à l'utiliser.",
     "noFileUploaded": "Veuillez d'abord télécharger un fichier.",
     "translationExported": "Traduction terminée, fichiers exportés",
-    "sourceTextPlaceholder": "Entrez ou collez le texte à traiter...",
     "noSourceText": "Veuillez entrer ou coller du texte.",
     "textExtracted": "Texte extrait, ",
     "sourceArea": "Zone d'entrée",
@@ -102,7 +101,6 @@
     "resultToSourceTooltip": "Écraser la zone de saisie avec le texte du résultat",
     "readOnlyMode": "Mode lecture seule",
     "readOnlyModeTooltip": "Texte trop long : l'éditeur est temporairement en lecture seule et n'affiche qu'un aperçu partiel. Votre contenu complet n'est pas affecté — le traitement et l'export utilisent toujours l'intégralité du texte.",
-    "clearInputTooltip": "Effacer le contenu saisi et les fichiers téléchargés",
     "smartLineBreak": "Saut de ligne intelligent",
     "replaceText": "Remplacer le texte",
     "generateJson": "Générer JSON",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "Conversion chinois",
-      "description": "Convertir en masse simplifié, traditionnel Taïwan, traditionnel Hong Kong et nouveaux caractères japonais"
+      "description": "Convertir par lots simplifié, traditionnel Taïwan, traditionnel Hong Kong et shinjitai avec support de téléversement de fichiers"
     },
     "novelProcessor": {
       "title": "Formateur de romans web chinois",
@@ -307,7 +305,9 @@
     "otherTools": "Plus d'outils",
     "externalTools": {
       "legendtalk": "Table ronde des penseurs IA",
-      "imgprompt": "Prompts d'images IA"
+      "imgprompt": "Prompts d'images IA",
+      "lives": "Thousand Lives",
+      "learndata": "LearnData Notes Open Source"
     }
   },
   "Metadata": {
@@ -330,7 +330,6 @@
     "errorNoFile": "Veuillez télécharger un fichier à traiter",
     "infoNoChapters": "Aucun titre de chapitre valide détecté, réorganisation impossible",
     "reorderComplete": "Réorganisation des chapitres terminée ({chapters} chapitres)",
-    "textInput": "Saisie de texte",
     "typesetting": "Mise en page des paragraphes",
     "hintSmartLineBreak": "Réunit les paragraphes qui avaient été coupés sur plusieurs lignes",
     "indent": "Retrait de première ligne",

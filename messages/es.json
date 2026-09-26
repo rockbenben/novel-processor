@@ -86,7 +86,6 @@
     "serviceUnavailableSwitched": "{service} no está disponible temporalmente: se cambió automáticamente a {fallback}. Compruébalo y vuelve a seleccionarlo en los ajustes si quieres seguir usándolo.",
     "noFileUploaded": "Por favor sube un archivo primero.",
     "translationExported": "Traducción completa, archivos exportados",
-    "sourceTextPlaceholder": "Introduce o pega el texto a procesar...",
     "noSourceText": "Por favor introduce o pega texto.",
     "textExtracted": "Texto extraído, ",
     "sourceArea": "Área Entrada",
@@ -102,7 +101,6 @@
     "resultToSourceTooltip": "Sobrescribir el área de entrada con el texto del resultado",
     "readOnlyMode": "Modo Solo Lectura",
     "readOnlyModeTooltip": "El texto es demasiado largo: el editor está temporalmente en solo lectura y muestra solo una vista previa parcial. Tu contenido completo no se ve afectado: el procesamiento y la exportación siguen usando todo el texto.",
-    "clearInputTooltip": "Limpiar contenido introducido y archivos subidos",
     "smartLineBreak": "Salto de Línea Inteligente",
     "replaceText": "Reemplazar Texto",
     "generateJson": "Generar JSON",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "Conversión chino",
-      "description": "Convertir en lote simplificado, tradicional Taiwán, tradicional Hong Kong y forma nueva de caracteres japoneses"
+      "description": "Conversión por lotes de simplificado, tradicional de Taiwán, tradicional de Hong Kong y shinjitai con soporte para subida de archivos"
     },
     "novelProcessor": {
       "title": "Formateador de novelas web chinas",
@@ -307,7 +305,9 @@
     "otherTools": "Más herramientas",
     "externalTools": {
       "legendtalk": "Mesa redonda de pensadores IA",
-      "imgprompt": "Prompts de imágenes IA"
+      "imgprompt": "Prompts de imágenes IA",
+      "lives": "Thousand Lives",
+      "learndata": "LearnData Notas de Código Abierto"
     }
   },
   "Metadata": {
@@ -330,7 +330,6 @@
     "errorNoFile": "Por favor, sube un archivo a procesar",
     "infoNoChapters": "No se detectaron títulos de capítulo válidos, reordenación no disponible",
     "reorderComplete": "Reordenación de capítulos completada ({chapters} capítulos)",
-    "textInput": "Entrada de texto",
     "typesetting": "Diseño de párrafos",
     "hintSmartLineBreak": "Vuelve a unir párrafos que estaban divididos en varias líneas",
     "indent": "Sangría de primera línea",

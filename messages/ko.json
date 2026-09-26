@@ -142,12 +142,10 @@
     "resultToSourceTooltip": "결과 텍스트를 입력란에 덮어씁니다",
     "readOnlyMode": "읽기 전용 모드",
     "readOnlyModeTooltip": "텍스트가 너무 길어 편집기가 일시적으로 읽기 전용이 되며 일부만 미리 보기로 표시됩니다. 전체 내용은 영향받지 않으며 처리와 내보내기는 전체 텍스트로 수행됩니다.",
-    "clearInputTooltip": "입력 내용 및 업로드된 파일 지우기",
     "fileExported": "파일이 내보내졌습니다: {fileName}",
     "exportFailed": "파일을 내보내지 못했습니다: {fileName}",
     "exportedToFolder": "{dir}에 저장되었습니다: {fileName}",
     "batchDownloaded": "처리 완료, 파일이 자동으로 다운로드되었습니다",
-    "sourceTextPlaceholder": "처리할 텍스트를 입력하거나 붙여넣으세요...",
     "smartLineBreak": "스마트 줄바꿈",
     "replaceText": "텍스트 치환",
     "generateJson": "JSON 생성",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "간체·번체 변환",
-      "description": "간체, 대만 번체, 홍콩 번체, 일본 신자체 일괄 변환"
+      "description": "파일 업로드 및 일괄 처리를 지원하는 간체, 대만 번체, 홍콩 번체 및 일본 신자체 변환"
     },
     "novelProcessor": {
       "title": "중국 웹소설 텍스트 정리 도구",
@@ -307,7 +305,9 @@
     "otherTools": "더 많은 도구",
     "externalTools": {
       "legendtalk": "AI 사상가 라운드테이블",
-      "imgprompt": "AI 이미지 프롬프트"
+      "imgprompt": "AI 이미지 프롬프트",
+      "lives": "천세서 인생 시뮬레이션",
+      "learndata": "LearnData 오픈소스 노트"
     }
   },
   "Metadata": {
@@ -330,7 +330,6 @@
     "errorNoFile": "처리할 파일을 업로드하세요",
     "infoNoChapters": "유효한 장 제목이 인식되지 않아 재정렬할 수 없습니다",
     "reorderComplete": "장 재정렬 완료 (총 {chapters} 장)",
-    "textInput": "텍스트 입력",
     "typesetting": "단락 레이아웃",
     "indent": "첫 줄 들여쓰기",
     "trimSpaces": "앞뒤 공백 제거",

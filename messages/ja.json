@@ -142,12 +142,10 @@
     "resultToSourceTooltip": "結果テキストを入力欄に上書き",
     "readOnlyMode": "読み取り専用モード",
     "readOnlyModeTooltip": "テキストが長すぎるため、エディターは一時的に読み取り専用となり、一部のみをプレビュー表示しています。完全な内容は影響を受けず、処理と書き出しは全文に対して行われます。",
-    "clearInputTooltip": "入力内容とアップロードされたファイルをクリア",
     "fileExported": "ファイルをエクスポートしました：{fileName}",
     "exportFailed": "ファイルをエクスポートできませんでした：{fileName}",
     "exportedToFolder": "{dir} に保存しました：{fileName}",
     "batchDownloaded": "処理完了、ファイルを自動ダウンロードしました",
-    "sourceTextPlaceholder": "処理するテキストを入力または貼り付けてください...",
     "smartLineBreak": "スマート改行",
     "replaceText": "テキスト置換",
     "generateJson": "JSON生成",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "繁体・簡体字変換",
-      "description": "簡体字・台湾繁体字・香港繁体字・日本新字体を一括変換"
+      "description": "ファイルアップロードと一括処理に対応、簡体字・台湾繁体字・香港繁体字・日本新字体を高精度変換"
     },
     "novelProcessor": {
       "title": "中国語小説テキスト整理ツール",
@@ -307,7 +305,9 @@
     "otherTools": "その他のツール",
     "externalTools": {
       "legendtalk": "AI思想家ラウンドテーブル",
-      "imgprompt": "AI画像プロンプト"
+      "imgprompt": "AI画像プロンプト",
+      "lives": "千世書 人生シミュレーター",
+      "learndata": "LearnData オープンソースノート"
     }
   },
   "Metadata": {
@@ -330,7 +330,6 @@
     "errorNoFile": "処理するファイルをアップロードしてください",
     "infoNoChapters": "有効な章タイトルが認識されなかったため、並び替えができません",
     "reorderComplete": "章の並び替えが完了しました（全 {chapters} 章）",
-    "textInput": "テキスト入力",
     "typesetting": "段落レイアウト",
     "indent": "段落先頭のインデント",
     "trimSpaces": "行頭・行末のスペースを削除",

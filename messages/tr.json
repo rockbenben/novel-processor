@@ -142,12 +142,10 @@
     "resultToSourceTooltip": "Giriş kutusunun içeriğini sonuç metniyle değiştir",
     "readOnlyMode": "Salt Okunur Mod",
     "readOnlyModeTooltip": "Metin çok uzun: düzenleyici geçici olarak salt okunur ve yalnızca kısmi bir önizleme gösteriyor. Tüm içeriğiniz etkilenmez; işleme ve dışa aktarma hâlâ metnin tamamını kullanır.",
-    "clearInputTooltip": "Giriş içeriğini ve yüklenen dosyaları temizle",
     "fileExported": "Dışa aktarılan dosya: {fileName}",
     "exportFailed": "Dosya dışa aktarılamadı: {fileName}",
     "exportedToFolder": "{dir} klasörüne kaydedildi: {fileName}",
     "batchDownloaded": "İşlem tamamlandı, dosyalar otomatik olarak indirildi",
-    "sourceTextPlaceholder": "İşlenecek metni girin veya yapıştırın...",
     "smartLineBreak": "Akıllı satır sonu",
     "replaceText": "Metni değiştir",
     "generateJson": "JSON Oluştur",
@@ -205,7 +203,7 @@
     },
     "chineseConversion": {
       "title": "Bas/Gel Çince Dönüştürücü",
-      "description": "Basitleştirilmiş, Tayvan geleneksel, Hong Kong geleneksel ve Japonca karakterleri toplu dönüştür"
+      "description": "Dosya yükleme ve toplu işlem desteğiyle Basitleştirilmiş, Tayvan/Hong Kong Geleneksel Çince ve Japon Shinjitai dönüştürme"
     },
     "novelProcessor": {
       "title": "Çince Web Roman Düzenleyici",
@@ -307,7 +305,9 @@
     "otherTools": "Daha Fazla Araç",
     "externalTools": {
       "legendtalk": "AI Düşünürler Yuvarlak Masası",
-      "imgprompt": "AI Görsel İstemleri"
+      "imgprompt": "AI Görsel İstemleri",
+      "lives": "Thousand Lives",
+      "learndata": "LearnData Açık Kaynak Notlar"
     }
   },
   "Metadata": {
@@ -330,7 +330,6 @@
     "errorNoFile": "İşlenecek dosyayı yükleyin",
     "infoNoChapters": "Geçerli bölüm başlığı tanınmadı; yeniden sıralama yapılamaz",
     "reorderComplete": "Bölüm yeniden sıralaması tamamlandı ({chapters} bölüm toplam)",
-    "textInput": "Metin Girişi",
     "typesetting": "Paragraf düzeni",
     "hintSmartLineBreak": "Birden fazla satıra bölünmüş paragrafları yeniden birleştirir",
     "indent": "İlk satır girintisi",
