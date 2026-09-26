@@ -71,7 +71,7 @@ When done, the result is auto-copied to clipboard and shown in the result card.
 
 - **Smart Line Break** (on): re-merge wrap-broken lines based on Chinese punctuation
   - Sub-toggle **Paragraph Indent** (visible only when Smart Line Break is on, default on): add `\t` to each paragraph head
-- **Paragraph Split** (off): break long paragraphs into shorter ones via sentence detection (compromise NLP + Chinese punctuation)
+- **Paragraph Split** (off): break long paragraphs into shorter ones via sentence detection (the browser's built-in Intl.Segmenter + Chinese punctuation)
 
 ### 2. Content Cleaning (collapsed by default)
 
@@ -150,7 +150,7 @@ Drag-and-drop or paste support for `.txt`, `.md`, `.markdown` files.
 
 ### Requirements
 
-- Node.js >= 20.9.0
+- Node.js >= 24
 - Package manager: Yarn (recommended), npm, or pnpm
 
 ### Install & run
