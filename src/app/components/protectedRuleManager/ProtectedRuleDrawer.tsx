@@ -131,11 +131,11 @@ const BulkActionBar: React.FC<BulkActionBarProps> = ({ selectedCount, onDeleteSe
         okText={tCommon("remove")}
         cancelText={tCommon("cancel")}
         okButtonProps={{ danger: true }}>
-        <Button size="small" danger icon={<DeleteOutlined />}>
+        <Button size="small" danger icon={<DeleteOutlined aria-hidden />}>
           {t("deleteSelected")}
         </Button>
       </Popconfirm>
-      <Button size="small" icon={<ExportOutlined />} onClick={onExportSelected}>
+      <Button size="small" icon={<ExportOutlined aria-hidden />} onClick={onExportSelected}>
         {t("exportSelected", { count: selectedCount })}
       </Button>
       <Button size="small" type="link" className="!p-0" onClick={onClearSelection}>
@@ -268,7 +268,7 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
             okText={tCommon("clearAll")}
             cancelText={tCommon("cancel")}
             okButtonProps={{ danger: true }}>
-            <Button size="small" danger icon={<ClearOutlined />}>
+            <Button size="small" danger icon={<ClearOutlined aria-hidden />}>
               {tCommon("clearAll")}
             </Button>
           </Popconfirm>
@@ -322,13 +322,13 @@ const ProtectedRuleDrawer: React.FC<Props> = ({ open, onClose, s2tRules, setS2tR
         />
 
         <Flex gap="small">
-          <Button block icon={<PlusOutlined />} onClick={rm.addRule}>
+          <Button block icon={<PlusOutlined aria-hidden />} onClick={rm.addRule}>
             {t("addRule")}
           </Button>
-          <Button icon={<ImportOutlined />} onClick={() => fileInputRef.current?.click()}>
+          <Button icon={<ImportOutlined aria-hidden />} onClick={() => fileInputRef.current?.click()}>
             {t("importBtn")}
           </Button>
-          <Button icon={<ExportOutlined />} onClick={handleExportAll} disabled={rm.selectedKeys.length > 0}>
+          <Button icon={<ExportOutlined aria-hidden />} onClick={handleExportAll} disabled={rm.selectedKeys.length > 0}>
             {t("exportAll")}
           </Button>
         </Flex>

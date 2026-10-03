@@ -238,7 +238,7 @@ const NovelProcessor = () => {
           <Flex vertical gap="middle">
             <UploadSourceCard upload={upload} stats={sourceStats} fileTypes={uploadFileTypes} multiFile textDirection="auto" />
 
-            <Button type="primary" size="large" loading={processing} onClick={handleProcess} block icon={<PlayCircleOutlined />}>
+            <Button type="primary" size="large" loading={processing} onClick={handleProcess} block icon={<PlayCircleOutlined aria-hidden />}>
               {tCommon("startProcess")}
             </Button>
             <Flex gap="small">
@@ -251,12 +251,12 @@ const NovelProcessor = () => {
                     setResult(processed);
                     message.success(t("chapterSplitDone"));
                   }}
-                  icon={<ScissorOutlined />}>
+                  icon={<ScissorOutlined aria-hidden />}>
                   {t("chapterSplitBtn")}
                 </Button>
               </Tooltip>
               <Tooltip title={t("tooltipChapterReorder")}>
-                <Button block variant="outlined" icon={<OrderedListOutlined />} onClick={handleReorderChapters}>
+                <Button block variant="outlined" icon={<OrderedListOutlined aria-hidden />} onClick={handleReorderChapters}>
                   {t("chapterReorderBtn")}
                 </Button>
               </Tooltip>
@@ -295,7 +295,7 @@ const NovelProcessor = () => {
                     key: "1",
                     label: (
                       <Space>
-                        <ScissorOutlined />
+                        <ScissorOutlined aria-hidden />
                         <Typography.Text strong>{t("typesetting")}</Typography.Text>
                       </Space>
                     ),
@@ -322,7 +322,7 @@ const NovelProcessor = () => {
                     key: "2",
                     label: (
                       <Space>
-                        <OrderedListOutlined />
+                        <OrderedListOutlined aria-hidden />
                         <Typography.Text strong>{t("chapterGroup")}</Typography.Text>
                       </Space>
                     ),
@@ -344,7 +344,7 @@ const NovelProcessor = () => {
                     key: "3",
                     label: (
                       <Space>
-                        <ControlOutlined />
+                        <ControlOutlined aria-hidden />
                         <Typography.Text strong>{tCommon("advancedSettings")}</Typography.Text>
                       </Space>
                     ),

@@ -83,7 +83,9 @@ const RuleTable: React.FC<Props> = ({ rows, allRules, issues, selectedKeys, onSe
       ),
     },
     {
-      title: "",
+      // 操作列表头不能真空着（axe empty-table-header：<th> 读出来是空的）。
+      // 挂一个视觉隐藏的 "Remove"，屏幕阅读器有得读，版面不变。
+      title: <span style={{ position: "absolute", width: 1, height: 1, padding: 0, margin: -1, overflow: "hidden", clipPath: "inset(50%)", border: 0 }}>{tCommon("remove")}</span>,
       key: "action",
       width: 48,
       render: (_text, record) => (

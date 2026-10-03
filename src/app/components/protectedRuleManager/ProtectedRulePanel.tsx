@@ -84,7 +84,7 @@ const ProtectedRulePanel = ({ enabled, onEnabledChange, s2tCount, t2sCount, onOp
           </Flex>
         )}
 
-        <Button block icon={<EditOutlined />} onClick={onOpenDrawer}>
+        <Button block icon={<EditOutlined aria-hidden />} onClick={onOpenDrawer}>
           {t("manageRules")}
         </Button>
       </Flex>
