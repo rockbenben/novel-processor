@@ -182,19 +182,34 @@
     "errorHintRelay403": "API trả về 403 Forbidden — hãy bật \"Chuyển tiếp API\" trong \"Thêm cài đặt Provider\"",
     "errorHintCors": "Không thể kết nối tới địa chỉ này — hãy kiểm tra địa chỉ và xem dịch vụ có cho phép yêu cầu khác nguồn (CORS) hay không. Cổng tự dựng và mô hình cục bộ phải tự bật, hoặc dùng Chuyển tiếp API của riêng bạn",
     "errorHintGeminiKey": "Không thể kết nối Gemini: hãy kiểm tra mạng trước (một số mạng không thể truy cập trực tiếp dịch vụ Google). Nếu mạng bình thường, từ 19/06/2026 Google từ chối các API key không giới hạn — hãy tạo lại key trong AI Studio (mặc định đã giới hạn) hoặc thêm giới hạn Gemini API cho key cũ trong Google Cloud Console",
-    "rateLimitCooldown": "Đạt giới hạn yêu cầu — tạm dừng một lát rồi tự động thử lại"
+    "rateLimitCooldown": "Đạt giới hạn yêu cầu — tạm dừng một lát rồi tự động thử lại",
+    "faqHeading": "Câu hỏi thường gặp",
+    "homeIndexEyebrow": "Mục lục",
+    "homeCategoryEyebrow": "{n} danh mục",
+    "openNavigation": "Mở điều hướng",
+    "goHome": "Về trang chủ",
+    "primaryNav": "Điều hướng chính",
+    "toggleTheme": "Đổi giao diện",
+    "communityLinks": "Liên kết cộng đồng",
+    "viewOnGitHub": "Xem trên GitHub",
+    "toolCategories": "Danh mục công cụ",
+    "searchLanguage": "Tìm ngôn ngữ",
+    "selectLanguage": "Chọn ngôn ngữ",
+    "noMatchFound": "Không có kết quả",
+    "backToTop": "Lên đầu trang",
+    "exportOptions": "Tùy chọn xuất"
   },
   "tools": {
     "subtitleTranslator": {
-      "title": "Dịch giả Phụ đề",
+      "title": "Trình Dịch Phụ Đề",
       "description": "Dịch hàng loạt SRT, ASS, VTT, SBV, LRC. 120+ ngôn ngữ."
     },
     "jsonTranslate": {
-      "title": "Dịch giả JSON i18n",
+      "title": "Trình Dịch JSON i18n",
       "description": "Dịch tệp ngôn ngữ i18n hàng loạt, với đối sánh JSONPath và ánh xạ khóa"
     },
     "mdTranslator": {
-      "title": "Dịch giả Markdown",
+      "title": "Trình Dịch Markdown",
       "description": "Dịch Markdown hàng loạt, giữ định dạng và mã"
     },
     "textSplitter": {
@@ -225,7 +240,7 @@
         },
         {
           "q": "Khi chỉnh lý tiểu thuyết có vô tình xóa nội dung chính hay lời thoại không?",
-          "a": "Dòng trùng lặp chỉ nhận diện nội dung \"3 dòng liên tiếp hoàn toàn giống nhau\" (như quảng cáo trang web lặp lại \"Tiểu thuyết này đăng lần đầu tại xxx\"). Câu trả lời ngắn của nhân vật trong nội dung (như \"Ừ\" \"Được\") sẽ không bị xóa nhầm vì hệ thống phát hiện mẫu lặp liên tiếp chứ không phải lặp đơn dòng. Khuyến nghị sao lưu bản gốc trước khi xử lý và kiểm tra số chữ sau khi hoàn thành (số chữ nội dung thay đổi dưới 5% là an toàn)."
+          "a": "Dòng trùng lặp chỉ nhận diện nội dung \"dòng liên tiếp hoàn toàn giống nhau\" (như quảng cáo trang web lặp lại \"Tiểu thuyết này đăng lần đầu tại xxx\"). Câu trả lời ngắn của nhân vật trong nội dung (như \"Ừ\" \"Được\") sẽ không bị xóa nhầm vì hệ thống phát hiện mẫu lặp liên tiếp chứ không phải lặp đơn dòng. Khuyến nghị sao lưu bản gốc trước khi xử lý và kiểm tra số chữ sau khi hoàn thành (số chữ nội dung thay đổi dưới 5% là an toàn)."
         },
         {
           "q": "Tiểu thuyết của tôi có được tải lên máy chủ không? Công cụ có mã nguồn mở không?",
@@ -234,7 +249,7 @@
       ],
       "features": [
         "Sửa 7 vấn đề định dạng phổ biến trong tệp TXT tiểu thuyết mạng (tải xuống, sao chép web, xuất Word)",
-        "Tự động phát hiện tiêu đề chương như 「第X章」 hoặc Chapter X và tách chúng",
+        "Tự động phát hiện tiêu đề chương như \"第X章\" hoặc Chapter X và tách chúng",
         "Phát hiện dòng trùng lặp liền kề — các dòng liên tiếp giống hệt (như biểu ngữ quảng cáo lặp lại) được loại bỏ",
         "Thụt đầu dòng (2 ký tự), loại bỏ dòng trống thừa, sửa các dòng ngắn bị cắt sai",
         "Chuyển phồn thể sang giản thể, chuẩn hóa khoảng trắng đầy đủ/nửa chiều rộng",
@@ -247,7 +262,7 @@
       "description": "Tích hợp regex, sắp xếp, lọc và nhiều tính năng xử lý văn bản hàng loạt"
     },
     "dataBatch": {
-      "title": "Xử lý văn bản",
+      "title": "Xử lý dữ liệu hàng loạt",
       "description": "Xử lý dữ liệu Excel hàng loạt — loại bỏ trùng, trích xuất cột, hợp nhất văn bản, quy tắc nối tiếp"
     },
     "textJoiner": {
@@ -279,7 +294,7 @@
       "description": "Sắp xếp và nhóm mảng, quy tắc tùy chỉnh"
     },
     "jsonMatchUpdate": {
-      "title": "Cập nhật JSON Match",
+      "title": "Khớp & Cập Nhật JSON",
       "description": "Cập nhật hàng loạt dựa trên khớp trường"
     },
     "dataParserFlare": {
@@ -291,7 +306,7 @@
       "description": "Tạo dữ liệu JSON IMGPrompt hàng loạt"
     },
     "textDiff": {
-      "title": "Text Diff",
+      "title": "So Sánh Văn Bản",
       "description": "So sánh hai văn bản hoặc tệp song song và xác định điểm khác biệt đầu tiên."
     }
   },
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "Bàn tròn nhà tư tưởng AI",
       "imgprompt": "Câu lệnh tạo ảnh AI",
-      "lives": "Thousand Lives",
-      "learndata": "LearnData Ghi chú nguồn mở"
+      "learndata": "LearnData Ghi chú nguồn mở",
+      "hub365": "365 Nguồn mở"
     }
   },
   "Metadata": {
     "title": "ToolsByAI - Bộ Công Cụ Dịch Thuật & Dữ Liệu AI Online",
-    "description": "ToolsByAI: 19 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 25+ engine AI.",
+    "description": "ToolsByAI: 19 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 30+ engine AI.",
     "homeTitle": "Bộ ToolsByAI",
     "homeDescription": "19 công cụ cho dịch, văn bản, JSON và chuyển đổi dữ liệu. Tăng cường hiệu quả cho nhà phát triển và người sáng tạo.",
-    "ogTitle": "ToolsByAI - Công Cụ Dev AI Miễn Phí & Mã Nguồn Mở",
-    "ogDescription": "ToolsByAI: 19 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 25+ engine AI."
+    "ogTitle": "ToolsByAI - Bộ Công Cụ Dịch Thuật & Dữ Liệu AI Online",
+    "ogDescription": "ToolsByAI: 19 công cụ mã nguồn mở miễn phí cho dịch phụ đề, Markdown, JSON i18n và xử lý văn bản/JSON. 30+ engine AI."
   },
   "CopyToClipboard": {
     "empty": "Nội dung trống, không có gì để sao chép",
@@ -368,8 +383,8 @@
   "ProtectedRuleManager": {
     "drawerTitle": "Quy tắc thay thế tùy chỉnh",
     "description": "Quy tắc được ưu tiên hơn từ điển tích hợp, từ khớp sẽ không được OpenCC chuyển đổi. Khi nhập, các mục trùng nguồn sẽ tự động bị loại bỏ (giữ mục cuối cùng).",
-    "directionS2t": "簡➔繁",
-    "directionT2s": "繁➔簡",
+    "directionS2t": "Giản➔Phồn",
+    "directionT2s": "Phồn➔Giản",
     "confirmClearAll": "Xác nhận xóa toàn bộ quy tắc theo hướng hiện tại?",
     "addRule": "Thêm quy tắc",
     "importBtn": "Nhập",
@@ -404,13 +419,13 @@
     "colTo": "Thay bằng",
     "fromEmpty": "Từ gốc trống",
     "toEmpty": "Từ thay thế trống",
-    "shadowedTooltip": "Bị ghi đè bởi dòng {rowNumber}, kết quả thực tế là「{winnerTo}」",
-    "emptyTable": "Chưa có quy tắc. Nhấp vào「Thêm quy tắc」để bắt đầu.",
+    "shadowedTooltip": "Bị ghi đè bởi dòng {rowNumber}, kết quả thực tế là\"{winnerTo}\"",
+    "emptyTable": "Chưa có quy tắc. Nhấp vào\"Thêm quy tắc\"để bắt đầu.",
     "noRulesYet": "Chưa có quy tắc",
     "enableProtectedRules": "Áp dụng quy tắc tùy chỉnh",
     "enableProtectedRulesTooltip": "Khi tắt, các quy tắc bên dưới sẽ bị bỏ qua cho lần chuyển đổi này",
     "customReplace": "Thay thế tùy chỉnh",
-    "customReplaceTooltip": "Từ khớp sẽ bỏ qua từ điển tích hợp OpenCC; quản lý riêng theo hướng (簡➔繁 / 繁➔簡)",
+    "customReplaceTooltip": "Từ khớp sẽ bỏ qua từ điển tích hợp OpenCC; quản lý riêng theo hướng (Giản➔Phồn / Phồn➔Giản)",
     "manageRules": "Quản lý quy tắc"
   },
   "feedback": {

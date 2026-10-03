@@ -131,7 +131,7 @@
     "customExportFilenameTooltip": "'{'name'}' = Originalname, '{'lang'}' = Sprache, '{'ext'}' = Endung, '{'date'}' = Datum, '{'time'}' = Zeit; im Mehrsprachenmodus wird '{'lang'}' automatisch hinzugefügt, um Namenskonflikte zu vermeiden",
     "partialFailureTitle": "{count} Zeile(n) fehlgeschlagen",
     "partialFailureDesc": "Diese Zeilen behalten den Originaltext, die Dateistruktur bleibt intakt. Der erneute Versuch sendet nur sie, der Rest kommt aus dem Cache.",
-    "partialFailureWhy": "Häufig bei kostenlosen und selbst gehosteten Diensten — meist liegt es nicht an deiner Konfiguration.",
+    "partialFailureWhy": "Häufig bei kostenlosen und selbst gehosteten Diensten — meist liegt es nicht an Ihrer Konfiguration.",
     "retryFailedLines": "Fehlgeschlagene Zeilen wiederholen",
     "viewFailedLines": "Fehlgeschlagene Zeilen anzeigen",
     "failedLinesModalTitle": "{count} fehlgeschlagene Zeile(n)",
@@ -141,7 +141,7 @@
     "failedLanguagesDesc": "Alle Batches für diese Sprachen sind fehlgeschlagen — meist durch lokale LLM-Störungen, API-Ratenbegrenzungen oder Modellverweigerung einer bestimmten Sprache. Codes kopieren und nur damit erneut ausführen (in 'Mehrsprachige Einstellungen' einfügen); die anderen werden aus dem Cache übersprungen.",
     "copyAllFailedLanguages": "Sprachcodes kopieren",
     "apiStatusFreeApi": "Free API",
-    "apiStatusNeedsConfig": "Konfig. erforderlich",
+    "apiStatusNeedsConfig": "Konfiguration erforderlich",
     "apiStatusConfigured": "Konfiguriert",
     "apiStatusTesting": "Teste",
     "apiStatusConnected": "✓ Verbunden",
@@ -149,7 +149,7 @@
     "apiStatusTimeout": "Zeitüberschreitung der Verbindung",
     "testConnection": "Verbindung testen",
     "moreProviderSettings": "Weitere Provider-Einstellungen",
-    "networkUnavailable": "Der Übersetzungsdienst ist vorübergehend nicht erreichbar — möglicherweise ein Netzwerkproblem oder der Dienst hat einen kurzen Aussetzer. Versuche es später erneut oder wechsle zu einem anderen Übersetzungsdienst.",
+    "networkUnavailable": "Der Übersetzungsdienst ist vorübergehend nicht erreichbar — möglicherweise ein Netzwerkproblem oder der Dienst hat einen kurzen Aussetzer. Versuchen Sie es später erneut oder wechseln Sie zu einem anderen Übersetzungsdienst.",
     "translationTimeout": "Die Übersetzungsanfrage hat das Zeitlimit überschritten — möglicherweise ein langsames Netzwerk oder der Dienst braucht zu lange zum Antworten. Versuche es später erneut oder wechsle zu einem anderen Übersetzungsdienst.",
     "translationTimeoutLocal": "Zeitüberschreitung bei der Übersetzung mit dem lokalen Modell. Häufige Ursachen: Die Parallelität übersteigt die parallelen Slots deines lokalen Servers, sodass Anfragen dort bis zur Zeitüberschreitung warten; oder das Modell hängt in einer Wiederholungsschleife (meist falsche Ausgangssprache). Verringere bei diesem Dienst „Aufrufparameter → Parallele Zeilen“ oder erhöhe „Erweiterte Einstellungen → Zeitüberschreitung“, und prüfe, ob die gewählte Ausgangssprache zum Text passt.",
     "langGroupCommon": "Häufig",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "Die API hat 403 Forbidden zurückgegeben — aktivieren Sie „API-Relay“ unter „Weitere Provider-Einstellungen“",
     "errorHintCors": "Diese Adresse ist nicht erreichbar — prüfen Sie die Adresse und ob der Dienst Cross-Origin-Anfragen (CORS) erlaubt. Eigene Gateways und lokale Modelle müssen das selbst aktivieren, oder nutzen Sie Ihr eigenes API-Relay",
     "errorHintGeminiKey": "Gemini nicht erreichbar: Prüfen Sie zuerst Ihr Netzwerk (manche Netzwerke erreichen Google-Dienste nicht direkt). Ist das Netzwerk in Ordnung, lehnt Google seit dem 19.06.2026 uneingeschränkte API-Schlüssel ab — erstellen Sie Ihren Schlüssel in AI Studio neu (standardmäßig eingeschränkt) oder fügen Sie dem alten Schlüssel in der Google Cloud Console eine Gemini-API-Einschränkung hinzu",
-    "rateLimitCooldown": "Anfragelimit erreicht — kurze Pause, automatischer neuer Versuch"
+    "rateLimitCooldown": "Anfragelimit erreicht — kurze Pause, automatischer neuer Versuch",
+    "faqHeading": "Häufige Fragen",
+    "homeIndexEyebrow": "Index",
+    "homeCategoryEyebrow": "{n} Kategorien",
+    "openNavigation": "Navigation öffnen",
+    "goHome": "Zur Startseite",
+    "primaryNav": "Hauptnavigation",
+    "toggleTheme": "Design wechseln",
+    "communityLinks": "Community-Links",
+    "viewOnGitHub": "Auf GitHub ansehen",
+    "toolCategories": "Werkzeugkategorien",
+    "searchLanguage": "Sprache suchen",
+    "selectLanguage": "Sprache auswählen",
+    "noMatchFound": "Kein Treffer",
+    "backToTop": "Zurück nach oben",
+    "exportOptions": "Exportoptionen"
   },
   "tools": {
     "subtitleTranslator": {
@@ -199,7 +214,7 @@
     },
     "textSplitter": {
       "title": "Text-Splitter",
-      "description": "Lange Texte nach Trenner, Länge oder Satz teilen — und wieder zusammenführen"
+      "description": "Lange Texte nach Trennzeichen, Länge oder Satz teilen — und wieder zusammenführen"
     },
     "chineseConversion": {
       "title": "Chinesisch-Konvertierung",
@@ -225,7 +240,7 @@
         },
         {
           "q": "Kann das Tool versehentlich Textinhalt oder Dialoge löschen? Wie funktioniert die Duplikaterkennung?",
-          "a": "Die Duplikaterkennung zielt nur auf Inhalte, die auf 3 oder mehr aufeinanderfolgenden Zeilen identisch erscheinen (z. B. eine wiederholte Anzeige). Kurze Charakterantworten werden nie entfernt, da der Algorithmus aufeinanderfolgende Wiederholungen erkennt, nicht Einzelzeilen-Duplikate. Sichern Sie das Original vor der Verarbeitung; eine Textänderung von weniger als 5 % bestätigt die Sicherheit. Die Kapitelaufteilung nutzt Regex für gängige Formate wie 'Kapitel X'."
+          "a": "Die Duplikaterkennung zielt nur auf Inhalte, die auf aufeinanderfolgenden Zeilen identisch erscheinen (z. B. eine wiederholte Anzeige). Kurze Charakterantworten werden nie entfernt, da der Algorithmus aufeinanderfolgende Wiederholungen erkennt, nicht Einzelzeilen-Duplikate. Sichern Sie das Original vor der Verarbeitung; eine Textänderung von weniger als 5 % bestätigt die Sicherheit. Die Kapitelaufteilung nutzt Regex für gängige Formate wie 'Kapitel X'."
         },
         {
           "q": "Wird mein Roman auf einen Server hochgeladen? Ist das Tool Open Source?",
@@ -247,7 +262,7 @@
       "description": "Regex-Matching, Sortierung, Filterung und mehr für die Massentextverarbeitung"
     },
     "dataBatch": {
-      "title": "Textprozessor",
+      "title": "Batch-Datenprozessor",
       "description": "Excel-Stapelverarbeitung — Deduplizierung, Spaltenextraktion, Textverbindung, mehrere Regeln in Reihenfolge"
     },
     "textJoiner": {
@@ -255,7 +270,7 @@
       "description": "Mehrere Textspalten zeilenweise per Vorlage zusammenführen, um im Batch CSV, SQL und JSON zu erzeugen"
     },
     "jsonValueExtractor": {
-      "title": "JSON Wert-Extraktor",
+      "title": "JSON-Wertextraktor",
       "description": "JSON-Werte im Batch extrahieren, formatierte Ausgabe"
     },
     "jsonNodeEdit": {
@@ -263,19 +278,19 @@
       "description": "JSON-Knoten im Batch bearbeiten, Präfix/Suffix/Ersetzen"
     },
     "jsonValueTransformer": {
-      "title": "JSON Wert-Mapper",
+      "title": "JSON-Wertemapper",
       "description": "Feldwert-Mapping und Migration mit JSONPath"
     },
     "jsonValueSwapper": {
-      "title": "JSON Wert-Tauscher",
+      "title": "JSON-Wertetauscher",
       "description": "Werte zweier Felder per Klick tauschen"
     },
     "jsonNodeInserter": {
-      "title": "JSON Knoten-Inserter",
+      "title": "JSON-Knoten-Inserter",
       "description": "Neue Knoten an Position im Batch einfügen"
     },
     "jsonSortClassify": {
-      "title": "JSON Sort & Classify",
+      "title": "JSON-Sortierung & Gruppierung",
       "description": "Arrays sortieren und gruppieren, benutzerdefinierte Regeln"
     },
     "jsonMatchUpdate": {
@@ -306,8 +321,8 @@
     "externalTools": {
       "legendtalk": "KI-Denkerrunde",
       "imgprompt": "KI-Bild-Prompts",
-      "lives": "Thousand Lives",
-      "learndata": "LearnData Open-Source-Notizen"
+      "learndata": "LearnData Open-Source-Notizen",
+      "hub365": "365 Open Source"
     }
   },
   "Metadata": {

@@ -2,7 +2,7 @@
   "common": {
     "exportFolder": "エクスポート先フォルダー",
     "exportFolderDefault": "エクスポートは既定のダウンロードフォルダーに保存されます。",
-    "exportFolderBlocked": "ブラウザーはデスクトップ・ドキュメント・ダウンロード・ユーザーフォルダー自体を選べません。サブフォルダーか別のフォルダーを選んでください。",
+    "exportFolderBlocked": "ブラウザはデスクトップ・ドキュメント・ダウンロード・ユーザーフォルダー自体を選べません。サブフォルダーか別のフォルダーを選んでください。",
     "exportFolderCurrent": "エクスポート先: {dir}",
     "exportFolderReset": "ダウンロードフォルダーに戻す",
     "exportFolderFailed": "エクスポート先フォルダーを設定できませんでした。",
@@ -14,13 +14,13 @@
     "ignoredLangCodes": "認識できない言語コードを無視しました：{codes}",
     "partialExportFailed": "一部の言語のエクスポートに失敗しました：{items}",
     "userGuide": "利用ガイド",
-    "apiKeyPrivacy": "このブラウザーにのみ保存され、サーバーには同期されません。",
+    "apiKeyPrivacy": "このブラウザにのみ保存され、サーバーには同期されません。",
     "dragAndDropText": "クリックまたはファイルをここにドラッグしてアップロード",
     "supportedFormats": "対応フォーマット：",
     "configuration": "設定",
     "operation": "操作",
     "optional": "任意",
-    "pleaseWait": "お待ちください...",
+    "pleaseWait": "お待ちください…",
     "pasteUploadContent": "またはここにテキストを入力・貼り付け",
     "example": "例",
     "sourceLanguage": "翻訳元言語",
@@ -77,7 +77,7 @@
     "sameLanguageTarget": "翻訳元と翻訳先が同じ言語です。自動的に翻訳先を調整しました：",
     "sameLanguageSource": "翻訳元と翻訳先が同じ言語です。自動的に翻訳元を調整しました：",
     "enterApiKey": "APIキーを入力するか、無料APIに切り替えてください。",
-    "enterApiUrl": "「その他のProvider設定」でAPIエンドポイントを設定してください。",
+    "enterApiUrl": "「その他のプロバイダー設定」でAPIエンドポイントを設定してください。",
     "serviceUnavailable": "{service} に一時的に接続できません。ネットワークとサービスのアドレスを確認し、しばらくしてから再試行するか、別の翻訳サービスをご利用ください。",
     "serviceUnavailableSwitched": "{service} に一時的に接続できないため、{fallback} に自動で切り替えました。元のサービスを使い続ける場合は、確認後に設定で戻してください。",
     "noFileUploaded": "処理するファイルをアップロードしてください。",
@@ -115,7 +115,7 @@
     "requestTimeoutSec": "タイムアウト",
     "requestTimeoutSecTooltip": "リクエストあたりの最大待機時間（秒）。LLMの思考時間は長いため、180秒以上を推奨します。",
     "customExportFilename": "エクスポートファイル名の形式",
-    "customExportFilenameTooltip": "'{'name'}' = 元のファイル名, '{'lang'}' = 言語, '{'ext'}' = 拡張子, '{'date'}' = 日付, '{'time'}' = 時間；多言語モードでは '{'lang'}' が自動追加され、ファイル名の衝突を防ぎます",
+    "customExportFilenameTooltip": "'{'name'}' = 元のファイル名, '{'lang'}' = 言語, '{'ext'}' = 拡張子, '{'date'}' = 日付, '{'time'}' = 時間；多言語モードでは '{'lang'}' が自動追加され、ファイル名の競合を防ぎます",
     "partialFailureTitle": "{count}行の翻訳に失敗しました",
     "partialFailureDesc": "これらの行は原文のまま残っており、ファイル構造は保たれています。再試行は該当行だけを送信し、残りはキャッシュから復元します。",
     "partialFailureWhy": "無料・自前サーバーで起きやすく、たいてい設定の問題ではありません。",
@@ -135,13 +135,13 @@
     "apiStatusFailed": "接続失敗",
     "apiStatusTimeout": "接続がタイムアウトしました",
     "testConnection": "接続テスト",
-    "moreProviderSettings": "その他のProvider設定",
+    "moreProviderSettings": "その他のプロバイダー設定",
     "format": "フォーマット",
     "formatTooltip": "フォーマット：空行および先頭・末尾の空白を除去",
     "resultToSource": "結果 ➔ 原文",
     "resultToSourceTooltip": "結果テキストを入力欄に上書き",
     "readOnlyMode": "読み取り専用モード",
-    "readOnlyModeTooltip": "テキストが長すぎるため、エディターは一時的に読み取り専用となり、一部のみをプレビュー表示しています。完全な内容は影響を受けず、処理と書き出しは全文に対して行われます。",
+    "readOnlyModeTooltip": "テキストが長すぎるため、エディターは一時的に読み取り専用となり、一部のみをプレビュー表示しています。完全な内容は影響を受けず、処理とエクスポートは全文に対して行われます。",
     "fileExported": "ファイルをエクスポートしました：{fileName}",
     "exportFailed": "ファイルをエクスポートできませんでした：{fileName}",
     "exportedToFolder": "{dir} に保存しました：{fileName}",
@@ -178,11 +178,26 @@
     "errorHint429": "リクエストが多すぎます。しばらくしてから再試行してください",
     "errorHint456": "今期の翻訳クォータを使い切りました",
     "errorHint5xx": "サーバーエラーです。しばらくしてから再試行してください",
-    "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。「その他のProvider設定」で「API 中継」を有効にしてください",
-    "errorHintRelay403": "API が 403 Forbidden を返しました。「その他のProvider設定」で「API 中継」を有効にしてください",
+    "errorHintRelay": "ネットワークエラー（CORS 制限の可能性があります）。「その他のプロバイダー設定」で「API 中継」を有効にしてください",
+    "errorHintRelay403": "API が 403 Forbidden を返しました。「その他のプロバイダー設定」で「API 中継」を有効にしてください",
     "errorHintCors": "このアドレスに接続できません。アドレスが正しいか、サービス側でクロスオリジン（CORS）が許可されているかを確認してください。自前のゲートウェイやローカルモデルでは自分で有効にする必要があります。または自分の API 中継をご利用ください",
     "errorHintGeminiKey": "Gemini に接続できません。まずネットワークを確認してください（一部のネットワークでは Google サービスに直接接続できません）。ネットワークに問題がなければ、2026年6月19日以降 Google は無制限の API キーを拒否しています。AI Studio でキーを再生成する（デフォルトで制限付き）か、Google Cloud コンソールで既存キーに Gemini API 制限を追加してください",
-    "rateLimitCooldown": "レート制限に達したため少し待機し、自動的に再試行します"
+    "rateLimitCooldown": "レート制限に達したため少し待機し、自動的に再試行します",
+    "faqHeading": "よくある質問",
+    "homeIndexEyebrow": "索引",
+    "homeCategoryEyebrow": "分類 {n} 件",
+    "openNavigation": "ナビゲーションを開く",
+    "goHome": "ホームへ戻る",
+    "primaryNav": "メインナビゲーション",
+    "toggleTheme": "テーマを切り替える",
+    "communityLinks": "コミュニティリンク",
+    "viewOnGitHub": "GitHub で見る",
+    "toolCategories": "ツール分類",
+    "searchLanguage": "言語を検索",
+    "selectLanguage": "言語を選択",
+    "noMatchFound": "該当なし",
+    "backToTop": "トップへ戻る",
+    "exportOptions": "エクスポートオプション"
   },
   "tools": {
     "subtitleTranslator": {
@@ -221,11 +236,11 @@
         },
         {
           "q": "繁体字版（台湾/香港）小説を簡体字に変換したい、または人名・地名を誤変換から守りたい場合は？",
-          "a": "本ツールには繁簡変換ルールが内蔵されており、整形と同時に繁→簡または簡→繁を完了できます。より精密な「専門用語保護辞書」（人名・地名・専門用語の誤変換防止）や台湾繁体↔香港繁体↔日本新字体の細分相互変換が必要なら、[簡繁変換](../chinese-conversion) ツールをお使いください。両ツールは同じ保護辞書形式を共有します。整形後にさらに一括置換、章節の正規表現抽出、不適切表現フィルタリングが必要な場合は、[テキスト処理ツール](../text-toolbox) と連携できます。"
+          "a": "本ツールには繁簡変換ルールが内蔵されており、整形と同時に繁→簡または簡→繁を完了できます。より精密な「専門用語保護辞書」（人名・地名・専門用語の誤変換防止）や台湾繁体↔香港繁体↔日本新字体の細分相互変換が必要なら、[簡繁変換](../chinese-conversion) ツールをお使いください。両ツールは同じ保護辞書形式を共有します。整形後にさらに一括置換、章タイトルの正規表現抽出、不適切表現フィルタリングが必要な場合は、[テキスト処理ツール](../text-toolbox) と連携できます。"
         },
         {
           "q": "小説整理時に本文や会話が誤って削除されることはありますか？重複行ルールはどのように広告を識別しますか？",
-          "a": "重複行は「3行以上連続して完全に同一」のコンテンツ（例：繰り返し表示されるウェブサイト広告「本書初出：xxx」）のみを識別します。本文中のキャラクターの短い返答（「うん」「そうだ」など）は、連続重複パターンを検出するため誤削除されません。処理前に原本をバックアップし、処理後に文字数の変化（正文文字数の変化は5%未満が目安）を確認することをお勧めします。"
+          "a": "重複行は「連続して完全に同一」のコンテンツ（例：繰り返し表示されるウェブサイト広告「本書初出：xxx」）のみを識別します。本文中のキャラクターの短い返答（「うん」「そうだ」など）は、連続重複パターンを検出するため誤削除されません。処理前に原本をバックアップし、処理後に文字数の変化（本文文字数の変化は5%未満が目安）を確認することをお勧めします。"
         },
         {
           "q": "アップロードした小説はサーバーに保存されますか？オープンソースですか？",
@@ -247,7 +262,7 @@
       "description": "正規表現マッチング・ソート・フィルタリングなどを統合したテキスト一括処理ツール"
     },
     "dataBatch": {
-      "title": "テキスト処理ツール（自用）",
+      "title": "データ一括処理",
       "description": "Excel 表データの一括重複削除・列抽出・テキスト結合、複数ルールを順次実行"
     },
     "textJoiner": {
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "AI思想家ラウンドテーブル",
       "imgprompt": "AI画像プロンプト",
-      "lives": "千世書 人生シミュレーター",
-      "learndata": "LearnData オープンソースノート"
+      "learndata": "LearnData オープンソースノート",
+      "hub365": "365 オープンソース"
     }
   },
   "Metadata": {
     "title": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",
-    "description": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。",
+    "description": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。30+ AI エンジン。",
     "homeTitle": "ToolsByAI ツールセット",
     "homeDescription": "19 ツール。多言語翻訳、テキスト処理、JSONデータ変換など、開発者とクリエイターの効率向上を支援。",
     "ogTitle": "ToolsByAI | 無料で使えるAI翻訳＆データ処理ツール集",
-    "ogDescription": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。25+ AI エンジン。"
+    "ogDescription": "ToolsByAI、19 個の無料ツール：字幕・Markdown・JSON i18n 翻訳、テキストや JSON 一括処理。30+ AI エンジン。"
   },
   "CopyToClipboard": {
     "empty": "内容が空です。コピーする必要はありません",
@@ -343,7 +358,7 @@
     "conversionNone": "変換なし",
     "lineEndNumbers": "行末数字を削除",
     "specialStartLabel": "結合しない行頭の文字",
-    "specialStartPlaceholder": "例：書名、まえがき...",
+    "specialStartPlaceholder": "例：書名、まえがき…",
     "specialStartAria": "結合しない行頭の文字",
     "filterLabel": "コンテンツフィルタリング",
     "filterPlaceholder": "フィルタリングキーワードを入力（カンマ区切り）",

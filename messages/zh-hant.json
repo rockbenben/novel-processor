@@ -20,8 +20,8 @@
     "configuration": "配置選項",
     "operation": "操作",
     "optional": "可選",
-    "pleaseWait": "請稍等...",
-    "pasteUploadContent": "或在此輸入、粘貼文字",
+    "pleaseWait": "請稍等…",
+    "pasteUploadContent": "或在此輸入、貼上文字",
     "example": "示例",
     "sourceLanguage": "源語言",
     "targetLanguage": "目標語言",
@@ -54,10 +54,10 @@
     "contextAwareTranslation": "上下文關聯翻譯",
     "contextAwareTranslationTooltip": "結合上下文語境進行翻譯，提升連貫性和準確度（僅 AI 模型支援）",
     "multiLanguageMode": "多語言模式",
-    "multiLanguageModeTooltip": "同時翻譯為多種語言，分別保存為獨立檔案",
+    "multiLanguageModeTooltip": "同時翻譯為多種語言，分別儲存為獨立檔案",
     "translate": "開始翻譯",
     "totalLanguages": "目標語言數：",
-    "resetUploadTooltip": "清空當前輸入內容和已上傳檔案",
+    "resetUploadTooltip": "清空目前輸入內容和已上傳檔案",
     "resetUploadSuccess": "已清空",
     "extractText": "提取純文字",
     "translationResult": "翻譯結果",
@@ -83,12 +83,12 @@
     "sameLanguageTarget": "源語言與目標語言相同，已自動調整目標語言為",
     "sameLanguageSource": "源語言與目標語言相同，已自動調整源語言為",
     "enterApiKey": "請輸入 API 金鑰或切換至免費 API。",
-    "enterApiUrl": "請在「更多 Provider 設定」中配置介面地址。",
+    "enterApiUrl": "請在「更多 Provider 設定」中配置介面位址。",
     "serviceUnavailable": "{service} 暫時連不上：請檢查網路與服務位址是否可用，稍後再試，或換一個翻譯服務。",
     "serviceUnavailableSwitched": "{service} 暫時連不上，已自動切換到 {fallback}。如需繼續使用原服務，請檢查後在設定中切回。",
     "noFileUploaded": "請先上傳需要處理的檔案。",
     "translationExported": "翻譯完成，檔案已匯出",
-    "noSourceText": "請輸入或粘貼文字內容。",
+    "noSourceText": "請輸入或貼上文字內容。",
     "textExtracted": "已提取文字，",
     "sourceArea": "輸入區",
     "resultArea": "結果區",
@@ -97,8 +97,8 @@
     "updateCount": "已更新條目數",
     "startProcess": "開始處理",
     "result": "處理結果",
-    "exportSettingTooltip": "匯出配置到檔案",
-    "importSettingTooltip": "從檔案匯入配置",
+    "exportSettingTooltip": "匯出設定到檔案",
+    "importSettingTooltip": "從檔案匯入設定",
     "exportSettingSuccess": "設定已匯出",
     "exportSettingError": "匯出失敗，請重試",
     "dictLoadFailed": "轉換字典載入失敗，請檢查網路或重新整理頁面",
@@ -131,16 +131,16 @@
     "copyAllFailed": "複製全部",
     "closeFailedLinesModal": "關閉",
     "failedLanguagesTitle": "翻譯失敗 {count} 種語言",
-    "failedLanguagesDesc": "這幾種語言的所有批次都翻掛了——常見於本地 LLM 抽風、API 限流或模型拒譯特定語種。可點「複製語言代碼」拿到清單，下次只對它們重跑（在「多語言設定」裡貼上即可），其它語言走快取不重翻。",
+    "failedLanguagesDesc": "這幾種語言的所有批次都翻譯失敗了——常見於本地 LLM 異常、API 限流或模型拒譯特定語種。可點「複製語言代碼」拿到清單，下次只對它們重跑（在「多語言設定」裡貼上即可），其它語言走快取不重翻。",
     "copyAllFailedLanguages": "複製語言代碼",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "需配置",
     "apiStatusConfigured": "已填寫",
     "apiStatusTesting": "測試中",
-    "apiStatusConnected": "✓ 已連接",
-    "apiStatusFailed": "連接失敗",
+    "apiStatusConnected": "✓ 已連線",
+    "apiStatusFailed": "連線失敗",
     "apiStatusTimeout": "連線逾時",
-    "testConnection": "測試連接",
+    "testConnection": "測試連線",
     "moreProviderSettings": "更多 Provider 設定",
     "fileExported": "已匯出檔案：{fileName}",
     "exportFailed": "匯出檔案失敗：{fileName}",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "介面回傳 403 禁止存取，請在「更多 Provider 設定」中開啟「中轉 API」",
     "errorHintCors": "無法連線到該位址：請檢查位址是否正確，並確認服務已允許跨來源（CORS）。自建閘道與本機模型需要自行開啟，或改用你自己的中轉 API",
     "errorHintGeminiKey": "無法連線 Gemini：請先檢查網路（部分網路環境無法直連 Google 服務）。若網路正常，則可能是 Google 自 2026-06-19 起拒絕「無限制 API Key」——請在 AI Studio 重新產生金鑰（預設已限制），或在 Google Cloud 主控台為舊金鑰新增 Gemini API 限制",
-    "rateLimitCooldown": "請求過於頻繁，已自動暫停片刻後重試"
+    "rateLimitCooldown": "請求過於頻繁，已自動暫停片刻後重試",
+    "faqHeading": "常見問題",
+    "homeIndexEyebrow": "工具索引",
+    "homeCategoryEyebrow": "{n} 個分類",
+    "openNavigation": "打開導覽",
+    "goHome": "返回首頁",
+    "primaryNav": "主導覽",
+    "toggleTheme": "切換主題",
+    "communityLinks": "社群連結",
+    "viewOnGitHub": "在 GitHub 檢視",
+    "toolCategories": "工具分類",
+    "searchLanguage": "搜尋語言",
+    "selectLanguage": "選擇語言",
+    "noMatchFound": "無匹配結果",
+    "backToTop": "回到頂端",
+    "exportOptions": "匯出選項"
   },
   "tools": {
     "subtitleTranslator": {
@@ -195,7 +210,7 @@
     },
     "mdTranslator": {
       "title": "Markdown 翻譯",
-      "description": "批次翻譯 Markdown 文檔，保留格式和代碼"
+      "description": "批次翻譯 Markdown 文件，保留格式和代碼"
     },
     "textSplitter": {
       "title": "文字分割",
@@ -209,23 +224,23 @@
       "title": "小說排版整理",
       "description": "一鍵修復下載小說的格式問題，智慧換行排版",
       "metaTitle": "小說排版整理工具 - 網文 TXT 換行、章節分割、Kindle 推送",
-      "metaDescription": "網文 TXT 智能排版工具，一鍵修復下載小說的段落誤切、空行、章節標題、廣告橫幅、繁簡混用，支援 300 萬字超長篇秒級處理。",
+      "metaDescription": "網文 TXT 智慧排版工具，一鍵修復下載小說的段落誤切、空行、章節標題、廣告橫幅、繁簡混用，支援 300 萬字超長篇秒級處理。",
       "faq": [
         {
           "q": "從筆趣閣等網站下載或從網頁複製的 TXT 小說格式亂，這工具能修復哪些問題？",
-          "a": "專治網文 TXT 7 大亂象：段落被誤切成短行、每段末尾多餘空行、章節標題沒換行、段首沒縮進、廣告行（「更多小說請訪問 xxx」「掃碼關注公眾號」）混雜、全形半形空格亂、繁簡字體混用。不僅適用於筆趣閣下載，也適用於瀏覽器複製貼上、Word 匯出 TXT、同人文整理等場景。勾選規則一次批次修復，也可單獨啟用某項。支援處理 300 萬字以上超長小說，速度不受檔案大小影響。"
+          "a": "專治網文 TXT 7 大亂象：段落被誤切成短行、每段末尾多餘空行、章節標題沒換行、段首沒縮排、廣告行（「更多小說請訪問 xxx」「掃碼關注公眾號」）混雜、全形半形空格亂、繁簡字體混用。不僅適用於筆趣閣下載，也適用於瀏覽器複製貼上、Word 匯出 TXT、同人文整理等場景。勾選規則一次批次修復，也可單獨啟用某項。支援處理 300 萬字以上超長小說，速度不受檔案大小影響。"
         },
         {
           "q": "整理好的 TXT 能直接用於 Kindle、微信讀書、掌閱閱讀嗎？章節目錄會自動產生嗎？",
           "a": "處理後的 TXT 符合 Kindle（推送郵箱）、微信讀書（本地匯入）、掌閱（WiFi 傳書）、靜讀天下、FBReader 的格式要求。啟用「章節分割」後會在每章前加空行，Kindle 可自動產生目錄。微信讀書建議先用 Calibre 轉 EPUB 再匯入以獲得最佳目錄體驗。TTS 聽書用戶啟用「去除重複行」+「內容篩選」後可避免朗讀廣告內容。"
         },
         {
-          "q": "網文是繁體版（台灣/香港），想轉成簡體閱讀，或要保留人名地名不被誤轉，怎麼辦？",
-          "a": "本工具自帶繁簡轉換規則，可在排版整理同時完成繁→簡或簡→繁；若需要更精細的「專有名詞保護詞典」（人名、地名、術語不被誤轉）和台灣繁體↔香港繁體↔日本新字體之間的細分互轉，請用 [簡繁轉換](../chinese-conversion) 工具，兩者共用同一份保護詞典格式。整理完成後想對文字做進一步的批次替換、章節正則擷取、敏感詞過濾，可接 [文字處理神器](../text-toolbox)。"
+          "q": "網文是繁體版（臺灣/香港），想轉成簡體閱讀，或要保留人名地名不被誤轉，怎麼辦？",
+          "a": "本工具自帶繁簡轉換規則，可在排版整理同時完成繁→簡或簡→繁；若需要更精細的「專有名詞保護詞典」（人名、地名、術語不被誤轉）和臺灣繁體↔香港繁體↔日本新字體之間的細分互轉，請用 [簡繁轉換](../chinese-conversion) 工具，兩者共用同一份保護詞典格式。整理完成後想對文字做進一步的批次替換、章節正則擷取、敏感詞過濾，可接 [文字處理神器](../text-toolbox)。"
         },
         {
           "q": "整理小說時會不會誤刪正文或對話？重複行規則如何識別廣告？",
-          "a": "重複行僅識別「連續 3 行以上完全相同」的內容（如多次出現的網站廣告「本書首發於 xxx」）。正文中人物簡短回答（如「好」「嗯」）不會被誤刪，因為檢測的是連續重複模式而非單行重複。建議處理前備份原文，完成後對比字數（正文字數變化應 < 5%）可確認安全。章節分割使用正則匹配「第X章」「Chapter X」「X、」等常見格式。"
+          "a": "重複行僅識別「連續完全相同」的內容（如多次出現的網站廣告「本書首發於 xxx」）。正文中人物簡短回答（如「好」「嗯」）不會被誤刪，因為檢測的是連續重複模式而非單行重複。建議處理前備份原文，完成後對比字數（正文字數變化應 < 5%）可確認安全。章節分割使用正則匹配「第X章」「Chapter X」「X、」等常見格式。"
         },
         {
           "q": "上傳的小說會儲存到伺服器嗎？開源嗎？",
@@ -235,8 +250,8 @@
       "features": [
         "修復網文 TXT 格式亂的 7 大問題（筆趣閣下載、網頁複製、Word 匯出均適用）",
         "智慧識別「第X章」「Chapter X」等章節標題自動分割",
-        "相鄰重復行識別（完全相同的連續行會被刪除，如重復廣告橫幅）",
-        "段首縮進（兩字元）、去除多餘空行、修復誤切短行",
+        "相鄰重複行識別（完全相同的連續行會被刪除，如重複廣告橫幅）",
+        "段首縮排（兩字元）、去除多餘空行、修復誤切短行",
         "繁體轉簡體、全角半角空格統一",
         "支援 300 萬字以上超長小說，處理速度快",
         "Kindle 推送郵箱、微信讀書、掌閱、靜讀天下相容"
@@ -276,7 +291,7 @@
     },
     "jsonSortClassify": {
       "title": "JSON 排序分組",
-      "description": "數組排序和分組，支援自訂規則"
+      "description": "陣列排序和分組，支援自訂規則"
     },
     "jsonMatchUpdate": {
       "title": "JSON 匹配更新",
@@ -306,21 +321,21 @@
     "externalTools": {
       "legendtalk": "AI 思想家圓桌",
       "imgprompt": "AI 繪圖提示詞",
-      "lives": "千世書 人生模擬",
-      "learndata": "LearnData 開源筆記"
+      "learndata": "LearnData 開源筆記",
+      "hub365": "365 開源計畫"
     }
   },
   "Metadata": {
     "title": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
-    "description": "ToolsByAI 集合 19 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。25+ AI 引擎，全前端處理。",
+    "description": "ToolsByAI 集合 19 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。30+ AI 引擎，全前端處理。",
     "homeTitle": "ToolsByAI 工具集",
     "homeDescription": "19 款實用工具，涵蓋多語言翻譯、文字處理、JSON 編輯和資料轉換，助力開發者和創作者提升效率。",
     "ogTitle": "ToolsByAI | 免費開源的 AI 翻譯與資料處理工具集",
-    "ogDescription": "ToolsByAI 集合 19 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。25+ AI 引擎，全前端處理。"
+    "ogDescription": "ToolsByAI 集合 19 款免費工具：字幕、Markdown、JSON i18n 翻譯，文字/JSON 批次處理。30+ AI 引擎，全前端處理。"
   },
   "CopyToClipboard": {
     "empty": "內容為空，無需複製",
-    "unsupported": "當前瀏覽器不支持剪貼板操作，請嘗試手動複製或使用其他瀏覽器",
+    "unsupported": "目前瀏覽器不支援剪貼簿操作，請嘗試手動複製或使用其他瀏覽器",
     "success": "已複製",
     "failure": "複製失敗，請手動複製"
   },
@@ -329,11 +344,11 @@
     "description": "規則將優先於內建字典生效，命中的欄位不會被 OpenCC 轉換。匯入時同源重複會自動去除（保留最後一條）。",
     "directionS2t": "簡➔繁",
     "directionT2s": "繁➔簡",
-    "confirmClearAll": "確認清空當前方向所有規則？",
+    "confirmClearAll": "確認清空目前方向所有規則？",
     "addRule": "加入規則",
     "importBtn": "匯入",
     "exportAll": "匯出全部",
-    "importHint": "匯入支援 OpenCC 格式文字（每行 key[TAB]value，# 開頭為註釋）；規則將追加到當前方向，同源重複自動去除。",
+    "importHint": "匯入支援 OpenCC 格式文字（每行 key[TAB]value，# 開頭為註釋）；規則將追加到目前方向，同源重複自動去除。",
     "puaSanitized": "已自動剔除 PUA 字元（內部佔位符段）",
     "clearedDirection": "已清空 {direction} 方向規則",
     "deletedNRules": "已刪除 {count} 條規則",
@@ -343,7 +358,7 @@
     "importedWithDedup": "已匯入 {added} 條到 {direction}，自動去除 {dedup} 條同源重複",
     "imported": "已匯入 {added} 條到 {direction} 方向",
     "autoDeduped": "已自動整理 {count} 條同源重複規則",
-    "statusCounts": "當前 {total} 條·有效 {valid} 條",
+    "statusCounts": "目前 {total} 條·有效 {valid} 條",
     "showingIssues": "正在顯示 {count} 條問題規則",
     "clearFilter": "清除過濾",
     "emptyCount": "⚠ {count} 條空值",
@@ -391,7 +406,7 @@
     "conversionNone": "不變",
     "lineEndNumbers": "清除行尾數字",
     "specialStartLabel": "不合併的開頭文字",
-    "specialStartPlaceholder": "例如：書名、卷首語...",
+    "specialStartPlaceholder": "例如：書名、卷首語…",
     "specialStartAria": "不合併的開頭文字",
     "filterLabel": "內容篩選",
     "filterPlaceholder": "輸入篩選關鍵詞（逗號分隔）",
@@ -414,11 +429,11 @@
     "chapterReorderBtn": "章節重排"
   },
   "feedback": {
-    "feedback1": "反饋與建議",
-    "feedback2": "如果你在使用過程中遇到了問題，或者有任何建議和想法，歡迎隨時告訴我！你的反饋將直接影響到未來功能的開發和改進，幫助我們一起打造更符合大家需求的工具。",
-    "feedback3": "請詳細描述一下你的使用場景或遇到的問題，或者分享你的創意想法。我會認真看每一條反饋，並儘快做出調整和優化。",
+    "feedback1": "回饋與建議",
+    "feedback2": "如果你在使用過程中遇到了問題，或者有任何建議和想法，歡迎隨時告訴我！你的回饋將直接影響到未來功能的開發和改進，幫助我們一起打造更符合大家需求的工具。",
+    "feedback3": "請詳細描述一下你的使用場景或遇到的問題，或者分享你的創意想法。我會認真看每一條回饋，並儘快做出調整和優化。",
     "reaction0": "贊一個",
-    "reaction1": "支持下",
+    "reaction1": "支援下",
     "reaction2": "有點酷",
     "reaction3": "啥玩意",
     "reaction4": "看不懂",

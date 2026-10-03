@@ -36,7 +36,7 @@
     "cancelKeepsProgress": "İptal etmek çevrilenleri korur",
     "dismiss": "Kapat",
     "translationAPI": "Çeviri API'si",
-    "enter": "Giriş",
+    "enter": "Lütfen girin",
     "getApiKey": "API Anahtarı Al",
     "charLabel": "Karakter",
     "lineLabel": "Satır",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "API 403 Forbidden döndürdü — \"Daha fazla Provider ayarı\" bölümünde \"API Aktarıcı\"yı açın",
     "errorHintCors": "Bu adrese bağlanılamıyor — adresi ve servisin çapraz kaynak isteklerine (CORS) izin verip vermediğini kontrol edin. Kendi barındırdığınız ağ geçitleri ve yerel modellerde bunu kendiniz açmalısınız ya da kendi API Aktarıcınızı kullanın",
     "errorHintGeminiKey": "Gemini'ye ulaşılamıyor: önce ağınızı kontrol edin (bazı ağlar Google hizmetlerine doğrudan erişemez). Ağ sorunsuzsa, 19 Haziran 2026'dan itibaren Google kısıtlamasız API anahtarlarını reddediyor — anahtarınızı AI Studio'da yeniden oluşturun (varsayılan olarak kısıtlı) veya Google Cloud Console'da eski anahtara Gemini API kısıtlaması ekleyin",
-    "rateLimitCooldown": "İstek sınırına ulaşıldı — kısa bir duraklamadan sonra otomatik olarak yeniden denenecek"
+    "rateLimitCooldown": "İstek sınırına ulaşıldı — kısa bir duraklamadan sonra otomatik olarak yeniden denenecek",
+    "faqHeading": "Sık sorulan sorular",
+    "homeIndexEyebrow": "Dizin",
+    "homeCategoryEyebrow": "{n} kategori",
+    "openNavigation": "Gezinmeyi aç",
+    "goHome": "Ana sayfaya git",
+    "primaryNav": "Ana gezinme",
+    "toggleTheme": "Temayı değiştir",
+    "communityLinks": "Topluluk bağlantıları",
+    "viewOnGitHub": "GitHub’da görüntüle",
+    "toolCategories": "Araç kategorileri",
+    "searchLanguage": "Dil ara",
+    "selectLanguage": "Dil seç",
+    "noMatchFound": "eşleşme yok",
+    "backToTop": "Yukarı çık",
+    "exportOptions": "Dışa aktarma seçenekleri"
   },
   "tools": {
     "subtitleTranslator": {
@@ -225,7 +240,7 @@
         },
         {
           "q": "Yinelenen satırları temizlemek gerçek metni veya diyalogları silebilir mi?",
-          "a": "Yinelenen satırlar yalnızca «3 veya daha fazla ardışık özdeş satır» olduğunda (tekrar eden reklamlar gibi) tanımlanır. Karakterlerin kısa yanıtları (örn. «evet» veya «tamam») yanlışlıkla kaldırılmaz. Önce yedek almanız ve sonrasında karakter sayısını kontrol etmeniz önerilir (değişim %5'ten az olmalıdır)."
+          "a": "Yinelenen satırlar yalnızca «ardışık özdeş satır» olduğunda (tekrar eden reklamlar gibi) tanımlanır. Karakterlerin kısa yanıtları (örn. «evet» veya «tamam») yanlışlıkla kaldırılmaz. Önce yedek almanız ve sonrasında karakter sayısını kontrol etmeniz önerilir (değişim %5'ten az olmalıdır)."
         },
         {
           "q": "Romanım sunucuya yükleniyor mu? Araç açık kaynak mı?",
@@ -247,7 +262,7 @@
       "description": "Toplu işlem için regex eşleştirme, sıralama, filtreleme ve diğer işlevleri entegre eder"
     },
     "dataBatch": {
-      "title": "Kişisel Metin İşleyici",
+      "title": "Toplu Veri İşleyici",
       "description": "Excel toplu veri işleme — tekilleştirme, sütun çıkarma, metin birleştirme, zincirli kurallar"
     },
     "textJoiner": {
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "AI Düşünürler Yuvarlak Masası",
       "imgprompt": "AI Görsel İstemleri",
-      "lives": "Thousand Lives",
-      "learndata": "LearnData Açık Kaynak Notlar"
+      "learndata": "LearnData Açık Kaynak Notlar",
+      "hub365": "365 Açık Kaynak"
     }
   },
   "Metadata": {
     "title": "ToolsByAI - Geliştiriciler İçin Yapay Zeka ve Veri Araçları",
-    "description": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 19 ücretsiz açık kaynak araç. 25+ AI motoru.",
+    "description": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 19 ücretsiz açık kaynak araç. 30+ AI motoru.",
     "homeTitle": "ToolsByAI Paketi",
     "homeDescription": "Çeviri, metin, JSON ve veri dönüşümü için 19 araç. Geliştirici ve yaratıcı verimliliğini artırın.",
-    "ogTitle": "ToolsByAI - Ücretsiz ve Açık Kaynak Geliştirici Araçları",
-    "ogDescription": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 19 ücretsiz açık kaynak araç. 25+ AI motoru."
+    "ogTitle": "ToolsByAI - Geliştiriciler İçin Yapay Zeka ve Veri Araçları",
+    "ogDescription": "ToolsByAI: altyazı, Markdown, JSON i18n çevirisi ve metin/JSON toplu işleme için 19 ücretsiz açık kaynak araç. 30+ AI motoru."
   },
   "CopyToClipboard": {
     "empty": "İçerik boş, kopyalanacak bir şey yok",
@@ -329,7 +344,7 @@
     "description": "Çince web romanlarının metin düzenlemesi için tasarlanmış olan bu araç, indirilen Çince romanların biçimlendirme sorunlarını tek tıkla giderir. Akıllı satır sonu, 第X章 bölüm bölme, paragraf girintisi, basitleştirilmiş/geleneksel dönüştürme, yinelenen satır kaldırma ve istenmeyen içerik filtreleme gibi özellikleri entegre ederek karmaşık roman metnini düzenli ve okunması kolay hale getirir.",
     "errorNoFile": "İşlenecek dosyayı yükleyin",
     "infoNoChapters": "Geçerli bölüm başlığı tanınmadı; yeniden sıralama yapılamaz",
-    "reorderComplete": "Bölüm yeniden sıralaması tamamlandı ({chapters} bölüm toplam)",
+    "reorderComplete": "Bölüm yeniden sıralaması tamamlandı (toplam {chapters} bölüm)",
     "typesetting": "Paragraf düzeni",
     "hintSmartLineBreak": "Birden fazla satıra bölünmüş paragrafları yeniden birleştirir",
     "indent": "İlk satır girintisi",

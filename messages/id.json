@@ -31,12 +31,12 @@
     "noTargetLanguage": "Pilih setidaknya satu bahasa target.",
     "translationError": "Terjemahan gagal",
     "translationCancelled": "Terjemahan dibatalkan",
-    "translationStopped": "Berhenti",
+    "translationStopped": "Dihentikan",
     "resumeFromCache": "Baris yang sudah diterjemahkan tersimpan di cache — terjemahkan lagi untuk melanjutkan dari titik berhenti",
-    "cancelKeepsProgress": "Membatalkan tetap menyimpan hasil yang sudah ada",
+    "cancelKeepsProgress": "Pembatalan tetap menyimpan hasil yang sudah ada",
     "dismiss": "Tutup",
     "translationAPI": "API Terjemahan",
-    "enter": "Masuk",
+    "enter": "Masukkan",
     "getApiKey": "Dapatkan Kunci API",
     "charLabel": "Karakter",
     "lineLabel": "Baris",
@@ -118,14 +118,14 @@
     "customExportFilenameTooltip": "'{'name'}' = nama file asli, '{'lang'}' = bahasa, '{'ext'}' = ekstensi, '{'date'}' = tanggal, '{'time'}' = waktu; dalam mode multibahasa, '{'lang'}' ditambahkan otomatis untuk mencegah bentrokan nama",
     "partialFailureTitle": "{count} baris gagal diterjemahkan",
     "partialFailureDesc": "Baris-baris itu tetap berisi teks asli, jadi struktur berkas utuh. Coba lagi hanya mengirim ulang baris tersebut; sisanya dari cache.",
-    "partialFailureWhy": "Umum pada layanan gratis dan swa-inang — biasanya bukan masalah pengaturan Anda.",
+    "partialFailureWhy": "Umum pada layanan gratis dan self-hosted — biasanya bukan masalah pengaturan Anda.",
     "retryFailedLines": "Coba lagi baris yang gagal",
     "viewFailedLines": "Lihat baris yang gagal",
     "failedLinesModalTitle": "{count} baris yang gagal",
     "copyAllFailed": "Salin semua",
     "closeFailedLinesModal": "Tutup",
     "failedLanguagesTitle": "{count} bahasa target gagal",
-    "failedLanguagesDesc": "Semua batch untuk bahasa-bahasa ini gagal — biasanya karena masalah LLM lokal, batas tingkat API, atau penolakan model terhadap bahasa tertentu. Salin kode dan jalankan ulang hanya untuk mereka (tempelkan di 'Pengaturan Multi-Bahasa'); yang lain akan dilewati dari cache.",
+    "failedLanguagesDesc": "Semua batch untuk bahasa-bahasa ini gagal — biasanya karena masalah LLM lokal, batas laju API, atau penolakan model terhadap bahasa tertentu. Salin kode dan jalankan ulang hanya untuk mereka (tempelkan di 'Pengaturan Multi-Bahasa'); yang lain akan dilewati dari cache.",
     "copyAllFailedLanguages": "Salin kode bahasa",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Perlu konfig.",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "API mengembalikan 403 Forbidden — aktifkan \"Relay API\" di \"Pengaturan Provider lain\"",
     "errorHintCors": "Tidak dapat terhubung ke alamat ini — periksa alamatnya dan pastikan layanan mengizinkan permintaan lintas-asal (CORS). Gateway mandiri dan model lokal harus mengaktifkannya sendiri, atau gunakan Relay API milik Anda",
     "errorHintGeminiKey": "Tidak dapat terhubung ke Gemini: periksa jaringan Anda terlebih dahulu (beberapa jaringan tidak dapat mengakses layanan Google secara langsung). Jika jaringan baik-baik saja, sejak 19 Juni 2026 Google menolak kunci API tanpa pembatasan — buat ulang kunci di AI Studio (dibatasi secara default) atau tambahkan pembatasan Gemini API pada kunci lama di Google Cloud Console",
-    "rateLimitCooldown": "Batas permintaan tercapai — jeda sejenak, akan dicoba ulang otomatis"
+    "rateLimitCooldown": "Batas permintaan tercapai — jeda sejenak, akan dicoba ulang otomatis",
+    "faqHeading": "Pertanyaan umum",
+    "homeIndexEyebrow": "Indeks",
+    "homeCategoryEyebrow": "{n} kategori",
+    "openNavigation": "Buka navigasi",
+    "goHome": "Kembali ke beranda",
+    "primaryNav": "Navigasi utama",
+    "toggleTheme": "Ganti tema",
+    "communityLinks": "Tautan komunitas",
+    "viewOnGitHub": "Lihat di GitHub",
+    "toolCategories": "Kategori alat",
+    "searchLanguage": "Cari bahasa",
+    "selectLanguage": "Pilih bahasa",
+    "noMatchFound": "Tidak ada hasil",
+    "backToTop": "Kembali ke atas",
+    "exportOptions": "Opsi ekspor"
   },
   "tools": {
     "subtitleTranslator": {
@@ -221,7 +236,7 @@
         },
         {
           "q": "Apakah baris cerita utama akan terhapus saat menggunakan opsi hapus duplikat?",
-          "a": "Tidak. Opsi ini hanya menghapus konten yang berulang secara berturutan (3 baris identik atau lebih). Dialog pendek tetap aman. Disarankan backup sebelum diproses."
+          "a": "Tidak. Opsi ini hanya menghapus konten yang berulang secara berturutan (baris identik atau lebih). Dialog pendek tetap aman. Disarankan backup sebelum diproses."
         },
         {
           "q": "Apakah novel yang diunggah disimpan di server? Open source?",
@@ -243,7 +258,7 @@
       "description": "Pencocokan regex, pengurutan, penyaringan, dan pemrosesan teks batch"
     },
     "dataBatch": {
-      "title": "Pemrosesan Teks Pribadi",
+      "title": "Pemrosesan Data Batch",
       "description": "Pemrosesan data Excel batch — deduplikasi, ekstraksi kolom, gabung teks, aturan berurutan"
     },
     "textJoiner": {
@@ -306,8 +321,8 @@
     "externalTools": {
       "legendtalk": "Meja Bundar Pemikir AI",
       "imgprompt": "Prompt Gambar AI",
-      "lives": "Thousand Lives",
-      "learndata": "LearnData Catatan Sumber Terbuka"
+      "learndata": "LearnData Catatan Sumber Terbuka",
+      "hub365": "365 Sumber Terbuka"
     }
   },
   "Metadata": {
@@ -315,7 +330,7 @@
     "description": "ToolsByAI: 19 alat open source untuk menerjemahkan subtitle, Markdown, dan JSON i18n. Tanpa instalasi, berbasis browser.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "19 alat untuk terjemahan, teks, JSON, dan konversi data. Tingkatkan efisiensi pengembang dan kreator.",
-    "ogTitle": "ToolsByAI - Alat Dev AI Gratis dan Open Source",
+    "ogTitle": "ToolsByAI - Peralatan Data & Terjemahan AI untuk Developer",
     "ogDescription": "ToolsByAI: 19 alat open source untuk menerjemahkan subtitle, Markdown, dan JSON i18n. Tanpa instalasi, berbasis browser."
   },
   "CopyToClipboard": {
@@ -423,7 +438,7 @@
     "reaction3": "Apa?",
     "reaction4": "Bingung",
     "placeholder": "Tinggalkan pesan (tidak perlu login, email opsional untuk balasan)",
-    "metaDescription": "Halaman feedback Tools By AI: laporkan bug, sarankan fitur, atau bagikan ide. Berbasis Waline, posting anonim, gratis."
+    "metaDescription": "Halaman Umpan Balik Tools By AI: laporkan bug, sarankan fitur, atau bagikan ide. Berbasis Waline, posting anonim, gratis."
   },
   "AppError": {
     "title": "Halaman gagal dimuat",

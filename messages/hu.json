@@ -2,7 +2,7 @@
   "common": {
     "exportFolder": "Exportálási mappa",
     "exportFolderDefault": "Az exportálások az alapértelmezett letöltési mappába kerülnek.",
-    "exportFolderBlocked": "A böngésző nem fogadja el magát az Asztalt, a Dokumentumokat, a Letöltéseket vagy a felhasználói mappát — válassz egy alappalát vagy bármilyen más mappát.",
+    "exportFolderBlocked": "A böngésző nem fogadja el magát az Asztalt, a Dokumentumokat, a Letöltéseket vagy a felhasználói mappát — válassz egy almappát vagy bármilyen más mappát.",
     "exportFolderCurrent": "Az exportálások ide kerülnek: {dir}",
     "exportFolderReset": "Vissza a letöltési mappához",
     "exportFolderFailed": "Nem sikerült beállítani az exportálási mappát.",
@@ -33,7 +33,7 @@
     "translationCancelled": "A fordítás megszakítva",
     "translationStopped": "Leállítva",
     "resumeFromCache": "A kész sorok gyorsítótárban vannak — fordítsd újra a folytatáshoz",
-    "cancelKeepsProgress": "A megszakítás megőrzi a már lefordítottrészt",
+    "cancelKeepsProgress": "A megszakítás megőrzi a már lefordított részt",
     "dismiss": "Elvetés",
     "translationAPI": "Fordítási API",
     "enter": "Bevitel",
@@ -130,7 +130,7 @@
     "customExportFilename": "Exportálandó fájlnév mintája",
     "customExportFilenameTooltip": "'{'name'}' = eredeti fájlnév, '{'lang'}' = nyelv, '{'ext'}' = kiterjesztés, '{'date'}' = dátum, '{'time'}' = idő; többnyelvű módban a '{'lang'}' automatikusan hozzáadódik a névütközések elkerülése érdekében",
     "partialFailureTitle": "{count} sor sikertelen",
-    "partialFailureDesc": "Ezek a sorok megtartották az eredeti szövegüket, így a fájl szerkezete sértetlen marad. Az újrapróbálkozás csak ezeket küldi újra; a többi a gyorsítótárbóljön.",
+    "partialFailureDesc": "Ezek a sorok megtartották az eredeti szövegüket, így a fájl szerkezete sértetlen marad. Az újrapróbálkozás csak ezeket küldi újra; a többi a gyorsítótárból jön.",
     "partialFailureWhy": "Gyakori az ingyenes és saját üzemeltetésű végpontoknál — általában nem jelent problémát a beállításaidban.",
     "retryFailedLines": "Hibás sorok újrapóbálása",
     "viewFailedLines": "Hibás sorok megtekintése",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "Az API 403-as tiltott hibát adott vissza — engedélyezd az \"API-továbbítást (relay)\" a \"További szolgáltatói beállítások\" alatt",
     "errorHintCors": "Nem érhető el ez a végpont — ellenőrizd a címet, és győződj meg arról, hogy a szolgáltatás engedélyezi a cross-origin (CORS) kéréseket. A saját üzemeltetésű átjáróknak és a helyi modelleknek ezt saját maguknak kell engedélyezniük, vagy használnod kell a saját API-továbbítódat",
     "errorHintGeminiKey": "A Gemini nem érhető el: először ellenőrizd a hálózatot (egyes hálózatok nem érik el közvetlenül a Google szolgáltatásait). Ha a hálózat rendben van, a Google 2026. június 19. óta elutasítja a korlátozás nélküli API-kulcsokat — generálj újra kulcsot az AI Studio-ban (alapértelmezetten korlátozott), vagy adj hozzá Gemini API korlátozást a régi kulcshoz a Google Cloud Console-ban",
-    "rateLimitCooldown": "Sebességhatár elérve — rövid szünet, automatikus újrapróbálkozás következik"
+    "rateLimitCooldown": "Sebességhatár elérve — rövid szünet, automatikus újrapróbálkozás következik",
+    "faqHeading": "Gyakori kérdések",
+    "homeIndexEyebrow": "Mutató",
+    "homeCategoryEyebrow": "{n} kategória",
+    "openNavigation": "Navigáció megnyitása",
+    "goHome": "Ugrás a kezdőlapra",
+    "primaryNav": "Fő navigáció",
+    "toggleTheme": "Téma váltása",
+    "communityLinks": "Közösségi linkek",
+    "viewOnGitHub": "Megtekintés a GitHubon",
+    "toolCategories": "Eszközkategóriák",
+    "searchLanguage": "Nyelv keresése",
+    "selectLanguage": "Nyelv kiválasztása",
+    "noMatchFound": "Nincs találat",
+    "backToTop": "Vissza a tetejére",
+    "exportOptions": "Exportálási beállítások"
   },
   "tools": {
     "subtitleTranslator": {
@@ -213,7 +228,7 @@
       "faq": [
         {
           "q": "A letöltött TXT-regényem formázása kaotikus — milyen hibákat tud javítani ez az eszköz?",
-          "a": "A webregény-TXT-k 7 gyakori problémáját javítja: rövid sorokra tört bekezdések, bekezdésvégi felesleges üres sorok, sortörés nélküli fejezetcímek, hiányzó bekezdésbehúzás, belekeveredett hirdetéssorok, következetlen teljes/szélességű szóközök, valamint vegyes hagyományos/egyszerűsített írásjegyek. Böngészős másolás-beillesztés, Word-ből exportált TXT, fanfic-gyűjtemények és hasonlók esetén is működik. Pipáld be a szükséges szabályokat, és egy menetben, kötegelve javítsd ki őket; mindegyik szabály külön is bekapcsolható. A 3 millió karaktert meghaladó regényeket is lassulás nélkül kezeli."
+          "a": "A webregény-TXT-k 7 gyakori problémáját javítja: rövid sorokra tört bekezdések, bekezdésvégi felesleges üres sorok, sortörés nélküli fejezetcímek, hiányzó bekezdésbehúzás, belekeveredett hirdetéssorok, következetlen teljes/fél szélességű szóközök, valamint vegyes hagyományos/egyszerűsített írásjegyek. Böngészős másolás-beillesztés, Word-ből exportált TXT, fanfic-gyűjtemények és hasonlók esetén is működik. Pipáld be a szükséges szabályokat, és egy menetben, kötegelve javítsd ki őket; mindegyik szabály külön is bekapcsolható. A 3 millió karaktert meghaladó regényeket is lassulás nélkül kezeli."
         },
         {
           "q": "A formázott TXT közvetlenül használható Kindle, FBReader és más e-olvasók esetén?",
@@ -237,7 +252,7 @@
         "Automatikusan felismeri és bontja az olyan fejezetcímeket, mint a 「第X章」 vagy a Chapter X",
         "Szomszédos ismétlődő sorok felismerése — az egymást követő azonos sorok, például ismételt hirdetéssávok eltávolítása",
         "Első sor behúzása (2 karakter), felesleges üres sorok törlése, hibásan eltört rövid sorok helyreállítása",
-        "Hagyományos–egyszerűsített átalakítás, teljes/szélességű szóközök normalizálása",
+        "Hagyományos–egyszerűsített átalakítás, teljes/fél szélességű szóközök normalizálása",
         "A 3 millió karakter feletti regényeket is gyorsan kezeli",
         "Kompatibilis a Kindle Send-to-Email, a Kobo, az FBReader és a Moon+ Reader szolgáltatással"
       ]
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "AI gondolkodók kerekasztala",
       "imgprompt": "AI képpromptok",
-      "lives": "Ezer élet",
-      "learndata": "LearnData nyílt forráskódú jegyzetek"
+      "learndata": "LearnData nyílt forráskódú jegyzetek",
+      "hub365": "365 Nyílt forráskód"
     }
   },
   "Metadata": {
     "title": "ToolsByAI | Ingyenes nyílt forráskódú AI fordító és adateszközök",
-    "description": "ToolsByAI: 19 ingyenes nyílt forráskódú eszköz feliratok, Markdown, JSON i18n fordításhoz, valamint szöveg- és JSON-kötegelt feldolgozáshoz. 25+ AI motor.",
+    "description": "ToolsByAI: 19 ingyenes nyílt forráskódú eszköz feliratok, Markdown, JSON i18n fordításhoz, valamint szöveg- és JSON-kötegelt feldolgozáshoz. 30+ AI motor.",
     "homeTitle": "ToolsByAI eszközkészlet",
     "homeDescription": "19 eszköz fordításhoz, szöveghez, JSON-hoz és adatkonverzióhoz. Növeld a fejlesztők és alkotók hatékonyságát.",
     "ogTitle": "ToolsByAI | Ingyenes nyílt forráskódú AI fordító és adateszközök",
-    "ogDescription": "ToolsByAI: 19 ingyenes nyílt forráskódú eszköz feliratok, Markdown, JSON i18n fordításhoz, valamint szöveg- és JSON-kötegelt feldolgozáshoz. 25+ AI motor."
+    "ogDescription": "ToolsByAI: 19 ingyenes nyílt forráskódú eszköz feliratok, Markdown, JSON i18n fordításhoz, valamint szöveg- és JSON-kötegelt feldolgozáshoz. 30+ AI motor."
   },
   "CopyToClipboard": {
     "empty": "A tartalom üres, nincs mit másolni",

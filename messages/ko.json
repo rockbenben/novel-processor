@@ -20,7 +20,7 @@
     "configuration": "설정",
     "operation": "작업",
     "optional": "선택사항",
-    "pleaseWait": "잠시만 기다려 주세요...",
+    "pleaseWait": "잠시만 기다려 주세요…",
     "pasteUploadContent": "또는 여기에 텍스트 입력/붙여넣기",
     "example": "예시",
     "sourceLanguage": "원본 언어",
@@ -77,7 +77,7 @@
     "sameLanguageTarget": "원본 언어와 목표 언어가 같습니다. 자동으로 목표 언어를 조정했습니다:",
     "sameLanguageSource": "원본 언어와 목표 언어가 같습니다. 자동으로 원본 언어를 조정했습니다:",
     "enterApiKey": "API 키를 입력하거나 무료 API로 전환하세요.",
-    "enterApiUrl": "\"더 많은 Provider 설정\"에서 API URL을 구성하세요.",
+    "enterApiUrl": "\"더 많은 프로바이더 설정\"에서 API URL을 구성하세요.",
     "serviceUnavailable": "{service}에 일시적으로 연결할 수 없습니다. 네트워크와 서비스 주소를 확인한 뒤 잠시 후 다시 시도하거나 다른 번역 서비스를 선택하세요.",
     "serviceUnavailableSwitched": "{service}에 일시적으로 연결할 수 없어 {fallback}(으)로 자동 전환했습니다. 계속 사용하려면 확인 후 설정에서 되돌리세요.",
     "noFileUploaded": "처리할 파일을 먼저 업로드하세요.",
@@ -92,7 +92,7 @@
     "startProcess": "처리 시작",
     "result": "처리 결과",
     "exportSettingTooltip": "파일로 설정 내보내기",
-    "importSettingTooltip": "파일에서 구성 가져오기",
+    "importSettingTooltip": "파일에서 설정 가져오기",
     "exportSettingSuccess": "설정을 내보냈습니다",
     "exportSettingError": "내보내기 실패, 다시 시도하세요",
     "dictLoadFailed": "변환 사전을 불러오지 못했습니다. 네트워크를 확인하거나 페이지를 새로고침하세요",
@@ -135,7 +135,7 @@
     "apiStatusFailed": "연결 실패",
     "apiStatusTimeout": "연결 시간 초과",
     "testConnection": "연결 테스트",
-    "moreProviderSettings": "더 많은 Provider 설정",
+    "moreProviderSettings": "더 많은 프로바이더 설정",
     "format": "포맷",
     "formatTooltip": "포맷: 빈 줄 및 앞뒤 공백 제거",
     "resultToSource": "결과 ➔ 원문",
@@ -151,7 +151,7 @@
     "generateJson": "JSON 생성",
     "networkUnavailable": "번역 서비스에 일시적으로 연결할 수 없습니다. 네트워크 문제이거나 서비스 측의 일시적인 문제일 수 있습니다. 잠시 후 다시 시도하거나 다른 번역 서비스로 전환하세요.",
     "translationTimeout": "번역 요청이 시간 초과되었습니다. 네트워크가 느리거나 서비스 응답이 느릴 수 있습니다. 잠시 후 다시 시도하거나 다른 번역 서비스로 전환하세요.",
-    "translationTimeoutLocal": "로컬 모델 번역이 시간 초과되었습니다. 흔한 원인: 동시 실행 수가 로컬 서버의 병렬 슬롯보다 많아 요청이 서버에서 대기하다 시간 초과되거나, 모델이 반복 출력 루프에 빠진 경우(대개 원본 언어 선택 오류)입니다. 이 서비스의 \"호출 매개변수 → 동시 번역 행수\"을 낮추거나 \"고급 설정 → 시간 초과\"을 늘리고, 선택한 원본 언어가 실제 텍스트와 일치하는지 확인하세요.",
+    "translationTimeoutLocal": "로컬 모델 번역이 시간 초과되었습니다. 흔한 원인: 동시 실행 수가 로컬 서버의 병렬 슬롯보다 많아 요청이 서버에서 대기하다 시간 초과되거나, 모델이 반복 출력 루프에 빠진 경우(대개 원본 언어 선택 오류)입니다. 이 서비스의 \"호출 매개변수 → 동시 번역 행수\"를 낮추거나 \"고급 설정 → 시간 초과\"를 늘리고, 선택한 원본 언어가 실제 텍스트와 일치하는지 확인하세요.",
     "langGroupCommon": "자주 사용",
     "langGroupEurope": "유럽",
     "langGroupMiddleEast": "중동",
@@ -178,11 +178,26 @@
     "errorHint429": "요청 한도를 초과했습니다. 나중에 다시 시도하세요",
     "errorHint456": "이번 기간의 번역 할당량을 모두 사용했습니다",
     "errorHint5xx": "서버 오류입니다. 나중에 다시 시도하세요",
-    "errorHintRelay": "네트워크 오류(CORS 제한일 수 있음). \"더 많은 Provider 설정\"에서 \"API 중계\"를 켜세요",
-    "errorHintRelay403": "API가 403 Forbidden을 반환했습니다. \"더 많은 Provider 설정\"에서 \"API 중계\"를 켜세요",
+    "errorHintRelay": "네트워크 오류(CORS 제한일 수 있음). \"더 많은 프로바이더 설정\"에서 \"API 중계\"를 켜세요",
+    "errorHintRelay403": "API가 403 Forbidden을 반환했습니다. \"더 많은 프로바이더 설정\"에서 \"API 중계\"를 켜세요",
     "errorHintCors": "이 주소에 연결할 수 없습니다. 주소가 올바른지, 서비스가 교차 출처 요청(CORS)을 허용하는지 확인하세요. 자체 구축 게이트웨이와 로컬 모델은 직접 켜야 하며, 본인의 API 중계를 사용할 수도 있습니다",
     "errorHintGeminiKey": "Gemini에 연결할 수 없습니다. 먼저 네트워크를 확인하세요(일부 네트워크에서는 Google 서비스에 직접 연결할 수 없습니다). 네트워크가 정상이라면 2026년 6월 19일부터 Google이 무제한 API 키를 거부하고 있습니다. AI Studio에서 키를 다시 생성하거나(기본적으로 제한됨) Google Cloud 콘솔에서 기존 키에 Gemini API 제한을 추가하세요",
-    "rateLimitCooldown": "요청 한도 도달 — 잠시 멈춘 뒤 자동으로 재시도합니다"
+    "rateLimitCooldown": "요청 한도 도달 — 잠시 멈춘 뒤 자동으로 재시도합니다",
+    "faqHeading": "자주 묻는 질문",
+    "homeIndexEyebrow": "색인",
+    "homeCategoryEyebrow": "분류 {n}개",
+    "openNavigation": "내비게이션 열기",
+    "goHome": "홈으로 이동",
+    "primaryNav": "주요 내비게이션",
+    "toggleTheme": "테마 전환",
+    "communityLinks": "커뮤니티 링크",
+    "viewOnGitHub": "GitHub에서 보기",
+    "toolCategories": "도구 분류",
+    "searchLanguage": "언어 검색",
+    "selectLanguage": "언어 선택",
+    "noMatchFound": "일치하는 항목 없음",
+    "backToTop": "맨 위로 이동",
+    "exportOptions": "내보내기 옵션"
   },
   "tools": {
     "subtitleTranslator": {
@@ -209,15 +224,15 @@
       "title": "중국 웹소설 텍스트 정리 도구",
       "description": "다운로드한 중국 웹소설의 형식 문제를 일괄 수정, 스마트 줄바꿈 지원",
       "metaTitle": "중국 웹소설 정리 도구 - TXT 스마트 줄바꿈, 챕터 분할, Kindle 송신",
-      "metaDescription": "중국 웹소설 TXT 정리, 단락·광고·第X章 챕터·인코딩 문제 원클릭 수정, 300만 자 이상 처리, Kindle/Kobo 내보내기.",
+      "metaDescription": "중국 웹소설 TXT 정리, 단락·광고·제X장 챕터·인코딩 문제 원클릭 수정, 300만 자 이상 처리, Kindle/Kobo 내보내기.",
       "faq": [
         {
           "q": "웹사이트에서 다운로드하거나 복사한 TXT 소설의 형식이 엉망인 경우 어떤 문제를 수정할 수 있나요?",
-          "a": "소설 TXT의 7가지 전형적인 문제에 대응합니다: 단락이 짧은 줄로 잘못 분할됨·각 단락 끝의 불필요한 빈 줄·장 제목의 줄바꿈 없음·단락 첫 줄 들여쓰기 없음·광고 행(「더 많은 소설은 xxx를 방문하세요」「공식 계정 팔로우」 등) 혼재·전각 반각 공백 혼란·번체 간체 혼용. 체크박스로 일괄 수정하거나 각 항목을 개별 활성화할 수 있습니다. 300만 자 이상의 초장편 소설도 빠르게 처리됩니다."
+          "a": "소설 TXT의 7가지 전형적인 문제에 대응합니다: 단락이 짧은 줄로 잘못 분할됨·각 단락 끝의 불필요한 빈 줄·장 제목의 줄바꿈 없음·단락 첫 줄 들여쓰기 없음·광고 행('더 많은 소설은 xxx를 방문하세요''공식 계정 팔로우' 등) 혼재·전각 반각 공백 혼란·번체 간체 혼용. 체크박스로 일괄 수정하거나 각 항목을 개별 활성화할 수 있습니다. 300만 자 이상의 초장편 소설도 빠르게 처리됩니다."
         },
         {
           "q": "정리된 TXT를 Kindle, RIDIBOOKS, KakaoPage에서 바로 사용할 수 있나요? 장 목차가 자동으로 생성되나요?",
-          "a": "처리된 TXT는 Kindle(Send-to-Kindle 이메일)·RIDIBOOKS·Yes24 Crema·KakaoPage·FBReader의 형식 요구사항을 충족합니다. 「장 분할」을 활성화하면 각 장 앞에 빈 줄이 추가되어 Kindle이 자동으로 목차를 생성합니다. RIDIBOOKS나 Yes24에서는 최적의 목차 경험을 위해 Calibre로 EPUB으로 변환 후 가져오는 것을 권장합니다. TTS 읽기 사용자는 「중복 행 삭제」와 「콘텐츠 필터링」를 활성화하면 광고 읽기를 방지할 수 있습니다."
+          "a": "처리된 TXT는 Kindle(Send-to-Kindle 이메일)·RIDIBOOKS·Yes24 Crema·KakaoPage·FBReader의 형식 요구사항을 충족합니다. '장 분할'을 활성화하면 각 장 앞에 빈 줄이 추가되어 Kindle이 자동으로 목차를 생성합니다. RIDIBOOKS나 Yes24에서는 최적의 목차 경험을 위해 Calibre로 EPUB으로 변환 후 가져오는 것을 권장합니다. TTS 읽기 사용자는 '중복 행 삭제'와 '콘텐츠 필터링'를 활성화하면 광고 읽기를 방지할 수 있습니다."
         },
         {
           "q": "번체판(대만/홍콩) 소설을 간체로 변환하거나 특정 인명·지명이 잘못 변환되지 않게 보존하려면?",
@@ -225,7 +240,7 @@
         },
         {
           "q": "소설 정리 시 본문이나 대화가 잘못 삭제될 수 있나요? 중복 행 규칙은 광고를 어떻게 식별하나요?",
-          "a": "중복 행은「3행 이상 연속하여 완전히 동일한」콘텐츠(예: 반복 표시되는 웹사이트 광고「이 책은 xxx에서 최초 발행」)만 식별합니다. 본문의 짧은 대답(「응」「그래」등)은 연속 중복 패턴을 감지하기 때문에 잘못 삭제되지 않습니다. 처리 전에 원본을 백업하고 처리 후 글자 수 변화(본문 글자 수 변화가 5% 미만이면 안전)를 확인하는 것을 권장합니다."
+          "a": "중복 행은'연속하여 완전히 동일한'콘텐츠(예: 반복 표시되는 웹사이트 광고'이 책은 xxx에서 최초 발행')만 식별합니다. 본문의 짧은 대답('응''그래'등)은 연속 중복 패턴을 감지하기 때문에 잘못 삭제되지 않습니다. 처리 전에 원본을 백업하고 처리 후 글자 수 변화(본문 글자 수 변화가 5% 미만이면 안전)를 확인하는 것을 권장합니다."
         },
         {
           "q": "업로드한 소설은 서버에 저장되나요? 오픈소스인가요?",
@@ -234,7 +249,7 @@
       ],
       "features": [
         "웹소설 TXT의 7가지 흔한 포맷 문제 수정(다운로드·웹 복사·Word 내보내기 모두 적용)",
-        "「제X장」 또는 Chapter X 같은 챕터 제목 자동 감지 및 분할",
+        "'제X장' 또는 Chapter X 같은 챕터 제목 자동 감지 및 분할",
         "인접 중복 행 감지 — 동일한 연속 행(반복 광고 배너 등) 제거",
         "문단 들여쓰기(2자), 여분의 빈 줄 제거, 잘못 끊긴 짧은 행 복구",
         "번체→간체 변환, 전각/반각 공백 정규화",
@@ -247,7 +262,7 @@
       "description": "정규식 매칭·정렬·필터링 등을 통합한 텍스트 일괄 처리 도구"
     },
     "dataBatch": {
-      "title": "텍스트 처리 도구",
+      "title": "데이터 일괄 처리",
       "description": "Excel 표 데이터 일괄 중복 제거·열 추출·텍스트 병합, 다중 규칙 순차 실행"
     },
     "textJoiner": {
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "AI 사상가 라운드테이블",
       "imgprompt": "AI 이미지 프롬프트",
-      "lives": "천세서 인생 시뮬레이션",
-      "learndata": "LearnData 오픈소스 노트"
+      "learndata": "LearnData 오픈소스 노트",
+      "hub365": "365 오픈소스"
     }
   },
   "Metadata": {
     "title": "ToolsByAI | 무료 오픈소스 AI 번역 및 데이터 처리 도구",
-    "description": "ToolsByAI: 자막·Markdown·JSON i18n 번역 및 텍스트/JSON 일괄 처리 19개 무료 도구, 25+ AI 엔진.",
+    "description": "ToolsByAI: 자막·Markdown·JSON i18n 번역 및 텍스트/JSON 일괄 처리 19개 무료 도구, 30+ AI 엔진.",
     "homeTitle": "ToolsByAI 도구 모음",
     "homeDescription": "19 무료 도구. 다국어 번역, 텍스트 처리, JSON 변환 등 개발자와 크리에이터의 업무 효율 향상.",
     "ogTitle": "ToolsByAI | 무료 오픈소스 AI 번역 및 데이터 처리 도구",
-    "ogDescription": "ToolsByAI: 자막·Markdown·JSON i18n 번역 및 텍스트/JSON 일괄 처리 19개 무료 도구, 25+ AI 엔진."
+    "ogDescription": "ToolsByAI: 자막·Markdown·JSON i18n 번역 및 텍스트/JSON 일괄 처리 19개 무료 도구, 30+ AI 엔진."
   },
   "CopyToClipboard": {
     "empty": "내용이 비어 있어 복사할 필요가 없습니다",
@@ -326,7 +341,7 @@
   },
   "NovelProcessor": {
     "processFailed": "처리에 실패했습니다",
-    "description": "중국 웹소설 텍스트 정리를 위한 전문 설계로 다운로드한 중국 소설의 형식 문제를 원클릭으로 수정합니다. 스마트 줄바꿈·第X章 분할·단락 들여쓰기·번체 간체 변환·중복 행 삭제·쓰레기 콘텐츠 필터링 등의 기능을 통합하여 지저분한 소설 텍스트를 깔끔하고 읽기 쉬운 상태로 변환합니다.",
+    "description": "중국 웹소설 텍스트 정리를 위한 전문 설계로 다운로드한 중국 소설의 형식 문제를 원클릭으로 수정합니다. 스마트 줄바꿈·제X장 분할·단락 들여쓰기·번체 간체 변환·중복 행 삭제·쓰레기 콘텐츠 필터링 등의 기능을 통합하여 지저분한 소설 텍스트를 깔끔하고 읽기 쉬운 상태로 변환합니다.",
     "errorNoFile": "처리할 파일을 업로드하세요",
     "infoNoChapters": "유효한 장 제목이 인식되지 않아 재정렬할 수 없습니다",
     "reorderComplete": "장 재정렬 완료 (총 {chapters} 장)",
@@ -338,12 +353,12 @@
     "paragraphSplit": "긴 단락 분할",
     "chapterGroup": "장 처리",
     "chapterSplit": "장 제목을 별도 행에 배치",
-    "conversion": "繁簡 변환",
-    "rulesInactiveHint": "「번체/간체 변환」을 활성화한 경우에만 적용됩니다",
+    "conversion": "번체/간체 변환",
+    "rulesInactiveHint": "'번체/간체 변환'을 활성화한 경우에만 적용됩니다",
     "conversionNone": "없음",
     "lineEndNumbers": "줄 끝 숫자 삭제",
     "specialStartLabel": "병합하지 않을 줄 시작 문자",
-    "specialStartPlaceholder": "예: 책 제목, 권두언...",
+    "specialStartPlaceholder": "예: 책 제목, 권두언…",
     "specialStartAria": "병합하지 않을 줄 시작 문자",
     "filterLabel": "콘텐츠 필터링",
     "filterPlaceholder": "필터링 키워드 입력(쉼표로 구분)",
@@ -368,8 +383,8 @@
   "ProtectedRuleManager": {
     "drawerTitle": "사용자 정의 교체 규칙",
     "description": "규칙은 내장 사전보다 우선 적용됩니다. 매칭된 필드는 OpenCC에 의해 변환되지 않습니다. 가져올 때 동일 소스 중복이 자동으로 삭제됩니다(마지막 항목 보존).",
-    "directionS2t": "簡➔繁",
-    "directionT2s": "繁➔簡",
+    "directionS2t": "간➔번",
+    "directionT2s": "번➔간",
     "confirmClearAll": "현재 방향의 모든 규칙을 삭제하시겠습니까?",
     "addRule": "규칙 추가",
     "importBtn": "가져오기",
@@ -404,8 +419,8 @@
     "colTo": "대체 후",
     "fromEmpty": "원래 단어가 비어 있음",
     "toEmpty": "대체 단어가 비어 있음",
-    "shadowedTooltip": "제 {rowNumber}행에 덮어씌워졌으며 실제 변환 결과는 「{winnerTo}」입니다",
-    "emptyTable": "규칙이 없습니다. 「규칙 추가」를 클릭하여 시작하세요.",
+    "shadowedTooltip": "제 {rowNumber}행에 덮어씌워졌으며 실제 변환 결과는 '{winnerTo}'입니다",
+    "emptyTable": "규칙이 없습니다. '규칙 추가'를 클릭하여 시작하세요.",
     "noRulesYet": "규칙이 없습니다",
     "enableProtectedRules": "사용자 정의 치환 활성화",
     "enableProtectedRulesTooltip": "끄면 이번 변환에서 아래 규칙이 무시됩니다",
@@ -415,7 +430,7 @@
   },
   "feedback": {
     "feedback1": "피드백 및 제안",
-    "feedback2": "사용 중 문제가 발생하거나 제안 및 아이디어가 있으면 언제든지 알려주세요!",
+    "feedback2": "사용 중 문제가 발생하거나 제안 및 아이디어가 있으면 언제든지 알려주세요! 고객님의 피드백은 향후 기능 개발과 개선에 직접 반영되어 모두의 요구에 더 잘 맞는 도구를 함께 만들어 갑니다.",
     "feedback3": "사용 시나리오나 발생한 문제, 또는 창의적인 아이디어를 자세히 설명해 주세요. 모든 피드백을 진지하게 읽고 가능한 한 빨리 조정 및 최적화하겠습니다.",
     "reaction0": "좋아요",
     "reaction1": "응원해요",
@@ -432,7 +447,7 @@
   },
   "NotFound": {
     "title": "페이지를 찾을 수 없음",
-    "description": "방문한 페이지가 존재하지 않거나 이동되었습니다。",
+    "description": "방문한 페이지가 존재하지 않거나 이동되었습니다.",
     "goHome": "홈으로"
   }
 }

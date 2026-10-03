@@ -20,7 +20,7 @@
     "configuration": "配置选项",
     "operation": "操作",
     "optional": "可选",
-    "pleaseWait": "请稍等...",
+    "pleaseWait": "请稍等…",
     "pasteUploadContent": "或在此输入、粘贴文本",
     "example": "示例",
     "sourceLanguage": "源语言",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "接口返回 403 禁止访问，请在「更多 Provider 设置」中开启「中转 API」",
     "errorHintCors": "无法连接到该地址：请检查地址是否正确，并确认服务已允许跨域（CORS）。自建网关与本地模型需要自行开启，或改用你自己的中转 API",
     "errorHintGeminiKey": "无法连接 Gemini：请先检查网络（部分网络环境无法直连 Google 服务）。若网络正常，则可能是 Google 自 2026-06-19 起拒绝「无限制 API Key」——请在 AI Studio 重新生成密钥（默认已限制），或在 Google Cloud 控制台为旧密钥添加 Gemini API 限制",
-    "rateLimitCooldown": "请求过于频繁，已自动暂停片刻后重试"
+    "rateLimitCooldown": "请求过于频繁，已自动暂停片刻后重试",
+    "faqHeading": "常见问题",
+    "homeIndexEyebrow": "工具索引",
+    "homeCategoryEyebrow": "{n} 个分类",
+    "openNavigation": "打开导航",
+    "goHome": "返回首页",
+    "primaryNav": "主导航",
+    "toggleTheme": "切换主题",
+    "communityLinks": "社区链接",
+    "viewOnGitHub": "在 GitHub 查看",
+    "toolCategories": "工具分类",
+    "searchLanguage": "搜索语言",
+    "selectLanguage": "选择语言",
+    "noMatchFound": "无匹配结果",
+    "backToTop": "回到顶部",
+    "exportOptions": "导出选项"
   },
   "tools": {
     "subtitleTranslator": {
@@ -234,7 +249,7 @@
         },
         {
           "q": "整理小说时会不会误删正文或对话？重复行规则如何识别广告？",
-          "a": "重复行仅识别「连续 3 行以上完全相同」的内容（如多次出现的网站广告「本书首发于 xxx」）。正文中人物简短回答（如「好」「嗯」）不会被误删，因为检测的是连续重复模式而非单行重复。建议处理前备份原文，完成后对比字数（正文字数变化应 < 5%）可确认安全。章节分割使用正则匹配「第X章」「Chapter X」「X、」等常见格式。"
+          "a": "重复行仅识别「连续完全相同」的内容（如多次出现的网站广告「本书首发于 xxx」）。正文中人物简短回答（如「好」「嗯」）不会被误删，因为检测的是连续重复模式而非单行重复。建议处理前备份原文，完成后对比字数（正文字数变化应 < 5%）可确认安全。章节分割使用正则匹配「第X章」「Chapter X」「X、」等常见格式。"
         },
         {
           "q": "上传的小说会保存到服务器吗？开源吗？",
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "AI 思想家圆桌",
       "imgprompt": "AI 绘图提示词",
-      "lives": "千世书 人生模拟",
-      "learndata": "LearnData 开源笔记"
+      "learndata": "LearnData 开源笔记",
+      "hub365": "365 开源计划"
     }
   },
   "Metadata": {
     "title": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "description": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。",
+    "description": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。30+ AI 引擎，全前端处理。",
     "homeTitle": "ToolsByAI 工具集",
     "homeDescription": "19 款实用工具，涵盖多语言翻译、文本处理、JSON 编辑和数据转换，助力开发者和创作者提升效率。",
     "ogTitle": "ToolsByAI | 免费开源的 AI 翻译与数据处理工具集",
-    "ogDescription": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。25+ AI 引擎，全前端处理。"
+    "ogDescription": "ToolsByAI 集合 19 款免费工具：字幕、Markdown、JSON i18n 翻译，文本/JSON 批处理。30+ AI 引擎，全前端处理。"
   },
   "CopyToClipboard": {
     "empty": "内容为空，无需复制",
@@ -374,7 +389,7 @@
   },
   "NovelProcessor": {
     "processFailed": "处理失败",
-    "description": "专为网络小说文本整理设计，一键修复下载小说的格式问题。集成智能换行、章节分割、段落缩进、繁简转换、删除重复行、垃圾内容过滤等功能，让杂乱的小说文本变得整齐易读。",
+    "description": "专为网络小说文本整理设计，一键修复下载小说的格式问题。集成智能换行、章节分割、段落缩进、繁简转换、去除重复行、内容筛选等功能，让杂乱的小说文本变得整齐易读。",
     "errorNoFile": "请上传要处理的文件",
     "infoNoChapters": "未识别到有效章节标题，无法重排",
     "reorderComplete": "章节重排完成（共 {chapters} 章）",
@@ -397,7 +412,7 @@
     "conversionNone": "不变",
     "specialStartLabel": "不合并的开头文字",
     "hintSpecialStart": "以这些文字开头的行不会被并入上一段",
-    "specialStartPlaceholder": "例如：书名、卷首语...",
+    "specialStartPlaceholder": "例如：书名、卷首语…",
     "specialStartAria": "不合并的开头文字",
     "filterLabel": "内容筛选",
     "hintFilter": "删除包含这些关键词的行",

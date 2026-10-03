@@ -36,7 +36,7 @@
     "cancelKeepsProgress": "Annullare mantiene quanto già tradotto",
     "dismiss": "Chiudi",
     "translationAPI": "API di Traduzione",
-    "enter": "Invio",
+    "enter": "Inserisci",
     "getApiKey": "Ottieni Chiave API",
     "charLabel": "Caratteri",
     "lineLabel": "Righe",
@@ -93,10 +93,10 @@
     "result": "Risultato",
     "exportSettingTooltip": "Esporta configurazione su file",
     "importSettingTooltip": "Importa configurazione da file",
-    "exportSettingSuccess": "Impostazioni esportate",
+    "exportSettingSuccess": "Configurazione esportata",
     "exportSettingError": "Esportazione fallita, riprova",
     "dictLoadFailed": "Impossibile caricare il dizionario di conversione: controlla la rete o ricarica la pagina",
-    "importSettingSuccess": "Impostazioni importate",
+    "importSettingSuccess": "Configurazione importata",
     "importSettingError": "Importazione fallita, riprova",
     "removeCharsAfterTranslation": "Rimuovi caratteri dopo traduzione",
     "removeCharsAfterTranslationTooltip": "Rimuovi automaticamente caratteri specificati dopo la traduzione (separare con spazi)",
@@ -117,7 +117,7 @@
     "customExportFilename": "Modello nome file",
     "customExportFilenameTooltip": "'{'name'}' = nome originale, '{'lang'}' = lingua, '{'ext'}' = estensione, '{'date'}' = data, '{'time'}' = ora; in modalità multilingua '{'lang'}' viene aggiunto automaticamente per evitare conflitti di nome",
     "partialFailureTitle": "{count} riga/righe non riuscite",
-    "partialFailureDesc": "Quelle righe conservano il testo originale, quindi la struttura del file è intatta. Riprova reinvia solo quelle; il resto arriva dalla cache.",
+    "partialFailureDesc": "Quelle righe conservano il testo originale, quindi la struttura del file è intatta. Riprova: reinvia solo quelle; il resto arriva dalla cache.",
     "partialFailureWhy": "Frequente con servizi gratuiti e self-hosted — di solito non dipende dalla tua configurazione.",
     "retryFailedLines": "Riprova le righe non riuscite",
     "viewFailedLines": "Visualizza righe non riuscite",
@@ -125,7 +125,7 @@
     "copyAllFailed": "Copia tutto",
     "closeFailedLinesModal": "Chiudi",
     "failedLanguagesTitle": "{count} lingua(e) di destinazione fallite",
-    "failedLanguagesDesc": "Tutti i batch per queste lingue sono falliti — di solito a causa di problemi LLM locali, limiti di velocità API o rifiuto del modello per una lingua specifica. Copia i codici e riavvia solo per esse (incolla in 'Impostazioni multilingue'); le altre utilizzeranno la cache e saranno saltate.",
+    "failedLanguagesDesc": "Tutti i batch per queste lingue sono falliti — di solito a causa di problemi LLM locali, limiti di velocità API o rifiuto del modello per una lingua specifica. Copia i codici e riavvia la traduzione solo per quelle lingue (incolla in 'Impostazioni multilingue'); le altre utilizzeranno la cache e saranno saltate.",
     "copyAllFailedLanguages": "Copia codici lingua",
     "apiStatusFreeApi": "Free API",
     "apiStatusNeedsConfig": "Config. necessaria",
@@ -182,7 +182,22 @@
     "errorHintRelay403": "L'API ha restituito 403 Forbidden: attiva \"Relay API\" in «Altre impostazioni Provider»",
     "errorHintCors": "Impossibile raggiungere questo indirizzo: controlla l'indirizzo e che il servizio consenta richieste cross-origin (CORS). I gateway self-hosted e i modelli locali devono abilitarlo, oppure usa il tuo Relay API",
     "errorHintGeminiKey": "Impossibile raggiungere Gemini: controlla prima la rete (alcune reti non raggiungono direttamente i servizi Google). Se la rete funziona, dal 19 giugno 2026 Google rifiuta le chiavi API senza restrizioni — rigenera la chiave in AI Studio (limitata per impostazione predefinita) o aggiungi una restrizione Gemini API alla vecchia chiave nella console Google Cloud",
-    "rateLimitCooldown": "Limite di richieste raggiunto — breve pausa, nuovo tentativo automatico"
+    "rateLimitCooldown": "Limite di richieste raggiunto — breve pausa, nuovo tentativo automatico",
+    "faqHeading": "Domande frequenti",
+    "homeIndexEyebrow": "Indice",
+    "homeCategoryEyebrow": "{n} categorie",
+    "openNavigation": "Apri navigazione",
+    "goHome": "Vai alla home page",
+    "primaryNav": "Navigazione principale",
+    "toggleTheme": "Cambia tema",
+    "communityLinks": "Link della community",
+    "viewOnGitHub": "Vedi su GitHub",
+    "toolCategories": "Categorie degli strumenti",
+    "searchLanguage": "Cerca lingua",
+    "selectLanguage": "Seleziona lingua",
+    "noMatchFound": "Nessun risultato",
+    "backToTop": "Torna in alto",
+    "exportOptions": "Opzioni di esportazione"
   },
   "tools": {
     "subtitleTranslator": {
@@ -202,7 +217,7 @@
       "description": "Dividi testi lunghi per separatore, lunghezza o frase — e riuniscili"
     },
     "chineseConversion": {
-      "title": "Conversor Semp/Trad",
+      "title": "Convertitore Sempl/Trad",
       "description": "Supporta caricamento file ed elaborazione in batch per convertire semplificato, tradizionale di Taiwan/Hong Kong e shinjitai giapponese"
     },
     "novelProcessor": {
@@ -221,11 +236,11 @@
         },
         {
           "q": "Il mio romanzo web è in cinese tradizionale (Taiwan/Hong Kong) e voglio leggerlo in semplificato, oppure voglio che nomi di persone e luoghi non vengano convertiti per errore. Come faccio?",
-          "a": "Questo strumento include una regola Tradizionale ↔ Semplificato attivabile durante la formattazione. Per un controllo più fine — dizionario di parole protette (nomi, luoghi, terminologia) e conversione tra Tradizionale Taiwan ↔ Tradizionale Hong Kong ↔ Shinjitai giapponese — concatena con il [Convertitore cinese](../chinese-conversion); entrambi gli strumenti condividono lo stesso formato di parole protette. Per ulteriore ricerca/sostituzione regex, estrazione capitoli o filtraggio parole sensibili, la [Cassetta strumenti testo](../text-toolbox) chiude il cerchio."
+          "a": "Questo strumento include una regola Tradizionale ↔ Semplificato attivabile durante la formattazione. Per un controllo più fine — dizionario di parole protette (nomi, luoghi, terminologia) e conversione tra Tradizionale Taiwan ↔ Tradizionale Hong Kong ↔ Shinjitai giapponese — abbinalo al [Convertitore cinese](../chinese-conversion); entrambi gli strumenti condividono lo stesso formato di parole protette. Per ulteriore ricerca/sostituzione regex, estrazione capitoli o filtraggio parole sensibili, la [Cassetta strumenti testo](../text-toolbox) chiude il cerchio."
         },
         {
           "q": "La pulizia delle righe duplicate può eliminare testo reale o dialoghi?",
-          "a": "Le righe duplicate vengono identificate solo quando ci sono «3 o più righe consecutive identiche» (come pubblicità ripetute). Le risposte brevi dei personaggi (come «sì» o «ok») non vengono rimosse erroneamente. Si consiglia di fare un backup prima e verificare il conteggio dei caratteri dopo (la variazione deve essere < 5%)."
+          "a": "Le righe duplicate vengono identificate solo quando ci sono «righe consecutive identiche» (come pubblicità ripetute). Le risposte brevi dei personaggi (come «sì» o «ok») non vengono rimosse erroneamente. Si consiglia di fare un backup prima e verificare il conteggio dei caratteri dopo (la variazione deve essere < 5%)."
         },
         {
           "q": "Il mio romanzo viene caricato su un server? Lo strumento è open source?",
@@ -247,7 +262,7 @@
       "description": "Integra corrispondenza regex, ordinamento, filtraggio e altre funzionalità per elaborazione in batch"
     },
     "dataBatch": {
-      "title": "Elaboratore di Testo",
+      "title": "Elaboratore di dati batch",
       "description": "Elaborazione batch di dati Excel — deduplicazione, estrazione colonne, fusione, regole concatenate"
     },
     "textJoiner": {
@@ -263,7 +278,7 @@
       "description": "Modifica nodi JSON in batch, prefisso/suffisso/sostituisci"
     },
     "jsonValueTransformer": {
-      "title": "Mappatore Valore JSON",
+      "title": "Mappatore Valori JSON",
       "description": "Mappatura e migrazione valori con JSONPath"
     },
     "jsonValueSwapper": {
@@ -306,17 +321,17 @@
     "externalTools": {
       "legendtalk": "Tavola rotonda dei pensatori IA",
       "imgprompt": "Prompt per immagini IA",
-      "lives": "Thousand Lives",
-      "learndata": "LearnData Note Open Source"
+      "learndata": "LearnData Note Open Source",
+      "hub365": "365 Open Source"
     }
   },
   "Metadata": {
     "title": "ToolsByAI - Utility Sviluppatori & Traduzione IA Online",
-    "description": "ToolsByAI: 19 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 25+ motori IA.",
+    "description": "ToolsByAI: 19 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 30+ motori IA.",
     "homeTitle": "Suite ToolsByAI",
     "homeDescription": "19 strumenti per traduzione, testo, JSON e conversione dati. Potenzia l'efficienza di sviluppatori e creatori.",
-    "ogTitle": "ToolsByAI - Strumenti Dev IA Gratuiti e Open Source",
-    "ogDescription": "ToolsByAI: 19 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 25+ motori IA."
+    "ogTitle": "ToolsByAI - Utility Sviluppatori & Traduzione IA Online",
+    "ogDescription": "ToolsByAI: 19 strumenti open source gratuiti per traduzione sottotitoli, Markdown, JSON i18n e elaborazione batch. 30+ motori IA."
   },
   "CopyToClipboard": {
     "empty": "Contenuto vuoto, nulla da copiare",
