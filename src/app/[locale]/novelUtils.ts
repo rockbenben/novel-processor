@@ -1,7 +1,7 @@
-import { splitTextIntoLines, compressNewlines, chapterPattern, chapterTitleRegex, numberTitleRegex, normalizeNewlines, toHalfWidth, cleanLines, filterLines, splitParagraph, dedupeAdjacentLines, isSeparatorBar, escapeRegExp, pureNumberRegex, novelSectionHeaderRegex, specialLineStartRegex, numberStartRegex, punctuationEndRegex, numberEndRegex, CHAPTER_MARKERS } from "@/app/utils";
+import { splitTextIntoLines, compressNewlines, chapterPattern, isChapterTitleLine, normalizeNewlines, toHalfWidth, cleanLines, filterLines, splitParagraph, dedupeAdjacentLines, isSeparatorBar, escapeRegExp, pureNumberRegex, novelSectionHeaderRegex, specialLineStartRegex, numberStartRegex, punctuationEndRegex, numberEndRegex, CHAPTER_MARKERS } from "@/app/utils";
 
-// 行是否为章节标题（章节标题正则或数字标题正则）
-const isTitleLine = (line: string): boolean => chapterTitleRegex.test(line) || numberTitleRegex.test(line);
+// 章节标题判定（标题正则 + 长度/标点约束）统一收在 utils/regex.ts 的 isChapterTitleLine
+const isTitleLine = isChapterTitleLine;
 
 // 提取“第X<标记>”里的结构标记（章/节/卷/集/幕/回/部/篇）；无则 null（英文 / 纯数字标题等）
 const chapterMarker = (s: string): string | null => {
@@ -233,18 +233,156 @@ export const stripNovelArtifacts = (text: string): string => {
       .replace(/&nbsp;?/g, " ")
       .replace(/Added Url/g, "")
       .replace(/【待续】/g, "")
-      .replace(/本文是使用怠惰小说下载器（DownloadAllContent）下载的/g, "")
-      // 【[^】]*】而非【.*?】:.*? 会跨多个"本书由【…】整理"水印锚点向后扩张,
-      // 粘贴含大量该水印残片的盗版小说文本时退化为 O(n²)~O(n³),主流程
-      // (formatNovelText)无条件调用本函数 → 点"处理"即冻结标签页。字符类
-      // [^】]* 把括号内容锁在单个水印内,降为线性;对真实完整水印的匹配等价。
-      .replace(/本书由【[^】]*】整理[\s\S]{0,500}?请在下载后\d+小时内删除[\s\S]{0,500}?本群免费提取全网平台[\s\S]{0,50}?私聊群主。/g, "")
-      .replace(/={10,}\n?[\s\S]{0,500}?刺猬猫，飞卢，点娘，少年梦等全网小说资源每日更新[\s\S]{0,500}?如不慎该资源侵犯了您的权益，请麻烦通知我们及时删除。\n?={10,}/g, "")
-      // 没有等号包裹的版本
-      .replace(/刺猬猫，飞卢，点娘，少年梦等全网小说资源每日更新[\s\S]{0,500}?如不慎该资源侵犯了您的权益，请麻烦通知我们及时删除。/g, "")
   );
-  // 站点版权/导航提示类
-  // 重复空行压缩交给主流程
+  // 站点版权/导航提示类广告【不在这里】—— 一律走 stripAdLines 的行级线索判据，
+  // 本函数只做字符级清洗。
+};
+
+// 小说正文里几乎不会出现的广告线索；命中处即广告起点。
+// 含「加群 / 加入群聊 / 防盗链 / NBA.com / reference.com」这类字样的正文句必须原样
+// 保留 —— 所以这些词只作辅助特征，不进本表。
+const AD_CUES: RegExp[] = [
+  /请牢记收藏|记住本站|加入收藏|收藏本页|请大家收藏[：:]/,
+  /最快更新请?浏览器|最新最快无防盗|无防盗免费找书/,
+  /免费找书|加书可加|找书群\s*[：:]?\d{5,}|本书首发/,
+  /关注下方【?\s*QQ ?群|复制下方【?\s*QQ ?群号|复制下面群号|群号加入群聊|一键加群|搜索群号|加全订群|抽奖方式[：:]?\S{0,6}群[（(]?群号[：:]/,
+  /(?:中转群|小说群|读书群|交流群|粉丝群|广告群|全订群|订阅群|新群|二群|三群)\s*[：:]?\s*\d{5,}/,
+  /联系(?:管理|群管|管理员)?\s*(?:QQ|qq)\s*\d{5,}/,
+  /如不慎该资源侵犯了您的权益|侵犯了您的权益|版权归所有|本作品仅供读者|文本仅供|仅供个人学习|请在下载后\d+\s*小时|请观看完毕后删除|24小时[內内]?(?:以)?内[除删]/,
+  /每月更新\d+|每日更新\d+|日更\d+\s*[+＋]|全网小说资源|小说源共享|资源每日更新/,
+  /从此告别书荒|告[，,]?别书荒/,
+  /请购买正版书籍|购买正版谢谢合作|支持订阅正版|感谢对作者的支持|拒绝盗版|如果觉得本书不错/,
+  /本书由【[^】]{1,12}】整理/,
+  /(?:正在)?转码中|转码中[，,]?请稍后再试/,
+  // 网址只吃 URL 安全字符：写成 [^\s，。]{4,} 会把紧跟其后的正文（"https://众人循着方向…"）
+  // 一起吞进"广告跨度"，导致后面的判据误判。
+  /(?:https?:\/\/|www\.)[A-Za-z0-9._\-\/:?&%#=~+@]{4,}/i,
+  /笔趣阁|全文字阅读|txt下载|TXT下载|电子书下载/,
+  /资源来自于网络|来自网络，仅作|学习交流使用|学习和试读|更多精彩|请访问|最新章节\W{0,3}请?访问/,
+  // 旧 stripNovelArtifacts 里"整块拼齐才命中"的多行水印的残余碎片线索：那几条正则
+  // 已删，这些片段必须在这里单独站得住（否则 "本群免费提取全网平台资源" 之类会留下半截）
+  /怠惰小说下载器|DownloadAllContent|免费提取全网|全网平台资源|私聊群主|整理[,]?请勿/,
+  // 群号行的三种排版：号码在括号内、用破折号引出括号外、或混进混淆字符里
+  // 【月漪免费外群1号】——176132292 / 【千寻新免费满文件小说2群：960126270】
+  // 【灵梦免费外群6号】——l/-i*/…梦/-首*发830907958
+  // 判据取"群"后 30 字内出现 7 位以上连续数字：正文里的电话号码极少与「群」同现，
+  // 而作者的打赏鸣谢行（非常感谢【书友160827132928773】的300起点币打赏。）没有「群」，
+  // 不该被当成站点广告删掉。
+  /群[^\n]{0,30}\d{7,}/,
+  // 站方"温馨提醒"话术与引流括号群名
+  /合理安排阅读时间|杜绝沉迷网络|尽在【[^】]{0,14}群】/,
+];
+
+// 一次粗筛再逐条定位：绝大多数正文行不会命中这条并集，省掉全行逐条扫描。
+const AD_CUE_SOURCES = AD_CUES.map((re) => `(?:${re.source})`).join("|");
+const AD_CUE_UNION = new RegExp(AD_CUE_SOURCES, "i");
+// 挖掉一段文字里所有广告片段时用同一张表的 g 版
+const AD_CUE_UNION_G = new RegExp(AD_CUE_SOURCES, "gi");
+
+// 小说站点品牌名：一行里同时出现 ≥2 个基本不可能是正文（引流横幅的站名清单）
+const AD_SITE_BRANDS = ["刺猬猫", "菠萝包", "飞卢", "飞泸", "点娘", "少年梦", "息壤", "次元姬", "笔趣阁", "纵横", "晋江", "17k", "18k", "起点", "番茄", "七猫", "搜书吧", "sxsy"];
+
+// 前缀里带这些字样说明"切割点之前的部分也还是广告"（如「更多精彩小说请访问：」），
+// 保留下来只会留半截引流话术，所以整行删除。
+const AD_PREFIX_RESIDUE = /全网|资源|学习|试读|正版|盗版|版权|书荒|转码|防盗|浏览|输入|网址|http|群|收藏|请访问|更多精彩|更新\d/;
+const AD_SYMBOL_HEAD = /^[\s=\-—─═_*#~|]{3,}/;
+const AD_PROSE_TAIL = /[。！？…”』」]$/;
+// 前缀停在没闭合的括号里（【千寻新免费满文件小说外群：…】被从"群"处切开时就是这样）——
+// 那是广告自己的括号，不是正文断句，保留下来只剩半截。
+const adPrefixTrailsInOpenBracket = (s: string): boolean => {
+  const open = Math.max(s.lastIndexOf("【"), s.lastIndexOf("《"), s.lastIndexOf("（"), s.lastIndexOf("("));
+  const close = Math.max(s.lastIndexOf("】"), s.lastIndexOf("》"), s.lastIndexOf("）"), s.lastIndexOf(")"));
+  return open > close;
+};
+// 挖掉广告片段后，判断"剩下的是不是正文"专用：只认营销词（不含「输入/浏览」这类
+// 普通动词，它们常出现在广告话术里但也会出现在正文里），且只数中日韩字——
+// URL 残渣的字母不能算成正文长度。
+const AD_MARKETING = /群|收藏|网址|http|www|\.com|\.cn|全网|资源|首发|笔阁|正版|盗版|版权|书荒|转码|更新|下载|访问|试读|牢记|域名|本站/;
+const adCjkLen = (s: string): number => (s.match(/[一-鿿぀-ヿ]/g) || []).length;
+const adContentLen = (s: string): number => (s.match(/[一-鿿぀-ヿA-Za-z0-9]/g) || []).length;
+const adBrandCount = (s: string): number => {
+  const low = s.toLowerCase();
+  return AD_SITE_BRANDS.reduce((n, b) => n + (low.includes(b.toLowerCase()) ? 1 : 0), 0);
+};
+
+const AD_HTML_TAG = /<[^>\n]{1,400}>?/g;
+// 广告线索命中处若落在 HTML 标签内部，就不能从这里下刀 —— 站点注入的
+// <img src="https://aigcc.yuewen.com/imgChapter/…"> 是阅文的 AIGC 内容标识，
+// 要整段留着；把标签里的网址切掉会留下半截坏标签。
+function adInsideHtmlTag(line: string, at: number): boolean {
+  AD_HTML_TAG.lastIndex = 0;
+  let m: RegExpExecArray | null;
+  while ((m = AD_HTML_TAG.exec(line)) !== null) {
+    if (m.index <= at && at < m.index + m[0].length) return true;
+    if (m.index > at) break;
+  }
+  return false;
+}
+
+// 排版类 HTML 标签：网页导出的 <p>/</p>/<div>/<br> 本来就是"分段/换行"的另一种写法，
+// 转成断点；<font>/<span>/<em> 这类行内样式标签直接去掉，内容一个字不动。
+// ⚠ 标签内必须不跨行且限长：防盗乱码里有 <I（三〒） 这种没有闭合的碎片，
+// 若允许跨过换行去找下一个 >，就会一路吞掉中间整段正文。
+// 白名单 + 标签名整词边界同理：语料里落在尖括号里的还有 <img> AIGC 标识、
+// <Take Your Pills> 纪录片名、1.5<D<1.8 不等式，这些必须原样活着。
+// ⚠ 标签名后必须紧跟 >、斜杠或空白才算标签：\b 在汉字前也算边界（汉字不是 \w），
+// 只靠 \b 会把防盗乱码里的 "<P聣筫…" 当段落标签，一路吃到下一个 > 吞掉整段正文。
+// 白名单 + 不跨行 + 限长三者缺一不可。
+const HTML_BLOCK_TAG = /<\/?(?:p|div|br)(?=>|[/\s])[^>\n]{0,120}>/gi;
+const HTML_INLINE_TAG = /<\/?(?:font|span|em|strong|small|center|u|i|b)(?=>|[/\s])[^>\n]{0,120}>/gi;
+
+export const collapseHtmlLayoutTags = (text: string): string => text.replace(HTML_BLOCK_TAG, "\n\n").replace(HTML_INLINE_TAG, "");
+
+// 盗版 TXT 的广告有两种形态：整行横幅（站点品牌名 + 群号 + 版权声明 + 符号包裹），
+// 以及接在正文后面的广告尾巴（"…。请牢记收藏,网址 最新最快无防盗…"，也会插在句中）。
+// 按线索定位：命中处即广告起点，前缀是成句正文就只裁尾巴，否则整行删。
+// ⚠ 别回到"站点原文逐字命中 + [\s\S] 跨行拼块"的多行水印正则 —— 横幅措辞或标点
+// 改一个字（品牌名单顺序、逗号有无）就整片失配，而站点天天改。
+export const stripAdLines = (text: string): string => {
+  const out: string[] = [];
+  for (const rawLine of splitTextIntoLines(text)) {
+    const line = rawLine.trim();
+    if (!line || !AD_CUE_UNION.test(line)) {
+      out.push(rawLine);
+      continue;
+    }
+    let cut = -1;
+    for (const re of AD_CUES) {
+      const m = re.exec(line);
+      if (m && m.index >= 0 && (cut === -1 || m.index < cut)) cut = m.index;
+    }
+    if (cut === -1) {
+      // 只有并集粗筛命中、逐条线索都没定位到（例如正文里出现了品牌名之一）
+      if (adBrandCount(line) >= 2 && line.length > 12) continue;
+      out.push(rawLine);
+      continue;
+    }
+    if (adInsideHtmlTag(line, cut)) {
+      // 命中处在 HTML 标签里（注入的 <img> AIGC 标识等）：整行原样保留
+      out.push(rawLine);
+      continue;
+    }
+    if (AD_SYMBOL_HEAD.test(line)) continue; // 符号包头的横幅行，整行都是广告
+    const prefix = line.slice(0, cut).trim();
+    const tail = line.slice(cut);
+    // 前缀本身就是广告（空、含引流残片、品牌名堆叠、停在未闭合的括号里）→ 整行删
+    const prefixClean = !!prefix && !adPrefixTrailsInOpenBracket(prefix) && !AD_PREFIX_RESIDUE.test(prefix) && adBrandCount(prefix) <= 1;
+    if (!prefixClean) continue;
+    // 广告尾巴的特征：短、且不带句末标点。长过一句或自带 。！？ 说明它后面还有正文。
+    const tailIsAdRun = tail.length <= 80 && !/[。！？]/.test(tail);
+    if (!tailIsAdRun) {
+      // 尾巴长过一句或自带句末标点：把尾巴里所有广告片段挖掉，剩下的是不是还有成句正文。
+      // 剩下 ≥8 个实词字且不带引流话术 → 广告只是插在正文里的一小截，整行不动（宁留广告不吃正文）；
+      // 否则整行都是广告（【月漪】提醒您：合理安排阅读时间…尽在【xx免费外群】。）。
+      const residue = line.slice(cut).replace(AD_CUE_UNION_G, " ");
+      if (adCjkLen(residue) >= 8 && !AD_MARKETING.test(residue)) out.push(rawLine);
+      continue;
+    }
+    // 前缀够长（或本身就是「“好。”」这类带句末标点的短对话）就保留正文、只裁尾巴；
+    // 前缀只是「5:」这种引子，说明整行都是广告 → 删行。
+    if (adContentLen(prefix) >= 6 || (AD_PROSE_TAIL.test(prefix) && adContentLen(prefix) >= 1)) out.push(prefix);
+  }
+  return out.join("\n");
 };
 
 // 合并同章重复标题：相邻（"同章标题 / 同章标题"）或隔一行（"同章标题 / 单行 / 同章标题"）两种形态，
@@ -317,6 +455,14 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
   // 全角字符转半角
   processedInput = toHalfWidth(processedInput);
 
+  // 排版标签先转断点，再做广告清理：让广告判据看到的是干净文本，
+  // 而 <img> 等白名单外标签仍在，stripAdLines 的"标签内不下刀"守卫继续生效。
+  processedInput = collapseHtmlLayoutTags(processedInput);
+
+  // 广告行清理：整行横幅删除、正文行只裁广告尾巴。放在半角化之后 —— 群号与
+  // 符号包裹横幅的判据都按半角数字/等号写，全角１０１２５１３０４７要先落地。
+  processedInput = stripAdLines(processedInput);
+
   // 格式化章节标记和空格
   processedInput = processedInput
     .replace(new RegExp(`([${CHAPTER_MARKERS}])[、：:]`, "g"), "$1 ")
@@ -376,7 +522,7 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
       }
 
       const previousLine = i > 0 ? processedLines[i - 1].trim() : "";
-      const isChapterOrNumber = chapterTitleRegex.test(currentLine) || numberTitleRegex.test(currentLine) || pureNumberRegex.test(currentLine);
+      const isChapterOrNumber = isTitleLine(currentLine) || pureNumberRegex.test(currentLine);
       const isSpecialStart = novelSectionHeaderRegex.test(currentLine) || specialStartRegex?.test(currentLine.trim()) || (opts.specialStart && previousLine.startsWith(opts.specialStart));
       const startsWithSpecialChar = specialLineStartRegex.test(currentLine) || numberStartRegex.test(currentLine);
       const prevEndsWithPunctuation = punctuationEndRegex.test(previousLine) || numberEndRegex.test(previousLine) || isSeparatorBar(previousLine);
