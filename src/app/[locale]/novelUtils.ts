@@ -1,4 +1,4 @@
-import { splitTextIntoLines, compressNewlines, chapterPattern, isChapterTitleLine, normalizeNewlines, toHalfWidth, cleanLines, filterLines, splitParagraph, dedupeAdjacentLines, isSeparatorBar, escapeRegExp, pureNumberRegex, novelSectionHeaderRegex, specialLineStartRegex, numberStartRegex, punctuationEndRegex, numberEndRegex, CHAPTER_MARKERS } from "@/app/utils";
+import { splitTextIntoLines, compressNewlines, chapterPattern, isChapterTitleLine, detectChapterUnit, normalizeNewlines, toHalfWidth, cleanLines, filterLines, splitParagraph, dedupeAdjacentLines, isSeparatorBar, escapeRegExp, pureNumberRegex, novelSectionHeaderRegex, specialLineStartRegex, numberStartRegex, punctuationEndRegex, numberEndRegex, CHAPTER_MARKERS } from "@/app/utils";
 
 // 章节标题判定（标题正则 + 长度/标点约束）统一收在 utils/regex.ts 的 isChapterTitleLine
 const isTitleLine = isChapterTitleLine;
@@ -139,13 +139,14 @@ export const extractChapterOrder = (title: string): number | null => {
 
 export const reorderChaptersByTitle = (text: string): { output: string; chapters: number } => {
   const lines = splitTextIntoLines(text || "");
+  const unit = detectChapterUnit(lines);
   type Chapter = { title: string; content: string[]; order: number | null; idx: number };
   const chapters: Chapter[] = [];
   let current: Chapter | null = null;
   const preface: string[] = [];
 
   for (const line of lines) {
-    if (isTitleLine(line)) {
+    if (isTitleLine(line, unit)) {
       if (current) chapters.push(current);
       const order = extractChapterOrder(line) ?? null;
       current = { title: line, content: [line], order, idx: chapters.length };
@@ -388,6 +389,7 @@ export const stripAdLines = (text: string): string => {
 // 合并同章重复标题：相邻（"同章标题 / 同章标题"）或隔一行（"同章标题 / 单行 / 同章标题"）两种形态，
 // 删除多余行，保留较长（更完整）的标题，等长留靠前者。在"去空行后"的序列上判断（忽略空行），贪心吸收链式重复。
 export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
+  const unit = detectChapterUnit(lines);
   const nonEmpty = lines.map((l, i) => ({ l, i })).filter(({ l }) => l.trim());
   const drop = new Set<number>();
   // 将 from..to（含）之间所有原始行索引加入 drop，但跳过 except
@@ -398,7 +400,7 @@ export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
   };
   let p = 0;
   while (p < nonEmpty.length) {
-    if (!isTitleLine(nonEmpty[p].l)) {
+    if (!isTitleLine(nonEmpty[p].l, unit)) {
       p += 1;
       continue;
     }
@@ -409,9 +411,9 @@ export const collapseDuplicateChapterTitles = (lines: string[]): string[] => {
       // 找下一个「同章重复标题」：gap=0 相邻（中间仅空行，已被过滤）；或 gap=1（同章标题 / 一行内容 / 同章标题）。
       // 相邻情形覆盖「半角() 与 全角（） 等仅标点宽度不同」的同章标题——它们逃过精确比较的 dedupeAdjacentLines，靠 isSameChapter 识别。
       let nextPos: number | null = null;
-      if (q + 1 < nonEmpty.length && isTitleLine(nonEmpty[q + 1].l) && isSameChapter(keepText, nonEmpty[q + 1].l)) {
+      if (q + 1 < nonEmpty.length && isTitleLine(nonEmpty[q + 1].l, unit) && isSameChapter(keepText, nonEmpty[q + 1].l)) {
         nextPos = q + 1;
-      } else if (q + 2 < nonEmpty.length && !isTitleLine(nonEmpty[q + 1].l) && isTitleLine(nonEmpty[q + 2].l) && isSameChapter(keepText, nonEmpty[q + 2].l)) {
+      } else if (q + 2 < nonEmpty.length && !isTitleLine(nonEmpty[q + 1].l, unit) && isTitleLine(nonEmpty[q + 2].l, unit) && isSameChapter(keepText, nonEmpty[q + 2].l)) {
         nextPos = q + 2;
       }
       if (nextPos === null) break;
@@ -500,6 +502,8 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
 
   // 删除相邻重复行
   const processedLines = opts.removeDuplicateLines ? dedupeAdjacentLines(prepared) : prepared;
+  // 这本书的章节单位（章/节/回…），交给 isChapterTitleLine 判「句子样的行是不是外人」
+  const chapterUnit = detectChapterUnit(processedLines);
 
   if (opts.smartLineBreak) {
     const result: string[] = [];
@@ -522,7 +526,7 @@ export const formatNovelText = async (text: string, opts: NovelFormatOptions): P
       }
 
       const previousLine = i > 0 ? processedLines[i - 1].trim() : "";
-      const isChapterOrNumber = isTitleLine(currentLine) || pureNumberRegex.test(currentLine);
+      const isChapterOrNumber = isTitleLine(currentLine, chapterUnit) || pureNumberRegex.test(currentLine);
       const isSpecialStart = novelSectionHeaderRegex.test(currentLine) || specialStartRegex?.test(currentLine.trim()) || (opts.specialStart && previousLine.startsWith(opts.specialStart));
       const startsWithSpecialChar = specialLineStartRegex.test(currentLine) || numberStartRegex.test(currentLine);
       const prevEndsWithPunctuation = punctuationEndRegex.test(previousLine) || numberEndRegex.test(previousLine) || isSeparatorBar(previousLine);
