@@ -37,7 +37,7 @@ const NovelProcessor = () => {
   // 这一屏【全部落盘】。此前这里两种写法逐行交替(specialStart / collapseKeys /
   // removeDuplicateLines / mergeDuplicateChapterTitles 记得住,紧挨着的排版开关记不住),
   // 而它们在界面上就是同一个 Collapse 面板里上下相邻的 Switch —— 用户没有任何依据
-  // 猜出哪个会被记住。判据见 CLAUDE.md「设置落盘」:由可见控件驱动的偏好一律落盘。
+  // 猜出哪个会被记住。判据见 AGENTS.md「由可见控件驱动的偏好一律落盘」。
   const [filterText, setFilterText] = useLocalStorage("novel-processor-filterText", "");
   // 0 = 禁用阈值（不启用"超长行豁免"规则）；min=0 阻挡负数
   const [maxFilterLineLength, setMaxFilterLineLength] = useLocalStorage<number>("novel-processor-maxFilterLineLength", 0);
