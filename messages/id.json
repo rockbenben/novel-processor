@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Penerjemah Subtitle",
-      "description": "Terjemahan batch SRT, ASS, VTT, SBV, LRC. 120+ bahasa."
+      "description": "Terjemahan batch SRT, ASS, SSA, VTT, SBV, LRC. 120+ bahasa."
     },
     "jsonTranslate": {
       "title": "Penerjemah JSON i18n",
@@ -239,8 +239,8 @@
           "a": "Tidak. Opsi ini hanya menghapus konten yang berulang secara berturutan (baris identik atau lebih). Dialog pendek tetap aman. Disarankan backup sebelum diproses."
         },
         {
-          "q": "Apakah novel yang diunggah disimpan di server? Open source?",
-          "a": "Pemrosesan lokal browser 100%: pembacaan teks novel, perbaikan format, konversi Sederhana-Tradisional, ekspor semua di browser, teks asli tidak diunggah ke server. Kode sumber open source di GitHub (rockbenben/novel-processor), bisa self-deploy."
+          "q": "Apakah novel yang diunggah disimpan di server?",
+          "a": "Pemrosesan lokal browser 100%: pembacaan teks novel, perbaikan format, konversi Sederhana-Tradisional, ekspor semua di browser, teks asli tidak diunggah ke server."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Konverter Flare",
-      "description": "Konversi bookmark browser dan format Flare"
+      "description": "Bookmark HTML ke Flare YAML (rata)"
     },
     "dataParserImgPrompt": {
       "title": "Generator Data IMGPrompt",

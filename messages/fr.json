@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Traducteur Sous-titres",
-      "description": "Traduction par lot SRT, ASS, VTT, SBV, LRC. 120+ langues."
+      "description": "Traduction par lot SRT, ASS, SSA, VTT, SBV, LRC. 120+ langues."
     },
     "jsonTranslate": {
       "title": "Traducteur JSON i18n",
@@ -243,8 +243,8 @@
           "a": "La détection de doublons ne cible que le contenu apparaissant identiquement sur des lignes consécutives ou plus (ex. une publicité répétée). Les courtes réponses de personnages ne sont jamais supprimées, car l'algorithme détecte la répétition consécutive, pas les doublons sur une seule ligne. Sauvegardez l'original avant traitement ; une variation du nombre de mots inférieure à 5 % confirme la sécurité. Le découpage en chapitres utilise des expressions régulières pour correspondre aux formats courants comme « Chapitre X »."
         },
         {
-          "q": "Mon roman est-il envoyé sur un serveur ? L'outil est-il open source ?",
-          "a": "100% local au navigateur : lecture, réparation de format, conversion Traditionnel/Simplifié et export se passent dans votre navigateur — rien n'est envoyé. Code source ouvert sur GitHub (rockbenben/novel-processor) pour auto-hébergement."
+          "q": "Mon roman est-il envoyé sur un serveur ?",
+          "a": "100% local au navigateur : lecture, réparation de format, conversion Traditionnel/Simplifié et export se passent dans votre navigateur — rien n'est envoyé."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Convertisseur Flare",
-      "description": "Conversion favoris navigateur et format Flare"
+      "description": "Favoris HTML vers Flare YAML (aplati)"
     },
     "dataParserImgPrompt": {
       "title": "Générateur Données IMGPrompt",

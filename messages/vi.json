@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Trình Dịch Phụ Đề",
-      "description": "Dịch hàng loạt SRT, ASS, VTT, SBV, LRC. 120+ ngôn ngữ."
+      "description": "Dịch hàng loạt SRT, ASS, SSA, VTT, SBV, LRC. 120+ ngôn ngữ."
     },
     "jsonTranslate": {
       "title": "Trình Dịch JSON i18n",
@@ -243,8 +243,8 @@
           "a": "Dòng trùng lặp chỉ nhận diện nội dung \"dòng liên tiếp hoàn toàn giống nhau\" (như quảng cáo trang web lặp lại \"Tiểu thuyết này đăng lần đầu tại xxx\"). Câu trả lời ngắn của nhân vật trong nội dung (như \"Ừ\" \"Được\") sẽ không bị xóa nhầm vì hệ thống phát hiện mẫu lặp liên tiếp chứ không phải lặp đơn dòng. Khuyến nghị sao lưu bản gốc trước khi xử lý và kiểm tra số chữ sau khi hoàn thành (số chữ nội dung thay đổi dưới 5% là an toàn)."
         },
         {
-          "q": "Tiểu thuyết của tôi có được tải lên máy chủ không? Công cụ có mã nguồn mở không?",
-          "a": "100% chạy nội bộ trình duyệt: đọc văn bản, sửa định dạng, chuyển Phồn/Giản và xuất đều diễn ra trong trình duyệt — không có gì được tải lên. Mã nguồn mở trên GitHub (rockbenben/novel-processor) để tự host."
+          "q": "Tiểu thuyết của tôi có được tải lên máy chủ không?",
+          "a": "100% chạy nội bộ trình duyệt: đọc văn bản, sửa định dạng, chuyển Phồn/Giản và xuất đều diễn ra trong trình duyệt — không có gì được tải lên."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Trình chuyển đổi Flare",
-      "description": "Chuyển đổi bookmark trình duyệt và định dạng Flare"
+      "description": "Bookmark HTML sang Flare YAML (làm phẳng)"
     },
     "dataParserImgPrompt": {
       "title": "Trình tạo dữ liệu IMGPrompt",

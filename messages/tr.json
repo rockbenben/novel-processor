@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Altyazı Çevirici",
-      "description": "Toplu SRT, ASS, VTT, SBV, LRC çevirisi. 120+ dil."
+      "description": "Toplu SRT, ASS, SSA, VTT, SBV, LRC çevirisi. 120+ dil."
     },
     "jsonTranslate": {
       "title": "i18n JSON Çevirici",
@@ -243,8 +243,8 @@
           "a": "Yinelenen satırlar yalnızca «ardışık özdeş satır» olduğunda (tekrar eden reklamlar gibi) tanımlanır. Karakterlerin kısa yanıtları (örn. «evet» veya «tamam») yanlışlıkla kaldırılmaz. Önce yedek almanız ve sonrasında karakter sayısını kontrol etmeniz önerilir (değişim %5'ten az olmalıdır)."
         },
         {
-          "q": "Romanım sunucuya yükleniyor mu? Araç açık kaynak mı?",
-          "a": "%100 tarayıcıda yerel: metin okuma, biçim onarımı, Geleneksel/Basitleştirilmiş dönüşümü ve dışa aktarım hepsi tarayıcınızda olur — hiçbir şey yüklenmez. Kaynak kod GitHub'da (rockbenben/novel-processor) açık, kendi sunucunuza kurabilirsiniz."
+          "q": "Romanım sunucuya yükleniyor mu?",
+          "a": "%100 tarayıcıda yerel: metin okuma, biçim onarımı, Geleneksel/Basitleştirilmiş dönüşümü ve dışa aktarım hepsi tarayıcınızda olur — hiçbir şey yüklenmez."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Flare Dönüştürücü",
-      "description": "Tarayıcı yer imleri ve Flare formatı dönüşümü"
+      "description": "Yer imi HTML'ini Flare YAML'ye dönüştür (düz)"
     },
     "dataParserImgPrompt": {
       "title": "IMGPrompt Veri Oluşturucu",

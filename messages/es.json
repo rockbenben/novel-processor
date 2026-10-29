@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Traductor Subtítulos",
-      "description": "Traducción por lote SRT, ASS, VTT, SBV, LRC. 120+ idiomas."
+      "description": "Traducción por lote SRT, ASS, SSA, VTT, SBV, LRC. 120+ idiomas."
     },
     "jsonTranslate": {
       "title": "Traductor JSON i18n",
@@ -243,8 +243,8 @@
           "a": "La detección de duplicados solo apunta a contenido que aparece de forma idéntica en líneas consecutivas (p. ej. un anuncio repetido). Las respuestas cortas de personajes nunca se eliminan, ya que el algoritmo detecta repetición consecutiva, no duplicados en una sola línea. Haz una copia de seguridad del original antes de procesar; un cambio en el recuento de palabras inferior al 5% confirma la seguridad. La división en capítulos usa regex para patrones comunes como 'Capítulo X'."
         },
         {
-          "q": "¿Se sube mi novela a un servidor? ¿Es la herramienta de código abierto?",
-          "a": "100% local en el navegador: lectura, reparación de formato, conversión Tradicional/Simplificado y exportación ocurren en tu navegador — nada se sube. Código abierto en GitHub (rockbenben/novel-processor) para auto-hospedaje."
+          "q": "¿Se sube mi novela a un servidor?",
+          "a": "100% local en el navegador: lectura, reparación de formato, conversión Tradicional/Simplificado y exportación ocurren en tu navegador — nada se sube."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Convertidor Flare",
-      "description": "Conversión marcadores navegador y formato Flare"
+      "description": "Marcadores HTML a Flare YAML (aplanado)"
     },
     "dataParserImgPrompt": {
       "title": "Generador Datos IMGPrompt",

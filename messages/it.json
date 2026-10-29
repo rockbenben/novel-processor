@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Traduttore Sottotitoli",
-      "description": "Traduzione in batch SRT, ASS, VTT, SBV, LRC. 120+ lingue."
+      "description": "Traduzione in batch SRT, ASS, SSA, VTT, SBV, LRC. 120+ lingue."
     },
     "jsonTranslate": {
       "title": "Traduttore JSON i18n",
@@ -243,8 +243,8 @@
           "a": "Le righe duplicate vengono identificate solo quando ci sono «righe consecutive identiche» (come pubblicità ripetute). Le risposte brevi dei personaggi (come «sì» o «ok») non vengono rimosse erroneamente. Si consiglia di fare un backup prima e verificare il conteggio dei caratteri dopo (la variazione deve essere < 5%)."
         },
         {
-          "q": "Il mio romanzo viene caricato su un server? Lo strumento è open source?",
-          "a": "100% locale nel browser: lettura, riparazione formato, conversione Tradizionale/Semplificato ed export avvengono nel tuo browser — nulla viene caricato. Codice sorgente aperto su GitHub (rockbenben/novel-processor) per self-hosting."
+          "q": "Il mio romanzo viene caricato su un server?",
+          "a": "100% locale nel browser: lettura, riparazione formato, conversione Tradizionale/Semplificato ed export avvengono nel tuo browser — nulla viene caricato."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Convertitore Flare",
-      "description": "Conversione preferiti browser e formato Flare"
+      "description": "Segnalibri HTML in Flare YAML (appiattito)"
     },
     "dataParserImgPrompt": {
       "title": "Generatore Dati IMGPrompt",

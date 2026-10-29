@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Feliratfordító",
-      "description": "SRT, ASS, VTT, SBV, LRC feliratok kötegelt fordítása. 120+ nyelv."
+      "description": "SRT, ASS, SSA, VTT, SBV, LRC feliratok kötegelt fordítása. 120+ nyelv."
     },
     "jsonTranslate": {
       "title": "JSON többnyelvű fordító",
@@ -243,8 +243,8 @@
           "a": "Az ismétlődés-felismerés csak a három vagy több egymást követő soron azonosan megjelenő tartalmat célozza (pl. ismétlődő hirdetés, mint a „First published at xxx”). A szövegtestben lévő rövid szereplői válaszokat (például „Igen” vagy „Mm”) soha nem távolítja el, mert az algoritmus a sorozatos ismétlődést keresi, nem az egysoros duplikátumokat. Feldolgozás előtt készíts biztonsági másolatot az eredetiről; ha a szövegtest karakterszáma kevesebb mint 5%-kal változik a feldolgozás után, az igazolja a biztonságot. A fejezetbontás regexszel illeszkedik az olyan gyakori formátumokra, mint a „第X章”, a „Chapter X” és az „X、”."
         },
         {
-          "q": "Feltöltődik a regényem valamilyen szerverre? Nyílt forráskódú az eszköz?",
-          "a": "100%-ban böngészőn belüli: a szöveg beolvasása, a formátumjavítás, a hagyományos/egyszerűsített átalakítás és az exportálás is a böngésződben történik — semmi nem kerül fel. A forráskód nyílt a GitHubon (rockbenben/novel-processor) saját üzemeltetéshez."
+          "q": "Feltöltődik a regényem valamilyen szerverre?",
+          "a": "100%-ban böngészőn belüli: a szöveg beolvasása, a formátumjavítás, a hagyományos/egyszerűsített átalakítás és az exportálás is a böngésződben történik — semmi nem kerül fel."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Flare könyvjelző-konverter",
-      "description": "Könyvjelzők konvertálása Flare formátumba és abból vissza"
+      "description": "Könyvjelző HTML-ből Flare YAML (lapos)"
     },
     "dataParserImgPrompt": {
       "title": "IMGPrompt adatgenerátor",

@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "字幕翻譯器",
-      "description": "批次翻譯 SRT、ASS、VTT、SBV、LRC 字幕，支援 120+ 語言"
+      "description": "批次翻譯 SRT、ASS、SSA、VTT、SBV、LRC 字幕，支援 120+ 語言"
     },
     "jsonTranslate": {
       "title": "JSON 多語言翻譯",
@@ -243,8 +243,8 @@
           "a": "重複行僅識別「連續完全相同」的內容（如多次出現的網站廣告「本書首發於 xxx」）。正文中人物簡短回答（如「好」「嗯」）不會被誤刪，因為檢測的是連續重複模式而非單行重複。建議處理前備份原文，完成後對比字數（正文字數變化應 < 5%）可確認安全。章節分割使用正則匹配「第X章」「Chapter X」「X、」等常見格式。"
         },
         {
-          "q": "上傳的小說會儲存到伺服器嗎？開源嗎？",
-          "a": "100% 瀏覽器本地處理：小說文字讀取、格式修復、繁簡轉換、匯出全部在瀏覽器內完成，原文不上傳任何伺服器。原始碼開源在 GitHub（rockbenben/novel-processor），可自部署。"
+          "q": "上傳的小說會儲存到伺服器嗎？",
+          "a": "100% 瀏覽器本地處理：小說文字讀取、格式修復、繁簡轉換、匯出全部在瀏覽器內完成，原文不上傳任何伺服器。"
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Flare 書籤轉換",
-      "description": "瀏覽器書籤與 Flare 格式互轉"
+      "description": "瀏覽器書籤轉 Flare YAML（扁平化匯入）"
     },
     "dataParserImgPrompt": {
       "title": "IMGPrompt 資料產生",

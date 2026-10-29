@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Tradutor Legendas",
-      "description": "Tradução em lote SRT, ASS, VTT, SBV, LRC. 120+ idiomas."
+      "description": "Tradução em lote SRT, ASS, SSA, VTT, SBV, LRC. 120+ idiomas."
     },
     "jsonTranslate": {
       "title": "Tradutor JSON i18n",
@@ -243,8 +243,8 @@
           "a": "Linhas duplicadas são identificadas apenas quando há «linhas consecutivas idênticas» (como anúncios repetidos). Respostas curtas de personagens (como «sim» ou «ok») não são removidas erroneamente. Recomenda-se fazer backup antes e verificar a contagem de caracteres após (a variação deve ser < 5%)."
         },
         {
-          "q": "Meu romance é enviado a algum servidor? A ferramenta é open source?",
-          "a": "100% local no navegador: leitura de texto, reparo de formato, conversão Tradicional/Simplificado e exportação acontecem todas localmente — nada é enviado. Código aberto no GitHub (rockbenben/novel-processor) para auto-hospedagem."
+          "q": "Meu romance é enviado a algum servidor?",
+          "a": "100% local no navegador: leitura de texto, reparo de formato, conversão Tradicional/Simplificado e exportação acontecem todas localmente — nada é enviado."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Conversor Flare",
-      "description": "Conversão favoritos navegador e formato Flare"
+      "description": "Favoritos HTML para Flare YAML (achatado)"
     },
     "dataParserImgPrompt": {
       "title": "Gerador Dados IMGPrompt",

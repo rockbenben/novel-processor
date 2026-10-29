@@ -202,7 +202,7 @@
   "tools": {
     "subtitleTranslator": {
       "title": "Untertitel-Übersetzer",
-      "description": "Batch-Übersetzung für SRT, ASS, VTT, SBV, LRC. 120+ Sprachen."
+      "description": "Batch-Übersetzung für SRT, ASS, SSA, VTT, SBV, LRC. 120+ Sprachen."
     },
     "jsonTranslate": {
       "title": "i18n JSON-Übersetzer",
@@ -243,8 +243,8 @@
           "a": "Die Duplikaterkennung zielt nur auf Inhalte, die auf aufeinanderfolgenden Zeilen identisch erscheinen (z. B. eine wiederholte Anzeige). Kurze Charakterantworten werden nie entfernt, da der Algorithmus aufeinanderfolgende Wiederholungen erkennt, nicht Einzelzeilen-Duplikate. Sichern Sie das Original vor der Verarbeitung; eine Textänderung von weniger als 5 % bestätigt die Sicherheit. Die Kapitelaufteilung nutzt Regex für gängige Formate wie 'Kapitel X'."
         },
         {
-          "q": "Wird mein Roman auf einen Server hochgeladen? Ist das Tool Open Source?",
-          "a": "100% browserlokal: Textlesen, Formatreparatur, Traditionell/Vereinfacht-Konvertierung und Export laufen alle in Ihrem Browser — nichts wird hochgeladen. Quellcode auf GitHub (rockbenben/novel-processor) für Self-Hosting."
+          "q": "Wird mein Roman auf einen Server hochgeladen?",
+          "a": "100% browserlokal: Textlesen, Formatreparatur, Traditionell/Vereinfacht-Konvertierung und Export laufen alle in Ihrem Browser — nichts wird hochgeladen."
         }
       ],
       "features": [
@@ -299,7 +299,7 @@
     },
     "dataParserFlare": {
       "title": "Flare Lesezeichen-Konverter",
-      "description": "Browser-Lesezeichen und Flare-Format konvertieren"
+      "description": "Lesezeichen-HTML zu Flare-YAML (flachgestellt)"
     },
     "dataParserImgPrompt": {
       "title": "IMGPrompt Datengenerator",
