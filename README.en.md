@@ -40,7 +40,7 @@ Typical pain points with downloaded novels:
 - 🛡️ **Protected Dictionary**: shared with the Chinese Converter — define terms that should NOT be converted.
 - 📦 **Batch Processing**: multi-file mode, large-file mode, auto-export option — no file-size limit (handles 3M-character mega-novels).
 - 💻 **Runs Locally**: the entire pipeline runs in your browser; files never leave your machine.
-- 🌐 **Multi-locale UI**: powered by next-intl, with full UI translation across 18 languages.
+- 🌐 **Multi-locale UI**: powered by next-intl, with full UI translation across 19 languages.
 
 ## Page layout
 
@@ -73,19 +73,19 @@ When done, the result is auto-copied to clipboard and shown in the result card.
   - Sub-toggle **Paragraph Indent** (visible only when Smart Line Break is on, default on): add `\t` to each paragraph head
 - **Paragraph Split** (off): break long paragraphs into shorter ones via sentence detection (the browser's built-in Intl.Segmenter + Chinese punctuation)
 
-### 2. Content Cleaning (collapsed by default)
+### 2. Chapter handling (expanded by default)
 
-- **Chapter Title Formatting** (on): recognize "Chapter X" / "第 X 章" patterns and normalize
-- **Strip Line-End Digits** (off): remove trailing digits only on lines ≥ 10 chars (avoids stripping years from short titles)
-- **Trim Spaces** (on): strip leading/trailing whitespace per line
-- **Remove Adjacent Duplicates** (off): drop only **consecutive** duplicate lines (preserves common short dialogue like "嗯" / "好")
+- **Put chapter titles on their own line** (on): split inline-concatenated chapter titles onto their own lines
+- **Merge duplicate chapter titles** (on): merge repeated chapter headings
+- **Remove duplicate lines** (on): drop only **consecutive** duplicate lines (preserves common short dialogue like "嗯" / "好")
+
+### 3. Advanced Settings (collapsed by default)
+
+- **Remove trailing numbers** (off): remove trailing digits only on lines ≥ 10 chars (avoids stripping years from short titles)
 - **Special Start Text**: enter the novel title or a recurring header word — matching lines are forced into their own paragraph
 - **Filter Words** + **Filter Threshold**:
   - Filter Words: comma-separated keywords (`channel,downloader`) — every matching line gets dropped
   - Filter Threshold: lines longer than N chars are exempt (kept even if they match) — protects body paragraphs. 0 disables the exemption.
-
-### 3. Advanced Settings (collapsed by default)
-
 - **Trad/Simp Conversion** Segmented:
   - **None** → skip this step
   - **Trad → Simp** → uses `tw → cn`
